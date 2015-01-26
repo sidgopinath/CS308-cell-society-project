@@ -73,7 +73,7 @@ The user interface for this program will be relatively simple. When the program 
 When "Load File" is clicked, the explorer will appear which will allow the user to select an xml file that they wish to read in. If they select a file that is incomplete or has errors, the program will return to the splash screen with a new text that says "Error Loading File". 
 
 If the file is successfully loaded, the explorer will close and the new simulation screen will appear. The simulation will automatically run. It will look different depending on which model the xml file chose. For example, if the fire starter simulation was indicated in the xml file, the colors will be green, red, and yellow. The other models might have different colors to better indicate what they are modeling. At the top left of simulation screen will be a button that is titled "Return". This button, when clicked, will allow the user to stop the simulation and return back to the splash screen, where they can load a new file. Another button, this time in the top right, will be titled "Stop". This button will simply stop the animation at its current point. 
-=======
+
 Add Image Here
 
 When "Load File" is clicked, the explorer will appear which will allow the user to select an xml file that they wish to read in. If they select a file that is incomplete or has errors, the program will return to the splash screen with a new text that says "Error Loading File". 
