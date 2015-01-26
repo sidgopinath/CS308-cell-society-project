@@ -65,6 +65,18 @@ The Simulation Screen will be a view that shows a grid of cells as defined by th
 ##Other Information
 We are thinking of this design as a "funnel" of sorts. The controller will call down to the model classes which will provide the necessary state of the program to the view classes. Each class will only deal with exactly what it needs to. So, for example, the sprites/graphics in the View will not know anything more than how to return its node to any class that calls it.
 
+#User Interface 
+
+The user interface for this program will be relatively simple. When the program runs, the splash screen will open, and the user will have the option to click on a button which will allow the user to load an xml file. As of right now, the splash screen is going to look very simple. It will have a title, maybe Cellular Automata, and a button titled "Load File". 
+
+Add Image Here
+
+When "Load File" is clicked, the explorer will appear which will allow the user to select an xml file that they wish to read in. If they select a file that is incomplete or has errors, the program will return to the splash screen with a new text that says "Error Loading File". 
+
+If the file is successfully loaded, the explorer will close and the new simulation screen will appear. The simulation will automatically run. It will look different depending on which model the xml file chose. For example, if the fire starter simulation was indicated in the xml file, the colors will be green, red, and yellow. The other models might have different colors to better indicate what they are modeling. At the top left of simulation screen will be a button that is titled "Return". This button, when clicked, will allow the user to stop the simulation and return back to the splash screen, where they can load a new file. Another button, this time in the top right, will be titled "Stop". This button will simply stop the animation at its current point. 
+
+Add Image here
+
 #Design Details
 
 ##Controller
