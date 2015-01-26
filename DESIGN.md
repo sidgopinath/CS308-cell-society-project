@@ -6,7 +6,7 @@ Design Details - Janan
 Team Responsibilities - All
 
 #Introduction
-The goal of this project is to create a program that can run any of four CA simulations, with the possibility of more being added. This will be done by reading in an XML file that contains which CA to run and all of the parameters required for the specific CA simluation. 
+The goal of this project is to create a program that can run any of four CA simulations, with the possibility of more being added. This will be done by reading in an XML file that contains which CA to run and all of the parameters required for the specific CA simulation. 
 
 We want it to make it extendable enough that any number of CA simulations can be added, each with their own parameters. Therefore, the "view" pat of the program should be very flexible. The controller part, where the transitions between different levels will be handled, should also be flexible.
 
@@ -35,7 +35,7 @@ This class will handle a lot of the large functions and operations of the progra
 This class is included in the controller because it deals with back-end operations of the program. This will likely be called from CellSocietyController once the load button has been pressed on the Splash Screen. It will load up a new screen that allows the user to choose an XML file to load.
 
 ###XMLParser
-The XMLParser class will take the information it receives from the FileLoader and read through the XML to make it readable for the rest of the program, specifically the simulations. The Parser will do this by creating two objects. The first will be a HashMap that contains all parameter titles as the keys and parameter values as the values. Because HashMaps are mutable, this will allow for extra parameters to be added. The second object will be a 2D Array or a "Grid" object that we create. This object will contain all of the values and statuses of each cell in a grid. It will then be able to check the status of neighbors by using indexing. These are the two main data structures that will be used.
+The XMLParser class will take the information it receives from the FileLoader and read through the XML to make it readable for the rest of the program, specifically the simulations. The Parser will do this by creating two objects. The first will be a HashMap that contains all parameter titles as the keys and parameter values as the values. Because HashMaps are mutable, this will allow for extra parameters to be added. The second object will be a 2D ArrayList or a "Grid" object that we create. This object will contain all of the values and statuses of each cell in a grid. It will then be able to check the status of neighbors by using indexing. These are the two main data structures that will be used.
 
 ##Model
 The Model package of the program will contain the Simulation superclass wand each specific simulation will be a subclass of Simulation. All the computation involved in updating the grid is done by this class, and the Model will then pass the state of grid on to View class, which updates the display for the User.
@@ -66,3 +66,44 @@ The Simulation Screen will be a view that shows a grid of cells as defined by th
 We are thinking of this design as a "funnel" of sorts. The controller will call down to the model classes which will provide the necessary state of the program to the view classes. Each class will only deal with exactly what it needs to. So, for example, the sprites/graphics in the View will not know anything more than how to return its node to any class that calls it.
 
 #Design Details
+
+##Controller
+
+###Main
+As described above, the sole purpose of this class is to initialize the JavaFX Scene and Timeline and delegates the logic of the program to CellSocietyController.
+
+###CellSocietyController
+CellSocietyController serves as the connecting centerpiece between all the inputs and outputs of the program. It calls the SplashScreen View at the initialization of the program, which brings up a splash screen and waits until the user clicks a button to call the fileLoader, which handles the reading of the simulation parameters. CellSocietyController will pass a 2D ArrayList of the initial grid state, a HashMap of simulation parameters, and a simulation name String to fileLoader, which is supposed to set them according to the XML file that the user chose. CellSociety then looks at the simulation name, picks the appropriate Simulation Model to call and initializes that Model with the appropriate parameters. At the same time, it initializes a SimulationScreen view that is ready to display the grid to the user and take in user input. Any further user input will result in calls to methods in CellSocietyController that in turn call methods in the Simulation to alter its behavior. Another possibility is for the user to reload the simulation, in which case the CellSocietyController will start the loop again and call the fileLoader.
+
+This design pattern for CellSocietyController reflects the most basic, high-level requirements for our CA simulation program. The main functionalities of the class are:
+*   Getting an XML file from the user and parsing it for parameters
+*   Initializing a SimulationScreen and the appropriate Simulation Model
+*   Processing input from the user to control the model
+
+In the MVC design pattern, the purpose of the controller is to convert user input into appropriate commands. Our design for the controller satisfies this purpose while working directly only with data structures that we know will be common to all CAs (Grid pattern and a set of configuration parameters) and so it should be flexible and extendable to any new simulations we may want to add.
+
+
+###FileLoader
+The purpose of this class is to get an XML file from the user containing parameters. Once initialized, it will set the Scene using a call from the FileLoaderScreen View. When the user loads a file, fileLoader will get the pointer to that file and pass it to XMLParser, who will return the 2D arrayList of initial grid states and a HashMap of parameters. If an error occurs then it will restart the FileLoaderScreen View and prompt for another file.
+
+This class is fairly straightforward; it manages the FileLoaderScreen and the XMLParser and the relationship between them without dealing with the presentation of the file prompt in FileLoaderScreen nor the implementation of the data parsing in XMLParser, following the principle of "telling the other guy."
+
+###XMLParser
+This class is initialized with a file pointer from FileLoader and will contain methods for extracting the data we need from the XML file and storing them in the data structures used by the models; namely the 2D arrayList of initial grid states, the name of the simulation and the HashMap of simulation parameters. The XMLParser represents a low-level class in our program design; it doesn't know what the data is being used for, and it doesn't call methods from other classes but simply returns this data to the FileLoader that asked for it. The XMLParser knows exactly as much as it needs to know.
+
+##Model
+
+###Simulation Superclass
+
+###Simulations
+
+###Cell
+
+##View
+
+###SplashScreen
+
+###FileLoaderScreen
+
+###SimulationScreen
+
