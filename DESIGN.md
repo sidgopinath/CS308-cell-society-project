@@ -37,20 +37,8 @@ This class is included in the controller because it deals with back-end operatio
 ###XMLParser
 The XMLParser class will take the information it receives from the FileLoader and read through the XML to make it readable for the rest of the program, specifically the simulations. The Parser will do this by creating two objects. The first will be a HashMap that contains all parameter titles as the keys and parameter values as the values. Because HashMaps are mutable, this will allow for extra parameters to be added. The second object will be a 2D Array or a "Grid" object that we create. This object will contain all of the values and statuses of each cell in a grid. It will then be able to check the status of neighbors by using indexing. These are the two main data structures that will be used.
 
-
-##View
-The view will contain a Simulation superclass, as well as a few smaller classes that deal with specific "screens" that need to be displayed to users.
-
-* SplashScreen
-* FileLoaderScreen
-* Simulation Superclass
-* Simulations
-
-###SplashScreen
-The SplashScreen view will have the buttons and text required to introduce the user to the program. They will get instructions and be able to click the "Load File" button, which will take them to the FileLoaderScreen and initiate the FileLoader and XMLParser controller classes. 
-
-###FileLoaderScreen
-The FileLoaderScreen will be a simple view screen that allows for the user to choose an XML file from a list. This will then call the XMLParser to create the primary structures that are used by the program.
+##Model
+The Model package of the program will contain the Simulation superclass wand each specific simulation will be a subclass of Simulation. All the computation involved in updating the grid is done by this class, and the Model will then pass the state of grid on to View class, which updates the display for the User.
 
 ###Simulation Superclass
 This will be the main class that will be extended by all of the individual simulations. It will have methods that create the grid and deal wth updating each individual cell.
@@ -58,8 +46,23 @@ This will be the main class that will be extended by all of the individual simul
 ###Simulations
 Several extended versions of the Simulation Superclass will be included here. Each one of these will have individual methods that deal with how that specific simulation is updated.
 
-##Model
-The Model package of the program will contain at least one superclass titled "Square," which will be extended to different colored squares that are used to populate the grids. It might also include other graphics that we choose to include.
+##View
+The view will contain the specific "screens" that need to be displayed to users.
+
+* SplashScreen
+* FileLoaderScreen
+* SimulationScreen
+
+###SplashScreen
+The SplashScreen view will have the buttons and text required to introduce the user to the program. They will get instructions and be able to click the "Load File" button, which will take them to the FileLoaderScreen and initiate the FileLoader and XMLParser controller classes. 
+
+###FileLoaderScreen
+The FileLoaderScreen will be a simple view screen that allows for the user to choose an XML file from a list. This will then call the XMLParser to create the primary structures that are used by the program.
+
+###SimulationScreen
+The Simulation Screen will be a view that shows a grid of cells as defined by the user. It will contain a 2D array of Square Nodes to be displayed on the JavaFX Scene. The state of the Squares on the screen are updated by the active Simulation class in the model. It will also buttons that will call commands in the Controller and allow the user to control the simulation as necessary, like pausing, changing speed and stepping forward.
 
 ##Other Information
-We are thinking of this design as a "funnel" of sorts. The controller will call down to the view classes which will call down to the model classes. Each class will only deal with exactly what it needs to. So, for example, the sprites/graphics will not know anything more than how to return its node to any class that calls it.
+We are thinking of this design as a "funnel" of sorts. The controller will call down to the model classes which will provide the necessary state of the program to the view classes. Each class will only deal with exactly what it needs to. So, for example, the sprites/graphics in the View will not know anything more than how to return its node to any class that calls it.
+
+#Design Details
