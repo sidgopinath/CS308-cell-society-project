@@ -94,16 +94,29 @@ This class is initialized with a file pointer from FileLoader and will contain m
 ##Model
 
 ###Simulation Superclass
+The Simulation class is the superclass of individual simulation classes and should define methods that are shared in common among simulations. It will be an abstract class and will define methods for creating and initializing a grid as a List of Cell objects, parsing through the HashMap of parameters and setting the parameters as appropriate, and a method for making a step of the model, with helper methods for updating individual Cells. One such helper method would be a method for defining the neighborhood of a cell, which by default should be the 8,6, or 3 cells surrounding that cell depending on its location in the grid.
+
+These will all be abstract methods to be implemented by the subclasses according to the types of cells in the simulation and the rules for updating the model. Lastly there should be a concrete method for generating a map of cell coordinates to colors based on the state of every cell and passing this map to a method in the associated Simulation View so that the view is updated.
+
+The data structures that all Simulations should contain at minimum are the List of Cell objects in the grid and HashMap of Cell types to Node colors, as read from the HashMap of parameters.
+
+In our design, the Simulation class is meant as the manager of the state of the cell grid. It is the only class that directly works with the cells in the grid, and its duties are to update the cells according to the rules of the simulation and to pass the colors of each cell in the grid at any given time to the SimulationScreen. CellSocietyController is the class that will call the Simulation's update methods, so it will have control over pausing,resuming and stepping through the simulation, as required by the assignment specification.
 
 ###Simulations
+The specific simulation classes will have whatever data structures necessary to compute the state of the cell according to the rules of the simulation. In general, the process for updating a cell will involve evaluating the neighborhood of the cell and deciding on a next state based on the properties of the neighborhood. This is intended to be as flexible as possible to accomodate different kinds of simulations; each simulation subclass is meant to have a different implementation of updateCell with no restrictions on the kind of rules it can implement and it would even be possible to override the superclass method for determining the neighborhood of the cell if necessary.
+
 
 ###Cell
+The Cell object is the lowest level object, representing cells in the grid. The cells themselves don't do any computation and simply return their color/state to the Simulation and allow their state to be modified by the Simulation. The Cells are meant to be containers of information for the Simulation, separate from the logic contained in the Simulation itself.
 
 ##View
 
 ###SplashScreen
+This Scene will contain information about the program and a button that directs the CellSocietyController to load the FileLoaderScreen once pressed by the user.
 
 ###FileLoaderScreen
+This scene will contain a JavaFX FileChooser object to enable to user to load a XML file containing information about the simulation they want to play. The file is then passed on to the XMLParser, which formats the data into data structures to be read by the Simulation objects.
 
 ###SimulationScreen
+There will be buttons that allow the user to start/pause, step through, speed up and load a new simulation. ALl of these commands call methods in the CellSocietyController. When initializing the SimulationScreen, the class will have a method to get information about the size of the grid and create Square node objects of an appropriate size to tile the screen according to the number of squares in the grid. It will also have a method that will take in a map of cell coordinates to colors from the Simulation class and update the colors of the Square nodes in the Scene accordingly. These functions of the SimulationScreen are completely independent and abstracted from the model, so they should be easily extendable regardless of new features added in the simulation.
 
