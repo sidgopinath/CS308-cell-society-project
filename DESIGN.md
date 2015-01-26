@@ -112,12 +112,6 @@ This class is initialized with a file pointer from FileLoader and will contain m
 ##Model
 
 ###Simulation Superclass
-
-
-###Simulations
-
-###Cell
-=======
 The Simulation class is the superclass of individual simulation classes and should define methods that are shared in common among simulations. It will be an abstract class and will define methods for creating and initializing a grid as a List of Cell objects, parsing through the HashMap of parameters and setting the parameters as appropriate, and a method for making a step of the model, with helper methods for updating individual Cells. One such helper method would be a method for defining the neighborhood of a cell, which by default should be the 8,6, or 3 cells surrounding that cell depending on its location in the grid.
 
 These will all be abstract methods to be implemented by the subclasses according to the types of cells in the simulation and the rules for updating the model. Lastly there should be a concrete method for generating a map of cell coordinates to colors based on the state of every cell and passing this map to a method in the associated Simulation View so that the view is updated.
@@ -137,13 +131,6 @@ The Cell object is the lowest level object, representing cells in the grid. The 
 ##View
 
 ###SplashScreen
-
-
-###FileLoaderScreen
-
-###SimulationScreen
-
-=======
 This Scene will contain information about the program and a button that directs the CellSocietyController to load the FileLoaderScreen once pressed by the user.
 
 ###FileLoaderScreen
