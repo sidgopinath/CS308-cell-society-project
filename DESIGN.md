@@ -157,3 +157,24 @@ There will be buttons that allow the user to start/pause, step through, speed up
 There are many design considerations for this project. Our goal is to make a design so that each component only has what it needs to know, and no more. To do this we are implementing an MVC, model-view-controller, process. The view consists of the scenes the user will see. This includes the splash screen, simulation screen, and the file loader screen. The model is used to update the view. Its main function will be running the simulations. The controller exists at the highest level and checks for changes in the model, so it may update the model and, in turn, update the view. In terms of design, we decided to use this model because it would most easily allow us to pass down information, without information having to be passed back up. This way we are funneling down information, rather than having it bounce among different levels. 
 
 Another design consideration is what data structure is best at handling the xml parser. Ultimately what we decided was using a hashmap to pass in parameters, and an array of arrays, a matrix, to model each pixel in the simulation. We were fairly certain on using the matrix to model the simulation because it seems like the best data structure for this particular assignment. It allows us to split up the screen into a grid and update each chunk individually. The hashmap we decided on using after some consideration. Originally we were thinking about using an arraylist, but the hashmap seemed more organized. With a hashmap we can indicate the parameter name and value. 
+
+
+#Team Responsibilities
+
+###Sid
+* XMLParser
+* XML File Formatting
+* Controller
+* Main
+
+###Sunjeev
+* Simulation Superclass
+* Other three simulations
+* Splash Screen
+* Views/Simulation Screens
+
+###Janan
+* Predator simulation
+* Square superclass
+* Square subclass
+
