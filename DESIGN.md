@@ -1,9 +1,5 @@
 Cell Society Design
 ===================
-Intro/Overview - Sid
-User Interface/Design Considerations - Sunjeev
-Design Details - Janan
-Team Responsibilities - All
 
 #Introduction
 The goal of this project is to create a program that can run any of four CA simulations, with the possibility of more being added. This will be done by reading in an XML file that contains which CA to run and all of the parameters required for the specific CA simulation. 
