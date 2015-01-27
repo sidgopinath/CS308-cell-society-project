@@ -69,18 +69,14 @@ We are thinking of this design as a "funnel" of sorts. The controller will call 
 
 The user interface for this program will be relatively simple. When the program runs, the splash screen will open, and the user will have the option to click on a button which will allow the user to load an xml file. As of right now, the splash screen is going to look very simple. It will have a title, maybe Cellular Automata, and a button titled "Load File". 
 
+![Splash Screen with Error](https://github.com/duke-compsci308-spring2015/cellsociety_team15/blob/master/images/Design%20Images/Splash%20Screen.png)
+
 
 When "Load File" is clicked, the explorer will appear which will allow the user to select an xml file that they wish to read in. If they select a file that is incomplete or has errors, the program will return to the splash screen with a new text that says "Error Loading File". 
 
-If the file is successfully loaded, the explorer will close and the new simulation screen will appear. The simulation will automatically run. It will look different depending on which model the xml file chose. For example, if the fire starter simulation was indicated in the xml file, the colors will be green, red, and yellow. The other models might have different colors to better indicate what they are modeling. At the top left of simulation screen will be a button that is titled "Return". This button, when clicked, will allow the user to stop the simulation and return back to the splash screen, where they can load a new file. Another button, this time in the top right, will be titled "Stop". This button will simply stop the animation at its current point. 
+If the file is successfully loaded, the explorer will close and the new simulation screen will appear. The simulation will automatically run. It will look different depending on which model the xml file chose. For example, if the fire starter simulation was indicated in the xml file, the colors will be green, red, and yellow. The other models might have different colors to better indicate what they are modeling. At the top left of simulation screen will be a button that is titled "Load". When clicked, this button will stop the current simulation, and open up the explorer for another xml file to be loaded. In the center there will be two buttons, one titled "Step" which allows the user to step through the simulation, and another button titled "Speed Up" which, while held down" speeds up the rate of the simulation. At the top right there will be a button titled "Stop/Start" which, if the simulation is in a stopped state, continues the simulation, and if the simulation is in a start state, will pause the simulation. See below for reference on location and design of interface.
 
-Add Image Here
-
-When "Load File" is clicked, the explorer will appear which will allow the user to select an xml file that they wish to read in. If they select a file that is incomplete or has errors, the program will return to the splash screen with a new text that says "Error Loading File". 
-
-If the file is successfully loaded, the explorer will close and the new simulation screen will appear. The simulation will automatically run. It will look different depending on which model the xml file chose. For example, if the fire starter simulation was indicated in the xml file, the colors will be green, red, and yellow. The other models might have different colors to better indicate what they are modeling. At the top left of the screen will be a button titled "Load". This button will open up the file loader and allow the user to load in a new file. At the top center there will be two buttons, one titled "step" which will allow the user to step through the simulation, and another titled "speed up" which speeds up the simulation while the button is held down. At the top right will be another button titled "Stop/Start" which either stops or starts the animation depending if the animation is in a stopped state or a start state.
-
-Add Image here
+![Example Simulation Screen](https://github.com/duke-compsci308-spring2015/cellsociety_team15/blob/master/images/Design%20Images/Simulation.png)
 
 
 #Design Details
@@ -112,12 +108,6 @@ This class is initialized with a file pointer from FileLoader and will contain m
 ##Model
 
 ###Simulation Superclass
-
-
-###Simulations
-
-###Cell
-=======
 The Simulation class is the superclass of individual simulation classes and should define methods that are shared in common among simulations. It will be an abstract class and will define methods for creating and initializing a grid as a List of Cell objects, parsing through the HashMap of parameters and setting the parameters as appropriate, and a method for making a step of the model, with helper methods for updating individual Cells. One such helper method would be a method for defining the neighborhood of a cell, which by default should be the 8,6, or 3 cells surrounding that cell depending on its location in the grid.
 
 These will all be abstract methods to be implemented by the subclasses according to the types of cells in the simulation and the rules for updating the model. Lastly there should be a concrete method for generating a map of cell coordinates to colors based on the state of every cell and passing this map to a method in the associated Simulation View so that the view is updated.
@@ -137,13 +127,6 @@ The Cell object is the lowest level object, representing cells in the grid. The 
 ##View
 
 ###SplashScreen
-
-
-###FileLoaderScreen
-
-###SimulationScreen
-
-=======
 This Scene will contain information about the program and a button that directs the CellSocietyController to load the FileLoaderScreen once pressed by the user.
 
 ###FileLoaderScreen
@@ -154,10 +137,11 @@ There will be buttons that allow the user to start/pause, step through, speed up
 
 #Design Considerations
 
-There are many design considerations for this project. Our goal is to make a design so that each component only has what it needs to know, and no more. To do this we are implementing an MVC, model-view-controller, process. The view consists of the scenes the user will see. This includes the splash screen, simulation screen, and the file loader screen. The model is used to update the view. Its main function will be running the simulations. The controller exists at the highest level and checks for changes in the model, so it may update the model and, in turn, update the view. In terms of design, we decided to use this model because it would most easily allow us to pass down information, without information having to be passed back up. This way we are funneling down information, rather than having it bounce among different levels. 
+There are many design considerations for this project. Our goal is to make a design so that each component only has what it needs to know, and no more. To do this we are implementing an MVC, model-view-controller, process. The view consists of the scenes the user will see. This includes the splash screen, simulation screen, and the file loader screen. The model is used to update the view. Its main function will be running the simulations. The controller exists at the highest level and checks for changes in the model, so it may update the model and, in turn, update the view. In terms of design, we decided to use this model because it would most easily allow us to pass down information, without information having to be passed back up. This way we are funneling down information, rather than having it bounce among different levels. Originally we were discussing a model with just a controller and a view, where the view handles all the visuals and the controller handles much of the higher level code, but following the MVC model makes much more sense. 
 
 Another design consideration is what data structure is best at handling the xml parser. Ultimately what we decided was using a hashmap to pass in parameters, and an array of arrays, a matrix, to model each pixel in the simulation. We were fairly certain on using the matrix to model the simulation because it seems like the best data structure for this particular assignment. It allows us to split up the screen into a grid and update each chunk individually. The hashmap we decided on using after some consideration. Originally we were thinking about using an arraylist, but the hashmap seemed more organized. With a hashmap we can indicate the parameter name and value. 
 
+Finally we discussed how each grid space would contain values. We thought the best way to do this was to simply create a class that extends square, and pass it the appropriate values it needs to interact with its neighbors. 
 
 #Team Responsibilities
 
@@ -177,4 +161,3 @@ Another design consideration is what data structure is best at handling the xml 
 * Predator simulation
 * Square superclass
 * Square subclass
-
