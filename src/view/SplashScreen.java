@@ -40,10 +40,10 @@ public class SplashScreen {
 	}
 	
 	/**
-	 * This function, when clicked, will take the user to the fileLoader class, which will allow the user to
-	 * select a file they want to load.
+	 * This function, when clicked, will take the user to the fileLoader class through the controller, which will 
+	 * allow the user to select a file they want to load.
 	 */
 	private void goToFileLoaderScreen(KeyEvent e){
-		//go to file loader class
+		//tell controller to go to fileLoader Class
 	}
 }
