@@ -21,12 +21,9 @@ public class SimulationFire extends Simulation {
 	}
 
 	@Override
-	void passNeighbors() {
+	void updateNeighbors() {
 		// TODO Auto-generated method stub
 		
 	}
-	
-
-	
 	
 }

@@ -28,7 +28,7 @@ public abstract class Simulation {
 		/**
 		 * pass each square its neighbors
 		 */
-		abstract void passNeighbors();
+		abstract void updateNeighbors();
 		
 	}
 

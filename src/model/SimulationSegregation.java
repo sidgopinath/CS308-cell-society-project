@@ -21,10 +21,9 @@ public class SimulationSegregation extends Simulation {
 	}
 
 	@Override
-	void passNeighbors() {
+	void updateNeighbors() {
 		// TODO Auto-generated method stub
 		
 	}
-
 	
 }
