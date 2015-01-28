@@ -1,16 +1,32 @@
 package model;
 
 public class SimulationFire extends Simulation {
-	
-	/**
-	 * rules of the fire simulation
-	 */
-	public void fireRules(){
+
+	@Override
+	void runSim() {
+		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	void fillGrid() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void updateGrid() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void passNeighbors() {
+		// TODO Auto-generated method stub
 		
 	}
 	
-	private void update(){
-		
-	}
+
+	
+	
 }
