@@ -1,17 +1,13 @@
 package model;
 
+import java.util.Map;
+
 public class SimulationLife extends Simulation {
 
 	@Override
-	void runSim() {
+	Square[][] fillGrid(Map<String, String> paramMap) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	void fillGrid() {
-		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
@@ -25,5 +21,7 @@ public class SimulationLife extends Simulation {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }
