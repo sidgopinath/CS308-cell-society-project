@@ -14,7 +14,7 @@ public abstract class Simulation {
 		 */
 		public void runSim(Map<String, String> paramMap){
 			myGrid = fillGrid(paramMap);
-			updateGrid(myGrid);
+			updateGrid();
 			
 		}
 		
