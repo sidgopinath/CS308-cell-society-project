@@ -12,7 +12,7 @@ public class SimulationScreen {
 	 * at the top that load, step through, speed up, and stop/start the simulation.
 	 * @returns a scene
 	 */
-	public Scene initSim(Group root){
+	public Scene initSimScreen(Group root){
 		//myRoot = root
 		//addLoadButton();
 		//addStepButton();
@@ -29,8 +29,7 @@ public class SimulationScreen {
 	}
 	
 	/**
-	 * This function first will stop the current animation. Next it will call fileLoader which will allow the user
-	 * to pick a new file and set up this screen again. 
+	 * This function will call the function in the Controller that loads file 
 	 * @returns null
 	 */
 	private Object loadFile(KeyEvent e){
@@ -45,7 +44,7 @@ public class SimulationScreen {
 	}
 	
 	/**
-	 * This function calls for the individual simulation to step through by 1 event
+	 * This function calls for the function in the controller which steps the program through the simulation
 	 * @returns null
 	 */
 	private Object stepThroughSimulation(){
@@ -61,7 +60,7 @@ public class SimulationScreen {
 	}
 	
 	/**
-	 * event listener for speed up button
+	 * event listener for speed up button. Tells controller to speed up simulation
 	 * @returns null
 	 */
 	private Object speedUpSimulation(){
@@ -76,7 +75,7 @@ public class SimulationScreen {
 	}
 	
 	/**
-	 * stops or starts simulation
+	 * tells controller to stop or start simulation
 	 * @returns null
 	 */
 	private Object stopOrStart(){
