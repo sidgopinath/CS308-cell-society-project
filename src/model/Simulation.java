@@ -5,19 +5,42 @@ import java.util.HashMap;
 import javafx.scene.Scene;
 
 public abstract class Simulation {
-	
-	/**
-	 * starts initSimScreen in Simulation Screen, then calls the methods to fill grid
-	 * @return
-	 */
-	public Scene initSim(){
-		return null;
-	}
-	
-	/**
-	 * fill grid with squares that have the right values given the parameters 
-	 */
-	public void fillGrid(HashMap<String, Integer> param){
+		
+		
+		/**
+		 * first fill grid with appropriate square types
+		 * then pass squares their appropriate neighbors
+		 * Then update squares
+		 */
+		public void runSim(){
+			//fillLGrid()
+			//updateGrid()
+		}
+		
+		/**
+		 * fill grid with squares that have the right values given the parameters and the type of each space
+		 */
+		private void fillGrid(){
+			
+		}
+		
+		/**
+		 *  that we will go through and call each cell to update.
+		 */
+		private void updateGrid(){
+			//passNeighbors()
+			//iterate and square.update()
+		}
+		
+		/**
+		 * pass each square its neighbors
+		 */
+		private void passNeighbors(){
+			
+		}
 		
 	}
-}
+
+	
+	
+
