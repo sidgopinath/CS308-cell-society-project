@@ -11,7 +11,7 @@ public abstract class Simulation {
 		 * then pass squares their appropriate neighbors
 		 * Then update squares
 		 */
-		public abstract void runSim(Map<String, String> paramMap);
+		abstract void runSim(Map<String, String> paramMap);
 		
 		/**
 		 * fill grid with squares that have the right values given the parameters and the type of each space
@@ -32,6 +32,10 @@ public abstract class Simulation {
 		 */
 		abstract void updateNeighbors();
 		
+		/**
+		 * update the view's colors
+		 */
+		abstract void updateView();
 	}
 
 	

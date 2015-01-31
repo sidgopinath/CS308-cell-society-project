@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class FireSquare {
@@ -10,6 +11,10 @@ public abstract class FireSquare {
 	 * @param neighbors is a list of neighbors passed in by its simulation class
 	 */
 	public FireSquare(List<FireSquare> neighbors){
+		myNeighbors = neighbors;
+	}
+	
+	public void setNeighbors(ArrayList<FireSquare> neighbors){
 		myNeighbors = neighbors;
 	}
 	
