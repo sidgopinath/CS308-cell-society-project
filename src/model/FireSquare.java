@@ -2,9 +2,9 @@ package model;
 
 import java.util.List;
 
-public class FireSquare {
+public abstract class FireSquare {
 
-	private List<FireSquare> myNeighbors;
+	protected List<FireSquare> myNeighbors;
 	
 	/**
 	 * @param neighbors is a list of neighbors passed in by its simulation class
@@ -18,7 +18,9 @@ public class FireSquare {
 	 * class
 	 */
 	public FireSquare update(){
-		return null;
-		
+		return this.chechStatus();
 	}
+	
+	public abstract FireSquare chechStatus();
+	public abstract FireSquare checkNeighbor();
 }

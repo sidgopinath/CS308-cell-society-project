@@ -37,10 +37,12 @@ public class SplashScreen {
 	 */
 	private void addTitle(){
 		//getProp() should return a Property which has the inputstream of the .property file loaded into it.
-		String splashTitle = getProp().getProperty("title");
+		String splashTitle = "Cellular Automata"; //getProp().getProperty("title");
 		Text splashTitleText = new Text(splashTitle);
 		splashTitleText.setTranslateX(myWidth/2 - splashTitleText.getLayoutBounds().getWidth());
 		splashTitleText.setTranslateY(myHeight / 4);
+		splashTitleText.setScaleX(10);
+		splashTitleText.setScaleY(10);
 		myRoot.getChildren().add(splashTitleText);
 	}
 	
@@ -49,7 +51,7 @@ public class SplashScreen {
 	 * It will have to get the button's position from the .properties file. 
 	 */
 	private void addLoadButton(){
-		String loadButtonString = getProp().getProperty("load button text");
+		String loadButtonString = "load"; //getProp().getProperty("load button text");
 		Button loadButton = new Button(loadButtonString);
 		myRoot.getChildren().add(loadButton);
 		loadButton.setOnAction(e -> goToFileLoaderScreen());
@@ -60,6 +62,6 @@ public class SplashScreen {
 	 * allow the user to select a file they want to load.
 	 */
 	private void goToFileLoaderScreen(){
-		myController.transitionToFileLoaderScreen();
+		//myController.transitionToFileLoaderScreen();
 	}
 }

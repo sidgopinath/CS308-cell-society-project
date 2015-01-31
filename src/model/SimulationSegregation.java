@@ -5,9 +5,8 @@ import java.util.Map;
 public class SimulationSegregation extends Simulation {
 
 	@Override
-	Square[][] fillGrid(Map<String, String> paramMap) {
+	void fillGrid(Map<String, String> paramMap) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -18,6 +17,12 @@ public class SimulationSegregation extends Simulation {
 
 	@Override
 	void updateNeighbors() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void runSim(Map<String, String> paramMap) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -35,7 +35,7 @@ public class SimulationScreen {
 		myTop.getChildren().add(addLoadButton());
 		myTop.getChildren().add(addStepButton());
 		myTop.getChildren().add(addSpeedUpButton());
-		myTop.getChildren().add(addStopStartButton();
+		myTop.getChildren().add(addStopStartButton());
 		return myTop;
 		
 	}
@@ -48,7 +48,7 @@ public class SimulationScreen {
 		Button loadButton = new Button("Load");
 		myTop.getChildren().add(loadButton);
 		loadButton.setOnAction(e -> {
-			myController.transitionToFileLoaderScreen();
+			//myController.transitionToFileLoaderScreen();
 		});
 		return loadButton;
 	}
@@ -60,7 +60,7 @@ public class SimulationScreen {
 		Button stepButton = new Button ("Step");
 		myTop.getChildren().add(stepButton);
 		stepButton.setOnAction(e-> {
-			myController.stepThroughSimulation();
+			//myController.stepThroughSimulation();
 		});
 		return stepButton;
 	}
@@ -73,8 +73,9 @@ public class SimulationScreen {
 		Button speedUpButton = new Button("Speed Up");
 		myTop.getChildren().add(speedUpButton);
 		speedUpButton.setOnAction(e -> {
-			myController.speedUpSimulation();
-		}); 
+			//myController.speedUpSimulation();
+		});
+		return speedUpButton; 
 	}
 	
 
@@ -86,8 +87,9 @@ public class SimulationScreen {
 		Button stopStartButton = new Button("Stop/Start");
 		myTop.getChildren().add(stopStartButton);
 		stopStartButton.setOnAction(e -> {
-			myController.stopOrStart();
+			//myController.stopOrStart();
 		});
+		return stopStartButton;
 	}
 	
 }
