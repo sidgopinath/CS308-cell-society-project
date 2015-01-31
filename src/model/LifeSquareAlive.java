@@ -10,14 +10,17 @@ public class LifeSquareAlive extends LifeSquare{
 	}
 
 	@Override
-	public int getState() {
-		// TODO Auto-generated method stub
-		return 0;
+	protected int returnCount() {
+		return 1;
 	}
 
 	@Override
-	protected int returnCount() {
-		return 1;
+	protected LifeSquare checkStatus(int alive) {
+		if(alive == 2 || alive == 3){
+			return this;
+		}
+		else return new LifeSquareDead(myNeighbors);
+		
 	}
 
 	

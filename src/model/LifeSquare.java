@@ -4,7 +4,7 @@ import java.util.List;
 
 public abstract class LifeSquare {
 
-	private List<LifeSquare> myNeighbors;
+	protected List<LifeSquare> myNeighbors;
 
 	public LifeSquare(List<LifeSquare> neighbors){
 		myNeighbors = neighbors;
@@ -15,33 +15,10 @@ public abstract class LifeSquare {
 		for(LifeSquare neighbor: myNeighbors){
 			liveCount += neighbor.returnCount();
 		}
-		//if alive...
-		if(this.getState() == 1){
-			if(liveCount < 2){
-				//return dead cell
-				return null;
-			}
-			else if(liveCount <= 3){
-				//return live cell
-				return null;
-			}
-			else if(liveCount > 3){
-				//return dead cell
-				return null;
-			}
-		}
-		//if dead...
-		else{
-			if(liveCount == 3){
-				//return live cell
-				return null;
-			}
-		}
-		
-		return null;
+		return this.checkStatus(liveCount);
 	}
 	
-	protected abstract int getState();
 	protected abstract int returnCount();
+	protected abstract LifeSquare checkStatus(int alive);
 	
 }
