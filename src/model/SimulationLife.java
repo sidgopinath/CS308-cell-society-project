@@ -6,7 +6,7 @@ public class SimulationLife extends Simulation {
 
 	@Override
 	void fillGrid(Map<String, String> paramMap) {
-		// TODO Auto-generated method stub
+		
 	}
 
 	@Override

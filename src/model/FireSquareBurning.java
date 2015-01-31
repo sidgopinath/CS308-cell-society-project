@@ -29,7 +29,7 @@ public class FireSquareBurning extends FireSquare{
 	}
 
 	private boolean calculateProbability() {
-		return myRandom.nextInt(PROB_CATCH) <= PROB_CATCH;
+		return myRandom.nextInt(100) <= PROB_CATCH;
 				
 	}
 

@@ -27,6 +27,12 @@ public class SimulationSegregation extends Simulation {
 		
 	}
 
+	@Override
+	void updateView() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 }

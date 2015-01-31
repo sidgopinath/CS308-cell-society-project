@@ -59,7 +59,6 @@ public class SimulationFire extends Simulation {
 		myGrid = new FireSquare[5][5];
 		fillGrid(paramMap);
 		updateGrid();
-		
 	}
 
 	@Override
