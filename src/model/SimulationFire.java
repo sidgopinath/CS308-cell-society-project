@@ -60,12 +60,12 @@ public class SimulationFire extends Simulation {
 		updateGrid();
 	}
 
-	@Override
-	public void runSim(Map<String, String> paramMap) {
+	@Override 
+	void runSim(Map<String, String> paramMap) {
 		//grid size determined by paramMap or something
 		myGrid = new FireSquare[5][5];
-		myView.initSimView(myGrid.length, myGrid[0].length);
 		fillGrid(paramMap);
+		myView.initSimView(myGrid.length, myGrid[0].length);
 		updateGrid();
 	}
 
