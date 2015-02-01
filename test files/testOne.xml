@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='us-ascii'?> 
 
-<!-- This is the first test xml file -->
+<!-- A test file for the fire simulation-->
 
 <simulation type="fire">
 
-	<parameters>
-
-		<gridheight>5</gridheight>
-		<gridwidth>5</gridwidth>
+	<parameter>
+		<windowHeight>400</windowHeight>
+		<windowWidth>400</windowWidth>
+		<gridHeight>5</gridHeight>
+		<gridWidth>5</gridWidth>
 		<probCatch>0.15</probCatch>	
-
-	</parameters>
+	</parameter>
 
 
 	<grid>
