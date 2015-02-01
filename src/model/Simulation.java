@@ -30,7 +30,7 @@ public abstract class Simulation {
 		 *  then it will go through and call each cell to update.
 		 *  update view
 		 */
-		abstract void updateGrid();
+		public abstract void updateGrid();
 		
 		/**
 		 * pass each square its neighbors

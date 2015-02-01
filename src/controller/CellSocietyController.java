@@ -43,11 +43,17 @@ public class CellSocietyController {
 
 	private void update() {
 		//update program, check for transition conditions at a high level
+		myCurrentSimulation.updateGrid();
 		checkForTransition();
 		checkSimulationStop();
+		checkProgramEnd();
 		
 	}
 	
+	private void checkProgramEnd() {
+		//check if program should stop. if so, call end program
+	}
+
 	private void checkForTransition() {
 		//check for transition to a new simulation or different screen?
 		
@@ -56,7 +62,7 @@ public class CellSocietyController {
 	private void checkSimulationStop(){
 		//checks if the current simulation has stopped or been stopped by user
 		//does this by calling a method in Simulation that will return boolean
-		if(myCurrentSimulation.isStopped){
+		if(myCurrentSimulation.isStopped()){
 			//do stuff
 		}
 	}
@@ -72,9 +78,5 @@ public class CellSocietyController {
 	
 	private void endProgram(){
 		System.exit(0);
-	}
-	
-	
-	
-	
+	}	
 }

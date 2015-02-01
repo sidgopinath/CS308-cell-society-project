@@ -54,9 +54,7 @@ public class XMLParser {
 					Integer newSquare = Integer.parseInt(splitRow[j]);
 					myGrid[i][j] = newSquare;
 				}
-				
 			}
-			
 		}
 		
 		catch (Exception e){
@@ -65,7 +63,7 @@ public class XMLParser {
 	}
 	
 	
-	//function to return ArrayList that signifies the Grid
+	//function to return Array that signifies the Grid
 	public Integer[][] getGrid(){
 		return myGrid;
 	}
