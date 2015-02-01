@@ -1,32 +1,61 @@
 package model;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class SquarePredatorShark extends SquarePredator{
     
-    int myLifePeriod;
+    private int myLifePeriod;
+    private int myCurrentLife;
 
-    public SquarePredatorShark (int breedingPeriod, int lifePeriod) {
-        super(breedingPeriod);
+    public SquarePredatorShark (int breedingPeriod, int lifePeriod, int x, int y) {
+        super(breedingPeriod,x,y);
         myLifePeriod = lifePeriod;
-        // TODO Auto-generated constructor stub
+        myCurrentLife = lifePeriod;
+    }
+
+    @Override
+    public SquarePredator moveSquare () {
+        Random squareGenerator = new Random();
+        List<SquarePredator> neighborList = super.getMyNeighbors();
+        List<SquarePredator> edibleList = new ArrayList<SquarePredator>();
+        List<SquarePredator> movableList = new ArrayList<SquarePredator>();
+        
+        for(SquarePredator square:neighborList){
+            if(square.isEdible()){
+                edibleList.add(square);
+            }
+            if(square.isMovable()){
+                movableList.add(square);
+            }
+        }
+        if(!edibleList.isEmpty()){
+            return edibleList.get(squareGenerator.nextInt(edibleList.size()));
+        }
+        if(!movableList.isEmpty()){
+            return movableList.get(squareGenerator.nextInt(movableList.size()));
+        }
+        return this;
+    }
+
+    @Override
+    public SquarePredator getChildSquare (int x, int y, int breedingPeriod) {
+        return new SquarePredatorShark(breedingPeriod, myLifePeriod, x,y);
     }
 
     @Override
     public int getState () {
-        // TODO Auto-generated method stub
-        return 0;
+        return 2;
     }
 
     @Override
     public boolean isEdible () {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean isMovable () {
-        // TODO Auto-generated method stub
         return false;
     }
 

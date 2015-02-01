@@ -10,6 +10,10 @@ public class SimulationPredator extends Simulation {
         runSim(paramMap);
     }
     
+    public void move(){
+        
+    }
+    
     /*
      * Initializes sim, parses through data passed into upon initialization
      */
