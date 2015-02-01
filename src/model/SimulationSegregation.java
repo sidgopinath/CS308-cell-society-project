@@ -2,6 +2,8 @@ package model;
 
 import java.util.Map;
 
+import javafx.scene.paint.Color;
+
 public class SimulationSegregation extends Simulation {
 
 	@Override
@@ -28,11 +30,14 @@ public class SimulationSegregation extends Simulation {
 	}
 
 	@Override
-	void updateView() {
+	void updateView(Color[][] grid) {
 		// TODO Auto-generated method stub
 		
 	}
 
-
-	
+	@Override
+	void updateColorGrid() {
+		// TODO Auto-generated method stub
+		
+	}
 }

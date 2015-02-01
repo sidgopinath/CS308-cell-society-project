@@ -9,8 +9,9 @@ public class SimulationFire extends Simulation {
 
 	private FireSquare[][] myGrid;
 
-	public SimulationFire(){
+	public SimulationFire(Map<String,String> paramMap){
 		super();
+		runSim(paramMap);
 	}
 	
 	@Override
@@ -22,10 +23,8 @@ public class SimulationFire extends Simulation {
 			}
 		}
 		//all squares passed in first, then passed their neighbors
-		updateColorGrid();
 		updateNeighbors();
 	}
-
 
 	@Override
 	void updateGrid() {
@@ -65,6 +64,7 @@ public class SimulationFire extends Simulation {
 	public void runSim(Map<String, String> paramMap) {
 		//grid size determined by paramMap or something
 		myGrid = new FireSquare[5][5];
+		myView.initSimView(myGrid.length, myGrid[0].length);
 		fillGrid(paramMap);
 		updateGrid();
 	}
@@ -77,9 +77,9 @@ public class SimulationFire extends Simulation {
 
 	@Override
 	void updateColorGrid() {
+		//this method will loop through myGrid and call updateView with the new grid of colors
 		updateView(null);
 		
 	}
-
 	
 }

@@ -10,12 +10,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class SimulationScreen {
 	private CellSocietyController myController;
 	private int myWidth;
 	private int myHeight;
 	private HBox myTop;
+	private GridPane myGridPane;
 
 	/**
 	 * This function begins setting up the general simulation scene. This includes things like adding the four buttons
@@ -103,15 +105,46 @@ public class SimulationScreen {
 	 */
 	private Node addSimulation(){
 		GridPane simGridPane = new GridPane();
+		myGridPane = simGridPane;
 		return simGridPane;
 	}
 	
 	/**
 	 * must be passed a grid of some type so that it can determine the colors of each square
-	 * @param grid
+	 * It will then go through each square and set its appropriate color
+	 * @param colorGrid
 	 */
-	public void updateScreen(Color[][] grid){
-		
+	public void updateScreen(Color[][] colorGrid){
+		for(int j = 0; j < colorGrid.length; j++){
+			for(int i = 0; i < colorGrid[0].length; i++){
+				//get color and update square with that color
+				getChild(i, j).setFill(colorGrid[j][i]);
+			}
+		}
 	}
 	
+	/**
+	 * goes through myGridPane and creates a new rectangle object at each spot in the grid
+	 * @param gridHeight
+	 * @param gridWidth
+	 */
+	public void initSimView(int gridHeight, int gridWidth){
+		for(int j = 0; j < gridHeight; j++){
+			for(int i = 0; i < gridWidth; i++){
+				myGridPane.add(new Rectangle(), j, i);
+			}
+		}
+	}
+	
+	private Rectangle getChild(int row, int column){
+		for(Node child: myGridPane.getChildren()){
+			if(GridPane.getRowIndex(child) == row && GridPane.getColumnIndex(child) == column){
+				//trust me, it will be a rectangle...
+				return (Rectangle) child;
+			}
+		}
+		System.out.println("error, getChild() method not working");
+		return null;
+		
+	}
 }
