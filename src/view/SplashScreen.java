@@ -2,6 +2,7 @@ package view;
 
 import controller.CellSocietyController;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
@@ -9,6 +10,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class SplashScreen {
+	private static final int SPLASH_TEXT_SIZE = 5;
+	private static final int LOAD_BUTTON_SIZE = 5;
+	
 	private Group myRoot;
 	private int myWidth;
 	private int myHeight;
@@ -39,10 +43,10 @@ public class SplashScreen {
 		//getProp() should return a Property which has the inputstream of the .property file loaded into it.
 		String splashTitle = "Cellular Automata"; //getProp().getProperty("title");
 		Text splashTitleText = new Text(splashTitle);
-		splashTitleText.setTranslateX(myWidth/2 - splashTitleText.getLayoutBounds().getWidth());
+		splashTitleText.setTranslateX(center(splashTitleText));
 		splashTitleText.setTranslateY(myHeight / 4);
-		splashTitleText.setScaleX(10);
-		splashTitleText.setScaleY(10);
+		splashTitleText.setScaleX(SPLASH_TEXT_SIZE);
+		splashTitleText.setScaleY(SPLASH_TEXT_SIZE);
 		myRoot.getChildren().add(splashTitleText);
 	}
 	
@@ -53,8 +57,16 @@ public class SplashScreen {
 	private void addLoadButton(){
 		String loadButtonString = "load"; //getProp().getProperty("load button text");
 		Button loadButton = new Button(loadButtonString);
+		loadButton.setTranslateX(center(loadButton));
+		loadButton.setTranslateY(myHeight * 3/4);
+		loadButton.setScaleX(LOAD_BUTTON_SIZE);
+		loadButton.setScaleY(LOAD_BUTTON_SIZE);
 		myRoot.getChildren().add(loadButton);
 		loadButton.setOnAction(e -> goToFileLoaderScreen());
+	}
+
+	private double center(Node n) {
+		return myWidth/2 - n.getLayoutBounds().getWidth();
 	}
 	
 	/**
