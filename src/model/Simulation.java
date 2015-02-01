@@ -2,10 +2,17 @@ package model;
 
 import java.util.Map;
 
+import view.SimulationScreen;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 
 public abstract class Simulation {
-		
+		protected SimulationScreen myView;
+	
+		public Simulation(){
+			myView = new SimulationScreen();
+		}
+	
 		/**
 		 * first fill grid with appropriate square types
 		 * then pass squares their appropriate neighbors
@@ -35,7 +42,12 @@ public abstract class Simulation {
 		/**
 		 * update the view's colors
 		 */
-		abstract void updateView();
+		abstract void updateView(Color[][] grid);
+		
+		/**
+		 * this method takes myGrid and turns it into a grid that is readable for the view
+		 */
+		abstract void updateColorGrid();
 	}
 
 	

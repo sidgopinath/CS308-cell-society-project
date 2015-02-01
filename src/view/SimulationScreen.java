@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
@@ -18,7 +19,8 @@ public class SimulationScreen {
 
 	/**
 	 * This function begins setting up the general simulation scene. This includes things like adding the four buttons
-	 * at the top that load, step through, speed up, and stop/start the simulation.
+	 * at the top that load, step through, speed up, and stop/start the simulation. Note: all strings used to create
+	 * buttons must be retrieved from a .properties file. Right now I have them hard coded into the program.
 	 * @returns a scene
 	 */
 	public Scene initSimScreen(int width, int height){
@@ -26,16 +28,17 @@ public class SimulationScreen {
 		myWidth = width;
 		myHeight = height;
 		myController = new CellSocietyController(width, height);
-		root.getChildren().add(addButtons());
+		root.setTop(addButtons());
+		root.setCenter(addSimulation());
 		return new Scene(root, width, height, Color.WHITE);
 	}
 	
 	private HBox addButtons() {
 		HBox myTop = new HBox();
-		myTop.getChildren().add(addLoadButton());
-		myTop.getChildren().add(addStepButton());
-		myTop.getChildren().add(addSpeedUpButton());
-		myTop.getChildren().add(addStopStartButton());
+		myTop.getChildren().addAll(addLoadButton(), addStepButton(), addSpeedUpButton(), addStopStartButton());
+		double length = myTop.getChildren().size();
+		double buttonWidth = myTop.getChildren().get(0).getLayoutBounds().getWidth();
+		myTop.setSpacing((myWidth - length * buttonWidth) / (length + 1));
 		return myTop;
 		
 	}
@@ -90,6 +93,25 @@ public class SimulationScreen {
 			//myController.stopOrStart();
 		});
 		return stopStartButton;
+	}
+	
+	/**
+	 * sets up the gridpane for the simulation. 
+	 * and update each cell with a color.
+	 * @param grid
+	 * @return
+	 */
+	private Node addSimulation(){
+		GridPane simGridPane = new GridPane();
+		return simGridPane;
+	}
+	
+	/**
+	 * must be passed a grid of some type so that it can determine the colors of each square
+	 * @param grid
+	 */
+	public void updateScreen(Color[][] grid){
+		
 	}
 	
 }

@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class FireSquareBurning extends FireSquare{
 
-	private static final int PROB_CATCH = 60;
+	
 	private Random myRandom;
 	
 	public FireSquareBurning(List<FireSquare> neighbors) {

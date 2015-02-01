@@ -3,10 +3,16 @@ package model;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javafx.scene.paint.Color;
+
 public class SimulationFire extends Simulation {
 
 	private FireSquare[][] myGrid;
 
+	public SimulationFire(){
+		super();
+	}
+	
 	@Override
 	void fillGrid(Map<String, String> paramMap) {
 		for(int j = 0; j < myGrid.length; j++){
@@ -16,8 +22,10 @@ public class SimulationFire extends Simulation {
 			}
 		}
 		//all squares passed in first, then passed their neighbors
+		updateColorGrid();
 		updateNeighbors();
 	}
+
 
 	@Override
 	void updateGrid() {
@@ -26,7 +34,7 @@ public class SimulationFire extends Simulation {
 				myGrid[j][i] = myGrid[j][i].update();
 			}
 		}
-		updateView();
+		updateColorGrid();
 		updateNeighbors();
 	}
 
@@ -62,8 +70,14 @@ public class SimulationFire extends Simulation {
 	}
 
 	@Override
-	void updateView() {
-		// TODO Auto-generated method stub
+	void updateView(Color[][] grid) {
+		myView.updateScreen(grid);
+		
+	}
+
+	@Override
+	void updateColorGrid() {
+		updateView(null);
 		
 	}
 

@@ -6,6 +6,7 @@ import java.util.List;
 public abstract class FireSquare {
 
 	protected List<FireSquare> myNeighbors;
+	protected static final int PROB_CATCH = 60;
 	
 	/**
 	 * @param neighbors is a list of neighbors passed in by its simulation class
