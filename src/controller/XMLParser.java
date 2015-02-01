@@ -1,15 +1,10 @@
 package controller;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.HashMap;
-
-import javafx.util.converter.IntegerStringConverter;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
-import jdk.internal.org.objectweb.asm.tree.ParameterNode;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
