@@ -10,6 +10,9 @@ public abstract class LifeSquare {
 		myNeighbors = neighbors;
 	}
 	
+	public LifeSquare(){
+	}
+	
 	public LifeSquare update(){
 		int liveCount = 0;
 		for(LifeSquare neighbor: myNeighbors){

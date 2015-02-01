@@ -9,6 +9,9 @@ public class LifeSquareAlive extends LifeSquare{
 		// TODO Auto-generated constructor stub
 	}
 
+	public LifeSquareAlive(){
+	}
+	
 	@Override
 	protected int returnCount() {
 		return 1;
