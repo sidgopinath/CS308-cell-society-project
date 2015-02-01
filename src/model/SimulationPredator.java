@@ -4,13 +4,14 @@ import java.util.Map;
 
 public class SimulationPredator extends Simulation {
     
-    Square grid[][];
-    private enum predatorState{
-        PREDATOR, PREY, EMPTY
-    }
+    SquarePredator grid[][];
     
     public SimulationPredator(Map<String,String> paramMap){
         runSim(paramMap);
+    }
+    
+    public void move(){
+        
     }
     
     /*
