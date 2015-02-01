@@ -136,6 +136,7 @@ public class SimulationScreen {
 		}
 	}
 	
+	//http://stackoverflow.com/questions/20825935/javafx-get-node-by-row-and-column
 	private Rectangle getChild(int row, int column){
 		for(Node child: myGridPane.getChildren()){
 			if(GridPane.getRowIndex(child) == row && GridPane.getColumnIndex(child) == column){

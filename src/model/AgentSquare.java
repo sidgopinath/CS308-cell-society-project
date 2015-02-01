@@ -11,7 +11,7 @@ public abstract class AgentSquare {
 		myNeighbors = neighbors;
 	}
 	
-	public boolean checkSatisfaction(){
+	public boolean isSatisfied(){
 		int sameCount = this.returnCount();
 		
 		if(sameCount / myNeighbors.size() >= SATISFACTION){

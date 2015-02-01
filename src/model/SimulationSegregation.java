@@ -18,7 +18,7 @@ public class SimulationSegregation extends Simulation {
 		for(int j = 0; j < myGrid.length; j++){
 			for(int i = 0; i < myGrid[0].length; i++){
 				//to be determined by paramMap if it's O or X, or blank
-				myGrid[j][i] = new AgentSquareO(null);
+				myGrid[j][i] = new AgentSquareEmpty(null);
 			}
 		}
 		//pass neighbors to all agentSquares
@@ -27,32 +27,56 @@ public class SimulationSegregation extends Simulation {
 
 	@Override
 	void updateGrid() {
-		// TODO Auto-generated method stub
-		
+		AgentSquare[][] clone = getMyGridClone();
+		for(int j = 0; j < clone.length; j++){
+			for(int i = 0; i < clone[0].length; i++){
+				if(!clone[j][i].isSatisfied()){
+					//agent not satisfied
+					//move to random empty agent square
+				}
+			}
+		}
+		updateColorGrid();
+		updateNeighbors();
 	}
 
 	@Override
 	void updateNeighbors() {
-		// TODO Auto-generated method stub
-		
+		for(int j = 0; j < myGrid.length; j++){
+			for(int i = 0; i < myGrid[0].length; i++){
+				//pass all neighbors by indices
+			}
+		}
+		updateGrid();
 	}
 
 	@Override
 	void runSim(Map<String, String> paramMap) {
 		myGrid = new AgentSquare[5][5];
 		fillGrid(paramMap);
+		myView.initSimView(myGrid.length, myGrid[0].length);
 		updateGrid();
 	}
 
 	@Override
-	void updateView(Color[][] grid) {
-		// TODO Auto-generated method stub
+	void updateView(Color[][] colorGrid) {
+		myView.updateScreen(colorGrid);
 		
 	}
 
 	@Override
 	void updateColorGrid() {
-		// TODO Auto-generated method stub
+		//create color grid based off of agent square's state
+		updateView(null);
 		
+	}
+	
+	//http://stackoverflow.com/questions/1686425/copy-a-2d-array-in-java
+	private AgentSquare[][] getMyGridClone(){
+		AgentSquare[][] clone = new AgentSquare[myGrid.length][];
+		for(int j = 0; j < myGrid.length; j++){
+			clone[j] = myGrid[j].clone();
+		}
+		return clone;
 	}
 }

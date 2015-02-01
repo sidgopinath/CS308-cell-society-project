@@ -42,12 +42,13 @@ public abstract class Simulation {
 		/**
 		 * update the view's colors
 		 */
-		abstract void updateView(Color[][] grid);
+		abstract void updateView(Color[][] colorGrid);
 		
 		/**
 		 * this method takes myGrid and turns it into a grid that is readable for the view
 		 */
 		abstract void updateColorGrid();
+		
 	}
 
 	
