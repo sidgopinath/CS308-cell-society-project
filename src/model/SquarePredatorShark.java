@@ -13,8 +13,20 @@ public class SquarePredatorShark extends SquarePredator{
         super(breedingPeriod,x,y);
         myLifePeriod = lifePeriod;
         myCurrentLife = lifePeriod;
+        
     }
-
+    
+    @Override
+    public boolean hasStarved(){
+        return myCurrentLife == 0;
+    }
+    
+    @Override
+    public void updateSquare () {
+        myCurrentLife--;
+        super.decrementBreeding();
+    }
+    
     @Override
     public SquarePredator moveSquare () {
         Random squareGenerator = new Random();
@@ -31,6 +43,7 @@ public class SquarePredatorShark extends SquarePredator{
             }
         }
         if(!edibleList.isEmpty()){
+            myCurrentLife = myLifePeriod;
             return edibleList.get(squareGenerator.nextInt(edibleList.size()));
         }
         if(!movableList.isEmpty()){
