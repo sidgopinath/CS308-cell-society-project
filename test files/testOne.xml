@@ -2,9 +2,10 @@
 
 <!-- A test file for the fire simulation-->
 
-<simulation type="fire">
+<simulation>
 
 	<parameter>
+		<simName>fire</simName>
 		<windowHeight>400</windowHeight>
 		<windowWidth>400</windowWidth>
 		<gridHeight>5</gridHeight>
