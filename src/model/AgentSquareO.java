@@ -9,6 +9,9 @@ public class AgentSquareO extends AgentSquare{
 		// TODO Auto-generated constructor stub
 	}
 
+	public AgentSquareO(){
+	}
+	
 	@Override
 	protected int returnCount() {
 		int sameCount = 0;
@@ -26,6 +29,11 @@ public class AgentSquareO extends AgentSquare{
 	@Override
 	protected int getCountO() {
 		return 1;
+	}
+
+	@Override
+	protected boolean isEmpty() {
+		return false;
 	}
 
 }

@@ -10,6 +10,12 @@ public abstract class AgentSquare {
 	public AgentSquare(List<AgentSquare> neighbors){
 		myNeighbors = neighbors;
 	}
+
+	public AgentSquare(){
+	}
+	public void setNeighbors(List<AgentSquare> neighbors){
+		myNeighbors = neighbors;
+	}
 	
 	public boolean isSatisfied(){
 		int sameCount = this.returnCount();
@@ -23,4 +29,5 @@ public abstract class AgentSquare {
 	protected abstract int returnCount();
 	protected abstract int getCountX();
 	protected abstract int getCountO();
+	protected abstract boolean isEmpty();
 }

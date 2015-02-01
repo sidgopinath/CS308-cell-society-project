@@ -1,12 +1,14 @@
 package model;
 
 import java.util.Map;
+import java.util.Random;
 
 import javafx.scene.paint.Color;
 
 public class SimulationSegregation extends Simulation {
 
 	private AgentSquare[][] myGrid;
+	private Random myRandom;
 
 	public SimulationSegregation(Map<String,String> paramMap){
 		super();
@@ -33,6 +35,7 @@ public class SimulationSegregation extends Simulation {
 				if(!clone[j][i].isSatisfied()){
 					//agent not satisfied
 					//move to random empty agent square
+					moveAgent(j, i, clone[j][i]);
 				}
 			}
 		}
@@ -40,11 +43,31 @@ public class SimulationSegregation extends Simulation {
 		updateNeighbors();
 	}
 
+	private void moveAgent(int j, int i, AgentSquare agent) {
+		myGrid[j][i] = new AgentSquareEmpty();
+		//could be dangerous, might want to add safeguard
+		int count = 0;
+		while(true){
+			int rColumn = myRandom.nextInt(myGrid.length);
+			int rRow = myRandom.nextInt(myGrid[0].length);
+			if(myGrid[rColumn][rRow].isEmpty()){
+				myGrid[j][i] = agent;
+				break;
+			}
+			if(count > 100){
+				System.out.println("agent cannot move");
+				break;
+			}
+			count++;
+		}
+	}
+
 	@Override
 	void updateNeighbors() {
 		for(int j = 0; j < myGrid.length; j++){
 			for(int i = 0; i < myGrid[0].length; i++){
 				//pass all neighbors by indices
+				//TODO: implement this method
 			}
 		}
 		updateGrid();

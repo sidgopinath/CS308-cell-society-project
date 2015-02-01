@@ -8,6 +8,9 @@ public class AgentSquareEmpty extends AgentSquare{
 		super(neighbors);
 	}
 
+	public AgentSquareEmpty(){
+	}
+	
 	@Override
 	protected int returnCount() {
 		return 0;
@@ -23,4 +26,10 @@ public class AgentSquareEmpty extends AgentSquare{
 		return 0;
 	}
 
+	@Override
+	protected boolean isEmpty() {
+		return true;
+	}
+
+	
 }
