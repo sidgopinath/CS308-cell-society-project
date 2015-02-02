@@ -45,11 +45,11 @@ public class SimulationPredator extends Simulation {
      * Initializes sim, parses through data passed into upon initialization
      */
     public void runSim(Map<String,String> paramMap,Integer[][] initGrid){
+        breedingPeriod = 1;
+        sharkLife = 200;
         grid = new SquarePredator[gridWidth][gridLength];
         myView.initSimView(gridWidth,gridLength);
         fillGrid(paramMap, initGrid);
-        breedingPeriod = 5;
-        sharkLife = 2;
     }
 
 
@@ -65,6 +65,7 @@ public class SimulationPredator extends Simulation {
                     
                     //Check if need to starve shark
                     if(currentSquare.hasStarved()){
+                        System.out.println("Shark has starved");
                         grid[row][column] = new SquarePredatorEmpty(-1, column,row);
                         continue;
                     }
