@@ -9,6 +9,7 @@ import controller.CellSocietyController;
 public class SplashScreen {
 	private static final int SPLASH_TEXT_SIZE = 5;
 	private static final int LOAD_BUTTON_SIZE = 3;
+	private static final double FUDGE = 15;
 	
 	private Group myRoot;
 	private int myWidth;
@@ -26,7 +27,6 @@ public class SplashScreen {
 		myRoot = new Group();
 		myWidth = width;
 		myHeight = height;
-		//myController = new CellSocietyController(width, height);
 		addTitle();
 		addLoadButton();
 		return myRoot;
@@ -54,7 +54,7 @@ public class SplashScreen {
 	private void addLoadButton(){
 		String loadButtonString = "load"; //getProp().getProperty("load button text");
 		Button loadButton = new Button(loadButtonString);
-		loadButton.setTranslateX(center(loadButton));
+		loadButton.setTranslateX(center(loadButton) - FUDGE);
 		System.out.println(loadButton.getMaxWidth());
 		loadButton.setTranslateY(myHeight * 3/4);
 		loadButton.setScaleX(LOAD_BUTTON_SIZE);
