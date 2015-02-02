@@ -1,5 +1,6 @@
 package controller;
 
+import model.SimulationFire;
 import view.SimulationScreen;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -19,6 +20,13 @@ public class Main extends Application {
 		SimulationScreen simScreen = new SimulationScreen();
 		stage.setScene(simScreen.initSimScreen(WIDTH, HEIGHT));
 		stage.show();
+		Integer[][] treeGrid = new Integer[][]{
+				{0,0,0,0},
+				{0,1,1,0},
+				{0,2,2,0},
+				{0,0,0,0},	
+		};
+		SimulationFire simFire = new SimulationFire(null, treeGrid, simScreen);
 //		KeyFrame frame = myCellSocietyController.getKeyFrame(60);
 //		Timeline animationTimeline = new Timeline();
 //		animationTimeline.setCycleCount(Timeline.INDEFINITE);

@@ -3,6 +3,8 @@ package model;
 import java.util.List;
 import java.util.Random;
 
+import javafx.scene.paint.Color;
+
 public class FireSquareBurning extends FireSquare{
 
 	
@@ -13,6 +15,9 @@ public class FireSquareBurning extends FireSquare{
 		myRandom = new Random();
 	}
 
+	public FireSquareBurning(){
+		myColor = Color.RED;
+	}
 	@Override
 	public FireSquare chechStatus() {
 		return new FireSquareEmpty(myNeighbors);
@@ -33,4 +38,10 @@ public class FireSquareBurning extends FireSquare{
 				
 	}
 
+	@Override
+	public Color getColor() {
+		return myColor;
+	}
+
+	
 }
