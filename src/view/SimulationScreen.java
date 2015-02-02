@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class SimulationScreen {
 	private CellSocietyController myController;
@@ -29,14 +30,14 @@ public class SimulationScreen {
 		BorderPane root = new BorderPane();
 		myWidth = width;
 		myHeight = height;
-		myController = new CellSocietyController(width, height);
+		//myController = new CellSocietyController(width, height);
 		root.setTop(addButtons());
 		root.setCenter(addSimulation());
 		return new Scene(root, width, height, Color.WHITE);
 	}
 	
 	private HBox addButtons() {
-		HBox myTop = new HBox();
+		myTop = new HBox();
 		myTop.getChildren().addAll(addLoadButton(), addStepButton(), addSpeedUpButton(), addStopStartButton());
 		double length = myTop.getChildren().size();
 		double buttonWidth = myTop.getChildren().get(0).getLayoutBounds().getWidth();
@@ -51,7 +52,6 @@ public class SimulationScreen {
 	 */
 	private Button addLoadButton(){
 		Button loadButton = new Button("Load");
-		myTop.getChildren().add(loadButton);
 		loadButton.setOnAction(e -> {
 			//myController.transitionToFileLoaderScreen();
 		});
@@ -63,7 +63,6 @@ public class SimulationScreen {
 	 */
 	private Button addStepButton(){
 		Button stepButton = new Button ("Step");
-		myTop.getChildren().add(stepButton);
 		stepButton.setOnAction(e-> {
 			//myController.stepThroughSimulation();
 		});
@@ -76,7 +75,6 @@ public class SimulationScreen {
 	 */
 	private Button addSpeedUpButton(){
 		Button speedUpButton = new Button("Speed Up");
-		myTop.getChildren().add(speedUpButton);
 		speedUpButton.setOnAction(e -> {
 			//myController.speedUpSimulation();
 		});
@@ -90,7 +88,6 @@ public class SimulationScreen {
 	 */
 	private Button addStopStartButton(){
 		Button stopStartButton = new Button("Stop/Start");
-		myTop.getChildren().add(stopStartButton);
 		stopStartButton.setOnAction(e -> {
 			//myController.stopOrStart();
 		});
@@ -137,11 +134,11 @@ public class SimulationScreen {
 	}
 	
 	//http://stackoverflow.com/questions/20825935/javafx-get-node-by-row-and-column
-	private Rectangle getChild(int row, int column){
+	private Shape getChild(int row, int column){
 		for(Node child: myGridPane.getChildren()){
 			if(GridPane.getRowIndex(child) == row && GridPane.getColumnIndex(child) == column){
 				//trust me, it will be a rectangle...
-				return (Rectangle) child;
+				return (Shape) child;
 			}
 		}
 		System.out.println("error, getChild() method not working");
