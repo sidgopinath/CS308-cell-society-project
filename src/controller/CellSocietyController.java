@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -30,6 +31,8 @@ public class CellSocietyController {
 	private Integer myGrid[][];
 	private int splashWidth;
 	private int splashHeight;
+	private int myFrameRate;
+	private Timeline myTimeline;
 	
 	public CellSocietyController(int width, int height) {
 		splashWidth = width;
@@ -58,23 +61,24 @@ public class CellSocietyController {
 		return myScene;
 	}
 
-	public KeyFrame getKeyFrame(int frameRate) {
-		return new KeyFrame(Duration.millis(1000 / frameRate), e -> update());
+	public void setFrameRate(int frameRate){
+		myFrameRate = frameRate;
 	}
-
+	
+	public KeyFrame getKeyFrame(int frameRate) {
+		return new KeyFrame(Duration.millis(1000 /frameRate), e -> update());
+	
+	}
 	
 	/**
 	 * Update method called every frame
 	 * Calls simulation's update method
-	 * Checks for a stopped simulation, transitions, and the program end
 	 */
 	private void update() {
 		if (myCurrentSimulation != null) {
 			myCurrentSimulation.updateGrid();
 		}
-
 	}
-
 
 	
 	/**
@@ -104,38 +108,34 @@ public class CellSocietyController {
 				/ 2);
 		node.setTranslateY(Main.HEIGHT / 2
 				- node.getBoundsInLocal().getHeight() / 2);
-		File inputFile = fileLoaderScreen.getFile(); // not sure if we should
-														// implement this in the
-														// view?
+		File inputFile = fileLoaderScreen.getFile();
 		readXML(inputFile);
 	}
 
-	/**
-	 * Call model to step through simulation?
-	 */
 	public void stepThroughSimulation(){
-		//key frame
+		myTimeline.stop();
+		myTimeline.setCycleCount(1);
+		myTimeline.play();
 	}
 	
 	/**
 	 * Speeds up simulation. Calls model maybe?
 	 */
 	public void speedUpSimulation(){
-		//key frame stuff
-		//.stop stops key frame
-		//clear old key frame and put in a new key frame with new speed
+		myTimeline.stop();
+		myTimeline.setCycleCount(Timeline.INDEFINITE);
+		manageTimeline(myTimeline, (2*myFrameRate));
+		
 	}
 	
 	private void restartSimulation() {
-		// TODO Auto-generated method stub
-		//Key frame stuff
-		
+		myTimeline.setCycleCount(Timeline.INDEFINITE);
+		myTimeline.play();
 	}
 
 
-	private void stopSimulation() {
-		// TODO Auto-generated method stub
-		//Key frame stuff
+	private void pauseSimulation() {
+		myTimeline.pause();
 	}
 	
 	/**
@@ -148,10 +148,10 @@ public class CellSocietyController {
 			myCurrentSimulation = new SimulationFire(myParameters, myGrid, new SimulationScreen());
 		}
 		else if(myParameters.get("simType") == "segregation"){
-			myCurrentSimulation = new SimulationSegregation(new SimulationScreen(), myParameters, myGrid);
+			myCurrentSimulation = new SimulationSegregation(myParameters, myGrid,new SimulationScreen());
 		}
 		else if(myParameters.get("simType") == "life"){
-			myCurrentSimulation = new SimulationLife(new SimulationScreen(), myParameters, myGrid);
+			myCurrentSimulation = new SimulationLife(myParameters, myGrid, new SimulationScreen());
 		}
 		else if(myParameters.get("simType") == "predator"){
 			myCurrentSimulation = new SimulationPredator(new SimulationScreen(), myParameters, myGrid);
@@ -160,11 +160,19 @@ public class CellSocietyController {
 	
 	public void stopOrStart(boolean stopStart) {
 		if(stopStart == false){
-			stopSimulation();
+			pauseSimulation();
 		}
 		else{
 			restartSimulation();
 		}
+	}
+
+	public void manageTimeline(Timeline animationTimeline, int frameRate) {
+		myTimeline = animationTimeline;
+		KeyFrame frame = getKeyFrame(frameRate);
+		myTimeline.setCycleCount(Timeline.INDEFINITE);
+		myTimeline.getKeyFrames().add(frame);
+		myTimeline.play();	
 	}
 
 }

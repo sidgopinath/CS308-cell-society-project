@@ -140,13 +140,13 @@ public class XMLParser {
 		return myParameters;
 	}
 
-	public static void main(String[] args) {
-		String pathName = "./testFiles/testOne.xml";
-		File newFile = new File(pathName);
-		XMLParser tester = new XMLParser(newFile);
-		tester.getGrid();
-		tester.getParameters();
-
-	}
+//	public static void main(String[] args) {
+//		String pathName = "./testFiles/testOne.xml";
+//		File newFile = new File(pathName);
+//		XMLParser tester = new XMLParser(newFile);
+//		tester.getGrid();
+//		tester.getParameters();
+//
+//	}
 
 }
