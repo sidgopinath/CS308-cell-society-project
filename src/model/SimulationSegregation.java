@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
+import view.SimulationScreen;
 import javafx.scene.paint.Color;
 
 public class SimulationSegregation extends Simulation {
@@ -12,8 +13,8 @@ public class SimulationSegregation extends Simulation {
 	private Random myRandom;
 	private int mySatisfaction;
 
-	public SimulationSegregation(Map<String, String> paramMap, Integer[][] grid) {
-		super();
+	public SimulationSegregation(SimulationScreen simScreen, Map<String, String> paramMap, Integer[][] grid) {
+		super(simScreen);
 		runSim(paramMap, grid);
 	}
 
@@ -133,14 +134,7 @@ public class SimulationSegregation extends Simulation {
 				colorGrid[j][i] = myGrid[j][i].getColor();
 			}
 		}
-		updateView(colorGrid);
-
-	}
-
-	@Override
-	void updateView(Color[][] colorGrid) {
 		myView.updateScreen(colorGrid);
-	
-	}
 
+	}
 }

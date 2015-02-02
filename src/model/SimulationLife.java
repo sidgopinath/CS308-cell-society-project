@@ -3,14 +3,15 @@ package model;
 import java.util.ArrayList;
 import java.util.Map;
 
+import view.SimulationScreen;
 import javafx.scene.paint.Color;
 
 public class SimulationLife extends Simulation {
 
 	private LifeSquare[][] myGrid;
 
-	public SimulationLife(Map<String, String> paramMap, Integer[][] grid) {
-		super();
+	public SimulationLife(SimulationScreen simScreen, Map<String, String> paramMap, Integer[][] grid) {
+		super(simScreen);
 		runSim(paramMap, grid);
 	}
 	
@@ -95,11 +96,6 @@ public class SimulationLife extends Simulation {
 				colorGrid[j][i] = myGrid[j][i].getColor();
 			}
 		}
-		updateView(colorGrid);
-	}
-	
-	@Override
-	void updateView(Color[][] colorGrid) {
 		myView.updateScreen(colorGrid);
 	}
 

@@ -17,7 +17,7 @@ public class SimulationFire extends Simulation {
 
 
 	@Override
-	void updateGrid() {
+	public void updateGrid() {
 		updateNeighbors();
 		for(int j = 0; j < myGrid.length; j++){
 			for(int i = 0 ; i < myGrid[0].length; i++){

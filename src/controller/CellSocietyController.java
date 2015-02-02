@@ -13,7 +13,11 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import model.Simulation;
 import model.SimulationFire;
+import model.SimulationLife;
+import model.SimulationPredator;
+import model.SimulationSegregation;
 import view.FileLoaderScreen;
+import view.SimulationScreen;
 import view.SplashScreen;
 
 public class CellSocietyController {
@@ -28,7 +32,6 @@ public class CellSocietyController {
 	private int splashHeight;
 	
 	public CellSocietyController(int width, int height) {
-		// initialize splash screen and set up scene
 		splashWidth = width;
 		splashHeight = height;
 		displaySplashScreen(splashWidth, splashHeight);
@@ -42,10 +45,9 @@ public class CellSocietyController {
 	 */
 	private void displaySplashScreen(int width, int height) {
 		SplashScreen splash = new SplashScreen();
-		splash.setLoadButtonAction(e -> transitionToFileLoaderScreen());
-		Node splashNode = splash.getNode();
+		Node splashNode = splash.getNode(width, height);
 		myGroup = new Group();
-		myGroup.getChildren().add(splash.getNode());
+		myGroup.getChildren().add(splash.getNode(width, height));
 		splashNode.setTranslateX(width / 2
 				- splashNode.getBoundsInLocal().getWidth() / 2);
 		splashNode.setTranslateY(height / 2
@@ -69,32 +71,10 @@ public class CellSocietyController {
 	private void update() {
 		if (myCurrentSimulation != null) {
 			myCurrentSimulation.updateGrid();
-			checkSimulationStop();
 		}
-		checkForTransition();
-		checkProgramEnd();
 
 	}
 
-	
-	/**
-	 * Not certain on this method yet
-	 * Thought it could check for a transition between screens
-	 */
-	private void checkForTransition() {
-
-	}
-
-	/**
-	 * Checks if the current simluation has stopped or been stopped
-	 * Calls a method in Simulation that will return a boolean
-	 * If it has been set to stop, controller will stop simulation
-	 */
-	private void checkSimulationStop() {
-		if (myCurrentSimulation.isStopped()) {
-			myCurrentSimulation.stopSim();
-		}
-	}
 
 	
 	/**
@@ -134,53 +114,57 @@ public class CellSocietyController {
 	 * Call model to step through simulation?
 	 */
 	public void stepThroughSimulation(){
-		
+		//key frame
 	}
 	
 	/**
 	 * Speeds up simulation. Calls model maybe?
 	 */
 	public void speedUpSimulation(){
+		//key frame stuff
 		//.stop stops key frame
 		//clear old key frame and put in a new key frame with new speed
+	}
+	
+	private void restartSimulation() {
+		// TODO Auto-generated method stub
+		//Key frame stuff
+		
+	}
+
+
+	private void stopSimulation() {
+		// TODO Auto-generated method stub
+		//Key frame stuff
 	}
 	
 	/**
 	 * Called after the XML file has been made. Transitions to new simulation
 	 * Potential for many bad if statements here. How to avoid? 
-	 * Examples of bad code below
+	 * DUPLICATED CODE, REFACTOR
 	 */
 	private void transitionToSimulation() {
 		if (myParameters.get("simType") == "fire") {
-			myCurrentSimulation = new SimulationFire();
+			myCurrentSimulation = new SimulationFire(myParameters, myGrid, new SimulationScreen());
+		}
+		else if(myParameters.get("simType") == "segregation"){
+			myCurrentSimulation = new SimulationSegregation(new SimulationScreen(), myParameters, myGrid);
+		}
+		else if(myParameters.get("simType") == "life"){
+			myCurrentSimulation = new SimulationLife(new SimulationScreen(), myParameters, myGrid);
+		}
+		else if(myParameters.get("simType") == "predator"){
+			myCurrentSimulation = new SimulationPredator(new SimulationScreen(), myParameters, myGrid);
 		}
 	}
 	
-	/**
-	 * For transitioning back to splash screen
-	 * Called at end of program perhaps? Might not be necessary
-	 */
-	private void transitionToSplash(){
-		myGroup.getChildren().clear();
-		displaySplashScreen(splashWidth, splashHeight);
+	public void stopOrStart(boolean stopStart) {
+		if(stopStart == false){
+			stopSimulation();
+		}
+		else{
+			restartSimulation();
+		}
 	}
 
-	
-	/**
-	 * Checks if the program has ended
-	 * If it has ended, will call program end
-	 * Likely unnecessary method
-	 */
-	private void checkProgramEnd() {
-	
-		// check if program should stop. if so, call end program
-	}
-
-	
-	/**
-	 * Called to end program. Likely unnecessary.
-	 */
-	private void endProgram() {
-		System.exit(0);
-	}
 }
