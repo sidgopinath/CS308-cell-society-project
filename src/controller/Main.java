@@ -27,7 +27,7 @@ public class Main extends Application {
 				{1,1,1,2},	
 		};
 		SimulationFire simFire = new SimulationFire(null, treeGrid, simScreen);
-		for(int i = 0; i < 20; i++){
+		for(int i = 0; i < 1; i++){
 			simFire.updateGrid();
 		}
 //		KeyFrame frame = myCellSocietyController.getKeyFrame(60);

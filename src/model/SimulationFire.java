@@ -75,7 +75,7 @@ public class SimulationFire extends Simulation {
 					myGrid[j][i] = new FireSquareTree();
 				}
 				if(grid[j][i] == 2){
-					myGrid[j][i] = new FireSquareBurning(Integer.parseInt(paramMap.get("probCatch")));
+					myGrid[j][i] = new FireSquareBurning(20);//Integer.parseInt(paramMap.get("probCatch")));
 				}
 			}
 		}
