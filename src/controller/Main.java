@@ -1,45 +1,27 @@
 package controller;
 
-import model.SimulationFire;
-import model.SimulationLife;
-import view.SimulationScreen;
-import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	//private CellSocietyController myCellSocietyController;
+	private CellSocietyController myCellSocietyController;
 	public static final int HEIGHT = 600;
 	public static final int WIDTH = 600;
 
 	@Override
 	public void start(Stage stage) throws Exception {
 		stage.setTitle("Cell Society");
-		//myCellSocietyController = new CellSocietyController(WIDTH, HEIGHT);
-		SimulationScreen simScreen = new SimulationScreen();
-		Group root = new Group();
-		root.getChildren().add(simScreen.initSimScreen(WIDTH, HEIGHT));
-		stage.setScene(new Scene(root, WIDTH, HEIGHT));
+		myCellSocietyController = new CellSocietyController(WIDTH, HEIGHT);
+		stage.setScene(myCellSocietyController.getScene());
 		stage.show();
-		Integer[][] treeGrid = new Integer[][]{
-				{0,1,1,1},
-				{0,1,1,1},
-				{1,0,0,1},
-				{1,0,1,0},	
-		};
-		SimulationLife simFire = new SimulationLife(null, treeGrid, simScreen);
-		for(int i = 0; i < 1; i++){
-			simFire.updateGrid();
-		}
-//		KeyFrame frame = myCellSocietyController.getKeyFrame(60);
-//		Timeline animationTimeline = new Timeline();
-//		animationTimeline.setCycleCount(Timeline.INDEFINITE);
-//		animationTimeline.getKeyFrames().add(frame);
-//		animationTimeline.play();
+		
+		Timeline animationTimeline = new Timeline();
+		int frameRate = 60;
+		myCellSocietyController.setFrameRate(frameRate);
+		myCellSocietyController.manageTimeline(animationTimeline, frameRate);
+
 	}
 
 	public static void main(String[] args) {
