@@ -1,13 +1,10 @@
 package view;
 
-import controller.CellSocietyController;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import controller.CellSocietyController;
 
 public class SplashScreen {
 	private static final int SPLASH_TEXT_SIZE = 5;
@@ -74,6 +71,6 @@ public class SplashScreen {
 	 * allow the user to select a file they want to load.
 	 */
 	private void goToFileLoaderScreen(){
-		//myController.transitionToFileLoaderScreen();
+		myController.transitionToFileLoaderScreen();
 	}
 }
