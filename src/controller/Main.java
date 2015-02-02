@@ -14,7 +14,7 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 		stage.setTitle("Cell Society");
 
-		myCellSocietyController = new CellSocietyController(WIDTH, HEIGHT);
+		myCellSocietyController = new CellSocietyController(WIDTH, HEIGHT, stage);
 		stage.setScene(myCellSocietyController.getScene());
 		stage.show();
 		Timeline animationTimeline = new Timeline();
