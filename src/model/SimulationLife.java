@@ -10,7 +10,7 @@ public class SimulationLife extends Simulation {
 
 	private LifeSquare[][] myGrid;
 
-	public SimulationLife(SimulationScreen simScreen, Map<String, String> paramMap, Integer[][] grid) {
+	public SimulationLife(Map<String, String> paramMap, Integer[][] grid, SimulationScreen simScreen) {
 		super(simScreen);
 		runSim(paramMap, grid);
 	}
@@ -18,9 +18,8 @@ public class SimulationLife extends Simulation {
 	@Override
 	public void runSim(Map<String, String> paramMap, Integer[][] grid) {
 		myGrid = new LifeSquare[grid.length][grid[0].length];
-		fillGrid(paramMap, grid);
 		myView.initSimView(myGrid.length, myGrid[0].length);
-		updateGrid();
+		fillGrid(paramMap, grid);
 	}
 
 	@Override
@@ -35,12 +34,12 @@ public class SimulationLife extends Simulation {
 				}
 			}
 		}
-		updateNeighbors();
+		updateColorGrid();
 	}
 
 	/**
 	 * This code is pretty awful as far as if statements go
-	 * REFACTOR!
+	 * REFACTOR! 
 	 */
 	@Override
 	void updateNeighbors() {
@@ -74,18 +73,17 @@ public class SimulationLife extends Simulation {
 				myGrid[j][i].setNeighbors(neighbors);
 			}
 		}
-		updateGrid();
 	}
 
 	@Override
 	public void updateGrid() {
+		updateNeighbors();
 		for(int j = 0; j < myGrid.length; j++){
 			for(int i = 0 ; i < myGrid[0].length; i++){
 				myGrid[j][i] = myGrid[j][i].update();
 			}
 		}
 		updateColorGrid();
-		updateNeighbors();
 	}
 
 	@Override

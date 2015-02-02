@@ -17,6 +17,7 @@ public class SimulationScreen {
 	private int myHeight;
 	private HBox myTop;
 	private GridPane myGridPane;
+	private boolean myStart;
 
 	/**
 	 * This function begins setting up the general simulation scene. This
@@ -27,15 +28,16 @@ public class SimulationScreen {
 	 * 
 	 * @returns a scene
 	 */
-	public Scene initSimScreen(int width, int height) {
+	public BorderPane initSimScreen(int width, int height){
 		BorderPane root = new BorderPane();
 		myWidth = width;
 		myHeight = height;
 		myGridPane = new GridPane();
+		myStart = true;
 		//myController = new CellSocietyController(width, height);
 		root.setTop(addButtons());
 		root.setCenter(myGridPane);
-		return new Scene(root, width, height, Color.WHITE);
+		return root;
 	}
 
 	private HBox addButtons() {
@@ -96,6 +98,9 @@ public class SimulationScreen {
 		Button stopStartButton = new Button("Stop/Start");
 		stopStartButton.setOnAction(e -> {
 			//myController.stopOrStart();
+			//if false it is stopped
+			myStart = !myStart;
+			//myController.stopOrStart(myStart);
 		});
 		return stopStartButton;
 	}

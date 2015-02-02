@@ -7,16 +7,20 @@ import javafx.scene.paint.Color;
 
 public class FireSquareBurning extends FireSquare{
 
-	
+	private int myProbCatch;
 	private Random myRandom;
 	
-	public FireSquareBurning(List<FireSquare> neighbors) {
+	public FireSquareBurning(List<FireSquare> neighbors, int probCatch) {
 		super(neighbors);
 		myRandom = new Random();
+		myColor = Color.RED;
+		myProbCatch = probCatch;
 	}
 
-	public FireSquareBurning(){
+	public FireSquareBurning(int probCatch){
 		myColor = Color.RED;
+		myRandom = new Random();
+		myProbCatch = probCatch;
 	}
 	@Override
 	public FireSquare chechStatus() {
@@ -26,7 +30,7 @@ public class FireSquareBurning extends FireSquare{
 	@Override
 	public FireSquare checkNeighbor() {
 		if(calculateProbability()){
-			return new FireSquareBurning(myNeighbors);
+			return new FireSquareBurning(myNeighbors, myProbCatch);
 		}
 		else{
 			return null;
@@ -34,7 +38,7 @@ public class FireSquareBurning extends FireSquare{
 	}
 
 	private boolean calculateProbability() {
-		return myRandom.nextInt(100) <= PROB_CATCH;
+		return myRandom.nextInt(100) <= myProbCatch;
 				
 	}
 

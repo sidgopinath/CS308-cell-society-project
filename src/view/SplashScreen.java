@@ -25,14 +25,14 @@ public class SplashScreen {
 	 * 
 	 * This function will also have to have add button that takes it to the FileLoaderScreen class.
 	 */
-	public Scene init(int width, int height){
+	public Group getNode(int width, int height){
 		myRoot = new Group();
 		myWidth = width;
 		myHeight = height;
 		myController = new CellSocietyController(width, height);
 		addTitle();
 		addLoadButton();
-		return new Scene(myRoot, width, height, Color.WHITE);
+		return myRoot;
 	}
 	
 	/**
