@@ -3,38 +3,28 @@ package model;
 import java.util.ArrayList;
 import java.util.Map;
 
+import view.SimulationScreen;
 import javafx.scene.paint.Color;
 
 public class SimulationFire extends Simulation {
 
 	private FireSquare[][] myGrid;
 
-	public SimulationFire(Map<String,String> paramMap){
-		super();
-		runSim(paramMap);
+	public SimulationFire(Map<String,String> paramMap, Integer[][] grid, SimulationScreen simScreen){
+		super(simScreen);
+		runSim(paramMap, grid);
 	}
-	
-	@Override
-	void fillGrid(Map<String, String> paramMap) {
-		for(int j = 0; j < myGrid.length; j++){
-			for(int i = 0 ; i < myGrid[0].length; i++){
-				//this value will vary depending on paramMap
-				myGrid[j][i] = new FireSquareEmpty(null);
-			}
-		}
-		//all squares passed in first, then passed their neighbors
-		updateNeighbors();
-	}
+
 
 	@Override
 	void updateGrid() {
+		updateNeighbors();
 		for(int j = 0; j < myGrid.length; j++){
 			for(int i = 0 ; i < myGrid[0].length; i++){
 				myGrid[j][i] = myGrid[j][i].update();
 			}
 		}
 		updateColorGrid();
-		updateNeighbors();
 	}
 
 	@Override
@@ -57,28 +47,46 @@ public class SimulationFire extends Simulation {
 				myGrid[j][i].setNeighbors(neighbors);
 			}
 		}
-		updateGrid();
 	}
 
-	@Override 
-	void runSim(Map<String, String> paramMap) {
-		//grid size determined by paramMap or something
-		myGrid = new FireSquare[5][5];
-		fillGrid(paramMap);
-		myView.initSimView(myGrid.length, myGrid[0].length);
-		updateGrid();
-	}
 
 	@Override
-	void updateView(Color[][] grid) {
-		myView.updateScreen(grid);
+	 void updateColorGrid() {
+		Color[][] colorGrid = new Color[myGrid.length][myGrid[0].length];
+		for(int j = 0; j < myGrid.length; j++){
+			for(int i = 0; i < myGrid[0].length; i++){
+				colorGrid[j][i] = myGrid[j][i].getColor();
+			}
+		}
+		myView.updateScreen(colorGrid);
+	}
+	
+	@Override
+	void fillGrid(Map<String, String> paramMap, Integer[][] grid) {
+		for(int j = 0; j < myGrid.length; j++){
+			for(int i = 0 ; i < myGrid[0].length; i++){
+				if(grid[j][i] == 0){
+					myGrid[j][i] = new FireSquareEmpty();
+				}
+				if(grid[j][i] == 1){
+					myGrid[j][i] = new FireSquareTree();
+				}
+				if(grid[j][i] == 2){
+					myGrid[j][i] = new FireSquareBurning();
+				}
+			}
+		}
+		updateColorGrid();
+		//all squares passed in first, then passed their neighbors
 		
 	}
 
+
 	@Override
-	void updateColorGrid() {
-		//this method will loop through myGrid and call updateView with the new grid of colors
-		updateView(null);
+	void runSim(Map<String, String> paramMap, Integer[][] grid) {
+		myGrid = new FireSquare[grid.length][grid[0].length];
+		myView.initSimView(myGrid.length, myGrid[0].length);
+		fillGrid(paramMap, grid);
 		
 	}
 	

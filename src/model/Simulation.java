@@ -7,8 +7,8 @@ import view.SimulationScreen;
 public abstract class Simulation {
 		protected SimulationScreen myView;
 	
-		public Simulation(){
-			myView = new SimulationScreen();
+		public Simulation(SimulationScreen simScreen){
+			myView = simScreen;
 		}
 	
 		/**
@@ -36,11 +36,6 @@ public abstract class Simulation {
 		 * pass each square its neighbors
 		 */
 		abstract void updateNeighbors();
-		
-		/**
-		 * update the view's colors
-		 */
-		abstract void updateView(Color[][] colorGrid);
 		
 		/**
 		 * this method takes myGrid and turns it into a grid that is readable for the view
