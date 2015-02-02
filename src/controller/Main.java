@@ -21,13 +21,15 @@ public class Main extends Application {
 		stage.setScene(simScreen.initSimScreen(WIDTH, HEIGHT));
 		stage.show();
 		Integer[][] treeGrid = new Integer[][]{
-				{0,0,0,0},
-				{0,1,1,0},
-				{0,2,2,0},
-				{0,0,0,0},	
+				{1,2,1,1},
+				{2,1,1,1},
+				{1,1,2,1},
+				{1,1,1,2},	
 		};
 		SimulationFire simFire = new SimulationFire(null, treeGrid, simScreen);
-		simFire.updateGrid();
+		for(int i = 0; i < 20; i++){
+			simFire.updateGrid();
+		}
 //		KeyFrame frame = myCellSocietyController.getKeyFrame(60);
 //		Timeline animationTimeline = new Timeline();
 //		animationTimeline.setCycleCount(Timeline.INDEFINITE);
