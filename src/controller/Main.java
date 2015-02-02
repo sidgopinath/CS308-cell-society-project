@@ -27,6 +27,7 @@ public class Main extends Application {
 				{0,0,0,0},	
 		};
 		SimulationFire simFire = new SimulationFire(null, treeGrid, simScreen);
+		simFire.updateGrid();
 //		KeyFrame frame = myCellSocietyController.getKeyFrame(60);
 //		Timeline animationTimeline = new Timeline();
 //		animationTimeline.setCycleCount(Timeline.INDEFINITE);

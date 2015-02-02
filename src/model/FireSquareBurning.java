@@ -13,10 +13,12 @@ public class FireSquareBurning extends FireSquare{
 	public FireSquareBurning(List<FireSquare> neighbors) {
 		super(neighbors);
 		myRandom = new Random();
+		myColor = Color.RED;
 	}
 
 	public FireSquareBurning(){
 		myColor = Color.RED;
+		myRandom = new Random();
 	}
 	@Override
 	public FireSquare chechStatus() {

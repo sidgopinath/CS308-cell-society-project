@@ -8,6 +8,7 @@ public class FireSquareEmpty extends FireSquare{
 
 	public FireSquareEmpty(List<FireSquare> neighbors) {
 		super(neighbors);
+		myColor = Color.YELLOW;
 	}
 
 	public FireSquareEmpty(){

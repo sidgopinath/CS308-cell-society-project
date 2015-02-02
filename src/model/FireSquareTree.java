@@ -8,7 +8,7 @@ public class FireSquareTree extends FireSquare{
 
 	public FireSquareTree(List<FireSquare> neighbors) {
 		super(neighbors);
-		// TODO Auto-generated constructor stub
+		myColor = Color.GREEN;
 	}
 
 	public FireSquareTree(){
@@ -17,11 +17,12 @@ public class FireSquareTree extends FireSquare{
 	@Override
 	public FireSquare chechStatus() {
 		for(FireSquare neighbor: myNeighbors){
-			if(neighbor.checkNeighbor() != null){
-				return neighbor.checkNeighbor();
+			FireSquare checkedNeighbor = neighbor.checkNeighbor();
+			if(checkedNeighbor != null){
+				return checkedNeighbor;
 			}
 		}
-		return this;
+		return new FireSquareTree();
 	}
 
 	@Override
