@@ -123,11 +123,13 @@ public class CellSocietyController {
 	 */
 	public void speedUpSimulation(){
 		myTimeline.stop();
+		myTimeline.setCycleCount(Timeline.INDEFINITE);
 		manageTimeline(myTimeline, (2*myFrameRate));
 		
 	}
 	
 	private void restartSimulation() {
+		myTimeline.setCycleCount(Timeline.INDEFINITE);
 		myTimeline.play();
 	}
 
