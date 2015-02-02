@@ -5,15 +5,19 @@ public class SquarePredatorEmpty extends SquarePredator{
     public SquarePredatorEmpty (int breedingPeriod, int x, int y) {
         super(breedingPeriod,x,y);
     }
+    
+    @Override
+    public void updateSquare () {
+    }
+    
     @Override
     public SquarePredator moveSquare () {
         return this;
     }
 
-
     @Override
     public SquarePredator getChildSquare (int x, int y, int breedingPeriod) {
-        return this;
+        return null;
     }
 
     @Override
@@ -30,6 +34,5 @@ public class SquarePredatorEmpty extends SquarePredator{
     public boolean isMovable () {
         return true;
     }
-
 
 }

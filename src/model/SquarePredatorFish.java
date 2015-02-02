@@ -10,7 +10,11 @@ public class SquarePredatorFish extends SquarePredator{
         super(breedingPeriod, x, y);
     }
 
-
+    @Override
+    public void updateSquare () {
+        super.decrementBreeding();
+    }
+    
     @Override
     public SquarePredator moveSquare () {
         List<SquarePredator> neighborList = super.getMyNeighbors();
@@ -48,5 +52,8 @@ public class SquarePredatorFish extends SquarePredator{
     public boolean isMovable () {
         return false;
     }
+
+
+
 
 }
