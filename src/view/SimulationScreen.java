@@ -95,7 +95,7 @@ public class SimulationScreen {
 	private Button addStopStartButton() {
 		Button stopStartButton = new Button("Stop/Start");
 		stopStartButton.setOnAction(e -> {
-			myController.stopOrStart();
+			//myController.stopOrStart();
 		});
 		return stopStartButton;
 	}
