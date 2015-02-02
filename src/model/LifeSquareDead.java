@@ -2,11 +2,14 @@ package model;
 
 import java.util.List;
 
+import javafx.scene.paint.Color;
+
 public class LifeSquareDead extends LifeSquare{
 
+	private Color myColor = Color.WHITE;
+	
 	public LifeSquareDead(List<LifeSquare> neighbors) {
 		super(neighbors);
-		// TODO Auto-generated constructor stub
 	}
 
 	public LifeSquareDead() {
@@ -23,6 +26,11 @@ public class LifeSquareDead extends LifeSquare{
 			return new LifeSquareAlive(myNeighbors);
 		}
 		else return this;
+	}
+
+	@Override
+	protected Color getColor() {
+		return myColor;
 	}
 
 }

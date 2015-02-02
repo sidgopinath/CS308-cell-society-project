@@ -1,40 +1,95 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
+import view.SimulationScreen;
 import javafx.scene.paint.Color;
 
 public class SimulationSegregation extends Simulation {
 
 	private AgentSquare[][] myGrid;
 	private Random myRandom;
+	private int mySatisfaction;
 
-	public SimulationSegregation(Map<String,String> paramMap){
-		super();
-		runSim(paramMap);
+	public SimulationSegregation(SimulationScreen simScreen, Map<String, String> paramMap, Integer[][] grid) {
+		super(simScreen);
+		runSim(paramMap, grid);
 	}
-	
+
 	@Override
-	void fillGrid(Map<String, String> paramMap) {
-		for(int j = 0; j < myGrid.length; j++){
-			for(int i = 0; i < myGrid[0].length; i++){
-				//to be determined by paramMap if it's O or X, or blank
-				myGrid[j][i] = new AgentSquareEmpty(null);
+	void runSim(Map<String, String> paramMap, Integer[][] grid) {
+		mySatisfaction = Integer.parseInt(paramMap.get("satisfaction"));
+		myGrid = new AgentSquare[grid.length][grid[0].length];
+		fillGrid(paramMap, grid);
+		myView.initSimView(myGrid.length, myGrid[0].length);
+		updateGrid();
+	}
+
+	@Override
+	void fillGrid(Map<String, String> paramMap, Integer[][] grid) {
+		for (int j = 0; j < myGrid.length; j++) {
+			for (int i = 0; i < myGrid[0].length; i++) {
+				if(grid[j][i] == 0){
+					myGrid[j][i] = new AgentSquareEmpty(mySatisfaction);
+				}
+				else if(grid[j][i] == 1){
+					myGrid[j][i] = new AgentSquareO(mySatisfaction);
+				}
+				else if(grid[j][i] == 2){
+					myGrid[j][i] = new AgentSquareX(mySatisfaction);
+				}
 			}
 		}
-		//pass neighbors to all agentSquares
 		updateNeighbors();
 	}
 
+	/**
+	 * Bade code. Duplicated from SimulationLife also.
+	 * REFACTOR
+	 */
 	@Override
-	void updateGrid() {
+	void updateNeighbors() {
+		for (int j = 0; j < myGrid.length; j++) {
+			for (int i = 0; i < myGrid[0].length; i++) {
+				ArrayList<AgentSquare> neighbors = new ArrayList<>();
+				if(i + 1 < myGrid[0].length){
+					neighbors.add(myGrid[j][i + 1]);
+				}
+				if(i - 1 > 0){
+					neighbors.add(myGrid[j][i - 1]);
+				}
+				if(j + 1 < myGrid.length){
+					neighbors.add(myGrid[j + 1][i]);
+				}
+				if(j - 1 > 0){
+					neighbors.add(myGrid[j - 1][i]);
+				}
+				if(i+1 < myGrid[0].length && j+1 < myGrid.length){
+					neighbors.add(myGrid[j+1][i+1]);
+				}
+				if(i+1 < myGrid[0].length && j-1 < myGrid.length){
+					neighbors.add(myGrid[j-1][i+1]);
+				}
+				if(i-1 < myGrid[0].length && j+1 < myGrid.length){
+					neighbors.add(myGrid[j+1][i-1]);
+				}
+				if(i-1 < myGrid[0].length && j+1 < myGrid.length){
+					neighbors.add(myGrid[j+1][i-1]);
+				}
+				myGrid[j][i].setNeighbors(neighbors);
+			}
+		}
+		updateGrid();
+	}
+
+	@Override
+	public void updateGrid() {
 		AgentSquare[][] clone = getMyGridClone();
-		for(int j = 0; j < clone.length; j++){
-			for(int i = 0; i < clone[0].length; i++){
-				if(!clone[j][i].isSatisfied()){
-					//agent not satisfied
-					//move to random empty agent square
+		for (int j = 0; j < clone.length; j++) {
+			for (int i = 0; i < clone[0].length; i++) {
+				if (!clone[j][i].isSatisfied()) {
 					moveAgent(j, i, clone[j][i]);
 				}
 			}
@@ -45,61 +100,41 @@ public class SimulationSegregation extends Simulation {
 
 	private void moveAgent(int j, int i, AgentSquare agent) {
 		myGrid[j][i] = new AgentSquareEmpty();
-		//could be dangerous, might want to add safeguard
+		// could be dangerous, might want to add safeguard
 		int count = 0;
-		while(true){
+		while (true) {
 			int rColumn = myRandom.nextInt(myGrid.length);
 			int rRow = myRandom.nextInt(myGrid[0].length);
-			if(myGrid[rColumn][rRow].isEmpty()){
+			if (myGrid[rColumn][rRow].isEmpty()) {
 				myGrid[j][i] = agent;
 				break;
 			}
-			if(count > 100){
-				System.out.println("agent cannot move");
+			if (count > 100) {
+				System.out.println("agent unable to move");
 				break;
 			}
 			count++;
 		}
 	}
 
-	@Override
-	void updateNeighbors() {
-		for(int j = 0; j < myGrid.length; j++){
-			for(int i = 0; i < myGrid[0].length; i++){
-				//pass all neighbors by indices
-				//TODO: implement this method
-			}
+	// http://stackoverflow.com/questions/1686425/copy-a-2d-array-in-java
+	private AgentSquare[][] getMyGridClone() {
+		AgentSquare[][] clone = new AgentSquare[myGrid.length][];
+		for (int j = 0; j < myGrid.length; j++) {
+			clone[j] = myGrid[j].clone();
 		}
-		updateGrid();
-	}
-
-	@Override
-	void runSim(Map<String, String> paramMap) {
-		myGrid = new AgentSquare[5][5];
-		fillGrid(paramMap);
-		myView.initSimView(myGrid.length, myGrid[0].length);
-		updateGrid();
-	}
-
-	@Override
-	void updateView(Color[][] colorGrid) {
-		myView.updateScreen(colorGrid);
-		
+		return clone;
 	}
 
 	@Override
 	void updateColorGrid() {
-		//create color grid based off of agent square's state
-		updateView(null);
-		
-	}
-	
-	//http://stackoverflow.com/questions/1686425/copy-a-2d-array-in-java
-	private AgentSquare[][] getMyGridClone(){
-		AgentSquare[][] clone = new AgentSquare[myGrid.length][];
+		Color[][] colorGrid = new Color[myGrid.length][myGrid[0].length];
 		for(int j = 0; j < myGrid.length; j++){
-			clone[j] = myGrid[j].clone();
+			for(int i = 0 ; i < myGrid[j].length; i++){
+				colorGrid[j][i] = myGrid[j][i].getColor();
+			}
 		}
-		return clone;
+		myView.updateScreen(colorGrid);
+
 	}
 }

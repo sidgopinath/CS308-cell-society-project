@@ -1,5 +1,7 @@
 package model;
 
+import javafx.scene.paint.Color;
+
 public class SquarePredatorEmpty extends SquarePredator{
 
     public SquarePredatorEmpty (int breedingPeriod, int x, int y) {
@@ -11,7 +13,7 @@ public class SquarePredatorEmpty extends SquarePredator{
     }
     
     @Override
-    public SquarePredator moveSquare () {
+    public SquarePredator moveSquareTo () {
         return this;
     }
 
@@ -33,6 +35,11 @@ public class SquarePredatorEmpty extends SquarePredator{
     @Override
     public boolean isMovable () {
         return true;
+    }
+
+    @Override
+    public Color getColor () {
+        return Color.AQUA;
     }
 
 }

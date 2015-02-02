@@ -1,11 +1,14 @@
 package model;
 
-import java.util.List;
+import javafx.scene.paint.Color;
+
 
 public class AgentSquareEmpty extends AgentSquare{
 
-	public AgentSquareEmpty(List<AgentSquare> neighbors) {
-		super(neighbors);
+	Color myColor = Color.WHITE;
+	
+	public AgentSquareEmpty(int satisfaction) {
+		super(satisfaction);
 	}
 
 	public AgentSquareEmpty(){
@@ -29,6 +32,12 @@ public class AgentSquareEmpty extends AgentSquare{
 	@Override
 	protected boolean isEmpty() {
 		return true;
+	}
+
+	@Override
+	public Color getColor() {
+		return myColor;
+		
 	}
 
 	
