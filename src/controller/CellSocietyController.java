@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Simulation;
 import model.SimulationFire;
@@ -33,10 +34,12 @@ public class CellSocietyController {
 	private int splashHeight;
 	private int myFrameRate;
 	private Timeline myTimeline;
+	private Stage myStage;
 	
-	public CellSocietyController(int width, int height) {
+	public CellSocietyController(int width, int height, Stage stage) {
 		splashWidth = width;
 		splashHeight = height;
+		myStage = stage;
 		displaySplashScreen(splashWidth, splashHeight);
 		myScene = new Scene((Parent) myGroup, width, height, Color.WHITE);
 	}
@@ -100,7 +103,7 @@ public class CellSocietyController {
 	 * File that will then be passed into XMLParser.
 	 */
 	public void transitionToFileLoaderScreen() {
-		FileLoaderScreen fileLoaderScreen = new FileLoaderScreen();
+		FileLoaderScreen fileLoaderScreen = new FileLoaderScreen(myStage);
 		myGroup.getChildren().clear();
 		Node node = fileLoaderScreen.getNode();
 		myGroup.getChildren().add(fileLoaderScreen.getNode());
