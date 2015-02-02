@@ -3,9 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.paint.Color;
+
 public abstract class FireSquare {
 
 	protected List<FireSquare> myNeighbors;
+	protected Color myColor;
 	protected static final int PROB_CATCH = 60;
 	
 	/**
@@ -15,6 +18,8 @@ public abstract class FireSquare {
 		myNeighbors = neighbors;
 	}
 	
+	public FireSquare(){
+	}
 	public void setNeighbors(ArrayList<FireSquare> neighbors){
 		myNeighbors = neighbors;
 	}
@@ -29,4 +34,5 @@ public abstract class FireSquare {
 	
 	public abstract FireSquare chechStatus();
 	public abstract FireSquare checkNeighbor();
+	public abstract Color getColor();
 }

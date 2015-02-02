@@ -1,11 +1,9 @@
 package view;
 
 import controller.CellSocietyController;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -30,9 +28,10 @@ public class SimulationScreen {
 		BorderPane root = new BorderPane();
 		myWidth = width;
 		myHeight = height;
+		myGridPane = new GridPane();
 		//myController = new CellSocietyController(width, height);
 		root.setTop(addButtons());
-		root.setCenter(addSimulation());
+		root.setCenter(myGridPane);
 		return new Scene(root, width, height, Color.WHITE);
 	}
 	
@@ -95,18 +94,6 @@ public class SimulationScreen {
 	}
 	
 	/**
-	 * sets up the gridpane for the simulation. 
-	 * and update each cell with a color.
-	 * @param grid
-	 * @return
-	 */
-	private Node addSimulation(){
-		GridPane simGridPane = new GridPane();
-		myGridPane = simGridPane;
-		return simGridPane;
-	}
-	
-	/**
 	 * must be passed a grid of some type so that it can determine the colors of each square
 	 * It will then go through each square and set its appropriate color
 	 * @param colorGrid
@@ -115,7 +102,7 @@ public class SimulationScreen {
 		for(int j = 0; j < colorGrid.length; j++){
 			for(int i = 0; i < colorGrid[0].length; i++){
 				//get color and update square with that color
-				getChild(i, j).setFill(colorGrid[j][i]);
+				getChild(j, i).setFill(colorGrid[j][i]);
 			}
 		}
 	}
@@ -126,9 +113,14 @@ public class SimulationScreen {
 	 * @param gridWidth
 	 */
 	public void initSimView(int gridHeight, int gridWidth){
+		System.out.println("here");
 		for(int j = 0; j < gridHeight; j++){
 			for(int i = 0; i < gridWidth; i++){
-				myGridPane.add(new Rectangle(), j, i);
+				Rectangle rect = new Rectangle(myWidth/gridWidth, 
+						(myHeight - myTop.getLayoutBounds().getHeight())/gridHeight);
+				rect.setFill(Color.BLACK);
+				rect.setStroke(Color.BLACK);
+				myGridPane.add(rect, i, j);
 			}
 		}
 	}
