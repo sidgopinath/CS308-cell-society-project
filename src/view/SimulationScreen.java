@@ -116,7 +116,8 @@ public class SimulationScreen {
 		System.out.println("here");
 		for(int j = 0; j < gridHeight; j++){
 			for(int i = 0; i < gridWidth; i++){
-				Rectangle rect = new Rectangle(myWidth/gridWidth, myHeight/gridHeight);
+				Rectangle rect = new Rectangle(myWidth/gridWidth, 
+						(myHeight - myTop.getLayoutBounds().getHeight())/gridHeight);
 				rect.setFill(Color.BLACK);
 				rect.setStroke(Color.BLACK);
 				myGridPane.add(rect, i, j);
