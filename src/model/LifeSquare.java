@@ -1,6 +1,9 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javafx.scene.paint.Color;
 
 public abstract class LifeSquare {
 
@@ -21,7 +24,12 @@ public abstract class LifeSquare {
 		return this.checkStatus(liveCount);
 	}
 	
+	public void setNeighbors(ArrayList<LifeSquare> neighbors){
+		myNeighbors = neighbors;
+	}
+	
 	protected abstract int returnCount();
 	protected abstract LifeSquare checkStatus(int alive);
+	protected abstract Color getColor();
 	
 }

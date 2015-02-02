@@ -1,10 +1,8 @@
 package model;
 
 import java.util.Map;
-
-import view.SimulationScreen;
-import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import view.SimulationScreen;
 
 public abstract class Simulation {
 		protected SimulationScreen myView;
@@ -18,14 +16,14 @@ public abstract class Simulation {
 		 * then pass squares their appropriate neighbors
 		 * Then update squares
 		 */
-		abstract void runSim(Map<String, String> paramMap);
+		abstract void runSim(Map<String, String> paramMap, Integer[][] grid);
 		
 		/**
 		 * fill grid with squares that have the right values given the parameters and the type of each space
 		 * initialize grid, and fill
 		 * @param paramMap 
 		 */
-		abstract void fillGrid(Map<String, String> paramMap);
+		abstract void fillGrid(Map<String, String> paramMap, Integer[][] grid);
 		
 		/**
 		 * first it will pass each square its neighbors
