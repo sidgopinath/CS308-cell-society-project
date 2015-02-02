@@ -1,10 +1,14 @@
 package controller;
 
 import model.SimulationFire;
+import model.SimulationLife;
+import model.SimulationSegregation;
 import view.SimulationScreen;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -18,15 +22,20 @@ public class Main extends Application {
 		stage.setTitle("Cell Society");
 		//myCellSocietyController = new CellSocietyController(WIDTH, HEIGHT);
 		SimulationScreen simScreen = new SimulationScreen();
-		stage.setScene(simScreen.initSimScreen(WIDTH, HEIGHT));
+		Group root = new Group();
+		root.getChildren().add(simScreen.initSimScreen(WIDTH, HEIGHT));
+		stage.setScene(new Scene(root, WIDTH, HEIGHT));
 		stage.show();
 		Integer[][] treeGrid = new Integer[][]{
 				{0,0,0,0},
-				{0,1,1,0},
-				{0,2,2,0},
+				{0,1,1,1},
+				{0,0,1,1},
 				{0,0,0,0},	
 		};
-		SimulationFire simFire = new SimulationFire(null, treeGrid, simScreen);
+		SimulationSegregation simFire = new SimulationSegregation(null, treeGrid, simScreen);
+		for(int i = 0; i < 2; i++){
+			simFire.updateGrid();
+		}
 //		KeyFrame frame = myCellSocietyController.getKeyFrame(60);
 //		Timeline animationTimeline = new Timeline();
 //		animationTimeline.setCycleCount(Timeline.INDEFINITE);

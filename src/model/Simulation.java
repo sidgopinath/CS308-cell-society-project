@@ -1,10 +1,11 @@
 package model;
 
 import java.util.Map;
-import javafx.scene.paint.Color;
+
 import view.SimulationScreen;
 
 public abstract class Simulation {
+
     protected SimulationScreen myView;
 
     public Simulation(SimulationScreen simScreen){
@@ -30,7 +31,7 @@ public abstract class Simulation {
      *  then it will go through and call each cell to update.
      *  update view
      */
-    abstract void updateGrid();
+    public abstract void updateGrid();
 
     /**
      * pass each square its neighbors
@@ -43,7 +44,5 @@ public abstract class Simulation {
     abstract void updateColorGrid();
 
 }
-
-
 
 

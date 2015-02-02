@@ -17,7 +17,7 @@ public class SimulationFire extends Simulation {
 
 
 	@Override
-	void updateGrid() {
+	public void updateGrid() {
 		updateNeighbors();
 		for(int j = 0; j < myGrid.length; j++){
 			for(int i = 0 ; i < myGrid[0].length; i++){
@@ -35,13 +35,13 @@ public class SimulationFire extends Simulation {
 				if(i + 1 < myGrid[0].length){
 					neighbors.add(myGrid[j][i + 1]);
 				}
-				if(i - 1 > 0){
+				if(i - 1 >= 0){
 					neighbors.add(myGrid[j][i - 1]);
 				}
 				if(j + 1 < myGrid.length){
 					neighbors.add(myGrid[j + 1][i]);
 				}
-				if(j - 1 > 0){
+				if(j - 1 >= 0){
 					neighbors.add(myGrid[j - 1][i]);
 				}
 				myGrid[j][i].setNeighbors(neighbors);
@@ -55,6 +55,9 @@ public class SimulationFire extends Simulation {
 		Color[][] colorGrid = new Color[myGrid.length][myGrid[0].length];
 		for(int j = 0; j < myGrid.length; j++){
 			for(int i = 0; i < myGrid[0].length; i++){
+				if(myGrid[j][i] == null){
+					System.out.println(true);
+				}
 				colorGrid[j][i] = myGrid[j][i].getColor();
 			}
 		}
@@ -72,13 +75,11 @@ public class SimulationFire extends Simulation {
 					myGrid[j][i] = new FireSquareTree();
 				}
 				if(grid[j][i] == 2){
-					myGrid[j][i] = new FireSquareBurning();
+					myGrid[j][i] = new FireSquareBurning(20);//Integer.parseInt(paramMap.get("probCatch")));
 				}
 			}
 		}
 		updateColorGrid();
-		//all squares passed in first, then passed their neighbors
-		
 	}
 
 

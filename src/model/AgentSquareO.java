@@ -1,12 +1,14 @@
 package model;
 
-import java.util.List;
+import javafx.scene.paint.Color;
+
 
 public class AgentSquareO extends AgentSquare{
 
-	public AgentSquareO(List<AgentSquare> neighbors) {
-		super(neighbors);
-		// TODO Auto-generated constructor stub
+	Color myColor = Color.BLUE;
+	
+	public AgentSquareO(double mySatisfaction) {
+		super(mySatisfaction);
 	}
 
 	public AgentSquareO(){
@@ -34,6 +36,11 @@ public class AgentSquareO extends AgentSquare{
 	@Override
 	protected boolean isEmpty() {
 		return false;
+	}
+
+	@Override
+	public Color getColor() {
+		return myColor;
 	}
 
 }

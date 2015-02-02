@@ -3,23 +3,23 @@ package model;
 import java.util.ArrayList;
 import java.util.Map;
 
+import view.SimulationScreen;
 import javafx.scene.paint.Color;
 
 public class SimulationLife extends Simulation {
 
 	private LifeSquare[][] myGrid;
 
-	public SimulationLife(Map<String, String> paramMap, Integer[][] grid) {
-		super();
+	public SimulationLife(Map<String, String> paramMap, Integer[][] grid, SimulationScreen simScreen) {
+		super(simScreen);
 		runSim(paramMap, grid);
 	}
 	
 	@Override
 	public void runSim(Map<String, String> paramMap, Integer[][] grid) {
 		myGrid = new LifeSquare[grid.length][grid[0].length];
-		fillGrid(paramMap, grid);
 		myView.initSimView(myGrid.length, myGrid[0].length);
-		updateGrid();
+		fillGrid(paramMap, grid);
 	}
 
 	@Override
@@ -34,23 +34,12 @@ public class SimulationLife extends Simulation {
 				}
 			}
 		}
-		updateNeighbors();
-	}
-
-	@Override
-	void updateGrid() {
-		for(int j = 0; j < myGrid.length; j++){
-			for(int i = 0 ; i < myGrid[0].length; i++){
-				myGrid[j][i] = myGrid[j][i].update();
-			}
-		}
 		updateColorGrid();
-		updateNeighbors();
 	}
 
 	/**
 	 * This code is pretty awful as far as if statements go
-	 * REFACTOR!
+	 * REFACTOR! 
 	 */
 	@Override
 	void updateNeighbors() {
@@ -60,31 +49,41 @@ public class SimulationLife extends Simulation {
 				if(i + 1 < myGrid[0].length){
 					neighbors.add(myGrid[j][i + 1]);
 				}
-				if(i - 1 > 0){
+				if(i - 1 >= 0){
 					neighbors.add(myGrid[j][i - 1]);
 				}
 				if(j + 1 < myGrid.length){
 					neighbors.add(myGrid[j + 1][i]);
 				}
-				if(j - 1 > 0){
+				if(j - 1 >= 0){
 					neighbors.add(myGrid[j - 1][i]);
 				}
 				if(i+1 < myGrid[0].length && j+1 < myGrid.length){
 					neighbors.add(myGrid[j+1][i+1]);
 				}
-				if(i+1 < myGrid[0].length && j-1 < myGrid.length){
+				if(i+1 < myGrid[0].length && j-1 >= 0){
 					neighbors.add(myGrid[j-1][i+1]);
 				}
-				if(i-1 < myGrid[0].length && j+1 < myGrid.length){
+				if(i-1 >= 0 && j+1 < myGrid.length){
 					neighbors.add(myGrid[j+1][i-1]);
 				}
-				if(i-1 < myGrid[0].length && j+1 < myGrid.length){
-					neighbors.add(myGrid[j+1][i-1]);
+				if(i-1 >= 0 && j-1 >= 0){
+					neighbors.add(myGrid[j-1][i-1]);
 				}
 				myGrid[j][i].setNeighbors(neighbors);
 			}
 		}
-		updateGrid();
+	}
+
+	@Override
+	public void updateGrid() {
+		updateNeighbors();
+		for(int j = 0; j < myGrid.length; j++){
+			for(int i = 0 ; i < myGrid[0].length; i++){
+				myGrid[j][i] = myGrid[j][i].update();
+			}
+		}
+		updateColorGrid();
 	}
 
 	@Override
@@ -95,11 +94,6 @@ public class SimulationLife extends Simulation {
 				colorGrid[j][i] = myGrid[j][i].getColor();
 			}
 		}
-		updateView(colorGrid);
-	}
-	
-	@Override
-	void updateView(Color[][] colorGrid) {
 		myView.updateScreen(colorGrid);
 	}
 
