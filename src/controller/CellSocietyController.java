@@ -86,7 +86,7 @@ public class CellSocietyController {
 	}
 
 	/**
-	 * Checks if the current simluation has stopped or ben stopped
+	 * Checks if the current simluation has stopped or been stopped
 	 * Calls a method in Simulation that will return a boolean
 	 * If it has been set to stop, controller will stop simulation
 	 */
@@ -115,7 +115,7 @@ public class CellSocietyController {
 	 * load files. This is a framework that can be changed. This method gets a
 	 * File that will then be passed into XMLParser.
 	 */
-	private void transitionToFileLoaderScreen() {
+	public void transitionToFileLoaderScreen() {
 		FileLoaderScreen fileLoaderScreen = new FileLoaderScreen();
 		myGroup.getChildren().clear();
 		Node node = fileLoaderScreen.getNode();
@@ -130,6 +130,19 @@ public class CellSocietyController {
 		readXML(inputFile);
 	}
 
+	/**
+	 * Call model to step through simulation?
+	 */
+	public void stepThroughSimulation(){
+		
+	}
+	
+	/**
+	 * Speeds up simluation. Calls model maybe?
+	 */
+	public void speedUpSimulation(){
+		
+	}
 	
 	/**
 	 * Called after the XML file has been made. Transitions to new simulation
