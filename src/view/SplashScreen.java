@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 
 public class SplashScreen {
 	private static final int SPLASH_TEXT_SIZE = 5;
-	private static final int LOAD_BUTTON_SIZE = 5;
+	private static final int LOAD_BUTTON_SIZE = 3;
 	
 	private Group myRoot;
 	private int myWidth;
@@ -29,7 +29,7 @@ public class SplashScreen {
 		myRoot = new Group();
 		myWidth = width;
 		myHeight = height;
-		myController = new CellSocietyController(width, height);
+		//myController = new CellSocietyController(width, height);
 		addTitle();
 		addLoadButton();
 		return myRoot;
@@ -58,6 +58,7 @@ public class SplashScreen {
 		String loadButtonString = "load"; //getProp().getProperty("load button text");
 		Button loadButton = new Button(loadButtonString);
 		loadButton.setTranslateX(center(loadButton));
+		System.out.println(loadButton.getMaxWidth());
 		loadButton.setTranslateY(myHeight * 3/4);
 		loadButton.setScaleX(LOAD_BUTTON_SIZE);
 		loadButton.setScaleY(LOAD_BUTTON_SIZE);
@@ -66,7 +67,7 @@ public class SplashScreen {
 	}
 
 	private double center(Node n) {
-		return myWidth/2 - n.getLayoutBounds().getWidth();
+		return (myWidth - n.getLayoutBounds().getWidth())/2;
 	}
 	
 	/**
