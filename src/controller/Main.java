@@ -2,6 +2,7 @@ package controller;
 
 import model.SimulationFire;
 import model.SimulationLife;
+import model.SimulationSegregation;
 import view.SimulationScreen;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -26,13 +27,13 @@ public class Main extends Application {
 		stage.setScene(new Scene(root, WIDTH, HEIGHT));
 		stage.show();
 		Integer[][] treeGrid = new Integer[][]{
+				{0,0,0,0},
 				{0,1,1,1},
-				{0,1,1,1},
-				{1,0,0,1},
-				{1,0,1,0},	
+				{0,0,1,1},
+				{0,0,0,0},	
 		};
-		SimulationLife simFire = new SimulationLife(null, treeGrid, simScreen);
-		for(int i = 0; i < 1; i++){
+		SimulationSegregation simFire = new SimulationSegregation(null, treeGrid, simScreen);
+		for(int i = 0; i < 2; i++){
 			simFire.updateGrid();
 		}
 //		KeyFrame frame = myCellSocietyController.getKeyFrame(60);

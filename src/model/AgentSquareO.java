@@ -7,8 +7,8 @@ public class AgentSquareO extends AgentSquare{
 
 	Color myColor = Color.BLUE;
 	
-	public AgentSquareO(int satisfaction) {
-		super(satisfaction);
+	public AgentSquareO(double mySatisfaction) {
+		super(mySatisfaction);
 	}
 
 	public AgentSquareO(){

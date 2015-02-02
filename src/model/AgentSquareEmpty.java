@@ -7,11 +7,16 @@ public class AgentSquareEmpty extends AgentSquare{
 
 	Color myColor = Color.WHITE;
 	
-	public AgentSquareEmpty(int satisfaction) {
-		super(satisfaction);
+	public AgentSquareEmpty(double mySatisfaction) {
+		super(mySatisfaction);
 	}
 
 	public AgentSquareEmpty(){
+	}
+	
+	@Override
+	public boolean isSatisfied(){
+		return true;
 	}
 	
 	@Override

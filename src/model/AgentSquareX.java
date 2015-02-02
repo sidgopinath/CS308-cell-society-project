@@ -5,10 +5,10 @@ import javafx.scene.paint.Color;
 
 public class AgentSquareX extends AgentSquare{
 
-	Color myColor = Color.BLACK;
+	Color myColor = Color.RED;
 	
-	public AgentSquareX(int satisfaction) {
-		super(satisfaction);
+	public AgentSquareX(double mySatisfaction) {
+		super(mySatisfaction);
 	}
 
 	public AgentSquareX(){

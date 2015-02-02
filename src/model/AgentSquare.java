@@ -6,10 +6,11 @@ import javafx.scene.paint.Color;
 
 public abstract class AgentSquare {
 
-	private int mySatisfaction;
+	private static final double NUM_NEIGHBORS = 8;
+	private double mySatisfaction;
 	protected List<AgentSquare> myNeighbors;
 
-	public AgentSquare(int satisfaction){
+	public AgentSquare(double satisfaction){
 		mySatisfaction = satisfaction;
 	}
 
@@ -22,8 +23,8 @@ public abstract class AgentSquare {
 	
 	
 	public boolean isSatisfied(){
-		int sameCount = this.returnCount();
-		return (sameCount / myNeighbors.size() >= mySatisfaction);
+		double sameCount = this.returnCount();
+		return ((sameCount / NUM_NEIGHBORS) >= mySatisfaction);
 	}
 	
 	public abstract Color getColor();
