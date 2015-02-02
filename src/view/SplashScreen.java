@@ -1,12 +1,23 @@
 package view;
 
+import controller.CellSocietyController;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 public class SplashScreen {
+	private static final int SPLASH_TEXT_SIZE = 5;
+	private static final int LOAD_BUTTON_SIZE = 5;
+	
 	private Group myRoot;
+	private int myWidth;
+	private int myHeight;
+	private CellSocietyController myController;
+	
 	
 	/**
 	 * This function will initialize the splash screen. The splash screen needs to display text that says the title
@@ -14,21 +25,29 @@ public class SplashScreen {
 	 * 
 	 * This function will also have to have add button that takes it to the FileLoaderScreen class.
 	 */
-	public Scene init(Group root, int width, int height){
-		//myRoot = root
-		//addTitle()
-		//addLoadButton()
-		return new Scene(root, width, height, Color.WHITE);
+	public Scene init(int width, int height){
+		myRoot = new Group();
+		myWidth = width;
+		myHeight = height;
+		myController = new CellSocietyController(width, height);
+		addTitle();
+		addLoadButton();
+		return new Scene(myRoot, width, height, Color.WHITE);
 	}
 	
 	/**
-	 * This function will add the title. This is example code of what it might do. It will have to get the name of the
-	 * program, and position of the title from the .properties file which will then dictate where it goes.
+	 * This function will add the title in. This is example code of what it might do. It will have to get the name of the
+	 * program from the .properties file which will then dictate where it goes.
 	 */
 	private void addTitle(){
-		//String splashTitle = getProp().getProperty("title");
-		//int xTitle = getProp().getProperty("TITLE_X");
-		//int yTitle = getProp().getProperty("TITLE_Y");
+		//getProp() should return a Property which has the inputstream of the .property file loaded into it.
+		String splashTitle = "Cellular Automata"; //getProp().getProperty("title");
+		Text splashTitleText = new Text(splashTitle);
+		splashTitleText.setTranslateX(center(splashTitleText));
+		splashTitleText.setTranslateY(myHeight / 4);
+		splashTitleText.setScaleX(SPLASH_TEXT_SIZE);
+		splashTitleText.setScaleY(SPLASH_TEXT_SIZE);
+		myRoot.getChildren().add(splashTitleText);
 	}
 	
 	/**
@@ -36,14 +55,25 @@ public class SplashScreen {
 	 * It will have to get the button's position from the .properties file. 
 	 */
 	private void addLoadButton(){
-		//button.setOnAction(e -> goToFileLoaderScreen);
+		String loadButtonString = "load"; //getProp().getProperty("load button text");
+		Button loadButton = new Button(loadButtonString);
+		loadButton.setTranslateX(center(loadButton));
+		loadButton.setTranslateY(myHeight * 3/4);
+		loadButton.setScaleX(LOAD_BUTTON_SIZE);
+		loadButton.setScaleY(LOAD_BUTTON_SIZE);
+		myRoot.getChildren().add(loadButton);
+		loadButton.setOnAction(e -> goToFileLoaderScreen());
+	}
+
+	private double center(Node n) {
+		return myWidth/2 - n.getLayoutBounds().getWidth();
 	}
 	
 	/**
 	 * This function, when clicked, will take the user to the fileLoader class through the controller, which will 
 	 * allow the user to select a file they want to load.
 	 */
-	private void goToFileLoaderScreen(KeyEvent e){
-		//tell controller to go to fileLoader Class
+	private void goToFileLoaderScreen(){
+		//myController.transitionToFileLoaderScreen();
 	}
 }

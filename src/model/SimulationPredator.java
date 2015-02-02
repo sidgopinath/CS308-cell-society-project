@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import view.SimulationScreen;
 import javafx.scene.paint.Color;
 
 public class SimulationPredator extends Simulation {
@@ -16,8 +17,10 @@ public class SimulationPredator extends Simulation {
     private Set<SquarePredator> alreadyMoved = new HashSet<SquarePredator>();
 
 
-    public SimulationPredator(int[][] initGrid, Map<String,String> paramMap){
-        runSim(initGrid,paramMap);
+    public SimulationPredator(SimulationScreen simscreen, Map<String,String> paramMap,
+                              Integer[][] initGrid){
+        super(simscreen);
+        runSim(paramMap,initGrid);
     }
 
     public void move(SquarePredator square,int x, int y){
@@ -34,7 +37,7 @@ public class SimulationPredator extends Simulation {
     /*
      * Initializes sim, parses through data passed into upon initialization
      */
-    public void runSim(int[][] initGrid, Map<String,String> paramMap){
+    public void runSim(Map<String,String> paramMap,Integer[][] initGrid){
         grid = new SquarePredator[gridLength][gridWidth];
         myView.initSimView(gridLength,gridWidth);
     }
@@ -132,7 +135,7 @@ public class SimulationPredator extends Simulation {
     }
     
     @Override
-    void fillGrid (int[][] initGrid, Map<String, String> paramMap) {
+    void fillGrid (Map<String, String> paramMap,Integer[][] initGrid) {
         // TODO Auto-generated method stub
         for(int i=0;i<initGrid.length;i++){
             for(int j=0;j<initGrid[0].length;j++){
