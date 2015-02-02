@@ -49,26 +49,26 @@ public class SimulationLife extends Simulation {
 				if(i + 1 < myGrid[0].length){
 					neighbors.add(myGrid[j][i + 1]);
 				}
-				if(i - 1 > 0){
+				if(i - 1 >= 0){
 					neighbors.add(myGrid[j][i - 1]);
 				}
 				if(j + 1 < myGrid.length){
 					neighbors.add(myGrid[j + 1][i]);
 				}
-				if(j - 1 > 0){
+				if(j - 1 >= 0){
 					neighbors.add(myGrid[j - 1][i]);
 				}
 				if(i+1 < myGrid[0].length && j+1 < myGrid.length){
 					neighbors.add(myGrid[j+1][i+1]);
 				}
-				if(i+1 < myGrid[0].length && j-1 < myGrid.length){
+				if(i+1 < myGrid[0].length && j-1 >= 0){
 					neighbors.add(myGrid[j-1][i+1]);
 				}
-				if(i-1 < myGrid[0].length && j+1 < myGrid.length){
+				if(i-1 >= 0 && j+1 < myGrid.length){
 					neighbors.add(myGrid[j+1][i-1]);
 				}
-				if(i-1 < myGrid[0].length && j+1 < myGrid.length){
-					neighbors.add(myGrid[j+1][i-1]);
+				if(i-1 >= 0 && j-1 >= 0){
+					neighbors.add(myGrid[j-1][i-1]);
 				}
 				myGrid[j][i].setNeighbors(neighbors);
 			}
