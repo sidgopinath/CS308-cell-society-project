@@ -44,6 +44,8 @@ public abstract class Simulation {
 		
 		/**
 		 * this method takes myGrid and turns it into a grid that is readable for the view
+		 * Note from Sid: could maybe make this a non-abstract method?
+		 * It seems to be fairly consistent from sim to sim
 		 */
 		abstract void updateColorGrid();
 		

@@ -37,17 +37,6 @@ public class SimulationLife extends Simulation {
 		updateNeighbors();
 	}
 
-	@Override
-	void updateGrid() {
-		for(int j = 0; j < myGrid.length; j++){
-			for(int i = 0 ; i < myGrid[0].length; i++){
-				myGrid[j][i] = myGrid[j][i].update();
-			}
-		}
-		updateColorGrid();
-		updateNeighbors();
-	}
-
 	/**
 	 * This code is pretty awful as far as if statements go
 	 * REFACTOR!
@@ -85,6 +74,17 @@ public class SimulationLife extends Simulation {
 			}
 		}
 		updateGrid();
+	}
+
+	@Override
+	public void updateGrid() {
+		for(int j = 0; j < myGrid.length; j++){
+			for(int i = 0 ; i < myGrid[0].length; i++){
+				myGrid[j][i] = myGrid[j][i].update();
+			}
+		}
+		updateColorGrid();
+		updateNeighbors();
 	}
 
 	@Override

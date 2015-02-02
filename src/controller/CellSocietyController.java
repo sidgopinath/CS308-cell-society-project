@@ -138,10 +138,11 @@ public class CellSocietyController {
 	}
 	
 	/**
-	 * Speeds up simluation. Calls model maybe?
+	 * Speeds up simulation. Calls model maybe?
 	 */
 	public void speedUpSimulation(){
-		
+		//.stop stops key frame
+		//clear old key frame and put in a new key frame with new speed
 	}
 	
 	/**

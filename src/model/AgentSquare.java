@@ -2,29 +2,31 @@ package model;
 
 import java.util.List;
 
+import javafx.scene.paint.Color;
+
 public abstract class AgentSquare {
 
-	protected static final int SATISFACTION = 30;
+	private int mySatisfaction;
 	protected List<AgentSquare> myNeighbors;
 
-	public AgentSquare(List<AgentSquare> neighbors){
-		myNeighbors = neighbors;
+	public AgentSquare(int satisfaction){
+		mySatisfaction = satisfaction;
 	}
 
 	public AgentSquare(){
 	}
+	
 	public void setNeighbors(List<AgentSquare> neighbors){
 		myNeighbors = neighbors;
 	}
 	
+	
 	public boolean isSatisfied(){
 		int sameCount = this.returnCount();
-		
-		if(sameCount / myNeighbors.size() >= SATISFACTION){
-			return true;
-		}
-		else return false;
+		return (sameCount / myNeighbors.size() >= mySatisfaction);
 	}
+	
+	public abstract Color getColor();
 	
 	protected abstract int returnCount();
 	protected abstract int getCountX();
