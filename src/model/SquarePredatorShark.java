@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
+import javafx.scene.paint.Color;
 
 public class SquarePredatorShark extends SquarePredator{
     
@@ -28,7 +29,7 @@ public class SquarePredatorShark extends SquarePredator{
     }
     
     @Override
-    public SquarePredator moveSquare () {
+    public SquarePredator moveSquareTo () {
         Random squareGenerator = new Random();
         List<SquarePredator> neighborList = super.getMyNeighbors();
         List<SquarePredator> edibleList = new ArrayList<SquarePredator>();
@@ -70,6 +71,11 @@ public class SquarePredatorShark extends SquarePredator{
     @Override
     public boolean isMovable () {
         return false;
+    }
+
+    @Override
+    public Color getColor () {
+        return Color.YELLOW;
     }
 
 }

@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javafx.scene.paint.Color;
 
 public abstract class SquarePredator{
 
@@ -40,7 +41,16 @@ public abstract class SquarePredator{
      * Returns square that this square wants to move to, unless all squares
      * are full, in which case it returns itself.
      */
-    public abstract SquarePredator moveSquare();
+    public abstract SquarePredator moveSquareTo();
+    
+    public abstract Color getColor();
+    
+    public SquarePredator moveSquare(){
+        SquarePredator square = moveSquareTo();
+        myX = square.getX();
+        myY = square.getY();
+        return square;
+    }
     
     
     /*
