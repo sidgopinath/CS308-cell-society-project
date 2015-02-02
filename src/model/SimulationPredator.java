@@ -20,16 +20,23 @@ public class SimulationPredator extends Simulation {
     public SimulationPredator(SimulationScreen simscreen, Map<String,String> paramMap,
                               Integer[][] initGrid){
         super(simscreen);
+        gridLength = initGrid[0].length;
+        gridWidth = initGrid.length;
         runSim(paramMap,initGrid);
     }
 
     public void move(SquarePredator square,int x, int y){
+        SquarePredator childSquare = square.breedSquare();
         SquarePredator moveTo = square.moveSquare();
         if(square.equals(moveTo)){
             return;
         }
         grid[moveTo.getY()][moveTo.getX()] = square;
-        grid[y][x] = new SquarePredatorEmpty(-1,x, y);
+        if(!square.isBreeding()){
+            grid[y][x] = new SquarePredatorEmpty(-1,x, y);
+        } else{
+            grid[y][x] = childSquare;
+        }
         alreadyMoved.add(square);
         alreadyMoved.add(grid[y][x]);
     }
@@ -38,8 +45,11 @@ public class SimulationPredator extends Simulation {
      * Initializes sim, parses through data passed into upon initialization
      */
     public void runSim(Map<String,String> paramMap,Integer[][] initGrid){
-        grid = new SquarePredator[gridLength][gridWidth];
-        myView.initSimView(gridLength,gridWidth);
+        grid = new SquarePredator[gridWidth][gridLength];
+        myView.initSimView(gridWidth,gridLength);
+        fillGrid(paramMap, initGrid);
+        breedingPeriod = 5;
+        sharkLife = 2;
     }
 
 
@@ -47,8 +57,8 @@ public class SimulationPredator extends Simulation {
      * Update grid at step and updates corresponding view
      */
     public void updateGrid(){
-        for(int row = 0; row < gridLength; row++){
-            for(int column=0;column<gridWidth;column++){
+        for(int row = 0; row < gridWidth; row++){
+            for(int column=0;column<gridLength;column++){
                 SquarePredator currentSquare = grid[row][column];
                 if(!alreadyMoved.contains(currentSquare)){
                     currentSquare.updateSquare();
@@ -78,8 +88,8 @@ public class SimulationPredator extends Simulation {
      * of a cells neighbor and updates it's myNeighbors accordingly.
      */
     public void updateNeighbors(){
-        for(int i =0; i<grid.length;i++){
-            for(int j=0;j<grid.length;j++){
+        for(int i =0; i<gridWidth;i++){
+            for(int j=0;j<gridLength;j++){
                 updateNeighborSquare(grid[i][j]);
             }
         }
@@ -136,7 +146,6 @@ public class SimulationPredator extends Simulation {
     
     @Override
     void fillGrid (Map<String, String> paramMap,Integer[][] initGrid) {
-        // TODO Auto-generated method stub
         for(int i=0;i<initGrid.length;i++){
             for(int j=0;j<initGrid[0].length;j++){
                 int squareValue = initGrid[i][j];

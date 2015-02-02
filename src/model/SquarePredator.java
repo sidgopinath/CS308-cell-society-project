@@ -58,29 +58,14 @@ public abstract class SquarePredator{
      * available to breed.
      */
     public SquarePredator breedSquare(){
-        if(currentBreeding != 0){
-            return null;
-        }
-        Random squarePick = new Random();
-        List<SquarePredator> moveableNeighbors = new ArrayList<SquarePredator>();
-        for(SquarePredator square: myPredatorNeighbors){
-            if(square.isMovable()){
-                moveableNeighbors.add(square);
-            }
-        }
-        if(moveableNeighbors.isEmpty()){
-            return null;
-        }
-        SquarePredator breedLocation =
-        moveableNeighbors.get(squarePick.nextInt(moveableNeighbors.size()));
-        return getChildSquare(breedLocation.getX(),breedLocation.getY(), myBreedingPeriod);
+        return getChildSquare(this.getX(),this.getY(), myBreedingPeriod);
     };
     
     /*
      * Public method to allow subclasses to decrement breeding countdown on update
      */
     public void decrementBreeding(){
-        myBreedingPeriod--;
+        currentBreeding--;
     }
     
     /*
