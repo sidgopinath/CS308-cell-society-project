@@ -12,8 +12,7 @@ import javafx.scene.text.Text;
 
 public class SplashScreen {
 	private static final int SPLASH_TEXT_SIZE = 5;
-	private static final int LOAD_BUTTON_SIZE = 3;
-	
+	private static final int LOAD_BUTTON_SIZE = 3;	
 	private Group myRoot;
 	private int myWidth;
 	private int myHeight;
@@ -62,7 +61,6 @@ public class SplashScreen {
 		formatNode(loadButton,(myWidth - loadButton.getWidth())/2, myHeight * 3/4, LOAD_BUTTON_SIZE );
 		loadButton.setOnAction(e -> myController.transitionToFileLoaderScreen());
 	}
-	
 	
 	private void formatNode(Node node, double width, double height, int scale) {
 		node.setTranslateX(width);
