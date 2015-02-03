@@ -1,5 +1,8 @@
 package view;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import controller.CellSocietyController;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -15,11 +18,11 @@ public class SplashScreen {
 	private int myWidth;
 	private int myHeight;
 	private CellSocietyController myController;
-	
-	private boolean transitionToFileLoader = false;
+	private static ResourceBundle myProperties;
 	
 	public SplashScreen(CellSocietyController controller){
 		myController = controller;
+		myProperties = ResourceBundle.getBundle("resources/resources");
 	}
 	/**
 	 * This function will initialize the splash screen. The splash screen needs to display text that says the title
@@ -41,8 +44,7 @@ public class SplashScreen {
 	 * program from the .properties file which will then dictate where it goes.
 	 */
 	private void addTitle(){
-		//getProp() should return a Property which has the inputstream of the .property file loaded into it.
-		String splashTitle = "Cellular Automata"; //getProp().getProperty("title");
+		String splashTitle = myProperties.getString("splash_title"); 
 		Text splashTitleText = new Text(splashTitle);
 		formatNode(splashTitleText, (myWidth - splashTitleText.getLayoutBounds().getWidth())/2, 
 				myHeight / 4, SPLASH_TEXT_SIZE);
@@ -53,7 +55,7 @@ public class SplashScreen {
 	 * It will have to get the button's position from the .properties file. 
 	 */
 	private void addLoadButton(){
-		String loadButtonString = "load"; //getProp().getProperty("load button text");
+		String loadButtonString = myProperties.getString("load_button_string");
 		Button loadButton = new Button(loadButtonString);
 		final Scene snapScene = new Scene(loadButton);  
 		snapScene.snapshot(null);  

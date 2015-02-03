@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -31,11 +32,13 @@ public class CellSocietyController {
 	private int myFrameRate;
 	private Timeline myTimeline;
 	private Stage myStage;
+	private ResourceBundle myProperties;
 	
 	public CellSocietyController(int width, int height, Stage stage) {
 		myStage = stage;
 		displaySplashScreen(width, height);
 		myScene = new Scene((Parent) myGroup, width, height, Color.WHITE);
+		myProperties = ResourceBundle.getBundle("resources/resources");
 	}
 
 	/**
@@ -161,18 +164,18 @@ public class CellSocietyController {
 	 * @param simName
 	 */
 	private void initializeSimulation(String simName) {
-		if (simName.equals("fire")) {
+		if (simName.equals(myProperties.getObject("fire_simulation_name"))) {
 			myCurrentSimulation = new SimulationFire(myParameters, myGrid, myCurrentSimulationScreen);	
 		}
-		else if(simName.equals("segregation")){
+		else if(simName.equals(myProperties.getObject("segregation_simulation_name"))){
 			myCurrentSimulation = new SimulationSegregation(myParameters, myGrid,myCurrentSimulationScreen);
 			
 		}
-		else if(simName.equals("life")){
+		else if(simName.equals(myProperties.getObject("life_simulation_name"))){
 			myCurrentSimulation = new SimulationLife(myParameters, myGrid, myCurrentSimulationScreen);
 			
 		}
-		else if(simName.equals("predator")){
+		else if(simName.equals(myProperties.getObject("predator_simulation_name"))){
 			myCurrentSimulation = new SimulationPredator(myParameters, myGrid, myCurrentSimulationScreen);
 		}
 	}

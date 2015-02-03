@@ -2,12 +2,15 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.ResourceBundle;
+
 import javafx.scene.paint.Color;
 import view.SimulationScreen;
 
 public class SimulationFire extends Simulation {
 
     private FireSquare[][] myGrid;
+    private int myProbCatch;
 
     public SimulationFire(Map<String,String> paramMap, Integer[][] grid, SimulationScreen simScreen){
         super(paramMap, grid,simScreen);
@@ -15,7 +18,7 @@ public class SimulationFire extends Simulation {
 
     @Override
     void parseMap (Map<String, String> paramMap) {
-        // TODO Auto-generated method stub
+        myProbCatch = Integer.parseInt(paramMap.get("probCatch"));
         
     }
     @Override
@@ -76,7 +79,7 @@ public class SimulationFire extends Simulation {
                     myGrid[j][i] = new FireSquareTree();
                 }
                 if(grid[j][i] == 2){
-                    myGrid[j][i] = new FireSquareBurning(90);//Integer.parseInt(paramMap.get("probCatch")));
+                    myGrid[j][i] = new FireSquareBurning(myProbCatch);
                 }
             }
         }
