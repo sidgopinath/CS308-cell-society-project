@@ -24,6 +24,7 @@ by Janan Zhu(jz113), Sid Gopinath(sdg23), Sunjeev Devulapalli(svd12)
 ###Known Bugs, Crashes, or Problems
 * If you press load and don't choose a file, you will get an error.
 * The step button works, but it lags a little bit when pressed.
+* Duplicated updateColorGrid method in Simulation subclasses. This can possibly be resolved later by introducing a Square superclass with a getColor method in a grid for the Simulation superclass, but need to resolve further issues of Simulation subclasses recognizing their respective square subclasses.
 
 ###Extra Features
 N/A
