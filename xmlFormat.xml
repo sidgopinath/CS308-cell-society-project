@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='us-ascii'?> 
+<!-- Always include the above line-->
+
+<!-- The root node is <simulation> -->
+<simulation>
+
+<!-- Everything enclosed by the parameter node is a parameter for the simulation.-->
+<!-- Every simulation needs a simName, gridHeight, and gridWidth.-->
+<!-- Other parameters specific to the simulation can also be added-->
+	<parameter>
+		<!-- The simName can either be fire, segregation, life, or predator currently.-->
+		<simName>fire</simName>
+		<gridHeight>5</gridHeight>
+		<gridWidth>5</gridWidth>
+		<probCatch>80</probCatch>	
+	</parameter>
+
+
+<!-- Everything below tells the simulation what the grid looks like.-->
+<!-- Each row is defined below, specific by r1, r2, etc..-->
+<!-- The value of each square of the cell is signified using an integer.-->
+<!-- The meaning of these integers is specific to the simulation..-->
+	<grid>
+		<r1>0 1 1 0 0</r1>
+		<r2>0 2 0 1 0</r2>
+		<r3>2 1 2 1 1</r3>
+		<r4>1 2 1 2 0</r4>
+		<r5>0 0 2 1 0</r5>
+	</grid>
+
+</simulation>

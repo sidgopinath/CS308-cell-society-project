@@ -6,8 +6,6 @@
 
 	<parameter>
 		<simName>predator</simName>
-		<windowHeight>600</windowHeight>
-		<windowWidth>600</windowWidth>
 		<gridHeight>8</gridHeight>
 		<gridWidth>8</gridWidth>
 		<breedingPeriod>2</breedingPeriod>
