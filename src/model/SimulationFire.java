@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 import javafx.scene.paint.Color;
 import view.SimulationScreen;

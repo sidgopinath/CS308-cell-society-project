@@ -1,14 +1,13 @@
 package view;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 
-import controller.CellSocietyController;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
+import controller.CellSocietyController;
 
 /**
  * This function will initialize the splash screen. The splash screen needs to display text that says the title
