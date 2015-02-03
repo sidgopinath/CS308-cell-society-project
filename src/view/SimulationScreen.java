@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -18,6 +20,7 @@ public class SimulationScreen {
 	private GridPane myGridPane;
 	private boolean myStart;
 	private BorderPane root;
+	private ArrayList<Button> myButtons;
 
 	/**
 	 * This function begins setting up the general simulation scene. This
@@ -35,6 +38,7 @@ public class SimulationScreen {
 		myHeight = height;
 		myGridPane = new GridPane();
 		myStart = true;
+		myButtons = new ArrayList<>();
 		//myController = new CellSocietyController(width, height);
 		root.setTop(addButtons());
 		root.setCenter(myGridPane);
@@ -46,14 +50,18 @@ public class SimulationScreen {
 
 	private HBox addButtons() {
 		myTop = new HBox();
-		myTop.getChildren().addAll(addLoadButton(), addStepButton(),
-				addSpeedUpButton(), addStopStartButton());
-		double length = myTop.getChildren().size();
-		double buttonWidth = myTop.getChildren().get(0).getLayoutBounds()
-				.getWidth();
-		myTop.setSpacing((myWidth - length * buttonWidth) / (length + 1));
+		myTop.setPrefHeight(myHeight/20);
+		myTop.setPrefWidth(myWidth);
+		myTop.getChildren().addAll(addLoadButton(), addStopStartButton(), addStepButton(),
+				addSpeedUpButton(), addSlowDownButton());
+		for(Button button: myButtons){
+			button.setPrefWidth(myWidth / (myButtons.size()));
+			button.setPrefHeight(myTop.getPrefHeight());
+		}
+		double length = myTop.getChildren().size(); 
+		double buttonWidth = myButtons.get(0).getPrefWidth();
+		myTop.setSpacing((myWidth - length * buttonWidth) / (length));
 		return myTop;
-
 	}
 
 	/**
@@ -64,18 +72,28 @@ public class SimulationScreen {
 	 */
 	private Button addLoadButton() {
 		Button loadButton = new Button("Load");
+		myButtons.add(loadButton);
 		loadButton.setOnAction(e -> {
 			myController.transitionToFileLoaderScreen();
 		});
 		return loadButton;
 	}
 
+	private Button addSlowDownButton(){
+		Button slowDownButton = new Button("Slow Down");
+		myButtons.add(slowDownButton);
+		slowDownButton.setOnAction(e -> {
+			myController.slowDownSimulation();
+		});
+		return slowDownButton;
+	}
 	/**
 	 * This function adds the step button to the scene and creates the
 	 * eventListener.
 	 */
 	private Button addStepButton() {
 		Button stepButton = new Button("Step");
+		myButtons.add(stepButton);
 		stepButton.setOnAction(e -> {
 			myController.stepThroughSimulation();
 		});
@@ -87,6 +105,7 @@ public class SimulationScreen {
 	 */
 	private Button addSpeedUpButton() {
 		Button speedUpButton = new Button("Speed Up");
+		myButtons.add(speedUpButton);
 		speedUpButton.setOnAction(e -> {
 			myController.speedUpSimulation();
 		});
@@ -100,6 +119,7 @@ public class SimulationScreen {
 	 */
 	private Button addStopStartButton() {
 		Button stopStartButton = new Button("Stop/Start");
+		myButtons.add(stopStartButton);
 		stopStartButton.setOnAction(e -> {
 			//if false it is stopped
 			myStart = !myStart;
@@ -133,10 +153,11 @@ public class SimulationScreen {
 	public void initSimView(int gridHeight, int gridWidth) {
 		for (int j = 0; j < gridHeight; j++) {
 			for (int i = 0; i < gridWidth; i++) {
-				Rectangle rect = new Rectangle(myWidth / gridWidth,
-						(myHeight - myTop.getLayoutBounds().getHeight()) / gridHeight);
+				Rectangle rect = new Rectangle();
 				rect.setFill(Color.BLACK);
 				rect.setStroke(Color.BLACK);
+				rect.setWidth(myWidth / gridWidth - rect.getStrokeWidth());
+				rect.setHeight((myHeight - myTop.getPrefHeight()) / gridHeight);
 				myGridPane.add(rect, i, j);
 			}
 		}
@@ -147,7 +168,6 @@ public class SimulationScreen {
 		for (Node child : myGridPane.getChildren()) {
 			if (GridPane.getRowIndex(child) == row
 					&& GridPane.getColumnIndex(child) == column) {
-				// trust me, it will be a rectangle...
 				return (Shape) child;
 			}
 		}
