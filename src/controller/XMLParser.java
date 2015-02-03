@@ -19,7 +19,6 @@ public class XMLParser {
 	private Integer myGrid[][];
 
 	public XMLParser(File XMLFile) {
-
 		try {
 			Document doc = initializeDoc(XMLFile);
 			clean(doc.getDocumentElement().getParentNode());
@@ -29,7 +28,6 @@ public class XMLParser {
 			createGrid(gridChildren);
 			readGrid(gridChildren);
 		}
-
 		catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -44,7 +42,6 @@ public class XMLParser {
 		String rowString = currentRow.getTextContent();
 		String[] splitRow = rowString.split(" ");
 		myGrid = new Integer[gridChildren.getLength()][splitRow.length];
-		
 	}
 
 	/**
@@ -59,11 +56,10 @@ public class XMLParser {
 	}
 
 	/**
-	 * Method that cleans white space and stray characters out of XML file Taken
-	 * from:
+	 * Method that cleans white space and stray characters out of XML file
+	 * Taken from:
 	 * http://stackoverflow.com/questions/978810/how-to-strip-whitespace-only
 	 * -text-nodes-from-a-dom-before-serialization/16285664#16285664
-	 * 
 	 * @param node
 	 */
 	public static void clean(Node node) {
@@ -139,14 +135,4 @@ public class XMLParser {
 	public HashMap<String, String> getParameters() {
 		return myParameters;
 	}
-
-//	public static void main(String[] args) {
-//		String pathName = "./testFiles/testOne.xml";
-//		File newFile = new File(pathName);
-//		XMLParser tester = new XMLParser(newFile);
-//		tester.getGrid();
-//		tester.getParameters();
-//
-//	}
-
 }
