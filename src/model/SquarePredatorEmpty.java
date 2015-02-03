@@ -23,11 +23,6 @@ public class SquarePredatorEmpty extends SquarePredator{
     }
 
     @Override
-    public int getState () {
-        return 0;
-    }
-
-    @Override
     public boolean isEdible () {
         return false;
     }

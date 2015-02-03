@@ -10,19 +10,14 @@ import javafx.scene.paint.Color;
 
 public class SimulationPredator extends Simulation {
     private SquarePredator grid[][];
-    private int gridLength;
-    private int gridWidth;
     private int sharkLife;
     private int breedingPeriod;
     private Set<SquarePredator> alreadyMoved = new HashSet<SquarePredator>();
 
 
-    public SimulationPredator(SimulationScreen simscreen, Map<String,String> paramMap,
-                              Integer[][] initGrid){
-        super(simscreen);
-        gridLength = initGrid[0].length;
-        gridWidth = initGrid.length;
-        runSim(paramMap,initGrid);
+    public SimulationPredator(Map<String,String> paramMap,Integer[][] initGrid,
+                              SimulationScreen simscreen){
+        super(paramMap, initGrid, simscreen);
     }
 
     public void move(SquarePredator square,int x, int y){
@@ -49,7 +44,7 @@ public class SimulationPredator extends Simulation {
         sharkLife = Integer.parseInt(paramMap.get("sharkLife"));
         grid = new SquarePredator[gridWidth][gridLength];
         myView.initSimView(gridWidth,gridLength);
-        fillGrid(paramMap, initGrid);
+        fillGrid(initGrid);
     }
 
 
@@ -65,13 +60,8 @@ public class SimulationPredator extends Simulation {
                     
                     //Check if need to starve shark
                     if(currentSquare.hasStarved()){
-                        System.out.println("Shark has starved");
                         grid[row][column] = new SquarePredatorEmpty(-1, column,row);
                         continue;
-                    }
-                    SquarePredator child = currentSquare.breedSquare();
-                    if(child != null){
-                        grid[child.getY()][child.getX()] = child;
                     }
                     updateNeighborSquare(currentSquare);
                     move(currentSquare,column,row);
@@ -84,18 +74,6 @@ public class SimulationPredator extends Simulation {
         updateColorGrid();
         
     }
-    /*
-     * Method to be run in updateGrid that passes in a copy of the current state
-     * of a cells neighbor and updates it's myNeighbors accordingly.
-     */
-    public void updateNeighbors(){
-        for(int i =0; i<gridWidth;i++){
-            for(int j=0;j<gridLength;j++){
-                updateNeighborSquare(grid[i][j]);
-            }
-        }
-    }
-
 
     public void updateNeighborSquare(SquarePredator square){
         SquarePredator up;
@@ -135,6 +113,7 @@ public class SimulationPredator extends Simulation {
         square.updateNeighbors(neighborList);
     }
 
+    @Override
     void updateColorGrid(){
         Color[][] myColorGrid = new Color[gridWidth][gridLength];
         for(int i=0; i<gridWidth; i++){
@@ -146,7 +125,7 @@ public class SimulationPredator extends Simulation {
     }
     
     @Override
-    void fillGrid (Map<String, String> paramMap,Integer[][] initGrid) {
+    void fillGrid (Integer[][] initGrid) {
         for(int i=0;i<initGrid.length;i++){
             for(int j=0;j<initGrid[0].length;j++){
                 int squareValue = initGrid[i][j];

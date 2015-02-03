@@ -59,11 +59,6 @@ public class SquarePredatorShark extends SquarePredator{
     }
 
     @Override
-    public int getState () {
-        return 2;
-    }
-
-    @Override
     public boolean isEdible () {
         return false;
     }

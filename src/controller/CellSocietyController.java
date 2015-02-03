@@ -180,7 +180,7 @@ public class CellSocietyController {
 		else if(myParameters.get("simName").equals("predator")){
 			myCurrentSimulationScreen = new SimulationScreen();
 			myCurrentSimulationScreen.initSimScreen(Integer.parseInt(myParameters.get("windowWidth")), Integer.parseInt(myParameters.get("windowHeight")),this);
-			myCurrentSimulation = new SimulationPredator(myCurrentSimulationScreen, myParameters, myGrid);
+			myCurrentSimulation = new SimulationPredator(myParameters, myGrid,myCurrentSimulationScreen);
 			myGroup.getChildren().clear();
 			myGroup.getChildren().add(myCurrentSimulationScreen.getNode());
 		}

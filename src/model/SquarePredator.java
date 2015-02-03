@@ -12,8 +12,6 @@ public abstract class SquarePredator{
     private int myX;
     private int myY;
 
-    // TODO: Find a good way to return state to simulation object
-    public abstract int getState();
     
     public SquarePredator (int breedingPeriod, int xCoord, int yCoord) {
         myBreedingPeriod = breedingPeriod;

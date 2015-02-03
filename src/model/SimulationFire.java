@@ -11,34 +11,32 @@ public class SimulationFire extends Simulation {
 	private FireSquare[][] myGrid;
 
 	public SimulationFire(Map<String,String> paramMap, Integer[][] grid, SimulationScreen simScreen){
-		super(simScreen);
-		runSim(paramMap, grid);
+		super(paramMap, grid,simScreen);
 	}
 
 
 	@Override
 	public void updateGrid() {
 		updateNeighbors();
-		for(int j = 0; j < myGrid.length; j++){
-			for(int i = 0 ; i < myGrid[0].length; i++){
+		for(int j = 0; j < gridWidth; j++){
+			for(int i = 0 ; i < gridLength; i++){
 				myGrid[j][i] = myGrid[j][i].update();
 			}
 		}
 		updateColorGrid();
 	}
 
-	@Override
 	void updateNeighbors() {
-		for(int j = 0; j < myGrid.length; j++){
-			for(int i = 0 ; i < myGrid[0].length; i++){
+		for(int j = 0; j < gridWidth; j++){
+			for(int i = 0 ; i < gridLength; i++){
 				ArrayList<FireSquare> neighbors = new ArrayList<>();
-				if(i + 1 < myGrid[0].length){
+				if(i + 1 < gridLength){
 					neighbors.add(myGrid[j][i + 1]);
 				}
 				if(i - 1 >= 0){
 					neighbors.add(myGrid[j][i - 1]);
 				}
-				if(j + 1 < myGrid.length){
+				if(j + 1 < gridWidth){
 					neighbors.add(myGrid[j + 1][i]);
 				}
 				if(j - 1 >= 0){
@@ -52,9 +50,9 @@ public class SimulationFire extends Simulation {
 
 	@Override
 	 void updateColorGrid() {
-		Color[][] colorGrid = new Color[myGrid.length][myGrid[0].length];
-		for(int j = 0; j < myGrid.length; j++){
-			for(int i = 0; i < myGrid[0].length; i++){
+		Color[][] colorGrid = new Color[gridWidth][gridLength];
+		for(int j = 0; j < gridWidth; j++){
+			for(int i = 0; i < gridLength; i++){
 				if(myGrid[j][i] == null){
 					System.out.println(true);
 				}
@@ -65,9 +63,9 @@ public class SimulationFire extends Simulation {
 	}
 	
 	@Override
-	void fillGrid(Map<String, String> paramMap, Integer[][] grid) {
-		for(int j = 0; j < myGrid.length; j++){
-			for(int i = 0 ; i < myGrid[0].length; i++){
+	void fillGrid(Integer[][] grid) {
+		for(int j = 0; j < gridWidth; j++){
+			for(int i = 0 ; i < gridLength; i++){
 				if(grid[j][i] == 0){
 					myGrid[j][i] = new FireSquareEmpty();
 				}
@@ -85,9 +83,9 @@ public class SimulationFire extends Simulation {
 
 	@Override
 	void runSim(Map<String, String> paramMap, Integer[][] grid) {
-		myGrid = new FireSquare[grid.length][grid[0].length];
-		myView.initSimView(myGrid.length, myGrid[0].length);
-		fillGrid(paramMap, grid);
+		myGrid = new FireSquare[gridWidth][gridLength];
+		myView.initSimView(gridWidth, gridLength);
+		fillGrid(grid);
 		
 	}
 	

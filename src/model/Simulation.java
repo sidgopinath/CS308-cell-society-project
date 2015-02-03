@@ -7,9 +7,15 @@ import view.SimulationScreen;
 public abstract class Simulation {
 
     protected SimulationScreen myView;
+    protected int gridLength;
+    protected int gridWidth;
 
-    public Simulation(SimulationScreen simScreen){
+    public Simulation(Map<String,String> paramMap, Integer[][] grid,
+                      SimulationScreen simScreen){
         myView = simScreen;
+        gridLength = grid[0].length;
+        gridWidth = grid.length;
+        runSim(paramMap,grid);
     }
 
     /**
@@ -24,7 +30,7 @@ public abstract class Simulation {
      * initialize grid, and fill
      * @param paramMap 
      */
-    abstract void fillGrid(Map<String, String> paramMap, Integer[][] grid);
+    abstract void fillGrid(Integer[][] grid);
 
     /**
      * first it will pass each square its neighbors
@@ -33,10 +39,6 @@ public abstract class Simulation {
      */
     public abstract void updateGrid();
 
-    /**
-     * pass each square its neighbors
-     */
-    abstract void updateNeighbors();
 
     /**
      * this method takes myGrid and turns it into a grid that is readable for the view
