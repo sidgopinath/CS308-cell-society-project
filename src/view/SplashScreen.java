@@ -3,6 +3,7 @@ package view;
 import controller.CellSocietyController;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
@@ -58,7 +59,9 @@ public class SplashScreen {
 	private void addLoadButton(){
 		String loadButtonString = "load"; //getProp().getProperty("load button text");
 		Button loadButton = new Button(loadButtonString);
-		loadButton.setTranslateX(center(loadButton) - FUDGE);
+		final Scene snapScene = new Scene(loadButton);  
+		snapScene.snapshot(null);  
+		loadButton.setTranslateX((myWidth - loadButton.getWidth())/2);
 		loadButton.setTranslateY(myHeight * 3/4);
 		loadButton.setScaleX(LOAD_BUTTON_SIZE);
 		loadButton.setScaleY(LOAD_BUTTON_SIZE);

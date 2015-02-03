@@ -3,8 +3,6 @@ package view;
 import java.util.ArrayList;
 
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -54,8 +52,8 @@ public class SimulationScreen {
 		myTop = new HBox();
 		myTop.setPrefHeight(myHeight/20);
 		myTop.setPrefWidth(myWidth);
-		myTop.getChildren().addAll(addLoadButton(), addStepButton(),
-				addSpeedUpButton(), addStopStartButton(), addSlowDownButton());
+		myTop.getChildren().addAll(addLoadButton(), addStopStartButton(), addStepButton(),
+				addSpeedUpButton(), addSlowDownButton());
 		for(Button button: myButtons){
 			button.setPrefWidth(myWidth / (myButtons.size()));
 			button.setPrefHeight(myTop.getPrefHeight());
