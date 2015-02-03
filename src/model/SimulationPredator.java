@@ -45,8 +45,8 @@ public class SimulationPredator extends Simulation {
      * Initializes sim, parses through data passed into upon initialization
      */
     public void runSim(Map<String,String> paramMap,Integer[][] initGrid){
-        breedingPeriod = 1;
-        sharkLife = 200;
+        breedingPeriod = Integer.parseInt(paramMap.get("breedingPeriod"));
+        sharkLife = Integer.parseInt(paramMap.get("sharkLife"));
         grid = new SquarePredator[gridWidth][gridLength];
         myView.initSimView(gridWidth,gridLength);
         fillGrid(paramMap, initGrid);
