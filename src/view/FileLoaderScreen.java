@@ -1,6 +1,7 @@
 package view;
 
 import java.io.File;
+import java.util.ResourceBundle;
 
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -12,23 +13,26 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+
+
 public class FileLoaderScreen {
 
     final FileChooser fileChooser;
     Stage myStage;
     Scene myScene;
+    private static ResourceBundle myProperties;
 
     public FileLoaderScreen(Stage stage){
         fileChooser = new FileChooser();
         myStage = stage;
-
+        myProperties = ResourceBundle.getBundle("resources/resources");
     }
 
     public Node getNode() {
         // Modeled after JavaFX doc example 
         // http://docs.oracle.com/javafx/2/ui_controls/file-chooser.htm
 
-        final Button fileOpenButton = new Button("Load XML file");
+        final Button fileOpenButton = new Button(myProperties.getString("load_xml_file"));
         fileOpenButton.setOnAction(e->getFile());
         final GridPane chooserGridPane = new GridPane();
 
@@ -49,7 +53,7 @@ public class FileLoaderScreen {
     }
 
     private static void configureFileChooser(final FileChooser fileChooser){                           
-        fileChooser.setTitle("Choose XML settings file");
+        fileChooser.setTitle(myProperties.getString("choose_xml_file"));
         fileChooser.setInitialDirectory(
                                         new File(System.getProperty("user.dir"))
                 ); 

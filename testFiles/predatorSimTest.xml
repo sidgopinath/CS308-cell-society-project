@@ -10,7 +10,7 @@
 		<windowWidth>600</windowWidth>
 		<gridHeight>20</gridHeight>
 		<gridWidth>20</gridWidth>
-		<breedingPeriod>4</breedingPeriod>
+		<breedingPeriod>4</breedingPeriod> 
 		<sharkLife>3</sharkLife>	
 	</parameter>
 

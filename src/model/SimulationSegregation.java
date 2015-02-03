@@ -3,14 +3,22 @@ package model;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
-import view.SimulationScreen;
+
 import javafx.scene.paint.Color;
+import view.SimulationScreen;
+
+/**
+ * 
+ * @author Sunjeev and Sid
+ *
+ */
 
 public class SimulationSegregation extends Simulation {
 
     private static final int SAFE_GUARD = 1000;
     private AgentSquare[][] myGrid;
     private Random myRandom;
+	private double mySatisfaction;
 
     public SimulationSegregation(Map<String, String> paramMap, Integer[][] grid, SimulationScreen simScreen) {
         super(paramMap, grid, simScreen);
@@ -19,14 +27,12 @@ public class SimulationSegregation extends Simulation {
 
     @Override
     void parseMap (Map<String, String> paramMap) {
-        // TODO Auto-generated method stub
+        mySatisfaction = Double.parseDouble(paramMap.get("satisfaction"));
         
     }
     
     @Override
     void fillGrid(Integer[][] grid) {
-        //double mySatisfaction = Double.parseDouble(paramMap.get("satisfaction"));
-        double mySatisfaction = 0.5;
         for (int j = 0; j < gridWidth; j++) {
             for (int i = 0; i < gridLength; i++) {
                 if(grid[j][i] == 0){
@@ -43,10 +49,6 @@ public class SimulationSegregation extends Simulation {
         updateColorGrid();
     }
 
-    /**
-     * Bade code. Duplicated from SimulationLife also.
-     * REFACTOR
-     */
     void updateNeighbors() {
         for (int j = 0; j < gridWidth; j++) {
             for (int i = 0; i < gridLength; i++) {

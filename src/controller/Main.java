@@ -4,6 +4,12 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**
+ * Main to run the program
+ * @author Sid
+ *
+ */
+
 public class Main extends Application {
 
 	private CellSocietyController myCellSocietyController;

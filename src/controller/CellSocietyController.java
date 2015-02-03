@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -20,6 +21,12 @@ import view.FileLoaderScreen;
 import view.SimulationScreen;
 import view.SplashScreen;
 
+/**
+ * Main controller that is called by main
+ * @author Sid
+ *
+ */
+
 public class CellSocietyController {
 
 	private Simulation myCurrentSimulation;
@@ -31,11 +38,13 @@ public class CellSocietyController {
 	private int myFrameRate;
 	private Timeline myTimeline;
 	private Stage myStage;
+	private ResourceBundle myProperties;
 	
 	public CellSocietyController(int width, int height, Stage stage) {
 		myStage = stage;
 		displaySplashScreen(width, height);
 		myScene = new Scene((Parent) myGroup, width, height, Color.WHITE);
+		myProperties = ResourceBundle.getBundle("resources/resources");
 	}
 
 	/**
@@ -117,14 +126,15 @@ public class CellSocietyController {
 	
 	/**
 	 * Slow down simulation by a factor of 2
+	 * Will not go below 1 frame per second
 	 */
 	public void slowDownSimulation(){
 		myTimeline.stop();
 		myTimeline.getKeyFrames().clear();
-		if(!(myFrameRate == 1)){
+		if(myFrameRate >= 2){
 			myFrameRate = myFrameRate/2;
-			myTimeline.getKeyFrames().add(getKeyFrame(myFrameRate));
 		}
+		myTimeline.getKeyFrames().add(getKeyFrame(myFrameRate));
 		myTimeline.play();
 	}
 	
@@ -161,18 +171,18 @@ public class CellSocietyController {
 	 * @param simName
 	 */
 	private void initializeSimulation(String simName) {
-		if (simName.equals("fire")) {
+		if (simName.equals(myProperties.getObject("fire_simulation_name"))) {
 			myCurrentSimulation = new SimulationFire(myParameters, myGrid, myCurrentSimulationScreen);	
 		}
-		else if(simName.equals("segregation")){
+		else if(simName.equals(myProperties.getObject("segregation_simulation_name"))){
 			myCurrentSimulation = new SimulationSegregation(myParameters, myGrid,myCurrentSimulationScreen);
 			
 		}
-		else if(simName.equals("life")){
+		else if(simName.equals(myProperties.getObject("life_simulation_name"))){
 			myCurrentSimulation = new SimulationLife(myParameters, myGrid, myCurrentSimulationScreen);
 			
 		}
-		else if(simName.equals("predator")){
+		else if(simName.equals(myProperties.getObject("predator_simulation_name"))){
 			myCurrentSimulation = new SimulationPredator(myParameters, myGrid, myCurrentSimulationScreen);
 		}
 	}

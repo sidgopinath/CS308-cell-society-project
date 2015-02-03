@@ -1,6 +1,7 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -12,6 +13,15 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import controller.CellSocietyController;
 
+/**
+ 	* This function begins setting up the general simulation scene. This
+	* includes things like adding the four buttons at the top that load, step
+	* through, speed up, and stop/start the simulation. Note: all strings used
+	* to create buttons must be retrieved from a .properties file. Right now I
+	* have them hard coded into the program.
+	* @author Sunjeev
+ */
+
 public class SimulationScreen {
 	private CellSocietyController myController;
 	private int myWidth;
@@ -21,16 +31,8 @@ public class SimulationScreen {
 	private boolean myStart;
 	private BorderPane root;
 	private ArrayList<Button> myButtons;
+	private ResourceBundle myProperties;
 
-	/**
-	 * This function begins setting up the general simulation scene. This
-	 * includes things like adding the four buttons at the top that load, step
-	 * through, speed up, and stop/start the simulation. Note: all strings used
-	 * to create buttons must be retrieved from a .properties file. Right now I
-	 * have them hard coded into the program.
-	 * 
-	 * @returns a scene
-	 */
 	public void initSimScreen(int width, int height, CellSocietyController controller){
 		myController = controller;
 		root = new BorderPane();
@@ -39,6 +41,7 @@ public class SimulationScreen {
 		myGridPane = new GridPane();
 		myStart = true;
 		myButtons = new ArrayList<>();
+		myProperties = ResourceBundle.getBundle("resources/resources");
 		//myController = new CellSocietyController(width, height);
 		root.setTop(addButtons());
 		root.setCenter(myGridPane);
@@ -71,7 +74,7 @@ public class SimulationScreen {
 	 * @return Button that loads new file
 	 */
 	private Button addLoadButton() {
-		Button loadButton = new Button("Load");
+		Button loadButton = new Button(myProperties.getString("load_button_name"));
 		myButtons.add(loadButton);
 		loadButton.setOnAction(e -> {
 			myController.transitionToFileLoaderScreen();
@@ -80,7 +83,7 @@ public class SimulationScreen {
 	}
 
 	private Button addSlowDownButton(){
-		Button slowDownButton = new Button("Slow Down");
+		Button slowDownButton = new Button(myProperties.getString("slow_down_button_name"));
 		myButtons.add(slowDownButton);
 		slowDownButton.setOnAction(e -> {
 			myController.slowDownSimulation();
@@ -92,7 +95,7 @@ public class SimulationScreen {
 	 * eventListener.
 	 */
 	private Button addStepButton() {
-		Button stepButton = new Button("Step");
+		Button stepButton = new Button(myProperties.getString("step_button_name"));
 		myButtons.add(stepButton);
 		stepButton.setOnAction(e -> {
 			myController.stepThroughSimulation();
@@ -104,7 +107,7 @@ public class SimulationScreen {
 	 * Adds speed up button
 	 */
 	private Button addSpeedUpButton() {
-		Button speedUpButton = new Button("Speed Up");
+		Button speedUpButton = new Button(myProperties.getString("speed_up_button_name"));
 		myButtons.add(speedUpButton);
 		speedUpButton.setOnAction(e -> {
 			myController.speedUpSimulation();
@@ -118,7 +121,7 @@ public class SimulationScreen {
 	 * @return
 	 */
 	private Button addStopStartButton() {
-		Button stopStartButton = new Button("Stop/Start");
+		Button stopStartButton = new Button(myProperties.getString("stopstart_button_name"));
 		myButtons.add(stopStartButton);
 		stopStartButton.setOnAction(e -> {
 			//if false it is stopped

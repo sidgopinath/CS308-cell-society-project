@@ -6,11 +6,9 @@
 
 	<parameter>
 		<simName>fire</simName>
-		<windowHeight>400</windowHeight>
-		<windowWidth>400</windowWidth>
 		<gridHeight>5</gridHeight>
 		<gridWidth>5</gridWidth>
-		<probCatch>0.15</probCatch>	
+		<probCatch>80</probCatch>	
 	</parameter>
 
 

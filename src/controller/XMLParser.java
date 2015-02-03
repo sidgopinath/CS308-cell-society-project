@@ -13,6 +13,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+/**
+ * This is the XML parser class called by the controller
+ * It reads in an xml file in the specified format and outputs the grid and parameter hashmap
+ * @author Sid
+ *
+ */
+
 public class XMLParser {
 
 	private HashMap<String, String> myParameters = new HashMap<String, String>();
