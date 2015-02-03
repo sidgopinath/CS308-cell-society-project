@@ -6,8 +6,8 @@
 
 	<parameter>
 		<simName>life</simName>
-		<windowHeight>400</windowHeight>
-		<windowWidth>400</windowWidth>
+		<windowHeight>600</windowHeight>
+		<windowWidth>600</windowWidth>
 		<gridHeight>4</gridHeight>
 		<gridWidth>4</gridWidth>
 	</parameter>

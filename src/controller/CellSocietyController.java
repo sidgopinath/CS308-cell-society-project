@@ -52,7 +52,7 @@ public class CellSocietyController {
 	 * Called from constructor to set up first screen
 	 */
 	private void displaySplashScreen(int width, int height) {
-		mySplashScreen = new SplashScreen();
+		mySplashScreen = new SplashScreen(this);
 		Node splashNode = mySplashScreen.getNode(width, height);
 		myGroup = new Group();
 		myGroup.getChildren().add(mySplashScreen.getNode(width, height));
@@ -72,7 +72,6 @@ public class CellSocietyController {
 	
 	public KeyFrame getKeyFrame(int frameRate) {
 		return new KeyFrame(Duration.millis(1000 /frameRate), e -> update());
-	
 	}
 	
 	/**
@@ -111,19 +110,12 @@ public class CellSocietyController {
 	public void transitionToFileLoaderScreen() {
 		FileLoaderScreen fileLoaderScreen = new FileLoaderScreen(myStage);
 		myGroup.getChildren().clear();
-		Node node = fileLoaderScreen.getNode();
 		myGroup.getChildren().add(fileLoaderScreen.getNode());
-		node.setTranslateX(Main.WIDTH / 2 - node.getBoundsInLocal().getWidth()
-				/ 2);
-		node.setTranslateY(Main.HEIGHT / 2
-				- node.getBoundsInLocal().getHeight() / 2);
 		File inputFile = fileLoaderScreen.getFile();
 		readXML(inputFile);
-		myTimeline.setCycleCount(Timeline.INDEFINITE);
 	}
 
 	public void stepThroughSimulation(){
-		myTimeline.stop();
 		myTimeline.setCycleCount(1);
 		myTimeline.play();
 	}
@@ -133,24 +125,33 @@ public class CellSocietyController {
 	 */
 	public void speedUpSimulation(){
 		myTimeline.stop();
-		myTimeline.setCycleCount(Timeline.INDEFINITE);
-		manageTimeline(myTimeline, (2*myFrameRate));
-		
+		myTimeline.getKeyFrames().clear();
+		myTimeline.getKeyFrames().add(getKeyFrame(2*myFrameRate));
+		myTimeline.play();
+		myFrameRate = 2*myFrameRate;
+	}
+	
+	public void slowDownSimulation(){
+		myTimeline.stop();
+		myTimeline.getKeyFrames().clear();
+		if(!(myFrameRate/2 == 1)){
+			myFrameRate = myFrameRate/2;
+			myTimeline.getKeyFrames().add(getKeyFrame(myFrameRate));
+		}
+		myTimeline.play();
 	}
 	
 	private void restartSimulation() {
-		myTimeline.setCycleCount(Timeline.INDEFINITE);
 		myTimeline.play();
 	}
 
 
 	private void pauseSimulation() {
-		myTimeline.pause();
+		myTimeline.stop();
 	}
 	
 	/**
 	 * Called after the XML file has been made. Transitions to new simulation
-	 * Potential for many bad if statements here. How to avoid? 
 	 * DUPLICATED CODE, REFACTOR
 	 */
 	private void transitionToSimulation() {
@@ -162,16 +163,26 @@ public class CellSocietyController {
 			myGroup.getChildren().add(myCurrentSimulationScreen.getNode());
 		}
 		
-		
-		
 		else if(myParameters.get("simName").equals("segregation")){
-			myCurrentSimulation = new SimulationSegregation(myParameters, myGrid,new SimulationScreen());
+			myCurrentSimulationScreen = new SimulationScreen();
+			myCurrentSimulationScreen.initSimScreen(Integer.parseInt(myParameters.get("windowWidth")), Integer.parseInt(myParameters.get("windowHeight")),this);
+			myCurrentSimulation = new SimulationSegregation(myParameters, myGrid,myCurrentSimulationScreen);
+			myGroup.getChildren().clear();
+			myGroup.getChildren().add(myCurrentSimulationScreen.getNode());
 		}
 		else if(myParameters.get("simName").equals("life")){
-			myCurrentSimulation = new SimulationLife(myParameters, myGrid, new SimulationScreen());
+			myCurrentSimulationScreen = new SimulationScreen();
+			myCurrentSimulationScreen.initSimScreen(Integer.parseInt(myParameters.get("windowWidth")), Integer.parseInt(myParameters.get("windowHeight")),this);
+			myCurrentSimulation = new SimulationLife(myParameters, myGrid, myCurrentSimulationScreen);
+			myGroup.getChildren().clear();
+			myGroup.getChildren().add(myCurrentSimulationScreen.getNode());
 		}
 		else if(myParameters.get("simName").equals("predator")){
-			myCurrentSimulation = new SimulationPredator(new SimulationScreen(), myParameters, myGrid);
+			myCurrentSimulationScreen = new SimulationScreen();
+			myCurrentSimulationScreen.initSimScreen(Integer.parseInt(myParameters.get("windowWidth")), Integer.parseInt(myParameters.get("windowHeight")),this);
+			myCurrentSimulation = new SimulationPredator(myCurrentSimulationScreen, myParameters, myGrid);
+			myGroup.getChildren().clear();
+			myGroup.getChildren().add(myCurrentSimulationScreen.getNode());
 		}
 	}
 	
@@ -191,5 +202,4 @@ public class CellSocietyController {
 		myTimeline.getKeyFrames().add(frame);
 		myTimeline.play();	
 	}
-
 }

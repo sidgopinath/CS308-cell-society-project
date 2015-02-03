@@ -122,13 +122,11 @@ public class SimulationScreen {
 				getChild(j, i).setFill(colorGrid[j][i]);
 			}
 		}
-		System.out.println("set fill");
 	}
 
 	/**
 	 * goes through myGridPane and creates a new rectangle object at each spot
 	 * in the grid
-	 * 
 	 * @param gridHeight
 	 * @param gridWidth
 	 */
@@ -136,8 +134,7 @@ public class SimulationScreen {
 		for (int j = 0; j < gridHeight; j++) {
 			for (int i = 0; i < gridWidth; i++) {
 				Rectangle rect = new Rectangle(myWidth / gridWidth,
-						(myHeight - myTop.getLayoutBounds().getHeight())
-								/ gridHeight);
+						(myHeight - myTop.getLayoutBounds().getHeight()) / gridHeight);
 				rect.setFill(Color.BLACK);
 				rect.setStroke(Color.BLACK);
 				myGridPane.add(rect, i, j);
