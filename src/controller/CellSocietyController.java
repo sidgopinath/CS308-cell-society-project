@@ -117,14 +117,15 @@ public class CellSocietyController {
 	
 	/**
 	 * Slow down simulation by a factor of 2
+	 * Will not go below 1 frame per second
 	 */
 	public void slowDownSimulation(){
 		myTimeline.stop();
 		myTimeline.getKeyFrames().clear();
-		if(!(myFrameRate == 1)){
+		if(myFrameRate >= 2){
 			myFrameRate = myFrameRate/2;
-			myTimeline.getKeyFrames().add(getKeyFrame(myFrameRate));
 		}
+		myTimeline.getKeyFrames().add(getKeyFrame(myFrameRate));
 		myTimeline.play();
 	}
 	
