@@ -1,8 +1,7 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 import javafx.scene.paint.Color;
 
 public abstract class SquarePredator{

@@ -4,7 +4,6 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import controller.CellSocietyController;
 
 public class SplashScreen {
 	private static final int SPLASH_TEXT_SIZE = 5;
@@ -14,7 +13,8 @@ public class SplashScreen {
 	private Group myRoot;
 	private int myWidth;
 	private int myHeight;
-	private CellSocietyController myController;
+	
+	private boolean transitionToFileLoader = false;
 	
 	
 	/**
@@ -55,12 +55,11 @@ public class SplashScreen {
 		String loadButtonString = "load"; //getProp().getProperty("load button text");
 		Button loadButton = new Button(loadButtonString);
 		loadButton.setTranslateX(center(loadButton) - FUDGE);
-		System.out.println(loadButton.getMaxWidth());
 		loadButton.setTranslateY(myHeight * 3/4);
 		loadButton.setScaleX(LOAD_BUTTON_SIZE);
 		loadButton.setScaleY(LOAD_BUTTON_SIZE);
 		myRoot.getChildren().add(loadButton);
-		loadButton.setOnAction(e -> goToFileLoaderScreen());
+		loadButton.setOnAction(e -> setFileLoader(true));
 	}
 
 	private double center(Node n) {
@@ -71,7 +70,11 @@ public class SplashScreen {
 	 * This function, when clicked, will take the user to the fileLoader class through the controller, which will 
 	 * allow the user to select a file they want to load.
 	 */
-	private void goToFileLoaderScreen(){
-		myController.transitionToFileLoaderScreen();
+	public boolean goToFileLoaderScreen(){
+		return transitionToFileLoader;
+	}
+	public void setFileLoader(boolean transition){
+		transitionToFileLoader = transition;
+		goToFileLoaderScreen();
 	}
 }
