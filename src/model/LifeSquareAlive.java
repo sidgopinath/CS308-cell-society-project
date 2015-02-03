@@ -4,7 +4,10 @@ import java.util.List;
 
 import javafx.scene.paint.Color;
 
-
+/**
+ * This square holds a living square for the Life simulation.
+ * @author Sunjeev
+ */
 
 public class LifeSquareAlive extends LifeSquare{
 

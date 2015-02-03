@@ -5,6 +5,12 @@ import java.util.Map;
 import view.SimulationScreen;
 import javafx.scene.paint.Color;
 
+/**
+ * 
+ * @author Sunjeev and Sid
+ *
+ */
+
 public class SimulationLife extends Simulation {
 
     private LifeSquare[][] myGrid;

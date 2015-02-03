@@ -4,6 +4,11 @@ import java.util.List;
 
 import javafx.scene.paint.Color;
 
+/**
+ * This square holds a dead square for the Life simulation.
+ * @author Sunjeev
+ */
+
 public class LifeSquareDead extends LifeSquare{
 
 	private Color myColor = Color.WHITE;

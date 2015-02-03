@@ -21,6 +21,12 @@ import view.FileLoaderScreen;
 import view.SimulationScreen;
 import view.SplashScreen;
 
+/**
+ * Main controller that is called by main
+ * @author Sid
+ *
+ */
+
 public class CellSocietyController {
 
 	private Simulation myCurrentSimulation;

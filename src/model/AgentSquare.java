@@ -4,6 +4,13 @@ import java.util.List;
 
 import javafx.scene.paint.Color;
 
+/**
+ * This is the AgentSquare superclass.
+ * It holds the properties for the Segregation simulation
+ * @author Sunjeev
+ *
+ */
+
 public abstract class AgentSquare {
 
 	private static final double NUM_NEIGHBORS = 8;
