@@ -62,7 +62,6 @@ public class SimulationScreen {
 		double buttonWidth = myButtons.get(0).getPrefWidth();
 		myTop.setSpacing((myWidth - length * buttonWidth) / (length));
 		return myTop;
-
 	}
 
 	/**
@@ -154,7 +153,6 @@ public class SimulationScreen {
 	public void initSimView(int gridHeight, int gridWidth) {
 		for (int j = 0; j < gridHeight; j++) {
 			for (int i = 0; i < gridWidth; i++) {
-				System.out.println(myTop.getPrefHeight());
 				Rectangle rect = new Rectangle();
 				rect.setFill(Color.BLACK);
 				rect.setStroke(Color.BLACK);
@@ -170,7 +168,6 @@ public class SimulationScreen {
 		for (Node child : myGridPane.getChildren()) {
 			if (GridPane.getRowIndex(child) == row
 					&& GridPane.getColumnIndex(child) == column) {
-				// trust me, it will be a rectangle...
 				return (Shape) child;
 			}
 		}
