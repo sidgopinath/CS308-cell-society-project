@@ -15,7 +15,7 @@ by Janan Zhu(jz113), Sid Gopinath(sdg23), Sunjeev Devulapalli(svd12)
 ###Resources
 * StackOverflow (commented within code)
 * [Website for guidance on XML Parser design](http://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/)
-
+------------------
 * **Files Used to Start the Project:** Main.java starts the project
 * **Files Used to Test the Project:** All XML files in the testFiles folder.
 * **Data or Resource Files Required by Project:** XML File format specified in "xmlFormat.xml"
