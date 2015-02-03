@@ -3,8 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Map;
 
-import view.SimulationScreen;
 import javafx.scene.paint.Color;
+import view.SimulationScreen;
 
 public class SimulationFire extends Simulation {
 
@@ -52,6 +52,7 @@ public class SimulationFire extends Simulation {
 
 	@Override
 	 void updateColorGrid() {
+		System.out.println("update Color Grid");
 		Color[][] colorGrid = new Color[myGrid.length][myGrid[0].length];
 		for(int j = 0; j < myGrid.length; j++){
 			for(int i = 0; i < myGrid[0].length; i++){
@@ -75,7 +76,7 @@ public class SimulationFire extends Simulation {
 					myGrid[j][i] = new FireSquareTree();
 				}
 				if(grid[j][i] == 2){
-					myGrid[j][i] = new FireSquareBurning(20);//Integer.parseInt(paramMap.get("probCatch")));
+					myGrid[j][i] = new FireSquareBurning(90);//Integer.parseInt(paramMap.get("probCatch")));
 				}
 			}
 		}

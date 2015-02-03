@@ -25,6 +25,8 @@ import view.SplashScreen;
 public class CellSocietyController {
 
 	private Simulation myCurrentSimulation;
+	private SplashScreen mySplashScreen;
+	private SimulationScreen myCurrentSimulationScreen;
 	private Scene myScene;
 	private Group myGroup;
 	public static final Random RANDOM_NUM_GEN = new Random();
@@ -50,10 +52,10 @@ public class CellSocietyController {
 	 * Called from constructor to set up first screen
 	 */
 	private void displaySplashScreen(int width, int height) {
-		SplashScreen splash = new SplashScreen();
-		Node splashNode = splash.getNode(width, height);
+		mySplashScreen = new SplashScreen();
+		Node splashNode = mySplashScreen.getNode(width, height);
 		myGroup = new Group();
-		myGroup.getChildren().add(splash.getNode(width, height));
+		myGroup.getChildren().add(mySplashScreen.getNode(width, height));
 		splashNode.setTranslateX(width / 2
 				- splashNode.getBoundsInLocal().getWidth() / 2);
 		splashNode.setTranslateY(height / 2
@@ -80,6 +82,10 @@ public class CellSocietyController {
 	private void update() {
 		if (myCurrentSimulation != null) {
 			myCurrentSimulation.updateGrid();
+		}
+		if(mySplashScreen.goToFileLoaderScreen()){
+			transitionToFileLoaderScreen();
+			mySplashScreen.setFileLoader(false);
 		}
 	}
 
@@ -113,6 +119,7 @@ public class CellSocietyController {
 				- node.getBoundsInLocal().getHeight() / 2);
 		File inputFile = fileLoaderScreen.getFile();
 		readXML(inputFile);
+		myTimeline.setCycleCount(Timeline.INDEFINITE);
 	}
 
 	public void stepThroughSimulation(){
@@ -147,16 +154,23 @@ public class CellSocietyController {
 	 * DUPLICATED CODE, REFACTOR
 	 */
 	private void transitionToSimulation() {
-		if (myParameters.get("simType") == "fire") {
-			myCurrentSimulation = new SimulationFire(myParameters, myGrid, new SimulationScreen());
+		if (myParameters.get("simName").equals("fire")) {
+			myCurrentSimulationScreen = new SimulationScreen();
+			myCurrentSimulationScreen.initSimScreen(Integer.parseInt(myParameters.get("windowWidth")), Integer.parseInt(myParameters.get("windowHeight")),this);
+			myCurrentSimulation = new SimulationFire(myParameters, myGrid, myCurrentSimulationScreen);
+			myGroup.getChildren().clear();
+			myGroup.getChildren().add(myCurrentSimulationScreen.getNode());
 		}
-		else if(myParameters.get("simType") == "segregation"){
+		
+		
+		
+		else if(myParameters.get("simName").equals("segregation")){
 			myCurrentSimulation = new SimulationSegregation(myParameters, myGrid,new SimulationScreen());
 		}
-		else if(myParameters.get("simType") == "life"){
+		else if(myParameters.get("simName").equals("life")){
 			myCurrentSimulation = new SimulationLife(myParameters, myGrid, new SimulationScreen());
 		}
-		else if(myParameters.get("simType") == "predator"){
+		else if(myParameters.get("simName").equals("predator")){
 			myCurrentSimulation = new SimulationPredator(new SimulationScreen(), myParameters, myGrid);
 		}
 	}

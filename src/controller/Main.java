@@ -18,8 +18,8 @@ public class Main extends Application {
 		stage.setScene(myCellSocietyController.getScene());
 		stage.show();
 		Timeline animationTimeline = new Timeline();
-		int frameRate = 60;
-		myCellSocietyController.setFrameRate(frameRate);
+		int frameRate = 1;
+		myCellSocietyController.setFrameRate(1);
 		myCellSocietyController.manageTimeline(animationTimeline, frameRate);
 	}
 

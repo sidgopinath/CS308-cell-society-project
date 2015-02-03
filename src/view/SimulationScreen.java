@@ -17,6 +17,7 @@ public class SimulationScreen {
 	private HBox myTop;
 	private GridPane myGridPane;
 	private boolean myStart;
+	private BorderPane root;
 
 	/**
 	 * This function begins setting up the general simulation scene. This
@@ -27,8 +28,9 @@ public class SimulationScreen {
 	 * 
 	 * @returns a scene
 	 */
-	public BorderPane initSimScreen(int width, int height){
-		BorderPane root = new BorderPane();
+	public void initSimScreen(int width, int height, CellSocietyController controller){
+		myController = controller;
+		root = new BorderPane();
 		myWidth = width;
 		myHeight = height;
 		myGridPane = new GridPane();
@@ -36,6 +38,9 @@ public class SimulationScreen {
 		//myController = new CellSocietyController(width, height);
 		root.setTop(addButtons());
 		root.setCenter(myGridPane);
+	}
+	
+	public BorderPane getNode(){
 		return root;
 	}
 
@@ -96,10 +101,9 @@ public class SimulationScreen {
 	private Button addStopStartButton() {
 		Button stopStartButton = new Button("Stop/Start");
 		stopStartButton.setOnAction(e -> {
-			//myController.stopOrStart();
 			//if false it is stopped
 			myStart = !myStart;
-			//myController.stopOrStart(myStart);
+			myController.stopOrStart(myStart);
 		});
 		return stopStartButton;
 	}
@@ -118,6 +122,7 @@ public class SimulationScreen {
 				getChild(j, i).setFill(colorGrid[j][i]);
 			}
 		}
+		System.out.println("set fill");
 	}
 
 	/**
@@ -128,7 +133,6 @@ public class SimulationScreen {
 	 * @param gridWidth
 	 */
 	public void initSimView(int gridHeight, int gridWidth) {
-		System.out.println("here");
 		for (int j = 0; j < gridHeight; j++) {
 			for (int i = 0; i < gridWidth; i++) {
 				Rectangle rect = new Rectangle(myWidth / gridWidth,
