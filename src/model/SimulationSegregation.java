@@ -48,7 +48,7 @@ public class SimulationSegregation extends Simulation {
 	}
 
 	/**
-	 * Bade code. Duplicated from SimulationLife also.
+	 * Bad code. Duplicated from SimulationLife also.
 	 * REFACTOR
 	 */
 	@Override
