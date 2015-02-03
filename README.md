@@ -22,6 +22,7 @@ by Janan Zhu(jz113), Sid Gopinath(sdg23), Sunjeev Devulapalli(svd12)
 
 ###Known Bugs, Crashes, or Problems
 * If you press load and don't choose a file, you will get an error.
+* The step button works, but it lags a little bit when pressed.
 
 ###Extra Features
 N/A
