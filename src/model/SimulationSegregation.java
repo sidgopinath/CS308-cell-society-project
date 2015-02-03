@@ -92,7 +92,6 @@ public class SimulationSegregation extends Simulation {
 		for (int j = 0; j < clone.length; j++) {
 			for (int i = 0; i < clone[0].length; i++) {
 				if (!clone[j][i].isSatisfied()) {
-					System.out.println("Unsatisfied Agent!");
 					moveAgent(j, i, clone[j][i]);
 				}
 			}

@@ -52,7 +52,6 @@ public class SimulationFire extends Simulation {
 
 	@Override
 	 void updateColorGrid() {
-		System.out.println("update Color Grid");
 		Color[][] colorGrid = new Color[myGrid.length][myGrid[0].length];
 		for(int j = 0; j < myGrid.length; j++){
 			for(int i = 0; i < myGrid[0].length; i++){

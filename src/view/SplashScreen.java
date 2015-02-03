@@ -1,5 +1,6 @@
 package view;
 
+import controller.CellSocietyController;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -13,10 +14,13 @@ public class SplashScreen {
 	private Group myRoot;
 	private int myWidth;
 	private int myHeight;
+	private CellSocietyController myController;
 	
 	private boolean transitionToFileLoader = false;
 	
-	
+	public SplashScreen(CellSocietyController controller){
+		myController = controller;
+	}
 	/**
 	 * This function will initialize the splash screen. The splash screen needs to display text that says the title
 	 * of the program, which will come from the class that returns the input stream of the property files.
@@ -59,7 +63,7 @@ public class SplashScreen {
 		loadButton.setScaleX(LOAD_BUTTON_SIZE);
 		loadButton.setScaleY(LOAD_BUTTON_SIZE);
 		myRoot.getChildren().add(loadButton);
-		loadButton.setOnAction(e -> setFileLoader(true));
+		loadButton.setOnAction(e -> myController.transitionToFileLoaderScreen());
 	}
 
 	private double center(Node n) {
