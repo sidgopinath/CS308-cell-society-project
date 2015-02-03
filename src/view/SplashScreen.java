@@ -69,16 +69,4 @@ public class SplashScreen {
 	private double center(Node n) {
 		return (myWidth - n.getLayoutBounds().getWidth())/2;
 	}
-	
-	/**
-	 * This function, when clicked, will take the user to the fileLoader class through the controller, which will 
-	 * allow the user to select a file they want to load.
-	 */
-	public boolean goToFileLoaderScreen(){
-		return transitionToFileLoader;
-	}
-	public void setFileLoader(boolean transition){
-		transitionToFileLoader = transition;
-		goToFileLoaderScreen();
-	}
 }
