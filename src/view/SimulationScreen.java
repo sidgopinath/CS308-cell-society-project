@@ -52,14 +52,16 @@ public class SimulationScreen {
 
 	private HBox addButtons() {
 		myTop = new HBox();
+		myTop.setPrefHeight(myHeight/20);
+		myTop.setPrefWidth(myWidth);
 		myTop.getChildren().addAll(addLoadButton(), addStepButton(),
 				addSpeedUpButton(), addStopStartButton(), addSlowDownButton());
 		for(Button button: myButtons){
 			button.setPrefWidth(myWidth / (myButtons.size()));
+			button.setPrefHeight(myTop.getPrefHeight());
 		}
 		double length = myTop.getChildren().size(); 
 		double buttonWidth = myButtons.get(0).getPrefWidth();
-		System.out.println(buttonWidth);
 		myTop.setSpacing((myWidth - length * buttonWidth) / (length));
 		return myTop;
 
@@ -154,10 +156,12 @@ public class SimulationScreen {
 	public void initSimView(int gridHeight, int gridWidth) {
 		for (int j = 0; j < gridHeight; j++) {
 			for (int i = 0; i < gridWidth; i++) {
-				Rectangle rect = new Rectangle(myWidth / gridWidth,
-						(myHeight - myTop.getHeight()) / gridHeight);
+				System.out.println(myTop.getPrefHeight());
+				Rectangle rect = new Rectangle();
 				rect.setFill(Color.BLACK);
 				rect.setStroke(Color.BLACK);
+				rect.setWidth(myWidth / gridWidth - rect.getStrokeWidth());
+				rect.setHeight((myHeight - myTop.getPrefHeight()) / gridHeight);
 				myGridPane.add(rect, i, j);
 			}
 		}
