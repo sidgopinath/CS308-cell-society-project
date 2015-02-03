@@ -1,7 +1,6 @@
 package model;
 
 import java.util.Map;
-
 import view.SimulationScreen;
 
 public abstract class Simulation {
@@ -15,7 +14,8 @@ public abstract class Simulation {
         myView = simScreen;
         gridLength = grid[0].length;
         gridWidth = grid.length;
-        runSim(paramMap,grid);
+        parseMap(paramMap);
+        runSim(grid);
     }
 
     /**
@@ -23,8 +23,21 @@ public abstract class Simulation {
      * then pass squares their appropriate neighbors
      * Then update squares
      */
-    abstract void runSim(Map<String, String> paramMap, Integer[][] grid);
-
+    void runSim(Integer[][] grid){
+        myView.initSimView(gridWidth, gridLength);
+        setupGrid();
+        fillGrid(grid);
+    }
+    /*
+     * Reads parameter map from XML file and sets instance variables accordingly
+     */
+    abstract void parseMap(Map<String,String> paramMap);
+    
+    /*
+     * Sets up appropriate 2D array of squares in each Simulation subclass
+     */
+    abstract void setupGrid();
+    
     /**
      * fill grid with squares that have the right values given the parameters and the type of each space
      * initialize grid, and fill
@@ -33,9 +46,7 @@ public abstract class Simulation {
     abstract void fillGrid(Integer[][] grid);
 
     /**
-     * first it will pass each square its neighbors
-     *  then it will go through and call each cell to update.
-     *  update view
+     * Updates the grid by one frame
      */
     public abstract void updateGrid();
 

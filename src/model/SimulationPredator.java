@@ -20,6 +20,11 @@ public class SimulationPredator extends Simulation {
         super(paramMap, initGrid, simscreen);
     }
 
+    public void parseMap(Map<String,String> paramMap){
+        breedingPeriod = Integer.parseInt(paramMap.get("breedingPeriod"));
+        sharkLife = Integer.parseInt(paramMap.get("sharkLife"));
+    }
+
     public void move(SquarePredator square,int x, int y){
         SquarePredator childSquare = square.breedSquare();
         SquarePredator moveTo = square.moveSquare();
@@ -36,15 +41,8 @@ public class SimulationPredator extends Simulation {
         alreadyMoved.add(grid[y][x]);
     }
 
-    /*
-     * Initializes sim, parses through data passed into upon initialization
-     */
-    public void runSim(Map<String,String> paramMap,Integer[][] initGrid){
-        breedingPeriod = Integer.parseInt(paramMap.get("breedingPeriod"));
-        sharkLife = Integer.parseInt(paramMap.get("sharkLife"));
+    public void setupGrid(){
         grid = new SquarePredator[gridWidth][gridLength];
-        myView.initSimView(gridWidth,gridLength);
-        fillGrid(initGrid);
     }
 
 
@@ -57,7 +55,7 @@ public class SimulationPredator extends Simulation {
                 SquarePredator currentSquare = grid[row][column];
                 if(!alreadyMoved.contains(currentSquare)){
                     currentSquare.updateSquare();
-                    
+
                     //Check if need to starve shark
                     if(currentSquare.hasStarved()){
                         grid[row][column] = new SquarePredatorEmpty(-1, column,row);
@@ -72,7 +70,7 @@ public class SimulationPredator extends Simulation {
         }
         alreadyMoved.clear();
         updateColorGrid();
-        
+
     }
 
     public void updateNeighborSquare(SquarePredator square){
@@ -123,7 +121,7 @@ public class SimulationPredator extends Simulation {
         }
         myView.updateScreen(myColorGrid);
     }
-    
+
     @Override
     void fillGrid (Integer[][] initGrid) {
         for(int i=0;i<initGrid.length;i++){
