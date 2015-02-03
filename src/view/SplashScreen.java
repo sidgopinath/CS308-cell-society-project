@@ -7,6 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
+/**
+ * This function will initialize the splash screen. The splash screen needs to display text that says the title
+ * of the program, which will come from the class that returns the input stream of the property files.
+ * @author Sunjeev
+ *
+ */
+
 public class SplashScreen {
 	private static final int SPLASH_TEXT_SIZE = 5;
 	private static final int LOAD_BUTTON_SIZE = 3;	

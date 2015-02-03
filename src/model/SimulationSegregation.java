@@ -6,6 +6,12 @@ import java.util.Random;
 import view.SimulationScreen;
 import javafx.scene.paint.Color;
 
+/**
+ * 
+ * @author Sunjeev and Sid
+ *
+ */
+
 public class SimulationSegregation extends Simulation {
 
     private static final int SAFE_GUARD = 1000;

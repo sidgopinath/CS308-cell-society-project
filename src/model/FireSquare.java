@@ -5,6 +5,13 @@ import java.util.List;
 
 import javafx.scene.paint.Color;
 
+/**
+ * This is the square superclass for Fire simulation.
+ * It holds the properties (probCatch specifically) for the Fire sim.
+ * @author Sunjeev
+ *
+ */
+
 public abstract class FireSquare {
 
 	protected List<FireSquare> myNeighbors;

@@ -2,6 +2,11 @@ package model;
 
 import javafx.scene.paint.Color;
 
+/**
+ * This is a square that holds an "X agent" for Segregation
+ * @author Sunjeev
+ *
+ */
 
 public class AgentSquareX extends AgentSquare{
 

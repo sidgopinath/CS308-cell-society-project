@@ -5,6 +5,12 @@ import java.util.Random;
 
 import javafx.scene.paint.Color;
 
+/**
+ * This is a square that holds a square that is on fire for the fire sim.
+ * @author Sunjeev
+ *
+ */
+
 public class FireSquareBurning extends FireSquare{
 
 	private int myProbCatch;

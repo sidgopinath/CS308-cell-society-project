@@ -12,6 +12,15 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import controller.CellSocietyController;
 
+/**
+ 	* This function begins setting up the general simulation scene. This
+	* includes things like adding the four buttons at the top that load, step
+	* through, speed up, and stop/start the simulation. Note: all strings used
+	* to create buttons must be retrieved from a .properties file. Right now I
+	* have them hard coded into the program.
+	* @author Sunjeev
+ */
+
 public class SimulationScreen {
 	private CellSocietyController myController;
 	private int myWidth;
@@ -22,15 +31,6 @@ public class SimulationScreen {
 	private BorderPane root;
 	private ArrayList<Button> myButtons;
 
-	/**
-	 * This function begins setting up the general simulation scene. This
-	 * includes things like adding the four buttons at the top that load, step
-	 * through, speed up, and stop/start the simulation. Note: all strings used
-	 * to create buttons must be retrieved from a .properties file. Right now I
-	 * have them hard coded into the program.
-	 * 
-	 * @returns a scene
-	 */
 	public void initSimScreen(int width, int height, CellSocietyController controller){
 		myController = controller;
 		root = new BorderPane();

@@ -5,6 +5,14 @@ import java.util.List;
 
 import javafx.scene.paint.Color;
 
+/**
+ * This is the square superclass for the life simulation
+ * It holds relevant information about the square
+ * This includes life status and neighbors
+ * @author Sunjeev
+ *
+ */
+
 public abstract class LifeSquare {
 
 	protected List<LifeSquare> myNeighbors;
