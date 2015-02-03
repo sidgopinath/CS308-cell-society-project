@@ -7,6 +7,12 @@ import javafx.scene.paint.Color;
 
 public class SquarePredatorFish extends SquarePredator{
 
+    /**
+     * Subclass of SquarePredator representing a square with fish
+     * @param breedingPeriod
+     * @param x
+     * @param y
+     */
     public SquarePredatorFish (int breedingPeriod,int x, int y) {
         super(breedingPeriod, x, y);
     }

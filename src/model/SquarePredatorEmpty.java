@@ -3,7 +3,14 @@ package model;
 import javafx.scene.paint.Color;
 
 public class SquarePredatorEmpty extends SquarePredator{
-
+    
+    /**
+     * Subclass of SquarePredator representing an empty square
+     * @author Janan
+     * @param breedingPeriod
+     * @param x
+     * @param y
+     */
     public SquarePredatorEmpty (int breedingPeriod, int x, int y) {
         super(breedingPeriod,x,y);
     }

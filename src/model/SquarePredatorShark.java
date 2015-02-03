@@ -7,6 +7,10 @@ import javafx.scene.paint.Color;
 
 public class SquarePredatorShark extends SquarePredator{
     
+    /**
+     * Subclass of squarePredator representing a square with a shark.
+     * @author Janan
+     */
     private int myLifePeriod;
     private int myCurrentLife;
 

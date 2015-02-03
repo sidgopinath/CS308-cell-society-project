@@ -3,7 +3,12 @@ package model;
 import java.util.List;
 
 import javafx.scene.paint.Color;
-
+/**
+ * Abstract superclass for squares in the Predator-Prey simulation
+ * Contains data and methods unique to Predator-Prey simulation
+ * @author Janan
+ *
+ */
 public abstract class SquarePredator{
 
     private int myBreedingPeriod;
