@@ -10,7 +10,6 @@ import javafx.scene.text.Text;
 public class SplashScreen {
 	private static final int SPLASH_TEXT_SIZE = 5;
 	private static final int LOAD_BUTTON_SIZE = 3;
-	private static final double FUDGE = 15;
 	
 	private Group myRoot;
 	private int myWidth;
@@ -45,11 +44,8 @@ public class SplashScreen {
 		//getProp() should return a Property which has the inputstream of the .property file loaded into it.
 		String splashTitle = "Cellular Automata"; //getProp().getProperty("title");
 		Text splashTitleText = new Text(splashTitle);
-		splashTitleText.setTranslateX(center(splashTitleText));
-		splashTitleText.setTranslateY(myHeight / 4);
-		splashTitleText.setScaleX(SPLASH_TEXT_SIZE);
-		splashTitleText.setScaleY(SPLASH_TEXT_SIZE);
-		myRoot.getChildren().add(splashTitleText);
+		formatNode(splashTitleText, (myWidth - splashTitleText.getLayoutBounds().getWidth())/2, 
+				myHeight / 4, SPLASH_TEXT_SIZE);
 	}
 	
 	/**
@@ -61,16 +57,17 @@ public class SplashScreen {
 		Button loadButton = new Button(loadButtonString);
 		final Scene snapScene = new Scene(loadButton);  
 		snapScene.snapshot(null);  
-		loadButton.setTranslateX((myWidth - loadButton.getWidth())/2);
-		loadButton.setTranslateY(myHeight * 3/4);
-		loadButton.setScaleX(LOAD_BUTTON_SIZE);
-		loadButton.setScaleY(LOAD_BUTTON_SIZE);
-		myRoot.getChildren().add(loadButton);
+		formatNode(loadButton,(myWidth - loadButton.getWidth())/2, myHeight * 3/4, LOAD_BUTTON_SIZE );
 		loadButton.setOnAction(e -> myController.transitionToFileLoaderScreen());
 	}
-
-	private double center(Node n) {
-		return (myWidth - n.getLayoutBounds().getWidth())/2;
+	
+	
+	private void formatNode(Node node, double width, double height, int scale) {
+		node.setTranslateX(width);
+		node.setTranslateY(height);
+		node.setScaleX(scale);
+		node.setScaleY(scale);
+		myRoot.getChildren().add(node);
 	}
 	
 	/**
