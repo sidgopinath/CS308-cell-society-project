@@ -1,4 +1,4 @@
-package model;
+package model.cells;
 
 import java.util.List;
 
@@ -10,23 +10,23 @@ import javafx.scene.paint.Color;
  *
  */
 
-public class FireSquareEmpty extends FireSquare{
+public class FireCellEmpty extends FireCell{
 
-	public FireSquareEmpty(List<FireSquare> neighbors) {
+	public FireCellEmpty(List<FireCell> neighbors) {
 		super(neighbors);
 		myColor = Color.YELLOW;
 	}
 
-	public FireSquareEmpty(){
+	public FireCellEmpty(){
 		myColor = Color.YELLOW;
 	}
 	@Override
-	public FireSquare chechStatus() {
+	public FireCell chechStatus() {
 		return this;
 	}
 
 	@Override
-	public FireSquare checkNeighbor() {
+	public FireCell checkNeighbor() {
 		return null;
 	}
 

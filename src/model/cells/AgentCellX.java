@@ -1,45 +1,45 @@
-package model;
+package model.cells;
 
 import javafx.scene.paint.Color;
 
 /**
- * This is a square that holds an "O agent" for Segregation
+ * This is a square that holds an "X agent" for Segregation
  * @author Sunjeev
  *
  */
 
-public class AgentSquareO extends AgentSquare{
+public class AgentCellX extends AgentCell{
 
-	Color myColor = Color.BLUE;
+	Color myColor = Color.RED;
 	
-	public AgentSquareO(double mySatisfaction) {
+	public AgentCellX(double mySatisfaction) {
 		super(mySatisfaction);
 	}
 
-	public AgentSquareO(){
+	public AgentCellX(){
 	}
 	
 	@Override
 	protected int returnCount() {
 		int sameCount = 0;
-		for(AgentSquare neighbor: myNeighbors){
-			sameCount += neighbor.getCountO();
+		for(AgentCell neighbor: myNeighbors){
+			sameCount += neighbor.getCountX();
 		}
 		return sameCount;
 	}
 
 	@Override
 	protected int getCountX() {
-		return 0;
-	}
-
-	@Override
-	protected int getCountO() {
 		return 1;
 	}
 
 	@Override
-	protected boolean isEmpty() {
+	protected int getCountO() {
+		return 0;
+	}
+
+	@Override
+	public boolean isEmpty() {
 		return false;
 	}
 

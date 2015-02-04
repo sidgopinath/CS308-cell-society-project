@@ -1,13 +1,13 @@
-package model;
+package model.cells;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javafx.scene.paint.Color;
 
-public class SquarePredatorFish extends SquarePredator{
+public class PredatorCellFish extends PredatorCell{
 
-    public SquarePredatorFish (int breedingPeriod,int x, int y) {
+    public PredatorCellFish (int breedingPeriod,int x, int y) {
         super(breedingPeriod, x, y);
     }
 
@@ -17,10 +17,10 @@ public class SquarePredatorFish extends SquarePredator{
     }
     
     @Override
-    public SquarePredator moveSquareTo () {
-        List<SquarePredator> neighborList = super.getMyNeighbors();
-        List<SquarePredator> movableNeighbors = new ArrayList<SquarePredator>();
-        for(SquarePredator square: neighborList){
+    public PredatorCell moveSquareTo () {
+        List<PredatorCell> neighborList = super.getMyNeighbors();
+        List<PredatorCell> movableNeighbors = new ArrayList<PredatorCell>();
+        for(PredatorCell square: neighborList){
             if(square.isMovable()){
                 movableNeighbors.add(square);
             }
@@ -29,14 +29,14 @@ public class SquarePredatorFish extends SquarePredator{
             return this;
         }
         Random squareChoice = new Random();
-        SquarePredator moveTo = 
+        PredatorCell moveTo = 
                 movableNeighbors.get(squareChoice.nextInt(movableNeighbors.size()));
         return moveTo;
     }
 
     @Override
-    public SquarePredator getChildSquare (int x, int y, int breedingPeriod) {
-        return new SquarePredatorFish(breedingPeriod, x, y);
+    public PredatorCell getChildSquare (int x, int y, int breedingPeriod) {
+        return new PredatorCellFish(breedingPeriod, x, y);
     }
     
     @Override

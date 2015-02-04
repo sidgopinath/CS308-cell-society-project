@@ -1,4 +1,4 @@
-package model;
+package model.cells;
 
 import java.util.List;
 
@@ -11,20 +11,20 @@ import javafx.scene.paint.Color;
  *
  */
 
-public abstract class AgentSquare {
+public abstract class AgentCell {
 
 	private static final double NUM_NEIGHBORS = 8;
 	private double mySatisfaction;
-	protected List<AgentSquare> myNeighbors;
+	protected List<AgentCell> myNeighbors;
 
-	public AgentSquare(double satisfaction){
+	public AgentCell(double satisfaction){
 		mySatisfaction = satisfaction;
 	}
 
-	public AgentSquare(){
+	public AgentCell(){
 	}
 	
-	public void setNeighbors(List<AgentSquare> neighbors){
+	public void setNeighbors(List<AgentCell> neighbors){
 		myNeighbors = neighbors;
 	}
 	
@@ -39,5 +39,5 @@ public abstract class AgentSquare {
 	protected abstract int returnCount();
 	protected abstract int getCountX();
 	protected abstract int getCountO();
-	protected abstract boolean isEmpty();
+	public abstract boolean isEmpty();
 }

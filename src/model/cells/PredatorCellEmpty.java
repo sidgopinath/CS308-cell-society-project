@@ -1,10 +1,10 @@
-package model;
+package model.cells;
 
 import javafx.scene.paint.Color;
 
-public class SquarePredatorEmpty extends SquarePredator{
+public class PredatorCellEmpty extends PredatorCell{
 
-    public SquarePredatorEmpty (int breedingPeriod, int x, int y) {
+    public PredatorCellEmpty (int breedingPeriod, int x, int y) {
         super(breedingPeriod,x,y);
     }
     
@@ -13,12 +13,12 @@ public class SquarePredatorEmpty extends SquarePredator{
     }
     
     @Override
-    public SquarePredator moveSquareTo () {
+    public PredatorCell moveSquareTo () {
         return this;
     }
 
     @Override
-    public SquarePredator getChildSquare (int x, int y, int breedingPeriod) {
+    public PredatorCell getChildSquare (int x, int y, int breedingPeriod) {
         return null;
     }
 

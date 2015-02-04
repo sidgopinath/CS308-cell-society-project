@@ -1,4 +1,4 @@
-package model;
+package model.cells;
 
 import javafx.scene.paint.Color;
 
@@ -8,15 +8,15 @@ import javafx.scene.paint.Color;
  *
  */
 
-public class AgentSquareEmpty extends AgentSquare{
+public class AgentCellEmpty extends AgentCell{
 
 	Color myColor = Color.WHITE;
 	
-	public AgentSquareEmpty(double mySatisfaction) {
+	public AgentCellEmpty(double mySatisfaction) {
 		super(mySatisfaction);
 	}
 
-	public AgentSquareEmpty(){
+	public AgentCellEmpty(){
 	}
 	
 	@Override
@@ -40,7 +40,7 @@ public class AgentSquareEmpty extends AgentSquare{
 	}
 
 	@Override
-	protected boolean isEmpty() {
+	public boolean isEmpty() {
 		return true;
 	}
 

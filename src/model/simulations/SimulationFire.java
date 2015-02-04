@@ -1,14 +1,18 @@
-package model;
+package model.simulations;
 
 import java.util.ArrayList;
 import java.util.Map;
 
+import model.cells.FireCell;
+import model.cells.FireCellBurning;
+import model.cells.FireCellEmpty;
+import model.cells.FireCellTree;
 import javafx.scene.paint.Color;
 import view.SimulationScreen;
 
 public class SimulationFire extends Simulation {
 
-    private FireSquare[][] myGrid;
+    private FireCell[][] myGrid;
     private int myProbCatch;
 
     public SimulationFire(Map<String,String> paramMap, Integer[][] grid, SimulationScreen simScreen){
@@ -34,7 +38,7 @@ public class SimulationFire extends Simulation {
     void updateNeighbors() {
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
-                ArrayList<FireSquare> neighbors = new ArrayList<>();
+                ArrayList<FireCell> neighbors = new ArrayList<>();
                 if(i + 1 < gridLength){
                     neighbors.add(myGrid[j][i + 1]);
                 }
@@ -72,13 +76,13 @@ public class SimulationFire extends Simulation {
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
                 if(grid[j][i] == 0){
-                    myGrid[j][i] = new FireSquareEmpty();
+                    myGrid[j][i] = new FireCellEmpty();
                 }
                 if(grid[j][i] == 1){
-                    myGrid[j][i] = new FireSquareTree();
+                    myGrid[j][i] = new FireCellTree();
                 }
                 if(grid[j][i] == 2){
-                    myGrid[j][i] = new FireSquareBurning(myProbCatch);
+                    myGrid[j][i] = new FireCellBurning(myProbCatch);
                 }
             }
         }
@@ -87,6 +91,6 @@ public class SimulationFire extends Simulation {
 
     @Override
     void setupGrid(){
-        myGrid = new FireSquare[gridWidth][gridLength];
+        myGrid = new FireCell[gridWidth][gridLength];
     }
 }

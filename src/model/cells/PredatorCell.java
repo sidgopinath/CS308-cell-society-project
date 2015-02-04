@@ -1,19 +1,19 @@
-package model;
+package model.cells;
 
 import java.util.List;
 
 import javafx.scene.paint.Color;
 
-public abstract class SquarePredator{
+public abstract class PredatorCell{
 
     private int myBreedingPeriod;
     private int currentBreeding;
-    private List<SquarePredator> myPredatorNeighbors;
+    private List<PredatorCell> myPredatorNeighbors;
     private int myX;
     private int myY;
 
     
-    public SquarePredator (int breedingPeriod, int xCoord, int yCoord) {
+    public PredatorCell (int breedingPeriod, int xCoord, int yCoord) {
         myBreedingPeriod = breedingPeriod;
         currentBreeding = breedingPeriod;
         myX = xCoord;
@@ -24,7 +24,7 @@ public abstract class SquarePredator{
      * Updates myNeighbors with the current state of the neighbors of the cell in the grid
      * @param neighbors
      */
-    public void updateNeighbors(List<SquarePredator> neighbors){
+    public void updateNeighbors(List<PredatorCell> neighbors){
         myPredatorNeighbors = neighbors;
     }
 
@@ -38,12 +38,12 @@ public abstract class SquarePredator{
      * Returns square that this square wants to move to, unless all squares
      * are full, in which case it returns itself.
      */
-    public abstract SquarePredator moveSquareTo();
+    public abstract PredatorCell moveSquareTo();
     
     public abstract Color getColor();
     
-    public SquarePredator moveSquare(){
-        SquarePredator square = moveSquareTo();
+    public PredatorCell moveSquare(){
+        PredatorCell square = moveSquareTo();
         myX = square.getX();
         myY = square.getY();
         return square;
@@ -54,7 +54,7 @@ public abstract class SquarePredator{
      * Returns new square as a result of breeding. Will return null if no square 
      * available to breed.
      */
-    public SquarePredator breedSquare(){
+    public PredatorCell breedSquare(){
         return getChildSquare(this.getX(),this.getY(), myBreedingPeriod);
     };
     
@@ -79,7 +79,7 @@ public abstract class SquarePredator{
     /*
      * Returns a new square that should be placed in the grid as a result of breeding
      */
-    public abstract SquarePredator getChildSquare(int x, int y, 
+    public abstract PredatorCell getChildSquare(int x, int y, 
                                                   int breedingPeriod);
     
     
@@ -91,7 +91,7 @@ public abstract class SquarePredator{
         return false;
     }
     
-    public List<SquarePredator> getMyNeighbors(){
+    public List<PredatorCell> getMyNeighbors(){
         return myPredatorNeighbors;
     }
     
@@ -126,7 +126,7 @@ public abstract class SquarePredator{
         if (this == obj) return true;
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
-        SquarePredator other = (SquarePredator) obj;
+        PredatorCell other = (PredatorCell) obj;
         if (myX != other.myX) return false;
         if (myY != other.myY) return false;
         return true;

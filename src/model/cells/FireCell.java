@@ -1,4 +1,4 @@
-package model;
+package model.cells;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,21 +12,21 @@ import javafx.scene.paint.Color;
  *
  */
 
-public abstract class FireSquare {
+public abstract class FireCell {
 
-	protected List<FireSquare> myNeighbors;
+	protected List<FireCell> myNeighbors;
 	protected Color myColor;
 	
 	/**
 	 * @param neighbors is a list of neighbors passed in by its simulation class
 	 */
-	public FireSquare(List<FireSquare> neighbors){
+	public FireCell(List<FireCell> neighbors){
 		myNeighbors = neighbors;
 	}
 	
-	public FireSquare(){
+	public FireCell(){
 	}
-	public void setNeighbors(ArrayList<FireSquare> neighbors){
+	public void setNeighbors(ArrayList<FireCell> neighbors){
 		myNeighbors = neighbors;
 	}
 	
@@ -34,11 +34,11 @@ public abstract class FireSquare {
 	 * @return the current state of the tree after checking with neighbors determined by making a new SquareFire 
 	 * class
 	 */
-	public FireSquare update(){
+	public FireCell update(){
 		return this.chechStatus();
 	}
 	
-	public abstract FireSquare chechStatus();
-	public abstract FireSquare checkNeighbor();
+	public abstract FireCell chechStatus();
+	public abstract FireCell checkNeighbor();
 	public abstract Color getColor();
 }

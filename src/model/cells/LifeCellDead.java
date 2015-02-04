@@ -1,4 +1,4 @@
-package model;
+package model.cells;
 
 import java.util.List;
 
@@ -9,15 +9,15 @@ import javafx.scene.paint.Color;
  * @author Sunjeev
  */
 
-public class LifeSquareDead extends LifeSquare{
+public class LifeCellDead extends LifeCell{
 
 	private Color myColor = Color.WHITE;
 	
-	public LifeSquareDead(List<LifeSquare> neighbors) {
+	public LifeCellDead(List<LifeCell> neighbors) {
 		super(neighbors);
 	}
 
-	public LifeSquareDead() {
+	public LifeCellDead() {
 	}
 
 	@Override
@@ -26,15 +26,15 @@ public class LifeSquareDead extends LifeSquare{
 	}
 
 	@Override
-	protected LifeSquare checkStatus(int alive) {
+	protected LifeCell checkStatus(int alive) {
 		if(alive == 3){
-			return new LifeSquareAlive(myNeighbors);
+			return new LifeCellAlive(myNeighbors);
 		}
 		else return this;
 	}
 
 	@Override
-	protected Color getColor() {
+	public Color getColor() {
 		return myColor;
 	}
 

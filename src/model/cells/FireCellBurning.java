@@ -1,4 +1,4 @@
-package model;
+package model.cells;
 
 import java.util.List;
 import java.util.Random;
@@ -11,32 +11,32 @@ import javafx.scene.paint.Color;
  *
  */
 
-public class FireSquareBurning extends FireSquare{
+public class FireCellBurning extends FireCell{
 
 	private int myProbCatch;
 	private Random myRandom;
 	
-	public FireSquareBurning(List<FireSquare> neighbors, int probCatch) {
+	public FireCellBurning(List<FireCell> neighbors, int probCatch) {
 		super(neighbors);
 		myRandom = new Random();
 		myColor = Color.RED;
 		myProbCatch = probCatch;
 	}
 
-	public FireSquareBurning(int probCatch){
+	public FireCellBurning(int probCatch){
 		myColor = Color.RED;
 		myRandom = new Random();
 		myProbCatch = probCatch;
 	}
 	@Override
-	public FireSquare chechStatus() {
-		return new FireSquareEmpty(myNeighbors);
+	public FireCell chechStatus() {
+		return new FireCellEmpty(myNeighbors);
 	}
 
 	@Override
-	public FireSquare checkNeighbor() {
+	public FireCell checkNeighbor() {
 		if(calculateProbability()){
-			return new FireSquareBurning(myNeighbors, myProbCatch);
+			return new FireCellBurning(myNeighbors, myProbCatch);
 		}
 		else{
 			return null;
