@@ -1,4 +1,4 @@
-package model;
+package model.cells;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,31 +13,31 @@ import javafx.scene.paint.Color;
  *
  */
 
-public abstract class LifeSquare {
+public abstract class LifeCell {
 
-	protected List<LifeSquare> myNeighbors;
+	protected List<LifeCell> myNeighbors;
 
-	public LifeSquare(List<LifeSquare> neighbors){
+	public LifeCell(List<LifeCell> neighbors){
 		myNeighbors = neighbors;
 	}
 	
-	public LifeSquare(){
+	public LifeCell(){
 	}
 	
-	public LifeSquare update(){
+	public LifeCell update(){
 		int liveCount = 0;
-		for(LifeSquare neighbor: myNeighbors){
+		for(LifeCell neighbor: myNeighbors){
 			liveCount += neighbor.returnCount();
 		}
 		return this.checkStatus(liveCount);
 	}
 	
-	public void setNeighbors(ArrayList<LifeSquare> neighbors){
+	public void setNeighbors(ArrayList<LifeCell> neighbors){
 		myNeighbors = neighbors;
 	}
 	
 	protected abstract int returnCount();
-	protected abstract LifeSquare checkStatus(int alive);
-	protected abstract Color getColor();
+	protected abstract LifeCell checkStatus(int alive);
+	public abstract Color getColor();
 	
 }

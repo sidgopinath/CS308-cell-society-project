@@ -1,9 +1,13 @@
-package model;
+package model.simulations;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
+import model.cells.AgentCell;
+import model.cells.AgentCellEmpty;
+import model.cells.AgentCellO;
+import model.cells.AgentCellX;
 import javafx.scene.paint.Color;
 import view.SimulationScreen;
 
@@ -16,7 +20,7 @@ import view.SimulationScreen;
 public class SimulationSegregation extends Simulation {
 
     private static final int SAFE_GUARD = 1000;
-    private AgentSquare[][] myGrid;
+    private AgentCell[][] myGrid;
     private Random myRandom;
 	private double mySatisfaction;
 
@@ -36,13 +40,13 @@ public class SimulationSegregation extends Simulation {
         for (int j = 0; j < gridWidth; j++) {
             for (int i = 0; i < gridLength; i++) {
                 if(grid[j][i] == 0){
-                    myGrid[j][i] = new AgentSquareEmpty(mySatisfaction);
+                    myGrid[j][i] = new AgentCellEmpty(mySatisfaction);
                 }
                 else if(grid[j][i] == 1){
-                    myGrid[j][i] = new AgentSquareO(mySatisfaction);
+                    myGrid[j][i] = new AgentCellO(mySatisfaction);
                 }
                 else if(grid[j][i] == 2){
-                    myGrid[j][i] = new AgentSquareX(mySatisfaction);
+                    myGrid[j][i] = new AgentCellX(mySatisfaction);
                 }
             }
         }
@@ -52,7 +56,7 @@ public class SimulationSegregation extends Simulation {
     void updateNeighbors() {
         for (int j = 0; j < gridWidth; j++) {
             for (int i = 0; i < gridLength; i++) {
-                ArrayList<AgentSquare> neighbors = new ArrayList<>();
+                ArrayList<AgentCell> neighbors = new ArrayList<>();
                 if(i + 1 < gridLength){
                     neighbors.add(myGrid[j][i + 1]);
                 }
@@ -85,7 +89,7 @@ public class SimulationSegregation extends Simulation {
     @Override
     public void updateGrid() {
         updateNeighbors();
-        AgentSquare[][] clone = getMyGridClone();
+        AgentCell[][] clone = getMyGridClone();
         for (int j = 0; j < clone.length; j++) {
             for (int i = 0; i < clone[0].length; i++) {
                 if (!clone[j][i].isSatisfied()) {
@@ -96,7 +100,7 @@ public class SimulationSegregation extends Simulation {
         updateColorGrid();
     }
 
-    private void moveAgent(int j, int i, AgentSquare agent) {
+    private void moveAgent(int j, int i, AgentCell agent) {
         // could be dangerous, might want to add safeguard
         int count = 0;
         while (true) {
@@ -107,7 +111,7 @@ public class SimulationSegregation extends Simulation {
                 //				System.out.println("rRow: " + rRow);
                 //				System.out.println("moved one agent");
                 myGrid[rColumn][rRow] = agent;
-                myGrid[j][i] = new AgentSquareEmpty();
+                myGrid[j][i] = new AgentCellEmpty();
                 break;
             }
             if (count > SAFE_GUARD) {
@@ -120,8 +124,8 @@ public class SimulationSegregation extends Simulation {
     }
 
     // http://stackoverflow.com/questions/1686425/copy-a-2d-array-in-java
-    private AgentSquare[][] getMyGridClone() {
-        AgentSquare[][] clone = new AgentSquare[gridWidth][];
+    private AgentCell[][] getMyGridClone() {
+        AgentCell[][] clone = new AgentCell[gridWidth][];
         for (int j = 0; j < gridWidth; j++) {
             clone[j] = myGrid[j].clone();
         }
@@ -141,6 +145,6 @@ public class SimulationSegregation extends Simulation {
 
     @Override
     void setupGrid() {
-        myGrid = new AgentSquare[gridWidth][gridLength];
+        myGrid = new AgentCell[gridWidth][gridLength];
     }
 }

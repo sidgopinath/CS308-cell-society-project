@@ -1,11 +1,11 @@
-package model;
+package model.cells;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 import javafx.scene.paint.Color;
 
-public class SquarePredatorShark extends SquarePredator{
+public class PredatorCellShark extends PredatorCell{
     
     /**
      * Subclass of squarePredator representing a square with a shark.
@@ -14,7 +14,7 @@ public class SquarePredatorShark extends SquarePredator{
     private int myLifePeriod;
     private int myCurrentLife;
 
-    public SquarePredatorShark (int breedingPeriod, int lifePeriod, int x, int y) {
+    public PredatorCellShark (int breedingPeriod, int lifePeriod, int x, int y) {
         super(breedingPeriod,x,y);
         myLifePeriod = lifePeriod;
         myCurrentLife = lifePeriod;
@@ -33,13 +33,13 @@ public class SquarePredatorShark extends SquarePredator{
     }
     
     @Override
-    public SquarePredator moveSquareTo () {
+    public PredatorCell moveSquareTo () {
         Random squareGenerator = new Random();
-        List<SquarePredator> neighborList = super.getMyNeighbors();
-        List<SquarePredator> edibleList = new ArrayList<SquarePredator>();
-        List<SquarePredator> movableList = new ArrayList<SquarePredator>();
+        List<PredatorCell> neighborList = super.getMyNeighbors();
+        List<PredatorCell> edibleList = new ArrayList<PredatorCell>();
+        List<PredatorCell> movableList = new ArrayList<PredatorCell>();
         
-        for(SquarePredator square:neighborList){
+        for(PredatorCell square:neighborList){
             if(square.isEdible()){
                 edibleList.add(square);
             }
@@ -58,8 +58,8 @@ public class SquarePredatorShark extends SquarePredator{
     }
 
     @Override
-    public SquarePredator getChildSquare (int x, int y, int breedingPeriod) {
-        return new SquarePredatorShark(breedingPeriod, myLifePeriod, x,y);
+    public PredatorCell getChildSquare (int x, int y, int breedingPeriod) {
+        return new PredatorCellShark(breedingPeriod, myLifePeriod, x,y);
     }
 
     @Override

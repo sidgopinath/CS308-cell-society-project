@@ -1,4 +1,4 @@
-package model;
+package model.simulations;
 
 import java.util.Map;
 import view.SimulationScreen;
@@ -35,12 +35,12 @@ public abstract class Simulation {
         setupGrid();
         fillGrid(grid);
     }
-    /*
+    /**
      * Reads parameter map from XML file and sets instance variables accordingly
      */
     abstract void parseMap(Map<String,String> paramMap);
     
-    /*
+    /**
      * Sets up appropriate 2D array of squares in each Simulation subclass
      */
     abstract void setupGrid();

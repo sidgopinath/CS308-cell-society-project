@@ -1,7 +1,11 @@
-package model;
+package model.simulations;
 
 import java.util.ArrayList;
 import java.util.Map;
+
+import model.cells.LifeCell;
+import model.cells.LifeCellAlive;
+import model.cells.LifeCellDead;
 import view.SimulationScreen;
 import javafx.scene.paint.Color;
 
@@ -13,7 +17,7 @@ import javafx.scene.paint.Color;
 
 public class SimulationLife extends Simulation {
 
-    private LifeSquare[][] myGrid;
+    private LifeCell[][] myGrid;
 
     public SimulationLife(Map<String, String> paramMap, Integer[][] grid, SimulationScreen simScreen) {
         super(paramMap, grid, simScreen);
@@ -30,10 +34,10 @@ public class SimulationLife extends Simulation {
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
                 if(grid[j][i] == 0){
-                    myGrid[j][i] = new LifeSquareDead();
+                    myGrid[j][i] = new LifeCellDead();
                 }
                 else{
-                    myGrid[j][i] = new LifeSquareAlive();
+                    myGrid[j][i] = new LifeCellAlive();
                 }
             }
         }
@@ -47,7 +51,7 @@ public class SimulationLife extends Simulation {
     void updateNeighbors() {
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
-                ArrayList<LifeSquare> neighbors = new ArrayList<>();
+                ArrayList<LifeCell> neighbors = new ArrayList<>();
                 if(i + 1 < gridLength){
                     neighbors.add(myGrid[j][i + 1]);
                 }
@@ -101,7 +105,7 @@ public class SimulationLife extends Simulation {
 
     @Override
     public void setupGrid() {
-        myGrid = new LifeSquare[gridWidth][gridLength];
+        myGrid = new LifeCell[gridWidth][gridLength];
     }
 
 }
