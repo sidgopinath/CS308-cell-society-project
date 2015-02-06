@@ -42,4 +42,10 @@ public class SimulationForagingAnts extends Simulation{
 		
 	}
 
+	@Override
+	void updateNeighbors() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

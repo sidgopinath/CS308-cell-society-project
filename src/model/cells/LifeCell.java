@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
  *
  */
 
-public abstract class LifeCell {
+public abstract class LifeCell extends Cell{
 
 	protected List<LifeCell> myNeighbors;
 
@@ -32,9 +32,6 @@ public abstract class LifeCell {
 		return this.checkStatus(liveCount);
 	}
 	
-	public void setNeighbors(ArrayList<LifeCell> neighbors){
-		myNeighbors = neighbors;
-	}
 	
 	protected abstract int returnCount();
 	protected abstract LifeCell checkStatus(int alive);

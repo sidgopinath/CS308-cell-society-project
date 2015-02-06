@@ -42,4 +42,10 @@ public class SimulationSugarscape extends Simulation {
 		
 	}
 
+	@Override
+	void updateNeighbors() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

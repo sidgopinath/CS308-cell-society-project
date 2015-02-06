@@ -22,8 +22,8 @@ public class AgentCellX extends AgentCell{
 	@Override
 	protected int returnCount() {
 		int sameCount = 0;
-		for(AgentCell neighbor: myNeighbors){
-			sameCount += neighbor.getCountX();
+		for(Cell neighbor: myNeighbors){
+			sameCount += ((AgentCell) neighbor).getCountX();
 		}
 		return sameCount;
 	}

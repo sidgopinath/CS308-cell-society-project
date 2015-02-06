@@ -1,6 +1,9 @@
 package model.simulations;
 
+import java.util.List;
 import java.util.Map;
+
+import model.cells.Cell;
 import view.SimulationScreen;
 
 public abstract class Simulation {
@@ -15,6 +18,7 @@ public abstract class Simulation {
     protected SimulationScreen myView;
     protected int gridLength;
     protected int gridWidth;
+    protected Cell[][] myGrid;
 
     public Simulation(Map<String,String> paramMap, Integer[][] grid,
                       SimulationScreen simScreen){
@@ -55,14 +59,22 @@ public abstract class Simulation {
     /**
      * Updates the grid by one frame
      */
-    public abstract void updateGrid();
+    public void updateGrid(){
+    	updateNeighbors();
+        for(int j = 0; j < gridWidth; j++){
+            for(int i = 0 ; i < gridLength; i++){
+                myGrid[j][i] = myGrid[j][i].update();
+            }
+        }
+        updateColorGrid();
+    }
 
 
     /**
      * this method takes myGrid and turns it into a grid that is readable for the view
      */
     abstract void updateColorGrid();
-
+    abstract void updateNeighbors();
 }
 
 

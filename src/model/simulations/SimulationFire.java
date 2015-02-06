@@ -3,6 +3,7 @@ package model.simulations;
 import java.util.ArrayList;
 import java.util.Map;
 
+import model.cells.Cell;
 import model.cells.FireCell;
 import model.cells.FireCellBurning;
 import model.cells.FireCellEmpty;
@@ -12,7 +13,6 @@ import view.SimulationScreen;
 
 public class SimulationFire extends Simulation {
 
-    private FireCell[][] myGrid;
     private int myProbCatch;
 
     public SimulationFire(Map<String,String> paramMap, Integer[][] grid, SimulationScreen simScreen){
@@ -24,21 +24,11 @@ public class SimulationFire extends Simulation {
         myProbCatch = Integer.parseInt(paramMap.get("probCatch"));
         
     }
-    @Override
-    public void updateGrid() {
-        updateNeighbors();
-        for(int j = 0; j < gridWidth; j++){
-            for(int i = 0 ; i < gridLength; i++){
-                myGrid[j][i] = myGrid[j][i].update();
-            }
-        }
-        updateColorGrid();
-    }
-
+   
     void updateNeighbors() {
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
-                ArrayList<FireCell> neighbors = new ArrayList<>();
+                ArrayList<Cell> neighbors = new ArrayList<>();
                 if(i + 1 < gridLength){
                     neighbors.add(myGrid[j][i + 1]);
                 }

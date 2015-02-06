@@ -3,6 +3,7 @@ package model.simulations;
 import java.util.ArrayList;
 import java.util.Map;
 
+import model.cells.Cell;
 import model.cells.LifeCell;
 import model.cells.LifeCellAlive;
 import model.cells.LifeCellDead;
@@ -17,7 +18,7 @@ import javafx.scene.paint.Color;
 
 public class SimulationLife extends Simulation {
 
-    private LifeCell[][] myGrid;
+    private Cell[][] myGrid;
 
     public SimulationLife(Map<String, String> paramMap, Integer[][] grid, SimulationScreen simScreen) {
         super(paramMap, grid, simScreen);
@@ -51,7 +52,7 @@ public class SimulationLife extends Simulation {
     void updateNeighbors() {
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
-                ArrayList<LifeCell> neighbors = new ArrayList<>();
+                ArrayList<Cell> neighbors = new ArrayList<>();
                 if(i + 1 < gridLength){
                     neighbors.add(myGrid[j][i + 1]);
                 }
@@ -81,16 +82,6 @@ public class SimulationLife extends Simulation {
         }
     }
 
-    @Override
-    public void updateGrid() {
-        updateNeighbors();
-        for(int j = 0; j < gridWidth; j++){
-            for(int i = 0 ; i < gridLength; i++){
-                myGrid[j][i] = myGrid[j][i].update();
-            }
-        }
-        updateColorGrid();
-    }
 
     @Override
     void updateColorGrid() {

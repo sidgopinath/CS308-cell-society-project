@@ -11,21 +11,18 @@ import javafx.scene.paint.Color;
  *
  */
 
-public abstract class AgentCell {
+public abstract class AgentCell extends Cell{
 
 	private static final double NUM_NEIGHBORS = 8;
 	private double mySatisfaction;
-	protected List<AgentCell> myNeighbors;
+	
 
 	public AgentCell(double satisfaction){
+		super();
 		mySatisfaction = satisfaction;
 	}
 
 	public AgentCell(){
-	}
-	
-	public void setNeighbors(List<AgentCell> neighbors){
-		myNeighbors = neighbors;
 	}
 	
 	

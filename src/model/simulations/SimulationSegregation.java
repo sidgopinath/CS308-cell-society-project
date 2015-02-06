@@ -8,6 +8,7 @@ import model.cells.AgentCell;
 import model.cells.AgentCellEmpty;
 import model.cells.AgentCellO;
 import model.cells.AgentCellX;
+import model.cells.Cell;
 import javafx.scene.paint.Color;
 import view.SimulationScreen;
 
@@ -56,7 +57,7 @@ public class SimulationSegregation extends Simulation {
     void updateNeighbors() {
         for (int j = 0; j < gridWidth; j++) {
             for (int i = 0; i < gridLength; i++) {
-                ArrayList<AgentCell> neighbors = new ArrayList<>();
+                ArrayList<Cell> neighbors = new ArrayList<>();
                 if(i + 1 < gridLength){
                     neighbors.add(myGrid[j][i + 1]);
                 }
@@ -84,20 +85,6 @@ public class SimulationSegregation extends Simulation {
                 myGrid[j][i].setNeighbors(neighbors);
             }
         }
-    }
-
-    @Override
-    public void updateGrid() {
-        updateNeighbors();
-        AgentCell[][] clone = getMyGridClone();
-        for (int j = 0; j < clone.length; j++) {
-            for (int i = 0; i < clone[0].length; i++) {
-                if (!clone[j][i].isSatisfied()) {
-                    moveAgent(j, i, clone[j][i]);
-                }
-            }
-        }
-        updateColorGrid();
     }
 
     private void moveAgent(int j, int i, AgentCell agent) {
