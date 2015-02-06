@@ -114,25 +114,21 @@ public class CellSocietyController {
 	}
 	
 	/**
-	 * Speeds up simulation by a factor of 2
+	 * if upOrDown is true, then we speed up by factor of 2
+	 * if false, we slow down by factor of 2
+	 * @param upOrDown
 	 */
-	public void speedUpSimulation(){
+	public void changeSimulationSpeed(boolean upOrDown){
 		myTimeline.stop();
 		myTimeline.getKeyFrames().clear();
-		myFrameRate = 2*myFrameRate;
-		myTimeline.getKeyFrames().add(getKeyFrame(myFrameRate));
-		myTimeline.play();
-	}
-	
-	/**
-	 * Slow down simulation by a factor of 2
-	 * Will not go below 1 frame per second
-	 */
-	public void slowDownSimulation(){
-		myTimeline.stop();
-		myTimeline.getKeyFrames().clear();
-		if(myFrameRate >= 2){
+		if(upOrDown){
+			myFrameRate = 2*myFrameRate;
+		}
+		else{
 			myFrameRate = myFrameRate/2;
+			if(myFrameRate == 0){
+				myFrameRate = 1;
+			}
 		}
 		myTimeline.getKeyFrames().add(getKeyFrame(myFrameRate));
 		myTimeline.play();
