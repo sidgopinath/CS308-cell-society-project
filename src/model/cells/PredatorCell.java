@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
  *
  */
 
-public abstract class PredatorCell{
+public abstract class PredatorCell extends Cell{
 
 
     private int myBreedingPeriod;
@@ -32,7 +32,8 @@ public abstract class PredatorCell{
      * Updates myNeighbors with the current state of the neighbors of the cell in the grid
      * @param neighbors
      */
-    public void updateNeighbors(List<PredatorCell> neighbors){
+    
+    public void setNeighbors(List<PredatorCell> neighbors){
         myPredatorNeighbors = neighbors;
     }
 

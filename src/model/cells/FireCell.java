@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
  *
  */
 
-public abstract class FireCell {
+public abstract class FireCell extends Cell{
 
 	protected List<FireCell> myNeighbors;
 	protected Color myColor;

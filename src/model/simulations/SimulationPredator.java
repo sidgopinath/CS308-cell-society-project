@@ -119,7 +119,7 @@ public class SimulationPredator extends Simulation {
         neighborList.add(down);
         neighborList.add(left);
         neighborList.add(right);
-        square.updateNeighbors(neighborList);
+        square.setNeighbors(neighborList);
     }
 
     @Override

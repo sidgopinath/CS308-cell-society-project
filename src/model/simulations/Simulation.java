@@ -1,6 +1,10 @@
 package model.simulations;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import model.cells.Cell;
+import model.cells.LifeCell;
 import view.SimulationScreen;
 
 public abstract class Simulation {
@@ -34,6 +38,38 @@ public abstract class Simulation {
         myView.initSimView(gridWidth, gridLength);
         setupGrid();
         fillGrid(grid);
+    }
+    
+    void addNeighbors(Cell[][] myGrid, List<Cell> neighbors){
+        for(int j = 0; j < gridWidth; j++){
+            for(int i = 0 ; i < gridLength; i++){
+                if(i + 1 < gridLength){
+                    neighbors.add(myGrid[j][i + 1]);
+                }
+                if(i - 1 >= 0){
+                    neighbors.add(myGrid[j][i - 1]);
+                }
+                if(j + 1 < gridWidth){
+                    neighbors.add(myGrid[j + 1][i]);
+                }
+                if(j - 1 >= 0){
+                    neighbors.add(myGrid[j - 1][i]);
+                }
+                if(i+1 < gridLength && j+1 < gridWidth){
+                    neighbors.add(myGrid[j+1][i+1]);
+                }
+                if(i+1 < gridLength && j-1 >= 0){
+                    neighbors.add(myGrid[j-1][i+1]);
+                }
+                if(i-1 >= 0 && j+1 < gridWidth){
+                    neighbors.add(myGrid[j+1][i-1]);
+                }
+                if(i-1 >= 0 && j-1 >= 0){
+                    neighbors.add(myGrid[j-1][i-1]);
+                }
+                myGrid[j][i].setNeighbors(neighbors);
+            }
+        }
     }
     /**
      * Reads parameter map from XML file and sets instance variables accordingly

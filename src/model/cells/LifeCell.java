@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
  *
  */
 
-public abstract class LifeCell {
+public abstract class LifeCell extends Cell{
 
 	protected List<LifeCell> myNeighbors;
 
