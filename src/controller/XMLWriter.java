@@ -15,7 +15,7 @@ import org.w3c.dom.Element;
 
 public class XMLWriter {
 
-	//for reference: http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
+	//used for reference: http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
 	
 	public XMLWriter(HashMap<String, String> paramMap, Integer[][] gridArray){
 		
@@ -36,8 +36,9 @@ public class XMLWriter {
 			//iterate through param map and make new parameters in xml doc
 			for(String param: paramMap.keySet()){
 				Element newParam = xmlDoc.createElement(param);
-				newParam.appendChild(xmlDoc.createTextNode(paramMap.get(newParam)));
+				newParam.appendChild(xmlDoc.createTextNode(paramMap.get(param)));
 				parameter.appendChild(newParam);
+				System.out.println(param + " " + paramMap.get(param));
 			}
 			
 			//make grid element, which all rows will be children of
@@ -52,6 +53,7 @@ public class XMLWriter {
 				for(int j: gridArray[i]){
 					rowString = rowString + j + " ";
 				}
+				System.out.println(rowString);
 				newRow.appendChild(xmlDoc.createTextNode(rowString));
 				grid.appendChild(newRow);
 			}
@@ -60,8 +62,7 @@ public class XMLWriter {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(xmlDoc);
-			StreamResult result = new StreamResult(new File("user.dir", "newUserTestFile.txt"));
-			
+			StreamResult result = new StreamResult(new File("userTestFile.xml"));
 			transformer.transform(source, result);
 		}
 		catch(Exception e){

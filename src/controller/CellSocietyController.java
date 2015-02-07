@@ -87,6 +87,7 @@ public class CellSocietyController {
 		XMLParser newParser = new XMLParser(XMLFile);
 		myGrid = newParser.getGrid();
 		myParameters = newParser.getParameters();
+		//XMLWriter writer = new XMLWriter(myParameters, myGrid);
 		transitionToSimulation();
 	}
 
