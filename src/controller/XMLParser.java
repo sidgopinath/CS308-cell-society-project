@@ -27,16 +27,72 @@ public class XMLParser {
 
 	public XMLParser(File XMLFile) {
 		try {
+			checkFileExtension(XMLFile);
 			Document doc = initializeDoc(XMLFile);
 			clean(doc.getDocumentElement().getParentNode());
 			NodeList parameterChildren = initializeNodeList(doc, "parameter");
 			readParameters(parameterChildren);
+			checkParameters(myParameters);
 			NodeList gridChildren = initializeNodeList(doc, "grid");
 			createGrid(gridChildren);
 			readGrid(gridChildren);
+			checkGrid(myGrid);
+			
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Checks grid width and height against input grid
+	 * Prints out error message and exits
+	 * Perhaps IMPLEMENT try/catch stuff here?
+	 * @param grid
+	 */
+	private void checkGrid(Integer[][] grid) {
+		if(grid.length != Integer.parseInt(myParameters.get("gridHeight"))){
+			System.out.println("Grid height doesn't match input grid.");
+			System.exit(0);
+		}
+		for(int i=0; i<grid.length; i++){
+			if(grid[i].length != Integer.parseInt(myParameters.get("gridWidth"))){
+				System.out.println("Grid width doesn't match input grid.");
+				System.exit(0);
+			}
+		}
+	}
+
+	/**
+	 * IMPLEMENT TRY/CATCH STUFF HERE?
+	 * Checks if sim type is there
+	 * Could add on more to check if appropriate parameters exist for each sim type
+	 * Might make a separate class to dot hat?
+	 * @param paramMap
+	 */
+	private void checkParameters(HashMap<String, String> paramMap) {
+		if(!paramMap.containsKey("simtype")){
+			System.out.println("No sim type found");
+			System.exit(0);
+		}
+		else if(paramMap.get("simtype") == null){
+			System.out.println("Sim type is null");
+			System.exit(0);
+		}	
+	}
+
+
+	/**
+	 * Method to check file extension name
+	 * Maybe make this a try/catch situation
+	 * Or make it throw an exception? Not sure how this would work exactly
+	 * @param xmlFile
+	 */
+	private void checkFileExtension(File xmlFile) {
+		String file = xmlFile.getName();
+		if(!(file.endsWith("xml"))){
+			System.out.println("Invalid file format. Exiting program.");
+			System.exit(0);
 		}
 	}
 
