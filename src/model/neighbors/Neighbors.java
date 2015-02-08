@@ -20,7 +20,7 @@ public abstract class Neighbors {
         if(x == grid[0].length || y == 0){
             rules.handleEdges(grid, x+1, y-1, neighbors);
         } else{
-            neighbors.add(grid[x+1][y-1]);
+            neighbors.add(grid[y-1][x+1]);
         }
     }
 
@@ -29,7 +29,7 @@ public abstract class Neighbors {
         if(x == 0 || y == 0){
             rules.handleEdges(grid, x-1, y-1, neighbors);
         } else{
-            neighbors.add(grid[x-1][y-1]);
+            neighbors.add(grid[y-1][x-1]);
         }
     }
 
@@ -38,7 +38,7 @@ public abstract class Neighbors {
         if(x== grid[0].length){
             rules.handleEdges(grid, x+1, y, neighbors);
         } else{
-            neighbors.add(grid[x+1][y]);
+            neighbors.add(grid[y][x+1]);
         }
     }
 
@@ -47,7 +47,7 @@ public abstract class Neighbors {
         if(x==0){
             rules.handleEdges(grid, x-1, y, neighbors);
         } else{
-            neighbors.add(grid[x-1][y]);
+            neighbors.add(grid[y][x-1]);
         }
     }
 
@@ -56,7 +56,7 @@ public abstract class Neighbors {
         if(x==grid[0].length || y == grid.length){
             rules.handleEdges(grid, x+1, y+1, neighbors);   
         }else{
-            neighbors.add(grid[x+1][y+1]);
+            neighbors.add(grid[y+1][x+1]);
         }
     }
 
@@ -65,7 +65,7 @@ public abstract class Neighbors {
         if(x==0 || y == grid.length){
             rules.handleEdges(grid, x-1, y+1, neighbors);
         }else{
-            neighbors.add(grid[x-1][y+1]);
+            neighbors.add(grid[y+1][x-1]);
         }
     }
     
@@ -74,7 +74,7 @@ public abstract class Neighbors {
         if(y==0){
             rules.handleEdges(grid, x, y-1, neighbors);
         } else{
-            neighbors.add(grid[x][y-1]);
+            neighbors.add(grid[y-1][x]);
         }
     }
     
@@ -83,7 +83,7 @@ public abstract class Neighbors {
         if(y==grid.length){
             rules.handleEdges(grid, x, y+1, neighbors);
         } else{
-            neighbors.add(grid[x][y+1]);
+            neighbors.add(grid[y+1][x]);
         }
     }
 }

@@ -7,8 +7,9 @@ public class FiniteGridRules extends GridRules {
 
     @Override
     public void handleEdges (Cell[][] grid, int x, int y, List<Cell> list) {
-        // TODO Auto-generated method stub
-        
+        if(x<0 || x >= grid[0].length || y <0 || y>=grid.length){
+            return;
+        }
     }
 
 }
