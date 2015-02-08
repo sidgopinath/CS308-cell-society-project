@@ -38,6 +38,5 @@ public abstract class LifeCell extends Cell{
 	
 	protected abstract int returnCount();
 	protected abstract LifeCell checkStatus(int alive);
-	public abstract Color getColor();
 	
 }

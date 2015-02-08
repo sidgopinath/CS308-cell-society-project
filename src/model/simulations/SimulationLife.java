@@ -108,4 +108,9 @@ public class SimulationLife extends Simulation {
         myGrid = new LifeCell[gridWidth][gridLength];
     }
 
+    @Override
+    AbstractCellFactory getCellFactory () {
+        return new LifeCellFactory();
+    }
+
 }

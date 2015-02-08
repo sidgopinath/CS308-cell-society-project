@@ -147,4 +147,9 @@ public class SimulationSegregation extends Simulation {
     void setupGrid() {
         myGrid = new AgentCell[gridWidth][gridLength];
     }
+
+    @Override
+    AbstractCellFactory getCellFactory () {
+        return new AgentCellFactory(mySatisfaction);
+    }
 }

@@ -62,9 +62,6 @@ public class SimulationFire extends Simulation {
         Color[][] colorGrid = new Color[gridWidth][gridLength];
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0; i < gridLength; i++){
-                if(myGrid[j][i] == null){
-                    System.out.println(true);
-                }
                 colorGrid[j][i] = myGrid[j][i].getColor();
             }
         }
@@ -92,5 +89,10 @@ public class SimulationFire extends Simulation {
     @Override
     void setupGrid(){
         myGrid = new FireCell[gridWidth][gridLength];
+    }
+
+    @Override
+    AbstractCellFactory getCellFactory () {
+        return new FireCellFactory(myProbCatch);
     }
 }

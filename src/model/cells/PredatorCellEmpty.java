@@ -13,8 +13,8 @@ import javafx.scene.paint.Color;
 
 public class PredatorCellEmpty extends PredatorCell{
 
-    public PredatorCellEmpty (int breedingPeriod, int x, int y) {
-        super(breedingPeriod,x,y);
+    public PredatorCellEmpty (int breedingPeriod) {
+        super(breedingPeriod);
     }
     
     @Override
@@ -27,7 +27,7 @@ public class PredatorCellEmpty extends PredatorCell{
     }
 
     @Override
-    public PredatorCell getChildSquare (int x, int y, int breedingPeriod) {
+    public PredatorCell getChildSquare (int breedingPeriod) {
         return null;
     }
 

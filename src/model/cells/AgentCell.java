@@ -34,7 +34,6 @@ public abstract class AgentCell extends Cell{
 		return ((sameCount / NUM_NEIGHBORS) >= mySatisfaction);
 	}
 	
-	public abstract Color getColor();
 	
 	protected abstract int returnCount();
 	protected abstract int getCountX();

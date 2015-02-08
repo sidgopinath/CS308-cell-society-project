@@ -23,6 +23,7 @@ public class SimulationPredator extends Simulation {
     private PredatorCell grid[][];
     private int sharkLife;
     private int breedingPeriod;
+    //TODO: fix alreadyMoved so as to not require the X and Y coordinates
     private Set<PredatorCell> alreadyMoved = new HashSet<PredatorCell>();
 
 
@@ -36,6 +37,7 @@ public class SimulationPredator extends Simulation {
         sharkLife = Integer.parseInt(paramMap.get("sharkLife"));
     }
 
+    //TODO: need to rewrite completely with patches
     public void move(PredatorCell square,int x, int y){
         PredatorCell childSquare = square.breedSquare();
         PredatorCell moveTo = square.moveSquare();
@@ -44,7 +46,7 @@ public class SimulationPredator extends Simulation {
         }
         grid[moveTo.getY()][moveTo.getX()] = square;
         if(!square.isBreeding()){
-            grid[y][x] = new PredatorCellEmpty(-1,x, y);
+            grid[y][x] = new PredatorCellEmpty(-1);
         } else{
             grid[y][x] = childSquare;
         }
@@ -69,10 +71,10 @@ public class SimulationPredator extends Simulation {
 
                     //Check if need to starve shark
                     if(currentSquare.hasStarved()){
-                        grid[row][column] = new PredatorCellEmpty(-1, column,row);
+                        grid[row][column] = new PredatorCellEmpty(-1);
                         continue;
                     }
-                    updateNeighborSquare(currentSquare);
+                    updateNeighborSquare(currentSquare,row,column);
                     move(currentSquare,column,row);
                 } else{
                     continue;
@@ -84,13 +86,13 @@ public class SimulationPredator extends Simulation {
 
     }
 
-    public void updateNeighborSquare(PredatorCell square){
+    public void updateNeighborSquare(PredatorCell square, int row, int column){
         PredatorCell up;
         PredatorCell down;
         PredatorCell left;
         PredatorCell right;
-        int i = square.getY();
-        int j = square.getX();
+        int i = row;
+        int j = column;
         if(i==0){
             up=grid[grid.length-1][j];
         }else{
@@ -139,15 +141,20 @@ public class SimulationPredator extends Simulation {
             for(int j=0;j<initGrid[0].length;j++){
                 int squareValue = initGrid[i][j];
                 if(squareValue == 0){
-                    grid[i][j] = new PredatorCellEmpty(-1, j, i);
+                    grid[i][j] = new PredatorCellEmpty(-1);
                 } else if(squareValue == 1){
-                    grid[i][j] = new PredatorCellFish(breedingPeriod, j, i);
+                    grid[i][j] = new PredatorCellFish(breedingPeriod);
                 } else{
-                    grid[i][j] = new PredatorCellShark(breedingPeriod, sharkLife, j, i);
+                    grid[i][j] = new PredatorCellShark(breedingPeriod, sharkLife);
                 }
             }
         }
         updateColorGrid();
+    }
+
+    @Override
+    AbstractCellFactory getCellFactory () {
+        return new PredatorCellFactory(breedingPeriod, sharkLife);
     }
 
 }

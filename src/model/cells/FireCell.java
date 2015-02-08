@@ -40,5 +40,4 @@ public abstract class FireCell extends Cell{
 	
 	public abstract FireCell checkStatus();
 	public abstract FireCell checkNeighbor();
-	public abstract Color getColor();
 }

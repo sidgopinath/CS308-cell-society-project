@@ -6,6 +6,7 @@ import java.util.Map;
 import model.cells.Cell;
 import model.cells.LifeCell;
 import view.SimulationScreen;
+import model.patches.Patch;
 
 public abstract class Simulation {
 
@@ -16,15 +17,19 @@ public abstract class Simulation {
      * 
      * @author Janan
      */
+//    protected Patch[][] myGrid;
     protected SimulationScreen myView;
     protected int gridLength;
     protected int gridWidth;
+    protected Cell[][] myGrid;
+    protected AbstractCellFactory myCellFactory;
 
     public Simulation(Map<String,String> paramMap, Integer[][] grid,
                       SimulationScreen simScreen){
         myView = simScreen;
         gridLength = grid[0].length;
         gridWidth = grid.length;
+        myCellFactory = getCellFactory();
         parseMap(paramMap);
         runSim(grid);
     }
@@ -36,26 +41,33 @@ public abstract class Simulation {
      */
     void runSim(Integer[][] grid){
         myView.initSimView(gridWidth, gridLength);
-        setupGrid();
-        fillGrid(grid);
+        setupGrid(grid);
     }
     
+    abstract AbstractCellFactory getCellFactory();
+    
+//    void fillPatchGrid(){
+//        myGrid = new Patch[gridWidth][gridLength];
+//        for(int i=0; i<gridWidth; i++){
+//            for(int j=0; j<gridLength; j++){
+//                myGrid[i][j] = new Patch();
+//            }
+//        }
+//    }
     /**
      * Reads parameter map from XML file and sets instance variables accordingly
      */
     abstract void parseMap(Map<String,String> paramMap);
     
     /**
-     * Sets up appropriate 2D array of squares in each Simulation subclass
-     */
-    abstract void setupGrid();
-    
-    /**
      * fill grid with squares that have the right values given the parameters and the type of each space
      * initialize grid, and fill
      * @param paramMap 
      */
-    abstract void fillGrid(Integer[][] grid);
+     void setupGrid(Integer[][] grid){
+         
+     }
+    
 
     /**
      * Updates the grid by one frame
