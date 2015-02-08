@@ -21,7 +21,7 @@ public class FireCellEmpty extends FireCell{
 		myColor = Color.YELLOW;
 	}
 	@Override
-	public FireCell chechStatus() {
+	public FireCell checkStatus() {
 		return this;
 	}
 

@@ -29,7 +29,7 @@ public class FireCellBurning extends FireCell{
 		myProbCatch = probCatch;
 	}
 	@Override
-	public FireCell chechStatus() {
+	public FireCell checkStatus() {
 		return new FireCellEmpty(myNeighbors);
 	}
 
