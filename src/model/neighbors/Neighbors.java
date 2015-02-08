@@ -15,4 +15,75 @@ public abstract class Neighbors {
     public abstract List<Cell> getAllNeighbors(Cell[][] grid, int x, int y,
                                                GridRules rules);
 
+    public void topRight(Cell[][]grid, int x, int y, GridRules rules,
+                         List<Cell> neighbors){
+        if(x == grid[0].length || y == 0){
+            rules.handleEdges(grid, x+1, y-1, neighbors);
+        } else{
+            neighbors.add(grid[x+1][y-1]);
+        }
+    }
+
+    public void topLeft(Cell[][]grid, int x, int y, GridRules rules, 
+                        List<Cell> neighbors){
+        if(x == 0 || y == 0){
+            rules.handleEdges(grid, x-1, y-1, neighbors);
+        } else{
+            neighbors.add(grid[x-1][y-1]);
+        }
+    }
+
+    public void Right(Cell[][] grid, int x, int y, GridRules rules,
+                      List<Cell> neighbors){
+        if(x== grid[0].length){
+            rules.handleEdges(grid, x+1, y, neighbors);
+        } else{
+            neighbors.add(grid[x+1][y]);
+        }
+    }
+
+    public void Left(Cell[][] grid, int x, int y, GridRules rules,
+                     List<Cell> neighbors){
+        if(x==0){
+            rules.handleEdges(grid, x-1, y, neighbors);
+        } else{
+            neighbors.add(grid[x-1][y]);
+        }
+    }
+
+    public void bottomRight(Cell[][] grid, int x, int y, GridRules rules,
+                            List<Cell> neighbors){
+        if(x==grid[0].length || y == grid.length){
+            rules.handleEdges(grid, x+1, y+1, neighbors);   
+        }else{
+            neighbors.add(grid[x+1][y+1]);
+        }
+    }
+
+    public void bottomLeft(Cell[][] grid, int x, int y, GridRules rules,
+                            List<Cell> neighbors){
+        if(x==0 || y == grid.length){
+            rules.handleEdges(grid, x-1, y+1, neighbors);
+        }else{
+            neighbors.add(grid[x-1][y+1]);
+        }
+    }
+    
+    public void Up(Cell[][] grid, int x, int y, GridRules rules, 
+                   List<Cell> neighbors){
+        if(y==0){
+            rules.handleEdges(grid, x, y-1, neighbors);
+        } else{
+            neighbors.add(grid[x][y-1]);
+        }
+    }
+    
+    public void Down(Cell[][] grid, int x, int y, GridRules rules,
+                     List<Cell> neighbors){
+        if(y==grid.length){
+            rules.handleEdges(grid, x, y+1, neighbors);
+        } else{
+            neighbors.add(grid[x][y+1]);
+        }
+    }
 }

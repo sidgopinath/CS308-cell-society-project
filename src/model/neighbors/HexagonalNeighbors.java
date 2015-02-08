@@ -20,44 +20,12 @@ public class HexagonalNeighbors extends Neighbors{
     @Override
     public List<Cell> getAllNeighbors (Cell[][] grid, int x, int y, GridRules rules) {
         List<Cell> neighbors = new ArrayList<Cell>();
-        int gridHeight = grid.length;
-        int gridWidth = grid[0].length;
-        //TopRight
-        if(x == gridWidth || y == 0){
-            rules.handleEdges(grid, x+1, y-1, neighbors);
-        } else{
-            neighbors.add(grid[x+1][y-1]);
-        }
-        //TopLeft
-        if(x == 0 || y == 0){
-            rules.handleEdges(grid, x-1, y-1, neighbors);
-        } else{
-            neighbors.add(grid[x-1][y-1]);
-        }
-        //Right
-        if(x== gridWidth){
-            rules.handleEdges(grid, x+1, y, neighbors);
-        } else{
-            neighbors.add(grid[x+1][y]);
-        }
-        //Left
-        if(x==0){
-            rules.handleEdges(grid, x-1, y, neighbors);
-        } else{
-            neighbors.add(grid[x-1][y]);
-        }
-        //BottomRight
-        if(x==gridWidth || y == gridHeight){
-         rules.handleEdges(grid, x+1, y+1, neighbors);   
-        }else{
-            neighbors.add(grid[x+1][y+1]);
-        }
-        //BottomLeft
-        if(x==0 || y == gridHeight){
-            rules.handleEdges(grid, x-1, y+1, neighbors);
-        }else{
-            neighbors.add(grid[x-1][y+1]);
-        }
+        topRight(grid, x, y, rules, neighbors);
+        topLeft(grid, x,y, rules, neighbors);
+        Right(grid,x,y,rules,neighbors);
+        Left(grid,x,y,rules,neighbors);
+        bottomRight(grid,x,y,rules,neighbors);
+        bottomLeft(grid,x,y,rules,neighbors);
         return neighbors;
     }
 
