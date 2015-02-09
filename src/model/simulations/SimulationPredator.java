@@ -1,7 +1,6 @@
 package model.simulations;
 
 import java.util.Map;
-
 import model.cells.Cell;
 import model.cells.PredatorCellEmpty;
 import view.SimulationScreen;

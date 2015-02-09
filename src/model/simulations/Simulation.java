@@ -72,10 +72,11 @@ public abstract class Simulation {
     abstract AbstractCellFactory getCellFactory() throws ValueException;
 
     void fillPatchGrid(){
+        PatchFactory factory = new PatchFactory();
         myPatchGrid = new Patch[gridWidth][gridLength];
         for(int i=0; i<gridWidth; i++){
             for(int j=0; j<gridLength; j++){
-                myPatchGrid[i][j] = new Patch(j, i);
+                myPatchGrid[i][j] = factory.getPatch(patchType(), j, i);
             }
         }
         for(int i=0; i<gridWidth; i++){
@@ -94,7 +95,9 @@ public abstract class Simulation {
         }
     }
 
-    
+    public String patchType(){
+        return "";
+    }
 //    void fillPatchGrid(){
 //        myGrid = new Patch[gridWidth][gridLength];
 //        for(int i=0; i<gridWidth; i++){

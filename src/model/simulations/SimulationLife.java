@@ -1,7 +1,6 @@
 package model.simulations;
 
 import java.util.Map;
-
 import view.SimulationScreen;
 
 /**

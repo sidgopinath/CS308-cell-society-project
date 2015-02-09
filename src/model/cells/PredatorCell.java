@@ -1,8 +1,5 @@
 package model.cells;
 
-import java.util.List;
-
-import javafx.scene.paint.Color;
 
 /**
  * Abstract superclass for squares in the Predator-Prey simulation

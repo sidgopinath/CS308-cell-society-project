@@ -1,7 +1,6 @@
 package model.gridrules;
 
 import java.util.List;
-import model.cells.Cell;
 import model.patches.Patch;
 
 public class FiniteGridRules extends GridRules {
