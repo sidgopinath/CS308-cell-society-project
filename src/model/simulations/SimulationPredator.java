@@ -10,6 +10,7 @@ import model.cells.PredatorCell;
 import model.cells.PredatorCellEmpty;
 import model.cells.PredatorCellFish;
 import model.cells.PredatorCellShark;
+import model.patches.Patch;
 import view.SimulationScreen;
 import javafx.scene.paint.Color;
 
@@ -30,7 +31,7 @@ public class SimulationPredator extends Simulation {
         super(paramMap, styleMap,initGrid, simscreen);
         for(int i=0; i<gridWidth; i++){
             for(int j=0; j < gridLength; j++){
-                myGrid[i][j].setCoords(j, i);
+                myPatchGrid[i][j].getCell().setCoords(j, i);
             }
         }
         movedGrid = new boolean[gridWidth][gridLength];
@@ -60,28 +61,28 @@ public class SimulationPredator extends Simulation {
         for(int row = 0; row < gridWidth; row++){
             for(int column=0; column<gridLength;column++){
                 if(!movedGrid[row][column]){
-                    Cell currentSquare = myGrid[row][column];
-                    updateNeighborSquare(currentSquare, row, column);
+                    Cell currentSquare = myPatchGrid[row][column].getCell();
+                    updateNeighborSquare(row, column);
                     Cell updateSquare = currentSquare.update();
                     //Check if currentSquare moved as result of update
                     if(!(currentSquare.getX() == column && currentSquare.getY() ==row)){
                         movedGrid[currentSquare.getY()][currentSquare.getX()] = true;
                         movedGrid[updateSquare.getY()][updateSquare.getX()] = true;
                         
-                        myGrid[currentSquare.getY()][currentSquare.getX()] = currentSquare;
+                        myPatchGrid[currentSquare.getY()][currentSquare.getX()].setCell(currentSquare);
                         
                         //Check if need to breed
                         if(currentSquare.viewProperties().get("myCurrentBreeding") != 0){
-                            myGrid[row][column] = new PredatorCellEmpty(-1);
-                            myGrid[row][column].setCoords(column, row);
+                            myPatchGrid[row][column].setCell(new PredatorCellEmpty(-1));
+                            myPatchGrid[row][column].getCell().setCoords(column, row);
                         } else{
-                            myGrid[row][column] = updateSquare;
+                            myPatchGrid[row][column].setCell(updateSquare);
                         }
-                        System.out.println("I went from row:" + row + " column: " + column);
-                        System.out.println("to row: " + currentSquare.getY()
-                                           + " column: " +currentSquare.getX()) ;
+//                        System.out.println("I went from row:" + row + " column: " + column);
+//                        System.out.println("to row: " + currentSquare.getY()
+//                                           + " column: " +currentSquare.getX()) ;
                     }else{ //Cell had no space to move/starved
-                        myGrid[row][column] = updateSquare;
+                        myPatchGrid[row][column].setCell(updateSquare);
                         movedGrid[row][column] = true;
                     }
                 } else{
@@ -90,44 +91,6 @@ public class SimulationPredator extends Simulation {
             }
         }
         updateColorGrid();
-    }
-
-    public void updateNeighborSquare(Cell square, int row, int column){
-        Cell up;
-        Cell down;
-        Cell left;
-        Cell right;
-        int i = row;
-        int j = column;
-        if(i==0){
-            up=myGrid[gridWidth-1][j];
-        }else{
-            up=myGrid[i-1][j];
-        }
-
-        if(i==gridWidth-1){
-            down = myGrid[0][j];
-        }else{
-            down = myGrid[i+1][j];
-        }
-
-        if(j==0){
-            left = myGrid[i][gridLength-1];
-        }else{
-            left = myGrid[i][j-1];
-        }
-
-        if(j==gridLength-1){
-            right = myGrid[i][0];
-        }else{
-            right = myGrid[i][j+1];
-        }
-        List<Cell> neighborList = new ArrayList<Cell>();
-        neighborList.add(up);
-        neighborList.add(down);
-        neighborList.add(left);
-        neighborList.add(right);
-        square.setNeighbors(neighborList);
     }
 
     @Override

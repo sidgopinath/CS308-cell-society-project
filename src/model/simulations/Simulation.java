@@ -129,13 +129,17 @@ public abstract class Simulation {
     void updateNeighbors(){
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
-                List<Cell> neighbors = new ArrayList<>();
-                for(Patch neighbor: myPatchGrid[j][i].getNeighbors()){
-                    neighbors.add(neighbor.getCell());
-                }
-                myPatchGrid[j][i].getCell().setNeighbors(neighbors);
+                updateNeighborSquare(j,i);
             }
         }
+    }
+    
+    public void updateNeighborSquare(int row, int column){
+        List<Cell> neighbors = new ArrayList<>();
+        for(Patch neighbor: myPatchGrid[row][column].getNeighbors()){
+            neighbors.add(neighbor.getCell());
+        }
+        myPatchGrid[row][column].getCell().setNeighbors(neighbors);
     }
 }
 
