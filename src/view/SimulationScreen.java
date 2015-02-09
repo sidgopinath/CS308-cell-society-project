@@ -3,7 +3,9 @@ package view;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -11,14 +13,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.stage.Stage;
 import controller.CellSocietyController;
 
 /**
- 	* This function begins setting up the general simulation scene. This
+ 	* This class begins setting up the general simulation scene. This
 	* includes things like adding the four buttons at the top that load, step
 	* through, speed up, and stop/start the simulation. Note: all strings used
-	* to create buttons must be retrieved from a .properties file. Right now I
-	* have them hard coded into the program.
+	* to create buttons must be retrieved from a .properties file. 
 	* @author Sunjeev
  */
 
@@ -40,9 +42,8 @@ public class SimulationScreen {
 		myHeight = height;
 		myGridPane = new GridPane();
 		myStart = true;
-		myButtons = new ArrayList<>();
-		myProperties = ResourceBundle.getBundle("resources/resources");
-		//myController = new CellSocietyController(width, height);
+		TopMenu topMenu = new TopMenu(myWidth, myHeight, myController);
+		myButtons = new ArrayList<>(topMenu.createTopButtons());
 		root.setTop(addButtons());
 		root.setCenter(myGridPane);
 	}
@@ -55,81 +56,15 @@ public class SimulationScreen {
 		myTop = new HBox();
 		myTop.setPrefHeight(myHeight/20);
 		myTop.setPrefWidth(myWidth);
-		myTop.getChildren().addAll(addLoadButton(), addStopStartButton(), addStepButton(),
-				addSpeedUpButton(), addSlowDownButton());
+		myTop.getChildren().addAll(myButtons);
 		for(Button button: myButtons){
 			button.setPrefWidth(myWidth / (myButtons.size()));
 			button.setPrefHeight(myTop.getPrefHeight());
 		}
-		double length = myTop.getChildren().size(); 
-		double buttonWidth = myButtons.get(0).getPrefWidth();
-		myTop.setSpacing((myWidth - length * buttonWidth) / (length));
 		return myTop;
 	}
 
-	/**
-	 * This function adds the load button to the scene and creates the
-	 * eventListener.
-	 * 
-	 * @return Button that loads new file
-	 */
-	private Button addLoadButton() {
-		Button loadButton = new Button(myProperties.getString("load_button_name"));
-		myButtons.add(loadButton);
-		loadButton.setOnAction(e -> {
-			myController.transitionToFileLoaderScreen();
-		});
-		return loadButton;
-	}
-
-	private Button addSlowDownButton(){
-		Button slowDownButton = new Button(myProperties.getString("slow_down_button_name"));
-		myButtons.add(slowDownButton);
-		slowDownButton.setOnAction(e -> {
-			myController.changeSimulationSpeed(false);
-		});
-		return slowDownButton;
-	}
-	/**
-	 * This function adds the step button to the scene and creates the
-	 * eventListener.
-	 */
-	private Button addStepButton() {
-		Button stepButton = new Button(myProperties.getString("step_button_name"));
-		myButtons.add(stepButton);
-		stepButton.setOnAction(e -> {
-			myController.stepThroughSimulation();
-		});
-		return stepButton;
-	}
-
-	/**
-	 * Adds speed up button
-	 */
-	private Button addSpeedUpButton() {
-		Button speedUpButton = new Button(myProperties.getString("speed_up_button_name"));
-		myButtons.add(speedUpButton);
-		speedUpButton.setOnAction(e -> {
-			myController.changeSimulationSpeed(true);
-		});
-		return speedUpButton;
-	}
-
-	/**
-	 * adds stop.start button
-	 * 
-	 * @return
-	 */
-	private Button addStopStartButton() {
-		Button stopStartButton = new Button(myProperties.getString("stopstart_button_name"));
-		myButtons.add(stopStartButton);
-		stopStartButton.setOnAction(e -> {
-			//if false it is stopped
-			myStart = !myStart;
-			myController.stopOrStart(myStart);
-		});
-		return stopStartButton;
-	}
+	
 
 	/**
 	 * must be passed a grid of some type so that it can determine the colors of
@@ -160,7 +95,7 @@ public class SimulationScreen {
 				rect.setFill(Color.BLACK);
 				rect.setStroke(Color.BLACK);
 				rect.setWidth(myWidth / gridWidth - rect.getStrokeWidth());
-				rect.setHeight((myHeight - myTop.getPrefHeight()) / gridHeight);
+				rect.setHeight((myHeight - myTop.getPrefHeight()) / gridHeight - rect.getStrokeWidth());
 				myGridPane.add(rect, i, j);
 			}
 		}
@@ -174,7 +109,6 @@ public class SimulationScreen {
 				return (Shape) child;
 			}
 		}
-		System.out.println("error, getChild() method not working");
 		return null;
 
 	}
