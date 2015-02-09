@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='us-ascii'?>
+
+<style>
+	<cellShape>square</cellShape>
+	<cellSize>10</cellSize>
+	<edgeType>finite</edgeType>
+	<emptyCellColor>white</emptyCellColor>
+	<gridOutline>yes</gridOutline>
+	<neighbors>all</neighbors>
+</style>

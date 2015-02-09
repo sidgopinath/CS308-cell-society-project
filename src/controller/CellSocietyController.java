@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
@@ -34,6 +35,7 @@ public class CellSocietyController {
 	private Scene myScene;
 	private Group myGroup;
 	private HashMap<String, String> myParameters = new HashMap<String, String>();
+	private Map<String, String> myStyles = new HashMap<String, String>();
 	private Integer myGrid[][];
 	private int myFrameRate;
 	private Timeline myTimeline;
@@ -85,10 +87,25 @@ public class CellSocietyController {
 	 */
 	private void readXML(File XMLFile) {
 		XMLParser newParser = new XMLParser(XMLFile);
-		myGrid = newParser.getGrid();
-		myParameters = newParser.getParameters();
-		//XMLWriter writer = new XMLWriter(myParameters, myGrid);
+		if(newParser.getGrid() != null){
+			myGrid = newParser.getGrid();
+			myParameters = newParser.getParameters();
+		}
+		else{
+			myStyles = newParser.getParameters();
+		}
+		//XMLWriter writer = new XMLWriter(myParameters, myGrid); //proof that writer works
 		transitionToSimulation();
+	}
+	
+	/**
+	 * GETTER! BAD!
+	 * Returns style map. Might be changed later
+	 * Style map could be passed into classes that need it
+	 * @return
+	 */
+	public Map<String, String> getStyles(){
+		return myStyles;
 	}
 
 	/**
@@ -103,6 +120,8 @@ public class CellSocietyController {
 		File inputFile = fileLoaderScreen.getFile();
 		readXML(inputFile);
 	}
+	
+
 
 	/**
 	 * Steps through simulation one frame at a time.

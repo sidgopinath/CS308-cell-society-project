@@ -30,18 +30,39 @@ public class XMLParser {
 			checkFileExtension(XMLFile);
 			Document doc = initializeDoc(XMLFile);
 			clean(doc.getDocumentElement().getParentNode());
-			NodeList parameterChildren = initializeNodeList(doc, "parameter");
-			readParameters(parameterChildren);
-			checkParameters(myParameters);
-			NodeList gridChildren = initializeNodeList(doc, "grid");
-			createGrid(gridChildren);
-			readGrid(gridChildren);
-			checkGrid(myGrid);
+			if(doc.getDocumentElement().getParentNode().toString().equals("simulation")){
+				readSimFile(doc);
+			}
+			else{
+				readStyleFile(doc);
+			}
+			
 			
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Reads the style file document
+	 * Puts all style elements in the parameters map
+	 * Might have to be changed to pull style elements in their own style map
+	 * @param doc
+	 */
+	private void readStyleFile(Document doc) {
+		NodeList styleChildren = initializeNodeList(doc, "style");
+		readParameters(styleChildren);
+	}
+
+	private void readSimFile(Document doc) {
+		NodeList parameterChildren = initializeNodeList(doc, "parameter");
+		readParameters(parameterChildren);
+		checkParameters(myParameters);
+		NodeList gridChildren = initializeNodeList(doc, "grid");
+		createGrid(gridChildren);
+		readGrid(gridChildren);
+		checkGrid(myGrid);
 	}
 
 	/**
@@ -81,7 +102,6 @@ public class XMLParser {
 		}	
 	}
 
-
 	/**
 	 * Method to check file extension name
 	 * Maybe make this a try/catch situation
@@ -109,6 +129,7 @@ public class XMLParser {
 
 	/**
 	 * Read in the parameters Put them in the HashMap
+	 * Also used to read in the parameters in the style sheet
 	 */
 	private void readParameters(NodeList parameterChildren) {
 		for (int i = 0; i < parameterChildren.getLength(); i++) {
