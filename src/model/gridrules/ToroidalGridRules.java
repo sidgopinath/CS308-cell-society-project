@@ -12,13 +12,13 @@ public class ToroidalGridRules extends GridRules{
         if(x<0){
             x = grid[0].length-1;
         }
-        if(x>=grid[0].length){
+        if(x>=grid[0].length-1){
             x = 0;
         }
         if(y<0){
-            y=grid.length;
+            y=grid.length-1;
         }
-        if(y>=grid.length){
+        if(y>=grid.length-1){
             y=0;
         }
         list.add(grid[y][x]);

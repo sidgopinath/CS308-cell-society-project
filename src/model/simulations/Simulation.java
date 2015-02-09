@@ -1,5 +1,7 @@
 package model.simulations;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import javafx.scene.paint.Color;
 import model.cells.Cell;
@@ -41,6 +43,7 @@ public abstract class Simulation {
         gridWidth = cellGrid.length;
         myCellFactory = getCellFactory();
         myView.initSimView(gridWidth, gridLength);
+        fillPatchGrid();
         setupGrid(cellGrid);
     }
 
@@ -123,6 +126,17 @@ public abstract class Simulation {
         myView.updateScreen(colorGrid);
     }
 
+    void updateNeighbors(){
+        for(int j = 0; j < gridWidth; j++){
+            for(int i = 0 ; i < gridLength; i++){
+                List<Cell> neighbors = new ArrayList<>();
+                for(Patch neighbor: myPatchGrid[j][i].getNeighbors()){
+                    neighbors.add(neighbor.getCell());
+                }
+                myPatchGrid[j][i].getCell().setNeighbors(neighbors);
+            }
+        }
+    }
 }
 
 

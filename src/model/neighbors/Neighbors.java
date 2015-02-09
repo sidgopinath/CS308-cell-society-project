@@ -17,7 +17,7 @@ public abstract class Neighbors {
 
     public void topRight(Patch[][]grid, int x, int y, GridRules rules,
                          List<Patch> neighbors){
-        if(x == grid[0].length || y == 0){
+        if(x == grid[0].length-1 || y == 0){
             rules.handleEdges(grid, x+1, y-1, neighbors);
         } else{
             neighbors.add(grid[y-1][x+1]);
@@ -35,7 +35,7 @@ public abstract class Neighbors {
 
     public void Right(Patch[][] grid, int x, int y, GridRules rules,
                       List<Patch> neighbors){
-        if(x== grid[0].length){
+        if(x== grid[0].length-1){
             rules.handleEdges(grid, x+1, y, neighbors);
         } else{
             neighbors.add(grid[y][x+1]);
@@ -53,7 +53,7 @@ public abstract class Neighbors {
 
     public void bottomRight(Patch[][] grid, int x, int y, GridRules rules,
                             List<Patch> neighbors){
-        if(x==grid[0].length || y == grid.length){
+        if(x==grid[0].length -1|| y == grid.length-1){
             rules.handleEdges(grid, x+1, y+1, neighbors);   
         }else{
             neighbors.add(grid[y+1][x+1]);
@@ -62,7 +62,7 @@ public abstract class Neighbors {
 
     public void bottomLeft(Patch[][] grid, int x, int y, GridRules rules,
                             List<Patch> neighbors){
-        if(x==0 || y == grid.length){
+        if(x==0 || y == grid.length-1){
             rules.handleEdges(grid, x-1, y+1, neighbors);
         }else{
             neighbors.add(grid[y+1][x-1]);
@@ -80,7 +80,7 @@ public abstract class Neighbors {
     
     public void Down(Patch[][] grid, int x, int y, GridRules rules,
                      List<Patch> neighbors){
-        if(y==grid.length){
+        if(y==grid.length-1){
             rules.handleEdges(grid, x, y+1, neighbors);
         } else{
             neighbors.add(grid[y+1][x]);

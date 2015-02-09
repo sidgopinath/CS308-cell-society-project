@@ -31,4 +31,8 @@ public class Patch {
         myNeighbors = neighbors;
     }
     
+    public List<Patch> getNeighbors(){
+        return myNeighbors;
+    }
+    
 }

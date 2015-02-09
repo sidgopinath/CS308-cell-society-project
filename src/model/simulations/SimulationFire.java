@@ -40,16 +40,16 @@ public class SimulationFire extends Simulation {
             for(int i = 0 ; i < gridLength; i++){
                 List<Cell> neighbors = new ArrayList<>();
                 if(i + 1 < gridLength){
-                    neighbors.add(myGrid[j][i + 1]);
+                    neighbors.add(myPatchGrid[j][i + 1]);
                 }
                 if(i - 1 >= 0){
-                    neighbors.add(myGrid[j][i - 1]);
+                    neighbors.add(myPatchGrid[j][i - 1]);
                 }
                 if(j + 1 < gridWidth){
-                    neighbors.add(myGrid[j + 1][i]);
+                    neighbors.add(myPatchGrid[j + 1][i]);
                 }
                 if(j - 1 >= 0){
-                    neighbors.add(myGrid[j - 1][i]);
+                    neighbors.add(myPatchGrid[j - 1][i]);
                 }
                 myGrid[j][i].setNeighbors(neighbors);
             }

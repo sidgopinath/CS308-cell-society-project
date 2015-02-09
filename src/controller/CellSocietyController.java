@@ -202,7 +202,7 @@ public class CellSocietyController {
 			
 		}
 		else if(simName.equals(myProperties.getObject("predator_simulation_name"))){
-			myCurrentSimulation = new SimulationPredator(myParameters, myStyles, myGrid, myCurrentSimulationScreen);
+			myCurrentSimulation = new SimulationPredator(myParameters, myStyles  , myGrid, myCurrentSimulationScreen);
 		}
 	}
 
