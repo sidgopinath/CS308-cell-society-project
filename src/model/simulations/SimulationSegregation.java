@@ -24,8 +24,10 @@ public class SimulationSegregation extends Simulation {
     private Random myRandom;
 	private double mySatisfaction;
 
-    public SimulationSegregation(Map<String, String> paramMap, Integer[][] grid, SimulationScreen simScreen) {
-        super(paramMap, grid, simScreen);
+    public SimulationSegregation(Map<String, String> paramMap,
+                                 Map<String,String> styleMap,
+                                 Integer[][] grid, SimulationScreen simScreen) {
+        super(paramMap, styleMap,grid, simScreen);
         myRandom = new Random();
     }
 

@@ -37,6 +37,7 @@ public class PredatorCellFish extends PredatorCell{
         if(movableNeighbors.isEmpty()){
             return this;
         }
+        System.out.println("Fish is moving");
         Random squareChoice = new Random();
         Cell moveTo = 
                 movableNeighbors.get(squareChoice.nextInt(movableNeighbors.size()));

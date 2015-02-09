@@ -24,9 +24,10 @@ public class SimulationPredator extends Simulation {
     private int breedingPeriod;
     private boolean[][] movedGrid;
 
-    public SimulationPredator(Map<String,String> paramMap,Integer[][] initGrid,
+    public SimulationPredator(Map<String,String> paramMap,
+                              Map<String,String> styleMap,Integer[][] initGrid,
                               SimulationScreen simscreen){
-        super(paramMap, initGrid, simscreen);
+        super(paramMap, styleMap,initGrid, simscreen);
         for(int i=0; i<gridWidth; i++){
             for(int j=0; j < gridLength; j++){
                 myGrid[i][j].setCoords(j, i);

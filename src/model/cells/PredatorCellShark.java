@@ -56,6 +56,7 @@ public class PredatorCellShark extends PredatorCell{
             moveTo = edibleList.get(squareGenerator.nextInt(edibleList.size()));
         } else if(!movableList.isEmpty()){
             moveTo = movableList.get(squareGenerator.nextInt(movableList.size()));
+            System.out.println("I am moving to a blank space?");
         } else{
             return this;
         }
