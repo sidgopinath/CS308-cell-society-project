@@ -1,15 +1,15 @@
 package model.simulations;
 
 import java.util.Map;
-
+import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 import view.SimulationScreen;
 
 public class SimulationSugarscape extends Simulation {
 
-	public SimulationSugarscape(Map<String, String> paramMap, Integer[][] grid,
+	public SimulationSugarscape(Map<String, String> paramMap, Map<String,String> styleMap,
+	                            Integer[][] grid,
 			SimulationScreen simScreen) {
-		super(paramMap, grid, simScreen);
-		// TODO Auto-generated constructor stub
+		super(paramMap, styleMap, grid, simScreen);
 	}
 
 	@Override
@@ -18,17 +18,6 @@ public class SimulationSugarscape extends Simulation {
 		
 	}
 
-	@Override
-	void setupGrid() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	void fillGrid(Integer[][] grid) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void updateGrid() {
@@ -41,5 +30,16 @@ public class SimulationSugarscape extends Simulation {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+    public String patchType(){
+	    return "Sugar";
+	}
+
+    @Override
+    AbstractCellFactory getCellFactory () throws ValueException {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }
