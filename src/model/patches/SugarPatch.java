@@ -7,7 +7,7 @@ public class SugarPatch extends Patch {
     }
     
     public void initialSugar(int x){
-        myPatchPropertyMap.put("sugar", x);
+       // myPatchPropertyMap.put("sugar", x);
     }
 
 }

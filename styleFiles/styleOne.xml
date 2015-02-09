@@ -8,7 +8,7 @@
 		<edgeType>finite</edgeType>
 		<emptyCellColor>white</emptyCellColor>
 		<gridOutline>yes</gridOutline>
-		<neighbors>cardinal</neighbors>
+		<neighbors>all</neighbors>
 	</parameter>
 	
 </style>

@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -47,7 +46,7 @@ public class CellSocietyController {
 	public CellSocietyController(int width, int height, Stage stage) {
 		myStage = stage;
 		displaySplashScreen(width, height);
-		myScene = new Scene((Parent) myGroup, width, height, Color.WHITE);
+		myScene = new Scene(myGroup, width, height, Color.WHITE);
 		myProperties = ResourceBundle.getBundle("resources/resources");
 	}
 
@@ -96,11 +95,15 @@ public class CellSocietyController {
 	public void generateRandomGrid(int gridHeight, int gridWidth, String simName){
 		RandomSimGenerator rsg = new RandomSimGenerator(gridHeight, gridWidth, simName);
 		myGrid = rsg.getGrid();
+		myParameters = rsg.getParameters();
 		transitionToSimulation();
 	}
 	
 	public void generateProbabilityRandomGrid(int gridHeight, int gridWidth, String simName, HashMap<Integer, Integer> probabilities){
-		
+		ProbabilitySimGenerator psg = new ProbabilitySimGenerator(gridHeight, gridWidth, simName, probabilities);
+		myGrid = psg.getGrid();
+		myParameters = psg.getParameters();
+		transitionToSimulation();
 	}
 	
 	/**
@@ -216,8 +219,6 @@ public class CellSocietyController {
 	 */
 	private void initializeSimulation(String simName) throws ValueException {
 		if (simName.equals(myProperties.getObject("fire_simulation_name"))) {
-			System.out.println("fire");
-			System.out.println(myGrid[0][1] + " " + myGrid[0][2] + " " + myGrid[0][3]);
 			myCurrentSimulation = new SimulationFire(myParameters, myStyles, myGrid, myCurrentSimulationScreen);	
 		}
 		else if(simName.equals(myProperties.getObject("segregation_simulation_name"))){
@@ -238,11 +239,11 @@ public class CellSocietyController {
 	 * @param stopStart
 	 */
 	public void stopOrStart(boolean stopStart) {
-		if(stopStart == false){
-			pauseSimulation();
+		if(stopStart){
+			restartSimulation();
 		}
 		else{
-			restartSimulation();
+			pauseSimulation();
 		}
 	}
 

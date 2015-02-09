@@ -35,8 +35,7 @@ public class SimulationSegregation extends Simulation {
     		paramMap.put("satisfaction", "0.3");
     		System.out.println("No satisfaction value. Using default.");
     		parseMap(paramMap);	
-    	}
-        
+    	}      
     }
 
     @Override
@@ -61,7 +60,7 @@ public class SimulationSegregation extends Simulation {
             if (myPatchGrid[rColumn][rRow].getCell().viewProperties().get("empty").intValue() == 1) {
                 myPatchGrid[rColumn][rRow].setCell(clone);
                 myPatchGrid[j][i].setCell(new AgentCellEmpty(myPatchGrid[rColumn][rRow].getCell().
-                                                             viewProperties().get("satisfactionRate").intValue()));
+                                                             viewProperties().get("satisfactionRate")));
                 break;
             }
             if (count > SAFE_GUARD) {
@@ -71,15 +70,6 @@ public class SimulationSegregation extends Simulation {
             count++;
         }
     }
-
-//    // http://stackoverflow.com/questions/1686425/copy-a-2d-array-in-java
-//    private Cell[][] getMyGridClone() {
-//        Cell[][] clone = new Cell[gridWidth][];
-//        for (int j = 0; j < gridWidth; j++) {
-//        	clone[j] = myGrid[j].clone();
-//        }
-//        return clone;
-//    }
 
     @Override
     AbstractCellFactory getCellFactory () {

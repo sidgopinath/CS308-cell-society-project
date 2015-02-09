@@ -35,10 +35,8 @@ public class XMLParser {
 			if (doc.getDocumentElement().getNodeName().equals("simulation")) {
 				readSimFile(doc);
 			} else {
-				System.out.println("style");
 				readStyleFile(doc);
 			}
-
 		} catch (InvalidParameterException e) {
 			throw new InvalidParameterException();
 		} catch (Exception e) {
@@ -94,8 +92,6 @@ public class XMLParser {
 	/**
 	 * Read in the parameters Put them in the HashMap Also used to read in the
 	 * parameters in the style sheet
-	 * TEMPORARY FIX IN THE IF STATEMENTS
-	 * REFACTOR
 	 */
 	private void readParameters(NodeList parameterChildren)
 			throws InvalidParameterException {

@@ -2,13 +2,14 @@ package model.simulations;
 
 import java.util.Map;
 
+import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 import view.SimulationScreen;
 
 public class SimulationSlimeMold extends Simulation {
 
 	public SimulationSlimeMold(Map<String, String> paramMap, Integer[][] grid,
 			SimulationScreen simScreen) {
-		super(paramMap, grid, simScreen);
+		super(paramMap, paramMap, grid, simScreen);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -18,17 +19,6 @@ public class SimulationSlimeMold extends Simulation {
 		
 	}
 
-	@Override
-	void setupGrid() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	void fillGrid(Integer[][] grid) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void updateGrid() {
@@ -40,6 +30,12 @@ public class SimulationSlimeMold extends Simulation {
 	void updateColorGrid() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	AbstractCellFactory getCellFactory() throws ValueException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

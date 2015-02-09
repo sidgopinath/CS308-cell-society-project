@@ -24,7 +24,6 @@ public abstract class Simulation {
      * 
      * @author Janan
      */
-    //    protected Patch[][] myGrid;
     protected SimulationScreen myView;
     protected int gridLength;
     protected int gridWidth;
@@ -98,14 +97,6 @@ public abstract class Simulation {
     public String patchType(){
         return "";
     }
-//    void fillPatchGrid(){
-//        myGrid = new Patch[gridWidth][gridLength];
-//        for(int i=0; i<gridWidth; i++){
-//            for(int j=0; j<gridLength; j++){
-//                myGrid[i][j] = new Patch();
-//            }
-//        }
-//    }
 
     /**
      * Reads parameter map from XML file and sets instance variables accordingly
@@ -162,5 +153,3 @@ public abstract class Simulation {
         myPatchGrid[row][column].getCell().setNeighbors(neighbors);
     }
 }
-
-

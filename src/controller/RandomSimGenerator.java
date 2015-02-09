@@ -25,13 +25,16 @@ public class RandomSimGenerator {
 	public Integer[][] getGrid() {
 		return myGrid;
 	}
+	
+	public HashMap<String, String> getParameters(){
+		return myParameters;
+	}
 
 	private void createGrid(Integer[][] grid) {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[0].length; j++) {
 				if (mySimName.equals(myProperties
 						.getObject("fire_simulation_name"))) {
-					
 					grid[i][j] = myRandom.nextInt(3);
 				} else if (mySimName.equals(myProperties
 						.getObject("segregation_simulation_name"))) {
