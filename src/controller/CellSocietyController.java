@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
@@ -34,6 +35,7 @@ public class CellSocietyController {
 	private Scene myScene;
 	private Group myGroup;
 	private HashMap<String, String> myParameters = new HashMap<String, String>();
+	private Map<String, String> myStyles = new HashMap<String, String>();
 	private Integer myGrid[][];
 	private int myFrameRate;
 	private Timeline myTimeline;
@@ -85,10 +87,26 @@ public class CellSocietyController {
 	 */
 	private void readXML(File XMLFile) {
 		XMLParser newParser = new XMLParser(XMLFile);
-		myGrid = newParser.getGrid();
-		myParameters = newParser.getParameters();
-		//XMLWriter writer = new XMLWriter(myParameters, myGrid);
-		transitionToSimulation();
+		if(newParser.getGrid() != null){
+			myGrid = newParser.getGrid();
+			myParameters = newParser.getParameters();
+			transitionToSimulation();
+		}
+		else{
+			myStyles = newParser.getParameters();
+		}
+		//XMLWriter writer = new XMLWriter(myParameters, myGrid); //proof that writer works
+		
+	}
+	
+	/**
+	 * GETTER! BAD!
+	 * Returns style map. Might be changed later
+	 * Style map could be passed into classes that need it
+	 * @return
+	 */
+	public Map<String, String> getStyles(){
+		return myStyles;
 	}
 
 	/**
@@ -103,7 +121,7 @@ public class CellSocietyController {
 		File inputFile = fileLoaderScreen.getFile();
 		readXML(inputFile);
 	}
-
+	
 	/**
 	 * Steps through simulation one frame at a time.
 	 * Lags a bit before performing the step...
@@ -151,6 +169,7 @@ public class CellSocietyController {
 	 * Called after the XML file has been made. Transitions to new simulation
 	 */
 	private void transitionToSimulation() {
+		System.out.println(myStyles);
 		initializeSimulationScreen();
 		initializeSimulation(myParameters.get("simName"));
 		stopOrStart(true);
@@ -168,23 +187,22 @@ public class CellSocietyController {
 
 	/**
 	 * Initializes the model
-	 * Potential spot to refactor
 	 * @param simName
 	 */
 	private void initializeSimulation(String simName) {
 		if (simName.equals(myProperties.getObject("fire_simulation_name"))) {
-			myCurrentSimulation = new SimulationFire(myParameters, myGrid, myCurrentSimulationScreen);	
+			myCurrentSimulation = new SimulationFire(myParameters, myStyle, myGrid, myCurrentSimulationScreen);	
 		}
 		else if(simName.equals(myProperties.getObject("segregation_simulation_name"))){
-			myCurrentSimulation = new SimulationSegregation(myParameters, myGrid,myCurrentSimulationScreen);
+			myCurrentSimulation = new SimulationSegregation(myParameters, myStyle, myGrid,myCurrentSimulationScreen);
 			
 		}
 		else if(simName.equals(myProperties.getObject("life_simulation_name"))){
-			myCurrentSimulation = new SimulationLife(myParameters, myGrid, myCurrentSimulationScreen);
+			myCurrentSimulation = new SimulationLife(myParameters, myStyle, myGrid, myCurrentSimulationScreen);
 			
 		}
 		else if(simName.equals(myProperties.getObject("predator_simulation_name"))){
-			myCurrentSimulation = new SimulationPredator(myParameters, myGrid, myCurrentSimulationScreen);
+			myCurrentSimulation = new SimulationPredator(myParameters, myStyle, myGrid, myCurrentSimulationScreen);
 		}
 	}
 

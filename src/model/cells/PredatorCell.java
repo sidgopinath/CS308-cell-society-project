@@ -11,28 +11,25 @@ import javafx.scene.paint.Color;
  *
  */
 
-public abstract class PredatorCell{
+public abstract class PredatorCell extends Cell{
 
 
     private int myBreedingPeriod;
     private int currentBreeding;
     private List<PredatorCell> myPredatorNeighbors;
-    private int myX;
-    private int myY;
 
     
-    public PredatorCell (int breedingPeriod, int xCoord, int yCoord) {
+    public PredatorCell (int breedingPeriod) {
         myBreedingPeriod = breedingPeriod;
         currentBreeding = breedingPeriod;
-        myX = xCoord;
-        myY = yCoord;
     }
     
     /**
      * Updates myNeighbors with the current state of the neighbors of the cell in the grid
      * @param neighbors
      */
-    public void updateNeighbors(List<PredatorCell> neighbors){
+    
+    public void setNeighbors(List<PredatorCell> neighbors){
         myPredatorNeighbors = neighbors;
     }
 
@@ -48,12 +45,9 @@ public abstract class PredatorCell{
      */
     public abstract PredatorCell moveSquareTo();
     
-    public abstract Color getColor();
     
     public PredatorCell moveSquare(){
         PredatorCell square = moveSquareTo();
-        myX = square.getX();
-        myY = square.getY();
         return square;
     }
     
@@ -63,7 +57,7 @@ public abstract class PredatorCell{
      * available to breed.
      */
     public PredatorCell breedSquare(){
-        return getChildSquare(this.getX(),this.getY(), myBreedingPeriod);
+        return getChildSquare(myBreedingPeriod);
     };
     
     /*
@@ -87,8 +81,7 @@ public abstract class PredatorCell{
     /*
      * Returns a new square that should be placed in the grid as a result of breeding
      */
-    public abstract PredatorCell getChildSquare(int x, int y, 
-                                                  int breedingPeriod);
+    public abstract PredatorCell getChildSquare(int breedingPeriod);
     
     
     /*
@@ -103,13 +96,6 @@ public abstract class PredatorCell{
         return myPredatorNeighbors;
     }
     
-    public int getX(){
-        return myX;
-    }
-    
-    public int getY(){
-        return myY;
-    }
     
     /*
      * Returns whether or not cell is edible by another shark
@@ -119,24 +105,4 @@ public abstract class PredatorCell{
      * Returns whether or not cell can be moved to
      */
     public abstract boolean isMovable();
-
-    @Override
-    public int hashCode () {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + myX;
-        result = prime * result + myY;
-        return result;
-    }
-
-    @Override
-    public boolean equals (Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
-        PredatorCell other = (PredatorCell) obj;
-        if (myX != other.myX) return false;
-        if (myY != other.myY) return false;
-        return true;
-    }
 }

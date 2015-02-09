@@ -1,0 +1,3 @@
+We decided to refactor the section of code in SimulationLife and SimulationSegregation that has repeated code involving the iterating through the grid and updating the neighbors of each Cell. This section has a complicated conditional and it would be best to have that code only once in the Simulation superclass and we decided that this would be possible if we moved the whole method to the superclass. This involves a lot of changes to the inheritance hierarchy, including the creation of a long-needed Cell superclass and so currently the method is moved but the codebase is broken while we work on refactoring the inheritance hierarchy.
+
+Janan Zhu and Ruslan

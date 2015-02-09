@@ -1,9 +1,5 @@
 package model.cells;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javafx.scene.paint.Color;
 
 /**
  * This is the square superclass for the life simulation
@@ -13,31 +9,20 @@ import javafx.scene.paint.Color;
  *
  */
 
-public abstract class LifeCell {
+public abstract class LifeCell extends Cell{
+    protected static String returnCount = "returnCount";
 
-	protected List<LifeCell> myNeighbors;
+    public LifeCell(){
+    }
 
-	public LifeCell(List<LifeCell> neighbors){
-		myNeighbors = neighbors;
-	}
-	
-	public LifeCell(){
-	}
-	
-	public LifeCell update(){
-		int liveCount = 0;
-		for(LifeCell neighbor: myNeighbors){
-			liveCount += neighbor.returnCount();
-		}
-		return this.checkStatus(liveCount);
-	}
-	
-	public void setNeighbors(ArrayList<LifeCell> neighbors){
-		myNeighbors = neighbors;
-	}
-	
-	protected abstract int returnCount();
-	protected abstract LifeCell checkStatus(int alive);
-	public abstract Color getColor();
-	
+    public LifeCell update(){
+        int liveCount = 0;
+        for(Cell neighbor: myNeighbors){
+            liveCount += neighbor.viewProperties().get(returnCount);
+        }
+        return this.checkStatus(liveCount);
+    }
+
+    protected abstract LifeCell checkStatus(int alive);
+
 }

@@ -1,18 +1,14 @@
 package model.simulations;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-import model.cells.FireCell;
-import model.cells.FireCellBurning;
-import model.cells.FireCellEmpty;
-import model.cells.FireCellTree;
-import javafx.scene.paint.Color;
+import model.cells.Cell;
 import view.SimulationScreen;
 
 public class SimulationFire extends Simulation {
 
-    private FireCell[][] myGrid;
     private int myProbCatch;
 
     public SimulationFire(Map<String,String> paramMap, Integer[][] grid, SimulationScreen simScreen){
@@ -21,8 +17,11 @@ public class SimulationFire extends Simulation {
 
     @Override
     void parseMap (Map<String, String> paramMap) {
-        myProbCatch = Integer.parseInt(paramMap.get("probCatch"));
-        
+        if(!paramMap.containsKey("probCatch") || paramMap.get("probCatch") == null){
+        	//throw exception
+        	
+        }
+    	myProbCatch = Integer.parseInt(paramMap.get("probCatch"));
     }
     @Override
     public void updateGrid() {
@@ -38,7 +37,7 @@ public class SimulationFire extends Simulation {
     void updateNeighbors() {
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
-                ArrayList<FireCell> neighbors = new ArrayList<>();
+                List<Cell> neighbors = new ArrayList<>();
                 if(i + 1 < gridLength){
                     neighbors.add(myGrid[j][i + 1]);
                 }
@@ -56,41 +55,8 @@ public class SimulationFire extends Simulation {
         }
     }
 
-
     @Override
-    void updateColorGrid() {
-        Color[][] colorGrid = new Color[gridWidth][gridLength];
-        for(int j = 0; j < gridWidth; j++){
-            for(int i = 0; i < gridLength; i++){
-                if(myGrid[j][i] == null){
-                    System.out.println(true);
-                }
-                colorGrid[j][i] = myGrid[j][i].getColor();
-            }
-        }
-        myView.updateScreen(colorGrid);
-    }
-
-    @Override
-    void fillGrid(Integer[][] grid) {
-        for(int j = 0; j < gridWidth; j++){
-            for(int i = 0 ; i < gridLength; i++){
-                if(grid[j][i] == 0){
-                    myGrid[j][i] = new FireCellEmpty();
-                }
-                if(grid[j][i] == 1){
-                    myGrid[j][i] = new FireCellTree();
-                }
-                if(grid[j][i] == 2){
-                    myGrid[j][i] = new FireCellBurning(myProbCatch);
-                }
-            }
-        }
-        updateColorGrid();
-    }
-
-    @Override
-    void setupGrid(){
-        myGrid = new FireCell[gridWidth][gridLength];
+    AbstractCellFactory getCellFactory () {
+    	return new FireCellFactory(myProbCatch);
     }
 }

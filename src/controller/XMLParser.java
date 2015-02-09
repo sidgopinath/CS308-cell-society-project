@@ -14,8 +14,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
- * This is the XML parser class called by the controller
- * It reads in an xml file in the specified format and outputs the grid and parameter hashmap
+ * This is the XML parser class called by the controller It reads in an xml file
+ * in the specified format and outputs the grid and parameter hashmap
+ * 
  * @author Sid
  *
  */
@@ -27,21 +28,96 @@ public class XMLParser {
 
 	public XMLParser(File XMLFile) {
 		try {
+			checkFileExtension(XMLFile);
 			Document doc = initializeDoc(XMLFile);
 			clean(doc.getDocumentElement().getParentNode());
-			NodeList parameterChildren = initializeNodeList(doc, "parameter");
-			readParameters(parameterChildren);
-			NodeList gridChildren = initializeNodeList(doc, "grid");
-			createGrid(gridChildren);
-			readGrid(gridChildren);
-		}
-		catch (Exception e) {
+			if (doc.getDocumentElement().getNodeName().equals("simulation")) {
+				readSimFile(doc);
+			} else {
+				readStyleFile(doc);
+			}
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	/**
+	 * Reads the style file document Puts all style elements in the parameters
+	 * map Might have to be changed to pull style elements in their own style
+	 * map
+	 * 
+	 * @param doc
+	 */
+	private void readStyleFile(Document doc) {
+		NodeList styleChildren = initializeNodeList(doc, "parameter");
+		readParameters(styleChildren);
+	}
+
+	private void readSimFile(Document doc) {
+		NodeList parameterChildren = initializeNodeList(doc, "parameter");
+		readParameters(parameterChildren);
+		checkParameters(myParameters);
+		NodeList gridChildren = initializeNodeList(doc, "grid");
+		createGrid(gridChildren);
+		readGrid(gridChildren);
+		checkGrid(myGrid);
+	}
+
+	/**
+	 * Checks grid width and height against input grid Prints out error message
+	 * and exits Perhaps IMPLEMENT try/catch stuff here?
+	 * 
+	 * @param grid
+	 */
+	private void checkGrid(Integer[][] grid) {
+		if (grid.length != Integer.parseInt(myParameters.get("gridHeight"))) {
+			System.out.println("Grid height doesn't match input grid.");
+			System.exit(0);
+		}
+		for (int i = 0; i < grid.length; i++) {
+			if (grid[i].length != Integer.parseInt(myParameters
+					.get("gridWidth"))) {
+				System.out.println("Grid width doesn't match input grid.");
+				System.exit(0);
+			}
+		}
+	}
+
+	/**
+	 * IMPLEMENT TRY/CATCH STUFF HERE? Checks if sim type is there Could add on
+	 * more to check if appropriate parameters exist for each sim type Might
+	 * make a separate class to dot hat?
+	 * 
+	 * @param paramMap
+	 */
+	private void checkParameters(HashMap<String, String> paramMap) {
+		if (!paramMap.containsKey("simName")) {
+			System.out.println("No sim type found");
+			System.exit(0);
+		} else if (paramMap.get("simName") == null) {
+			System.out.println("Sim type is null");
+			System.exit(0);
+		}
+	}
+
+	/**
+	 * Method to check file extension name Maybe make this a try/catch situation
+	 * Or make it throw an exception? Not sure how this would work exactly
+	 * 
+	 * @param xmlFile
+	 */
+	private void checkFileExtension(File xmlFile) {
+		String file = xmlFile.getName();
+		if (!(file.endsWith("xml"))) {
+			System.out.println("Invalid file format. Exiting program.");
+			System.exit(0);
+		}
+	}
+
+	/**
 	 * Initialize grid size
+	 * 
 	 * @param gridChildren
 	 */
 	private void createGrid(NodeList gridChildren) {
@@ -52,7 +128,8 @@ public class XMLParser {
 	}
 
 	/**
-	 * Read in the parameters Put them in the HashMap
+	 * Read in the parameters Put them in the HashMap Also used to read in the
+	 * parameters in the style sheet
 	 */
 	private void readParameters(NodeList parameterChildren) {
 		for (int i = 0; i < parameterChildren.getLength(); i++) {
@@ -63,10 +140,11 @@ public class XMLParser {
 	}
 
 	/**
-	 * Method that cleans white space and stray characters out of XML file
-	 * Taken from:
+	 * Method that cleans white space and stray characters out of XML file Taken
+	 * from:
 	 * http://stackoverflow.com/questions/978810/how-to-strip-whitespace-only
 	 * -text-nodes-from-a-dom-before-serialization/16285664#16285664
+	 * 
 	 * @param node
 	 */
 	public static void clean(Node node) {

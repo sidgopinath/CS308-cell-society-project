@@ -1,14 +1,12 @@
 package model.simulations;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import model.cells.AgentCell;
 import model.cells.AgentCellEmpty;
-import model.cells.AgentCellO;
-import model.cells.AgentCellX;
-import javafx.scene.paint.Color;
+import model.cells.Cell;
 import view.SimulationScreen;
 
 /**
@@ -20,7 +18,6 @@ import view.SimulationScreen;
 public class SimulationSegregation extends Simulation {
 
     private static final int SAFE_GUARD = 1000;
-    private AgentCell[][] myGrid;
     private Random myRandom;
 	private double mySatisfaction;
 
@@ -31,32 +28,17 @@ public class SimulationSegregation extends Simulation {
 
     @Override
     void parseMap (Map<String, String> paramMap) {
-        mySatisfaction = Double.parseDouble(paramMap.get("satisfaction"));
-        
-    }
-    
-    @Override
-    void fillGrid(Integer[][] grid) {
-        for (int j = 0; j < gridWidth; j++) {
-            for (int i = 0; i < gridLength; i++) {
-                if(grid[j][i] == 0){
-                    myGrid[j][i] = new AgentCellEmpty(mySatisfaction);
-                }
-                else if(grid[j][i] == 1){
-                    myGrid[j][i] = new AgentCellO(mySatisfaction);
-                }
-                else if(grid[j][i] == 2){
-                    myGrid[j][i] = new AgentCellX(mySatisfaction);
-                }
-            }
+    	if(!paramMap.containsKey("satisfaction") || paramMap.get("satisfaction") == null){
+        	//throw exception
         }
-        updateColorGrid();
+    	mySatisfaction = Double.parseDouble(paramMap.get("satisfaction"));
+        
     }
 
     void updateNeighbors() {
         for (int j = 0; j < gridWidth; j++) {
             for (int i = 0; i < gridLength; i++) {
-                ArrayList<AgentCell> neighbors = new ArrayList<>();
+                List<Cell> neighbors = new ArrayList<Cell>();
                 if(i + 1 < gridLength){
                     neighbors.add(myGrid[j][i + 1]);
                 }
@@ -89,10 +71,11 @@ public class SimulationSegregation extends Simulation {
     @Override
     public void updateGrid() {
         updateNeighbors();
-        AgentCell[][] clone = getMyGridClone();
+        Cell[][] clone = myGrid;
         for (int j = 0; j < clone.length; j++) {
             for (int i = 0; i < clone[0].length; i++) {
-                if (!clone[j][i].isSatisfied()) {
+            	clone[j][i].update();
+                if ((clone[j][i].viewProperties().get("satisfied").intValue()) != 1) {
                     moveAgent(j, i, clone[j][i]);
                 }
             }
@@ -100,18 +83,14 @@ public class SimulationSegregation extends Simulation {
         updateColorGrid();
     }
 
-    private void moveAgent(int j, int i, AgentCell agent) {
-        // could be dangerous, might want to add safeguard
+    private void moveAgent(int j, int i, Cell clone) {
         int count = 0;
         while (true) {
             int rColumn = myRandom.nextInt(gridWidth);
             int rRow = myRandom.nextInt(gridLength);
-            if (myGrid[rColumn][rRow].isEmpty()) {
-                //				System.out.println("rColumn: " + rColumn);
-                //				System.out.println("rRow: " + rRow);
-                //				System.out.println("moved one agent");
-                myGrid[rColumn][rRow] = agent;
-                myGrid[j][i] = new AgentCellEmpty();
+            if (myGrid[rColumn][rRow].viewProperties().get("empty").intValue() == 1) {
+                myGrid[rColumn][rRow] = clone;
+                myGrid[j][i] = new AgentCellEmpty(myGrid[rColumn][rRow].viewProperties().get("satisfactionRate").intValue());
                 break;
             }
             if (count > SAFE_GUARD) {
@@ -120,31 +99,19 @@ public class SimulationSegregation extends Simulation {
             }
             count++;
         }
-
     }
 
-    // http://stackoverflow.com/questions/1686425/copy-a-2d-array-in-java
-    private AgentCell[][] getMyGridClone() {
-        AgentCell[][] clone = new AgentCell[gridWidth][];
-        for (int j = 0; j < gridWidth; j++) {
-            clone[j] = myGrid[j].clone();
-        }
-        return clone;
-    }
+//    // http://stackoverflow.com/questions/1686425/copy-a-2d-array-in-java
+//    private Cell[][] getMyGridClone() {
+//        Cell[][] clone = new Cell[gridWidth][];
+//        for (int j = 0; j < gridWidth; j++) {
+//        	clone[j] = myGrid[j].clone();
+//        }
+//        return clone;
+//    }
 
     @Override
-    void updateColorGrid() {
-        Color[][] colorGrid = new Color[gridWidth][gridLength];
-        for(int j = 0; j < gridWidth; j++){
-            for(int i = 0 ; i < gridLength; i++){
-                colorGrid[j][i] = myGrid[j][i].getColor();
-            }
-        }
-        myView.updateScreen(colorGrid);
-    }
-
-    @Override
-    void setupGrid() {
-        myGrid = new AgentCell[gridWidth][gridLength];
+    AbstractCellFactory getCellFactory () {
+        return new AgentCellFactory(mySatisfaction);
     }
 }
