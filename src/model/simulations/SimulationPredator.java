@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
+import model.cells.Cell;
 import model.cells.PredatorCell;
 import model.cells.PredatorCellEmpty;
 import model.cells.PredatorCellFish;
@@ -22,13 +22,17 @@ import javafx.scene.paint.Color;
 public class SimulationPredator extends Simulation {
     private int sharkLife;
     private int breedingPeriod;
-    //TODO: fix alreadyMoved so as to not require the X and Y coordinates
-    private Set<PredatorCell> alreadyMoved = new HashSet<PredatorCell>();
-
+    private boolean[][] movedGrid;
 
     public SimulationPredator(Map<String,String> paramMap,Integer[][] initGrid,
                               SimulationScreen simscreen){
         super(paramMap, initGrid, simscreen);
+        for(int i=0; i<gridWidth; i++){
+            for(int j=0; j < gridLength; j++){
+                myGrid[i][j].setCoords(j, i);
+            }
+        }
+        movedGrid = new boolean[gridWidth][gridLength];
     }
 
     public void parseMap(Map<String,String> paramMap){
@@ -36,88 +40,88 @@ public class SimulationPredator extends Simulation {
         sharkLife = Integer.parseInt(paramMap.get("sharkLife"));
     }
 
-    //TODO: need to rewrite completely with patches
-    public void move(PredatorCell square,int x, int y){
-        PredatorCell childSquare = square.breedSquare();
-        PredatorCell moveTo = square.moveSquare();
-        if(square.equals(moveTo)){
-            return;
-        }
-        grid[moveTo.getY()][moveTo.getX()] = square;
-        if(!square.isBreeding()){
-            grid[y][x] = new PredatorCellEmpty(-1);
-        } else{
-            grid[y][x] = childSquare;
-        }
-        alreadyMoved.add(square);
-        alreadyMoved.add(grid[y][x]);
-    }
-
     /*
      * Update grid at step and updates corresponding view
      */
     public void updateGrid(){
-        for(int row = 0; row < gridWidth; row++){
-            for(int column=0;column<gridLength;column++){
-                PredatorCell currentSquare = grid[row][column];
-                if(!alreadyMoved.contains(currentSquare)){
-                    currentSquare.updateSquare();
+        for(int row=0; row<gridWidth; row++){
+            for(int column=0; column<gridLength;column++){
+                movedGrid[row][column] = false;
+            }
+        }
 
-                    //Check if need to starve shark
-                    if(currentSquare.hasStarved()){
-                        grid[row][column] = new PredatorCellEmpty(-1);
-                        continue;
+        for(int row = 0; row < gridWidth; row++){
+            for(int column=0; column<gridLength;column++){
+                if(!movedGrid[row][column]){
+                    Cell currentSquare = myGrid[row][column];
+                    updateNeighborSquare(currentSquare, row, column);
+                    Cell updateSquare = currentSquare.update();
+                    //Check if currentSquare moved as result of update
+                    if(!(currentSquare.getX() == column && currentSquare.getY() ==row)){
+                        movedGrid[currentSquare.getY()][currentSquare.getX()] = true;
+                        movedGrid[updateSquare.getY()][updateSquare.getX()] = true;
+                        
+                        myGrid[currentSquare.getY()][currentSquare.getX()] = currentSquare;
+                        
+                        //Check if need to breed
+                        if(currentSquare.viewProperties().get("myCurrentBreeding") != 0){
+                            myGrid[row][column] = new PredatorCellEmpty(-1);
+                            myGrid[row][column].setCoords(column, row);
+                        } else{
+                            myGrid[row][column] = updateSquare;
+                        }
+                        System.out.println("I went from row:" + row + " column: " + column);
+                        System.out.println("to row: " + currentSquare.getY()
+                                           + " column: " +currentSquare.getX()) ;
+                    }else{ //Cell had no space to move/starved
+                        myGrid[row][column] = updateSquare;
+                        movedGrid[row][column] = true;
                     }
-                    updateNeighborSquare(currentSquare,row,column);
-                    move(currentSquare,column,row);
                 } else{
                     continue;
                 }
             }
         }
-        alreadyMoved.clear();
         updateColorGrid();
-
     }
 
-    public void updateNeighborSquare(PredatorCell square, int row, int column){
-        PredatorCell up;
-        PredatorCell down;
-        PredatorCell left;
-        PredatorCell right;
+    public void updateNeighborSquare(Cell square, int row, int column){
+        Cell up;
+        Cell down;
+        Cell left;
+        Cell right;
         int i = row;
         int j = column;
         if(i==0){
-            up=grid[grid.length-1][j];
+            up=myGrid[gridWidth-1][j];
         }else{
-            up=grid[i-1][j];
+            up=myGrid[i-1][j];
         }
 
-        if(i==grid.length-1){
-            down = grid[0][j];
+        if(i==gridWidth-1){
+            down = myGrid[0][j];
         }else{
-            down = grid[i+1][j];
+            down = myGrid[i+1][j];
         }
 
         if(j==0){
-            left = grid[i][grid[0].length-1];
+            left = myGrid[i][gridLength-1];
         }else{
-            left = grid[i][j-1];
+            left = myGrid[i][j-1];
         }
 
-        if(j==grid[0].length-1){
-            right = grid[i][0];
+        if(j==gridLength-1){
+            right = myGrid[i][0];
         }else{
-            right = grid[i][j+1];
+            right = myGrid[i][j+1];
         }
-        List<PredatorCell> neighborList = new ArrayList<PredatorCell>();
+        List<Cell> neighborList = new ArrayList<Cell>();
         neighborList.add(up);
         neighborList.add(down);
         neighborList.add(left);
         neighborList.add(right);
         square.setNeighbors(neighborList);
     }
-
 
     @Override
     AbstractCellFactory getCellFactory () {

@@ -16,19 +16,21 @@ public class PredatorCellFish extends PredatorCell{
 
     public PredatorCellFish (int breedingPeriod) {
         super(breedingPeriod);
+        myPropertyMap.put(isMovable, (double) 0);
+        myPropertyMap.put(isEdible, (double) 1);
     }
 
     @Override
-    public void updateSquare () {
+    public Cell update() {
         super.decrementBreeding();
+        return moveSquareTo();
     }
     
     @Override
-    public PredatorCell moveSquareTo () {
-        List<PredatorCell> neighborList = super.getMyNeighbors();
-        List<PredatorCell> movableNeighbors = new ArrayList<PredatorCell>();
-        for(PredatorCell square: neighborList){
-            if(square.isMovable()){
+    public Cell moveSquareTo () {
+        List<Cell> movableNeighbors = new ArrayList<Cell>();
+        for(Cell square: myNeighbors){
+            if(square.viewProperties().get(isMovable) == 1){
                 movableNeighbors.add(square);
             }
         }
@@ -36,32 +38,15 @@ public class PredatorCellFish extends PredatorCell{
             return this;
         }
         Random squareChoice = new Random();
-        PredatorCell moveTo = 
+        Cell moveTo = 
                 movableNeighbors.get(squareChoice.nextInt(movableNeighbors.size()));
-        return moveTo;
+        this.setCoords(moveTo.getX(), moveTo.getY());
+        return this;
     }
 
-    @Override
-    public PredatorCell getChildSquare (int breedingPeriod) {
-        return new PredatorCellFish(breedingPeriod);
-    }
-    
-    @Override
-    public boolean isEdible () {
-        return true;
-    }
-
-    @Override
-    public boolean isMovable () {
-        return false;
-    }
 
     @Override
     public Color getColor () {
         return Color.GREEN;
     }
-
-
-
-
 }

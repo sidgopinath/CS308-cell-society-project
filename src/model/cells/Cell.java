@@ -29,6 +29,19 @@ public abstract class Cell {
         }
         return clonedMap;
     }
+    
+    public void setCoords(int x, int y){
+        myX = x;
+        myY = y;
+    }
+    
+    public int getX(){
+        return myX;
+    }
+    
+    public int getY(){
+        return myY;
+    }
     /*
      * Returns new cell 
      */

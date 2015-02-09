@@ -33,8 +33,8 @@ public abstract class Simulation {
         myView = simScreen;
         gridLength = grid[0].length;
         gridWidth = grid.length;
-        myCellFactory = getCellFactory();
         parseMap(paramMap);
+        myCellFactory = getCellFactory();
         myView.initSimView(gridWidth, gridLength);
         setupGrid(grid);
     }
