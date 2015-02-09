@@ -16,10 +16,8 @@ public class FireCellFactory extends AbstractCellFactory {
     @Override
     public Cell getCell (int type) {
         if(type == 0){
-        	System.out.println(0);
             return new FireCellEmpty();
         }else if(type ==1){
-        	System.out.println(0);
             return new FireCellTree();
         } else if(type == 2){
             return new FireCellBurning(myProbCatch);

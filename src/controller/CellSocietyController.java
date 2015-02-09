@@ -113,8 +113,8 @@ public class CellSocietyController {
 				myGrid = newParser.getGrid();
 //				RandomSimGenerator rsg = new RandomSimGenerator(10, 10, "life", true); //to test random sim generator
 //				myGrid = rsg.getGrid(); //to test random sim generator
-//				ProbabilitySimGenerator psg = new ProbabilitySimGenerator(10, 10, "fire", null);
-//				myGrid = psg.getGrid();
+//				ProbabilitySimGenerator psg = new ProbabilitySimGenerator(10, 10, "fire", null); //to test probability sim generator
+//				myGrid = psg.getGrid(); //to test prob sim generator
 				myParameters = newParser.getParameters();
 				transitionToSimulation();
 			}
@@ -217,6 +217,7 @@ public class CellSocietyController {
 	private void initializeSimulation(String simName) throws ValueException {
 		if (simName.equals(myProperties.getObject("fire_simulation_name"))) {
 			System.out.println("fire");
+			System.out.println(myGrid[0][1] + " " + myGrid[0][2] + " " + myGrid[0][3]);
 			myCurrentSimulation = new SimulationFire(myParameters, myStyles, myGrid, myCurrentSimulationScreen);	
 		}
 		else if(simName.equals(myProperties.getObject("segregation_simulation_name"))){
