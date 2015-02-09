@@ -8,7 +8,8 @@ import model.cells.Cell;
 import view.SimulationScreen;
 
 /**
- * 
+ * Segregation simulation
+ * Extension of simulation superclass
  * @author Sunjeev and Sid
  *
  */
@@ -26,6 +27,9 @@ public class SimulationSegregation extends Simulation {
         myRandom = new Random();
     }
 
+    /**
+     * Looks through paramMap and puts values into appropriate instance variables
+     */
     @Override
     void parseMap (Map<String, String> paramMap) {
     	try{
@@ -38,6 +42,9 @@ public class SimulationSegregation extends Simulation {
     	}      
     }
 
+    /**
+     * Updates the grid by looking at each cell and whether it should move
+     */
     @Override
     public void updateGrid() {
         updateNeighbors();
@@ -52,6 +59,12 @@ public class SimulationSegregation extends Simulation {
         updateColorGrid();
     }
 
+    /**
+     * Moves a cell that isn't satisfied
+     * @param j
+     * @param i
+     * @param clone
+     */
     private void moveAgent(int j, int i, Cell clone) {
         int count = 0;
         while (true) {

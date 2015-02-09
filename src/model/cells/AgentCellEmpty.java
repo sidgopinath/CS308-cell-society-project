@@ -5,7 +5,6 @@ import javafx.scene.paint.Color;
 /**
  * This is an empty square for the Segregation simulation
  * @author Sunjeev
- *
  */
 
 public class AgentCellEmpty extends AgentCell{

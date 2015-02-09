@@ -45,10 +45,7 @@ public class XMLParser {
 	}
 
 	/**
-	 * Reads the style file document Puts all style elements in the parameters
-	 * map Might have to be changed to pull style elements in their own style
-	 * map
-	 * 
+	 * Reads the style file document using the read Parameters method
 	 * @param doc
 	 */
 	private void readStyleFile(Document doc) {
@@ -56,6 +53,13 @@ public class XMLParser {
 		readParameters(styleChildren);
 	}
 
+	/**
+	 * Reads a sim file document
+	 * Puts all parameters in the parameter map
+	 * Creates grid and puts it in grid array
+	 * @param doc
+	 * @throws InvalidParameterException
+	 */
 	private void readSimFile(Document doc) throws InvalidParameterException {
 		NodeList parameterChildren = initializeNodeList(doc, "parameter");
 		readParameters(parameterChildren);
@@ -65,9 +69,8 @@ public class XMLParser {
 	}
 
 	/**
-	 * Method to check file extension name Maybe make this a try/catch situation
-	 * Or make it throw an exception? Not sure how this would work exactly
-	 * 
+	 * Method to check file extension name
+	 * Could be made a try/catch but didn't due to time
 	 * @param xmlFile
 	 */
 	private void checkFileExtension(File xmlFile) {
@@ -80,7 +83,6 @@ public class XMLParser {
 
 	/**
 	 * Initialize grid size
-	 * 
 	 * @param gridChildren
 	 */
 	private void createGrid(NodeList gridChildren) {
@@ -90,8 +92,10 @@ public class XMLParser {
 	}
 
 	/**
-	 * Read in the parameters Put them in the HashMap Also used to read in the
-	 * parameters in the style sheet
+	 * Read in the parameters 
+	 * Put them in the HashMap 
+	 * Also used to read in the parameters in the style sheet
+	 * Uses a messy if statement to throw the exception
 	 */
 	private void readParameters(NodeList parameterChildren)
 			throws InvalidParameterException {
@@ -111,7 +115,6 @@ public class XMLParser {
 	 * from:
 	 * http://stackoverflow.com/questions/978810/how-to-strip-whitespace-only
 	 * -text-nodes-from-a-dom-before-serialization/16285664#16285664
-	 * 
 	 * @param node
 	 */
 	public static void clean(Node node) {
@@ -155,8 +158,9 @@ public class XMLParser {
 	}
 
 	/**
-	 * Function to do initial set-up Returns a node list of all elements of one
-	 * type Ex. returns list of parameters or list of grid rows
+	 * Function to do initial set-up 
+	 * Returns a node list of all elements of one type
+	 * Ex. returns list of parameters or list of grid rows
 	 */
 	private NodeList initializeNodeList(Document doc, String element) {
 		NodeList elementList = doc.getDocumentElement().getElementsByTagName(
@@ -179,14 +183,16 @@ public class XMLParser {
 	}
 
 	/**
-	 * Returns myGrid Called by controller
+	 * Returns myGrid 
+	 * Called by controller
 	 */
 	public Integer[][] getGrid() {
 		return myGrid;
 	}
 
 	/**
-	 * Returns HashMap of parameters Called by controller
+	 * Returns HashMap of parameters 
+	 * Called by controller
 	 */
 	public HashMap<String, String> getParameters() {
 		return myParameters;

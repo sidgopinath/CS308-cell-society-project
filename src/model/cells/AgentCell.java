@@ -10,14 +10,12 @@ package model.cells;
 
 public abstract class AgentCell extends Cell{
 
-	//private static final double NUM_NEIGHBORS = 8;
 	private double mySatisfaction;
 
 	public AgentCell(double satisfaction){
 		mySatisfaction = satisfaction;
 	}
 
-	
 	public boolean isSatisfied(){
 		double sameCount = this.returnCount();
 		return ((sameCount / myNeighbors.size()) >= mySatisfaction);

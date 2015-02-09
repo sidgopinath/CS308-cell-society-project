@@ -25,6 +25,7 @@ import view.SplashScreen;
 
 /**
  * Main controller that is called by main
+ * Handles the upper-most level of CellSociety
  * @author Sid
  *
  */
@@ -99,6 +100,15 @@ public class CellSocietyController {
 		transitionToSimulation();
 	}
 	
+	/**
+	 * Method to be called from view
+	 * Generates random grid based on probabilities passed in in a map
+	 * Default values will be used for parameters
+	 * @param gridHeight
+	 * @param gridWidth
+	 * @param simName
+	 * @param probabilities
+	 */
 	public void generateProbabilityRandomGrid(int gridHeight, int gridWidth, String simName, HashMap<Integer, Integer> probabilities){
 		ProbabilitySimGenerator psg = new ProbabilitySimGenerator(gridHeight, gridWidth, simName, probabilities);
 		myGrid = psg.getGrid();
@@ -108,6 +118,7 @@ public class CellSocietyController {
 	
 	/**
 	 * Reads an XML file and stores the Int grid and Parameters
+	 * Catches file error exceptions and takes user back to load screen
 	 */
 	private void readXML(File XMLFile) throws InvalidParameterException {
 		try{
@@ -133,16 +144,12 @@ public class CellSocietyController {
 			System.out.println("Invalid file. Try again.");
 			transitionToFileLoaderScreen();
 		}
-		
-		//XMLWriter writer = new XMLWriter(myParameters, myGrid); //to test xml writer
-		
 	}
 	
 	/**
-	 * Method called when the load button has been pressed Opens up the file
-	 * loader screen by calling the view class There may be an easier way to
-	 * load files. This is a framework that can be changed. This method gets a
-	 * File that will then be passed into XMLParser.
+	 * Method called when the load button has been pressed
+	 * Opens up the file loader screen by calling the view class 
+	 * Gets a File that will then be passed into XMLParser.
 	 */
 	public void transitionToFileLoaderScreen() {
 		FileLoaderScreen fileLoaderScreen = new FileLoaderScreen(myStage);
@@ -153,7 +160,6 @@ public class CellSocietyController {
 	
 	/**
 	 * Steps through simulation one frame at a time.
-	 * Lags a bit before performing the step...
 	 */
 	public void stepThroughSimulation(){
 		myTimeline.stop();
@@ -162,25 +168,21 @@ public class CellSocietyController {
 	}
 	
 	/**
-	 * Speeds up simulation by a factor of 2
+	 * if speedUp is true, then we speed up by factor of 2
+	 * if false, we slow down by factor of 2
+	 * @param upOrDown
 	 */
-	public void speedUpSimulation(){
+	public void changeSimulationSpeed(boolean speedUp){
 		myTimeline.stop();
 		myTimeline.getKeyFrames().clear();
-		myFrameRate = 2*myFrameRate;
-		myTimeline.getKeyFrames().add(getKeyFrame(myFrameRate));
-		myTimeline.play();
-	}
-	
-	/**
-	 * Slow down simulation by a factor of 2
-	 * Will not go below 1 frame per second
-	 */
-	public void slowDownSimulation(){
-		myTimeline.stop();
-		myTimeline.getKeyFrames().clear();
-		if(myFrameRate >= 2){
+		if(speedUp){
+			myFrameRate = 2*myFrameRate;
+		}
+		else{
 			myFrameRate = myFrameRate/2;
+			if(myFrameRate == 0){
+				myFrameRate = 1;
+			}
 		}
 		myTimeline.getKeyFrames().add(getKeyFrame(myFrameRate));
 		myTimeline.play();

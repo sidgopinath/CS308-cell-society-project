@@ -86,7 +86,7 @@ public class SimulationScreen {
 		Button slowDownButton = new Button(myProperties.getString("slow_down_button_name"));
 		myButtons.add(slowDownButton);
 		slowDownButton.setOnAction(e -> {
-			myController.slowDownSimulation();
+			myController.changeSimulationSpeed(false);
 		});
 		return slowDownButton;
 	}
@@ -110,7 +110,7 @@ public class SimulationScreen {
 		Button speedUpButton = new Button(myProperties.getString("speed_up_button_name"));
 		myButtons.add(speedUpButton);
 		speedUpButton.setOnAction(e -> {
-			myController.speedUpSimulation();
+			myController.changeSimulationSpeed(true);
 		});
 		return speedUpButton;
 	}

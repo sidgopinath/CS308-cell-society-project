@@ -20,6 +20,10 @@ public class AgentCellO extends AgentCell{
 		myPropertyMap.put("countO", (double) 1);	
 	}
 
+	/**
+	 * Possible future refactoring spot
+	 * Contains very similar code to AgentCellX
+	 */
 	@Override
 	protected int returnCount() {
 		int sameCount = 0;

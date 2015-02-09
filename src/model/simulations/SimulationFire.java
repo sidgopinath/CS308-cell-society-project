@@ -3,6 +3,12 @@ package model.simulations;
 import java.util.Map;
 import view.SimulationScreen;
 
+/**
+ * Fire simulation class that extends simulation superclass
+ * @author Sid
+ *
+ */
+
 public class SimulationFire extends Simulation {
 
     private int myProbCatch;
@@ -12,6 +18,9 @@ public class SimulationFire extends Simulation {
         super(paramMap,styleMap, grid,simScreen);
     }
 
+    /**
+     * Looks through parameters and puts them into instance variables
+     */
     @Override
     void parseMap (Map<String, String> paramMap) {
     	try{
@@ -23,6 +32,10 @@ public class SimulationFire extends Simulation {
     		parseMap(paramMap);	
     	}
     }
+    
+    /**
+     * Updates grid based on cell's update methods
+     */
     @Override
     public void updateGrid() {
         updateNeighbors();

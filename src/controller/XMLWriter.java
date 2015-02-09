@@ -13,10 +13,18 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * XML Writer class
+ * Called by view after user has set state of cells
+ * Takes in a paramMap and gridArray and creates a new xmlFile
+ * used for reference: http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
+ * @author Sid
+ *
+ */
+
 public class XMLWriter {
 
-	//used for reference: http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
-	
+
 	public XMLWriter(HashMap<String, String> paramMap, Integer[][] gridArray){
 		
 		try{
@@ -58,7 +66,7 @@ public class XMLWriter {
 				grid.appendChild(newRow);
 			}
 			
-			//make it an xml file
+			//make xml file
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(xmlDoc);

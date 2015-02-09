@@ -10,7 +10,6 @@ import javafx.scene.paint.Color;
 
 public class FireCellBurning extends FireCell{
 	
-
 	private Color myColor = Color.RED;
 	
 	public FireCellBurning(Integer probCatch){

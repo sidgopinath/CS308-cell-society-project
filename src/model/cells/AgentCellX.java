@@ -4,7 +4,6 @@ import javafx.scene.paint.Color;
 
 /**
  * This is a square that holds an "X agent" for Segregation
- * 
  * @author Sunjeev
  *
  */
@@ -21,6 +20,10 @@ public class AgentCellX extends AgentCell {
 		myPropertyMap.put("countX", (double) 1);		
 	}
 
+	/**
+	 * Possible future refactoring spot
+	 * Similar code to AgentCellO
+	 */
 	@Override
 	protected int returnCount() {
 		int sameCount = 0;

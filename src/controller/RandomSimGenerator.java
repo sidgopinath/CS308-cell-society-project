@@ -4,6 +4,13 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+/**
+ * This generator creates a fully random grid
+ * Each cell's state is random
+ * @author Sid
+ *
+ */
+
 public class RandomSimGenerator {
 
 	private Integer[][] myGrid;
@@ -12,6 +19,14 @@ public class RandomSimGenerator {
 	private ResourceBundle myProperties;
 	private Random myRandom = new Random();
 
+	/**
+	 * Constructor for the random generator
+	 * Puts default values into paramMap for later use
+	 * Constructor could be refactored out but decided against it due to time constraints
+	 * @param gridWidth
+	 * @param gridHeight
+	 * @param simName
+	 */
 	public RandomSimGenerator(int gridWidth, int gridHeight, String simName) {
 		myProperties = ResourceBundle.getBundle("resources/resources");
 		myParameters.put("simName", simName);
@@ -30,6 +45,11 @@ public class RandomSimGenerator {
 		return myParameters;
 	}
 
+	/**
+	 * Create grid based on purely random values
+	 * Grid created dependingon type of simulation
+	 * @param grid
+	 */
 	private void createGrid(Integer[][] grid) {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[0].length; j++) {

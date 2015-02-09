@@ -4,7 +4,6 @@ import javafx.scene.paint.Color;
 
 /**
  * This is a square that holds a square with a tree for the fire sim.
- * 
  * @author Sunjeev and Sid
  */
 

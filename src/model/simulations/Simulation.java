@@ -21,7 +21,6 @@ public abstract class Simulation {
      * Simulation superclass encompassing methods and data shared by
      * all simulations and that will be used in updating the state
      * of the simulation 
-     * 
      * @author Janan
      */
     protected SimulationScreen myView;

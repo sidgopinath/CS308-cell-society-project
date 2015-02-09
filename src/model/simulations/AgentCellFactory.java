@@ -12,6 +12,7 @@ public class AgentCellFactory extends AbstractCellFactory{
 	public AgentCellFactory(double satisfaction){
         mySatisfaction = satisfaction;
     }
+	
     @Override
     public Cell getCell (int type) {
         if(type ==0){

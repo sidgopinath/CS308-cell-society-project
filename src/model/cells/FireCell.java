@@ -5,7 +5,8 @@ import java.util.Random;
 
 /**
  * This is the square superclass for Fire simulation.
- * It holds the properties (probCatch specifically) for the Fire sim.
+ * It holds the method to update each cell
+ * It also holds the method to calculate the probability that a cell will catch fire
  * @author Sunjeev and Sid
  *
  */
