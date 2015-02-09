@@ -14,22 +14,7 @@ import javafx.scene.paint.Color;
 
 public abstract class FireCell extends Cell{
 
-	protected List<FireCell> myNeighbors;
 	protected Color myColor;
-	
-	/**
-	 * @param neighbors is a list of neighbors passed in by its simulation class
-	 */
-	public FireCell(List<FireCell> neighbors){
-		myNeighbors = neighbors;
-	}
-	
-	public FireCell(){
-	}
-	public void setNeighbors(ArrayList<FireCell> neighbors){
-		myNeighbors = neighbors;
-	}
-	
 	/**
 	 * @return the current state of the tree after checking with neighbors determined by making a new SquareFire 
 	 * class

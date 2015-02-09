@@ -12,11 +12,6 @@ import javafx.scene.paint.Color;
 
 public class FireCellEmpty extends FireCell{
 
-	public FireCellEmpty(List<FireCell> neighbors) {
-		super(neighbors);
-		myColor = Color.YELLOW;
-	}
-
 	public FireCellEmpty(){
 		myColor = Color.YELLOW;
 	}

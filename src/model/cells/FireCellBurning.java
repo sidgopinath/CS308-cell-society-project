@@ -16,12 +16,6 @@ public class FireCellBurning extends FireCell{
 	private int myProbCatch;
 	private Random myRandom;
 	
-	public FireCellBurning(List<FireCell> neighbors, int probCatch) {
-		super(neighbors);
-		myRandom = new Random();
-		myColor = Color.RED;
-		myProbCatch = probCatch;
-	}
 
 	public FireCellBurning(int probCatch){
 		myColor = Color.RED;
@@ -30,13 +24,13 @@ public class FireCellBurning extends FireCell{
 	}
 	@Override
 	public FireCell checkStatus() {
-		return new FireCellEmpty(myNeighbors);
+		return new FireCellEmpty();
 	}
 
 	@Override
 	public FireCell checkNeighbor() {
 		if(calculateProbability()){
-			return new FireCellBurning(myNeighbors, myProbCatch);
+			return new FireCellBurning(myProbCatch);
 		}
 		else{
 			return null;

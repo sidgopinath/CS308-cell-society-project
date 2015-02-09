@@ -8,6 +8,8 @@ import javafx.scene.paint.Color;
 public abstract class Cell {
     protected List<Cell> myNeighbors;
     protected Map<String,Double> myPropertyMap;
+    protected int myX;
+    protected int myY;
     
     public abstract Color getColor();
     public void setNeighbors(List<Cell> neighbors){
