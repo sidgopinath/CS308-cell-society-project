@@ -3,6 +3,7 @@ package model.simulations;
 import java.util.Map;
 
 import javafx.scene.paint.Color;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 import model.cells.Cell;
 import view.SimulationScreen;
 
@@ -24,21 +25,26 @@ public abstract class Simulation {
 
     public Simulation(Map<String,String> paramMap, Map<String,String>
     styleMap,Integer[][] cellGrid,
-                      SimulationScreen simScreen){
-        myView = simScreen;
-        gridLength = cellGrid[0].length;
-        gridWidth = cellGrid.length;
-        parseMap(paramMap);
-        parseStyleMap(styleMap);
-        myCellFactory = getCellFactory();
-        myView.initSimView(gridWidth, gridLength);
-        setupGrid(cellGrid);
+                      SimulationScreen simScreen) throws ValueException{
+        try{
+        	myView = simScreen;
+        	gridLength = cellGrid[0].length;
+        	gridWidth = cellGrid.length;
+        	parseMap(paramMap);
+        	parseStyleMap(styleMap);
+        	myCellFactory = getCellFactory();
+        	myView.initSimView(gridWidth, gridLength);
+        	setupGrid(cellGrid);
+        }
+        catch(ValueException e){
+        	throw new ValueException("Invalid cell state values given.");
+        }
     }
     
     void parseStyleMap(Map<String,String> styleMap){
         // set styles here
     }
-    abstract AbstractCellFactory getCellFactory();
+    abstract AbstractCellFactory getCellFactory() throws ValueException;
     
 //    void fillPatchGrid(){
 //        myGrid = new Patch[gridWidth][gridLength];

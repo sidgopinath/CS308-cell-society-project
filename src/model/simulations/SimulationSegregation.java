@@ -30,10 +30,14 @@ public class SimulationSegregation extends Simulation {
 
     @Override
     void parseMap (Map<String, String> paramMap) {
-    	if(!paramMap.containsKey("satisfaction") || paramMap.get("satisfaction") == null){
-        	//throw exception
-        }
-    	mySatisfaction = Double.parseDouble(paramMap.get("satisfaction"));
+    	try{
+    		mySatisfaction = Double.parseDouble(paramMap.get("satisfaction"));
+    	}
+    	catch(Exception e){
+    		paramMap.put("satisfaction", "0.3");
+    		System.out.println("No satisfaction value. Using default.");
+    		parseMap(paramMap);	
+    	}
         
     }
 
