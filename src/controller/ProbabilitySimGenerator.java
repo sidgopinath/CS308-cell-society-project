@@ -22,13 +22,15 @@ public class ProbabilitySimGenerator {
 		mySimName = simName;
 		myGrid = new Integer[gridHeight][gridWidth];
 		myProbabilities = new HashMap<Integer, Integer>();
-		myProbabilities.put(0, 20);
-		myProbabilities.put(1, 30);
-		myProbabilities.put(2, 50);
+		myProbabilities.put(0, 10);
+		myProbabilities.put(1, 50);
+		myProbabilities.put(2, 40);
 		createGrid(myGrid);
 	}
 	
 	public Integer[][] getGrid() {
+		System.out.println(myGrid[0][1] + " " + myGrid[0][2] + " " + myGrid[0][3]);
+		System.out.println("GRID");
 		return myGrid;
 	}
 
@@ -40,20 +42,28 @@ public class ProbabilitySimGenerator {
 					
 					Integer random = myRandom.nextInt(100);
 					Integer currentCheck = 0;
-					while(currentCheck != 100){ //maybe 99?
+					while(currentCheck < 100){ //maybe 99?
+						
 						for(int key: myProbabilities.keySet()){
 							if(random <= (currentCheck+myProbabilities.get(key))){
 								myGrid[i][j] = key;
+								System.out.println(i + " " + j + " " + "KEY:" + key);
+								currentCheck = 101;
+								//System.out.println(key);
+								break;
 							}
-							currentCheck += myProbabilities.get(key);
+							else{
+								currentCheck += myProbabilities.get(key);
+							}
+								
 						}
+						
 					}
 					
 				}
 			}
 		}
-		System.out.println("done ");
-		
+		System.out.println("loop" + myGrid[0][1] + " " + myGrid[0][2] + " " + myGrid[0][3]);
 	}
 	
 }
