@@ -37,16 +37,6 @@ public abstract class Simulation {
     public Simulation(Map<String,String> paramMap, Map<String,String>
     styleMap,Integer[][] cellGrid, SimulationScreen simScreen) throws ValueException{
         
-    	parseMap(paramMap);
-        parseStyleMap(styleMap);
-        myView = simScreen;
-        gridLength = cellGrid[0].length;
-        gridWidth = cellGrid.length;
-        myCellFactory = getCellFactory();
-        myView.initSimView(gridWidth, gridLength);
-        fillPatchGrid();
-        setupGrid(cellGrid);
-
         try{
         	myView = simScreen;
         	gridLength = cellGrid[0].length;
@@ -55,6 +45,7 @@ public abstract class Simulation {
         	parseStyleMap(styleMap);
         	myCellFactory = getCellFactory();
         	myView.initSimView(gridWidth, gridLength);
+        	fillPatchGrid();
         	setupGrid(cellGrid);
         }
         catch(ValueException e){
@@ -63,7 +54,6 @@ public abstract class Simulation {
     }
 
     void parseStyleMap(Map<String,String> styleMap){
-        // set styles here
         String neighbors = styleMap.get("cellShape");
         String gridRules = styleMap.get("edgeType");
         directions = styleMap.get("neighbors");
