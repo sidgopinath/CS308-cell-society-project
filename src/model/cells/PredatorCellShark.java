@@ -14,8 +14,8 @@ public class PredatorCellShark extends PredatorCell{
     private int myLifePeriod;
     private int myCurrentLife;
 
-    public PredatorCellShark (int breedingPeriod, int lifePeriod, int x, int y) {
-        super(breedingPeriod,x,y);
+    public PredatorCellShark (int breedingPeriod, int lifePeriod) {
+        super(breedingPeriod);
         myLifePeriod = lifePeriod;
         myCurrentLife = lifePeriod;
         
@@ -58,8 +58,8 @@ public class PredatorCellShark extends PredatorCell{
     }
 
     @Override
-    public PredatorCell getChildSquare (int x, int y, int breedingPeriod) {
-        return new PredatorCellShark(breedingPeriod, myLifePeriod, x,y);
+    public PredatorCell getChildSquare (int breedingPeriod) {
+        return new PredatorCellShark(breedingPeriod, myLifePeriod);
     }
 
     @Override

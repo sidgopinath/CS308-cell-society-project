@@ -14,9 +14,8 @@ public class PredatorCellFish extends PredatorCell{
      * @param y
      */
 
-    public PredatorCellFish (int breedingPeriod,int x, int y) {
-
-        super(breedingPeriod, x, y);
+    public PredatorCellFish (int breedingPeriod) {
+        super(breedingPeriod);
     }
 
     @Override
@@ -43,8 +42,8 @@ public class PredatorCellFish extends PredatorCell{
     }
 
     @Override
-    public PredatorCell getChildSquare (int x, int y, int breedingPeriod) {
-        return new PredatorCellFish(breedingPeriod, x, y);
+    public PredatorCell getChildSquare (int breedingPeriod) {
+        return new PredatorCellFish(breedingPeriod);
     }
     
     @Override

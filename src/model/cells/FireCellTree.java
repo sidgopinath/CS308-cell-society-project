@@ -20,7 +20,7 @@ public class FireCellTree extends FireCell{
 		myColor = Color.GREEN;
 	}
 	@Override
-	public FireCell chechStatus() {
+	public FireCell checkStatus() {
 		for(FireCell neighbor: myNeighbors){
 			FireCell checkedNeighbor = neighbor.checkNeighbor();
 			if(checkedNeighbor != null){
