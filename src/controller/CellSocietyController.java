@@ -86,7 +86,7 @@ public class CellSocietyController {
 
 	/**
 	 * Method to be called from the view
-	 * Generates random grid from parameters passed in
+	 * Generates fully random grid from parameters passed in
 	 * Default values will be used for parameters
 	 * @param gridHeight
 	 * @param gridWidth
@@ -94,9 +94,13 @@ public class CellSocietyController {
 	 * @param fullyRandom
 	 */
 	public void generateRandomGrid(int gridHeight, int gridWidth, String simName){
-		RandomSimGenerator rsg = new RandomSimGenerator(gridHeight, gridWidth, simName, true);
+		RandomSimGenerator rsg = new RandomSimGenerator(gridHeight, gridWidth, simName);
 		myGrid = rsg.getGrid();
 		transitionToSimulation();
+	}
+	
+	public void generateProbabilityRandomGrid(int gridHeight, int gridWidth, String simName, HashMap<Integer, Integer> probabilities){
+		
 	}
 	
 	/**
@@ -109,6 +113,8 @@ public class CellSocietyController {
 				myGrid = newParser.getGrid();
 //				RandomSimGenerator rsg = new RandomSimGenerator(10, 10, "life", true); //to test random sim generator
 //				myGrid = rsg.getGrid(); //to test random sim generator
+//				ProbabilitySimGenerator psg = new ProbabilitySimGenerator(10, 10, "fire", null);
+//				myGrid = psg.getGrid();
 				myParameters = newParser.getParameters();
 				transitionToSimulation();
 			}
@@ -210,6 +216,7 @@ public class CellSocietyController {
 	 */
 	private void initializeSimulation(String simName) throws ValueException {
 		if (simName.equals(myProperties.getObject("fire_simulation_name"))) {
+			System.out.println("fire");
 			myCurrentSimulation = new SimulationFire(myParameters, myStyles, myGrid, myCurrentSimulationScreen);	
 		}
 		else if(simName.equals(myProperties.getObject("segregation_simulation_name"))){
