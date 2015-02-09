@@ -1,5 +1,6 @@
 package model.simulations;
 
+import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 import model.cells.Cell;
 import model.cells.AgentCellEmpty;
 import model.cells.AgentCellO;
@@ -20,7 +21,7 @@ public class AgentCellFactory extends AbstractCellFactory{
         } else if(type == 2){
             return new AgentCellX(mySatisfaction);
         } else{
-        	return gridInputError();
+        	throw new ValueException("Error with grid input values");
         }
     }
 

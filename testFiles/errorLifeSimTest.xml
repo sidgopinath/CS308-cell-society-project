@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='us-ascii'?> 
+
+<!-- A test file for the fire simulation-->
+
+<simulation>
+
+	<parameter>
+		<simName>life</simName>
+		<gridHeight>10</gridHeight>
+		<gridWidth>10</gridWidth>	
+	</parameter>
+
+
+	<grid>
+		<r1>0 1 1 1 0 1 1 1 0 1</r1>
+		<r2>0 1 0 1 0 0 1 1 0 1</r2>
+		<r3>1 0 0 0 1 0 1 0 1 0</r3>
+		<r4>0 1 0 1 0 1 0 1 1 1</r4>
+		<r5>1 1 0 0 1 0 1 0 1 0</r5>
+		<r6>0 1 0 0 0 1 0 1 1 0</r6>
+		<r7>1 0 1 1 4 0 1 0 1 0</r7>
+		<r8>1 1 1 0 1 1 1 0 0 1</r8>
+		<r9>1 0 1 0 0 1 1 0 0 1</r9>
+		<r10>1 0 1 1 0 1 0 1 0 1</r10>
+	</grid>
+
+</simulation>
