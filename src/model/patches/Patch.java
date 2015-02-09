@@ -18,7 +18,13 @@ public class Patch {
         myPatchPropertyMap = new HashMap<String,Double>();
     }
     
+    public double getProperty(String property){
+        return myPatchPropertyMap.get(property);
+    }
     
+    public void updateProperty(String property, double value){
+        myPatchPropertyMap.put(property, value);
+    }
     public void setCell(Cell cell){
         myCell = cell;
     }
@@ -35,4 +41,6 @@ public class Patch {
         return myNeighbors;
     }
     
+    public void update(){
+    }
 }
