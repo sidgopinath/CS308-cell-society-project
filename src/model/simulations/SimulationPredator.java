@@ -13,6 +13,12 @@ import model.cells.PredatorCellShark;
 import view.SimulationScreen;
 import javafx.scene.paint.Color;
 
+/**
+ * Subclass of Simulation for the Predator-Prey CA simulation.
+ * Contains methods and data necessary to run simulation
+ * @author Janan
+ *
+ */
 public class SimulationPredator extends Simulation {
     private PredatorCell grid[][];
     private int sharkLife;

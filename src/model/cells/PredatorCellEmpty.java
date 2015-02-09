@@ -2,6 +2,15 @@ package model.cells;
 
 import javafx.scene.paint.Color;
 
+    
+    /**
+     * Subclass of SquarePredator representing an empty square
+     * @author Janan
+     * @param breedingPeriod
+     * @param x
+     * @param y
+     */
+
 public class PredatorCellEmpty extends PredatorCell{
 
     public PredatorCellEmpty (int breedingPeriod, int x, int y) {
