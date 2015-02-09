@@ -1,6 +1,5 @@
 package model.cells;
 
-import javafx.scene.paint.Color;
 
 /**
  * This is the square superclass for the life simulation

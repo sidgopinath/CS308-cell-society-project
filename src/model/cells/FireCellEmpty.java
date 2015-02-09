@@ -1,19 +1,19 @@
 package model.cells;
 
-import java.util.List;
-
 import javafx.scene.paint.Color;
 
 /**
  * This is a square that holds a square that is empty for the fire sim.
- * @author Sunjeev
+ * @author Sunjeev and Sid
  *
  */
 
 public class FireCellEmpty extends FireCell{
 
+	private Color myColor = Color.YELLOW;
+	
 	public FireCellEmpty(){
-		myColor = Color.YELLOW;
+		myPropertyMap.put("probCatch", (double) -1);
 	}
 	@Override
 	public FireCell checkStatus() {
@@ -21,14 +21,7 @@ public class FireCellEmpty extends FireCell{
 	}
 
 	@Override
-	public FireCell checkNeighbor() {
-		return null;
-	}
-
-	@Override
 	public Color getColor() {
 		return myColor;
-	}
-
-	
+	}	
 }

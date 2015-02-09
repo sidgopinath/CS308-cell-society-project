@@ -10,8 +10,10 @@ public class LifeCellFactory extends AbstractCellFactory {
     public Cell getCell (int type) {
         if(type == 0){
             return new LifeCellDead();
-        }else{
+        }else if(type == 1){
             return new LifeCellAlive();
+        }else{
+        	return gridInputError();
         }
     }
 

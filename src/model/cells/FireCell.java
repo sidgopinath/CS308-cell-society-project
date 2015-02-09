@@ -1,20 +1,23 @@
 package model.cells;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
-import javafx.scene.paint.Color;
 
 /**
  * This is the square superclass for Fire simulation.
  * It holds the properties (probCatch specifically) for the Fire sim.
- * @author Sunjeev
+ * @author Sunjeev and Sid
  *
  */
 
 public abstract class FireCell extends Cell{
-
-	protected Color myColor;
+	
+	protected Random myRandom;
+	
+	public FireCell(){
+		myRandom = new Random();
+	}
+	
 	/**
 	 * @return the current state of the tree after checking with neighbors determined by making a new SquareFire 
 	 * class
@@ -23,6 +26,12 @@ public abstract class FireCell extends Cell{
 		return this.checkStatus();
 	}
 	
-	public abstract FireCell checkStatus();
-	public abstract FireCell checkNeighbor();
+	public boolean calculateProbability(Cell cell) {
+		if(cell.viewProperties().get("probCatch") != null){
+			return myRandom.nextInt(100) <= cell.viewProperties().get("probCatch");	
+		}
+		return false;		
+	}
+	
+	protected abstract FireCell checkStatus();
 }

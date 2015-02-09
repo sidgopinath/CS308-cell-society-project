@@ -1,13 +1,10 @@
 package model.simulations;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-import model.cells.FireCell;
-import model.cells.FireCellBurning;
-import model.cells.FireCellEmpty;
-import model.cells.FireCellTree;
-import javafx.scene.paint.Color;
+import model.cells.Cell;
 import view.SimulationScreen;
 
 public class SimulationFire extends Simulation {
@@ -21,8 +18,11 @@ public class SimulationFire extends Simulation {
 
     @Override
     void parseMap (Map<String, String> paramMap) {
-        myProbCatch = Integer.parseInt(paramMap.get("probCatch"));
-        
+        if(!paramMap.containsKey("probCatch") || paramMap.get("probCatch") == null){
+        	//throw exception
+        	
+        }
+    	myProbCatch = Integer.parseInt(paramMap.get("probCatch"));
     }
     @Override
     public void updateGrid() {
@@ -38,7 +38,7 @@ public class SimulationFire extends Simulation {
     void updateNeighbors() {
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
-                ArrayList<FireCell> neighbors = new ArrayList<>();
+                List<Cell> neighbors = new ArrayList<>();
                 if(i + 1 < gridLength){
                     neighbors.add(myGrid[j][i + 1]);
                 }
@@ -58,6 +58,6 @@ public class SimulationFire extends Simulation {
 
     @Override
     AbstractCellFactory getCellFactory () {
-        return new FireCellFactory(myProbCatch);
+    	return new FireCellFactory(myProbCatch);
     }
 }

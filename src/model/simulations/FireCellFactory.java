@@ -6,10 +6,11 @@ import model.cells.FireCellEmpty;
 import model.cells.FireCellTree;
 
 public class FireCellFactory extends AbstractCellFactory {
-    private int myProbCatch;
+    private Integer myProbCatch;
     
     public FireCellFactory(int probCatch){
-        myProbCatch = probCatch;
+        
+    	myProbCatch = probCatch;
     }
     @Override
     public Cell getCell (int type) {
@@ -17,9 +18,10 @@ public class FireCellFactory extends AbstractCellFactory {
             return new FireCellEmpty();
         }else if(type ==1){
             return new FireCellTree();
-        } else{
-            //type == 2
+        } else if(type == 2){
             return new FireCellBurning(myProbCatch);
+        } else{
+        	return gridInputError();
         }
     }
 
