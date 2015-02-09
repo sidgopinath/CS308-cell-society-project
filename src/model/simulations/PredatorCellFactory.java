@@ -20,8 +20,10 @@ public class PredatorCellFactory extends AbstractCellFactory {
             return new PredatorCellEmpty(-1);
         } else if(type == 1){
             return new PredatorCellFish(myBreedingPeriod);
-        } else{
+        } else if(type == 2){
             return new PredatorCellShark(myBreedingPeriod, mySharkLife);
+        } else{
+        	return gridInputError();
         }
     }
 

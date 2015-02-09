@@ -17,9 +17,10 @@ public class FireCellFactory extends AbstractCellFactory {
             return new FireCellEmpty();
         }else if(type ==1){
             return new FireCellTree();
-        } else{
-            //type == 2
+        } else if(type == 2){
             return new FireCellBurning(myProbCatch);
+        } else{
+        	return gridInputError();
         }
     }
 

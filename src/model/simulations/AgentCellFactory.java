@@ -17,9 +17,10 @@ public class AgentCellFactory extends AbstractCellFactory{
             return new AgentCellEmpty(mySatisfaction);
         } else if(type == 1){
             return new AgentCellO(mySatisfaction);
-        } else{
-            //type == 2
+        } else if(type == 2){
             return new AgentCellX(mySatisfaction);
+        } else{
+        	return gridInputError();
         }
     }
 
