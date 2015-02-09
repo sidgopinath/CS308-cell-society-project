@@ -14,41 +14,25 @@ public class AgentCellEmpty extends AgentCell{
 	
 	public AgentCellEmpty(double mySatisfaction) {
 		super(mySatisfaction);
+		myPropertyMap.put("empty", (double) 1);
+		myPropertyMap.put("satisfactionRate", mySatisfaction);
+		myPropertyMap.put("satisfied", (double) 1);
+		myPropertyMap.put("countO", (double) 0);
+		myPropertyMap.put("countX", (double) 0);	
 	}
 
-	public AgentCellEmpty(){
-	}
-	
-	@Override
-	public boolean isSatisfied(){
-		return true;
-	}
-	
 	@Override
 	protected int returnCount() {
 		return 0;
 	}
 
 	@Override
-	protected int getCountX() {
-		return 0;
-	}
-
-	@Override
-	protected int getCountO() {
-		return 0;
-	}
-
-	@Override
-	public boolean isEmpty() {
-		return true;
-	}
-
-	@Override
 	public Color getColor() {
-		return myColor;
-		
+		return myColor;	
 	}
 
-	
+	@Override
+	public Cell update() {
+		return null;
+	}
 }

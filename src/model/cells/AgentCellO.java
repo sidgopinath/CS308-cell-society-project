@@ -14,33 +14,19 @@ public class AgentCellO extends AgentCell{
 	
 	public AgentCellO(double mySatisfaction) {
 		super(mySatisfaction);
+		myPropertyMap.put("empty", (double) 0);
+		myPropertyMap.put("satisfactionRate", mySatisfaction);
+		myPropertyMap.put("countX", (double) 0);
+		myPropertyMap.put("countO", (double) 1);	
 	}
 
-	public AgentCellO(){
-	}
-	
 	@Override
 	protected int returnCount() {
 		int sameCount = 0;
-		for(AgentCell neighbor: myNeighbors){
-			sameCount += neighbor.getCountO();
+		for(Cell neighbor: myNeighbors){
+			sameCount += neighbor.viewProperties().get("countO");
 		}
 		return sameCount;
-	}
-
-	@Override
-	protected int getCountX() {
-		return 0;
-	}
-
-	@Override
-	protected int getCountO() {
-		return 1;
-	}
-
-	@Override
-	public boolean isEmpty() {
-		return false;
 	}
 
 	@Override
@@ -48,4 +34,13 @@ public class AgentCellO extends AgentCell{
 		return myColor;
 	}
 
+	@Override
+	public Cell update() {
+		if (this.isSatisfied()) {
+			myPropertyMap.put("satisfied", (double) 1);
+		} else {
+			myPropertyMap.put("satisfied", (double) 0);
+		}
+		return null;
+	}
 }
