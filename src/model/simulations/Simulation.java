@@ -1,16 +1,10 @@
 package model.simulations;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
+
 import javafx.scene.paint.Color;
-import model.cells.AgentCellEmpty;
-import model.cells.AgentCellO;
-import model.cells.AgentCellX;
 import model.cells.Cell;
-import model.cells.LifeCell;
 import view.SimulationScreen;
-import model.patches.Patch;
 
 public abstract class Simulation {
 
@@ -33,8 +27,8 @@ public abstract class Simulation {
         myView = simScreen;
         gridLength = grid[0].length;
         gridWidth = grid.length;
-        myCellFactory = getCellFactory();
         parseMap(paramMap);
+        myCellFactory = getCellFactory();
         myView.initSimView(gridWidth, gridLength);
         setupGrid(grid);
     }

@@ -3,6 +3,7 @@ package model.cells;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javafx.scene.paint.Color;
 
 public abstract class Cell {

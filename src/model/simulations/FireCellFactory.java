@@ -6,7 +6,7 @@ import model.cells.FireCellEmpty;
 import model.cells.FireCellTree;
 
 public class FireCellFactory extends AbstractCellFactory {
-    private int myProbCatch;
+    private Integer myProbCatch;
     
     public FireCellFactory(int probCatch){
         
