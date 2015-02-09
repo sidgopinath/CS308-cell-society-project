@@ -15,12 +15,7 @@ import javafx.scene.paint.Color;
 
 public abstract class LifeCell extends Cell{
 
-	protected List<LifeCell> myNeighbors;
 
-	public LifeCell(List<LifeCell> neighbors){
-		myNeighbors = neighbors;
-	}
-	
 	public LifeCell(){
 	}
 	

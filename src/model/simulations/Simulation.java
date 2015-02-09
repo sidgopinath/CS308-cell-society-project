@@ -3,6 +3,10 @@ package model.simulations;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javafx.scene.paint.Color;
+import model.cells.AgentCellEmpty;
+import model.cells.AgentCellO;
+import model.cells.AgentCellX;
 import model.cells.Cell;
 import model.cells.LifeCell;
 import view.SimulationScreen;
@@ -31,19 +35,10 @@ public abstract class Simulation {
         gridWidth = grid.length;
         myCellFactory = getCellFactory();
         parseMap(paramMap);
-        runSim(grid);
-    }
-
-    /**
-     * first fill grid with appropriate square types
-     * then pass squares their appropriate neighbors
-     * Then update squares
-     */
-    void runSim(Integer[][] grid){
         myView.initSimView(gridWidth, gridLength);
         setupGrid(grid);
     }
-    
+
     abstract AbstractCellFactory getCellFactory();
     
 //    void fillPatchGrid(){
@@ -65,7 +60,13 @@ public abstract class Simulation {
      * @param paramMap 
      */
      void setupGrid(Integer[][] grid){
-         
+         myGrid = new Cell[gridWidth][gridLength];
+         for (int j = 0; j < gridWidth; j++) {
+             for (int i = 0; i < gridLength; i++) {
+              myGrid[j][i] = myCellFactory.getCell(grid[j][i]);
+             }
+         }
+         updateColorGrid();
      }
     
 
@@ -78,7 +79,15 @@ public abstract class Simulation {
     /**
      * this method takes myGrid and turns it into a grid that is readable for the view
      */
-    abstract void updateColorGrid();
+    void updateColorGrid() {
+        Color[][] colorGrid = new Color[gridWidth][gridLength];
+        for(int j = 0; j < gridWidth; j++){
+            for(int i = 0 ; i < gridLength; i++){
+                colorGrid[j][i] = myGrid[j][i].getColor();
+            }
+        }
+        myView.updateScreen(colorGrid);
+    }
 
 }
 

@@ -20,7 +20,6 @@ import javafx.scene.paint.Color;
  *
  */
 public class SimulationPredator extends Simulation {
-    private PredatorCell grid[][];
     private int sharkLife;
     private int breedingPeriod;
     //TODO: fix alreadyMoved so as to not require the X and Y coordinates
@@ -53,11 +52,6 @@ public class SimulationPredator extends Simulation {
         alreadyMoved.add(square);
         alreadyMoved.add(grid[y][x]);
     }
-
-    public void setupGrid(){
-        grid = new PredatorCell[gridWidth][gridLength];
-    }
-
 
     /*
      * Update grid at step and updates corresponding view
@@ -124,33 +118,6 @@ public class SimulationPredator extends Simulation {
         square.setNeighbors(neighborList);
     }
 
-    @Override
-    void updateColorGrid(){
-        Color[][] myColorGrid = new Color[gridWidth][gridLength];
-        for(int i=0; i<gridWidth; i++){
-            for(int j=0; j< gridLength; j++){
-                myColorGrid[i][j] = grid[i][j].getColor();
-            }
-        }
-        myView.updateScreen(myColorGrid);
-    }
-
-    @Override
-    void fillGrid (Integer[][] initGrid) {
-        for(int i=0;i<initGrid.length;i++){
-            for(int j=0;j<initGrid[0].length;j++){
-                int squareValue = initGrid[i][j];
-                if(squareValue == 0){
-                    grid[i][j] = new PredatorCellEmpty(-1);
-                } else if(squareValue == 1){
-                    grid[i][j] = new PredatorCellFish(breedingPeriod);
-                } else{
-                    grid[i][j] = new PredatorCellShark(breedingPeriod, sharkLife);
-                }
-            }
-        }
-        updateColorGrid();
-    }
 
     @Override
     AbstractCellFactory getCellFactory () {

@@ -1,13 +1,14 @@
 package model.simulations;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
 import model.cells.AgentCell;
 import model.cells.AgentCellEmpty;
 import model.cells.AgentCellO;
 import model.cells.AgentCellX;
+import model.cells.Cell;
 import javafx.scene.paint.Color;
 import view.SimulationScreen;
 
@@ -20,7 +21,6 @@ import view.SimulationScreen;
 public class SimulationSegregation extends Simulation {
 
     private static final int SAFE_GUARD = 1000;
-    private AgentCell[][] myGrid;
     private Random myRandom;
 	private double mySatisfaction;
 
@@ -35,28 +35,11 @@ public class SimulationSegregation extends Simulation {
         
     }
     
-    @Override
-    void fillGrid(Integer[][] grid) {
-        for (int j = 0; j < gridWidth; j++) {
-            for (int i = 0; i < gridLength; i++) {
-                if(grid[j][i] == 0){
-                    myGrid[j][i] = new AgentCellEmpty(mySatisfaction);
-                }
-                else if(grid[j][i] == 1){
-                    myGrid[j][i] = new AgentCellO(mySatisfaction);
-                }
-                else if(grid[j][i] == 2){
-                    myGrid[j][i] = new AgentCellX(mySatisfaction);
-                }
-            }
-        }
-        updateColorGrid();
-    }
 
     void updateNeighbors() {
         for (int j = 0; j < gridWidth; j++) {
             for (int i = 0; i < gridLength; i++) {
-                ArrayList<AgentCell> neighbors = new ArrayList<>();
+                List<Cell> neighbors = new ArrayList<Cell>();
                 if(i + 1 < gridLength){
                     neighbors.add(myGrid[j][i + 1]);
                 }
@@ -107,9 +90,6 @@ public class SimulationSegregation extends Simulation {
             int rColumn = myRandom.nextInt(gridWidth);
             int rRow = myRandom.nextInt(gridLength);
             if (myGrid[rColumn][rRow].isEmpty()) {
-                //				System.out.println("rColumn: " + rColumn);
-                //				System.out.println("rRow: " + rRow);
-                //				System.out.println("moved one agent");
                 myGrid[rColumn][rRow] = agent;
                 myGrid[j][i] = new AgentCellEmpty();
                 break;
@@ -130,22 +110,6 @@ public class SimulationSegregation extends Simulation {
             clone[j] = myGrid[j].clone();
         }
         return clone;
-    }
-
-    @Override
-    void updateColorGrid() {
-        Color[][] colorGrid = new Color[gridWidth][gridLength];
-        for(int j = 0; j < gridWidth; j++){
-            for(int i = 0 ; i < gridLength; i++){
-                colorGrid[j][i] = myGrid[j][i].getColor();
-            }
-        }
-        myView.updateScreen(colorGrid);
-    }
-
-    @Override
-    void setupGrid() {
-        myGrid = new AgentCell[gridWidth][gridLength];
     }
 
     @Override

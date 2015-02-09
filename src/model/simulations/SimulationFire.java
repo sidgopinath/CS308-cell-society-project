@@ -12,7 +12,6 @@ import view.SimulationScreen;
 
 public class SimulationFire extends Simulation {
 
-    private FireCell[][] myGrid;
     private int myProbCatch;
 
     public SimulationFire(Map<String,String> paramMap, Integer[][] grid, SimulationScreen simScreen){
@@ -54,41 +53,6 @@ public class SimulationFire extends Simulation {
                 myGrid[j][i].setNeighbors(neighbors);
             }
         }
-    }
-
-
-    @Override
-    void updateColorGrid() {
-        Color[][] colorGrid = new Color[gridWidth][gridLength];
-        for(int j = 0; j < gridWidth; j++){
-            for(int i = 0; i < gridLength; i++){
-                colorGrid[j][i] = myGrid[j][i].getColor();
-            }
-        }
-        myView.updateScreen(colorGrid);
-    }
-
-    @Override
-    void fillGrid(Integer[][] grid) {
-        for(int j = 0; j < gridWidth; j++){
-            for(int i = 0 ; i < gridLength; i++){
-                if(grid[j][i] == 0){
-                    myGrid[j][i] = new FireCellEmpty();
-                }
-                if(grid[j][i] == 1){
-                    myGrid[j][i] = new FireCellTree();
-                }
-                if(grid[j][i] == 2){
-                    myGrid[j][i] = new FireCellBurning(myProbCatch);
-                }
-            }
-        }
-        updateColorGrid();
-    }
-
-    @Override
-    void setupGrid(){
-        myGrid = new FireCell[gridWidth][gridLength];
     }
 
     @Override

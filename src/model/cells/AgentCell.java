@@ -24,10 +24,6 @@ public abstract class AgentCell extends Cell{
 	public AgentCell(){
 	}
 	
-	public void setNeighbors(List<AgentCell> neighbors){
-		myNeighbors = neighbors;
-	}
-	
 	
 	public boolean isSatisfied(){
 		double sameCount = this.returnCount();
