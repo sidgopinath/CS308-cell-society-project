@@ -1,10 +1,6 @@
 package model.simulations;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-
-import model.cells.Cell;
 import view.SimulationScreen;
 
 public class SimulationFire extends Simulation {

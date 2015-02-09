@@ -1,18 +1,9 @@
 package model.simulations;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import model.cells.Cell;
-import model.cells.PredatorCell;
 import model.cells.PredatorCellEmpty;
-import model.cells.PredatorCellFish;
-import model.cells.PredatorCellShark;
-import model.patches.Patch;
 import view.SimulationScreen;
-import javafx.scene.paint.Color;
 
 /**
  * Subclass of Simulation for the Predator-Prey CA simulation.
