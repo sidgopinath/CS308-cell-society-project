@@ -10,10 +10,8 @@ package model.cells;
  */
 
 public abstract class LifeCell extends Cell{
-    protected static String returnCount = "returnCount";
+    protected static final String returnCount = "returnCount";
 
-    public LifeCell(){
-    }
 
     public LifeCell update(){
         int liveCount = 0;

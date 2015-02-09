@@ -22,17 +22,22 @@ public abstract class Simulation {
     protected Cell[][] myGrid;
     protected AbstractCellFactory myCellFactory;
 
-    public Simulation(Map<String,String> paramMap, Integer[][] grid,
+    public Simulation(Map<String,String> paramMap, Map<String,String>
+    styleMap,Integer[][] cellGrid,
                       SimulationScreen simScreen){
         myView = simScreen;
-        gridLength = grid[0].length;
-        gridWidth = grid.length;
+        gridLength = cellGrid[0].length;
+        gridWidth = cellGrid.length;
         parseMap(paramMap);
+        parseStyleMap(styleMap);
         myCellFactory = getCellFactory();
         myView.initSimView(gridWidth, gridLength);
-        setupGrid(grid);
+        setupGrid(cellGrid);
     }
-
+    
+    void parseStyleMap(Map<String,String> styleMap){
+        // set styles here
+    }
     abstract AbstractCellFactory getCellFactory();
     
 //    void fillPatchGrid(){

@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 
 public class FireCellBurning extends FireCell{
 	
+
 	private Color myColor = Color.RED;
 	
 	public FireCellBurning(Integer probCatch){
@@ -20,7 +21,6 @@ public class FireCellBurning extends FireCell{
 	public FireCell checkStatus() {
 		return new FireCellEmpty();
 	}
-	
 	@Override
 	public Color getColor() {
 		return myColor;

@@ -15,10 +15,13 @@ public class PredatorCellEmpty extends PredatorCell{
 
     public PredatorCellEmpty (int breedingPeriod) {
         super(breedingPeriod);
+        myPropertyMap.put(isMovable, (double) 1);
+        myPropertyMap.put(isEdible, (double) 0);
     }
     
     @Override
-    public void updateSquare () {
+    public PredatorCell update() {
+        return this;
     }
     
     @Override
@@ -26,20 +29,6 @@ public class PredatorCellEmpty extends PredatorCell{
         return this;
     }
 
-    @Override
-    public PredatorCell getChildSquare (int breedingPeriod) {
-        return null;
-    }
-
-    @Override
-    public boolean isEdible () {
-        return false;
-    }
-
-    @Override
-    public boolean isMovable () {
-        return true;
-    }
 
     @Override
     public Color getColor () {

@@ -18,8 +18,9 @@ import javafx.scene.paint.Color;
 
 public class SimulationLife extends Simulation {
 
-    public SimulationLife(Map<String, String> paramMap, Integer[][] grid, SimulationScreen simScreen) {
-        super(paramMap, grid, simScreen);
+    public SimulationLife(Map<String, String> paramMap, Map<String,String>
+     styleMap, Integer[][] grid, SimulationScreen simScreen) {
+        super(paramMap, styleMap, grid, simScreen);
     }
 
     @Override

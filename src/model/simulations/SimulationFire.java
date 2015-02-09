@@ -11,8 +11,9 @@ public class SimulationFire extends Simulation {
 
     private int myProbCatch;
 
-    public SimulationFire(Map<String,String> paramMap, Integer[][] grid, SimulationScreen simScreen){
-        super(paramMap, grid,simScreen);
+    public SimulationFire(Map<String,String> paramMap,Map<String,String> styleMap,
+                          Integer[][] grid, SimulationScreen simScreen){
+        super(paramMap,styleMap, grid,simScreen);
     }
 
     @Override

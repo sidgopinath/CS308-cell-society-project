@@ -6,7 +6,7 @@ import java.util.Random;
 import javafx.scene.paint.Color;
 
 public class PredatorCellShark extends PredatorCell{
-    
+
     /**
      * Subclass of squarePredator representing a square with a shark.
      * @author Janan
@@ -18,59 +18,59 @@ public class PredatorCellShark extends PredatorCell{
         super(breedingPeriod);
         myLifePeriod = lifePeriod;
         myCurrentLife = lifePeriod;
-        
+        myPropertyMap.put(isMovable, (double) 0);
+        myPropertyMap.put(isEdible, (double) 0);
     }
-    
+
+
     @Override
-    public boolean hasStarved(){
-        return myCurrentLife == 0;
-    }
-    
-    @Override
-    public void updateSquare () {
+    public Cell update () {
         myCurrentLife--;
         super.decrementBreeding();
+        if(myCurrentLife == 0){
+            Cell emptyCell = new PredatorCellEmpty(-1);
+            emptyCell.setCoords(myX, myY);
+            return emptyCell;
+        }
+        return moveSquareTo();
     }
-    
+
     @Override
-    public PredatorCell moveSquareTo () {
+    public Cell moveSquareTo () {
         Random squareGenerator = new Random();
-        List<PredatorCell> neighborList = super.getMyNeighbors();
-        List<PredatorCell> edibleList = new ArrayList<PredatorCell>();
-        List<PredatorCell> movableList = new ArrayList<PredatorCell>();
-        
-        for(PredatorCell square:neighborList){
-            if(square.isEdible()){
+        List<Cell> edibleList = new ArrayList<Cell>();
+        List<Cell> movableList = new ArrayList<Cell>();
+
+        for(Cell square:myNeighbors){
+            if(square.viewProperties().get(isEdible)==1){
                 edibleList.add(square);
             }
-            if(square.isMovable()){
+            if(square.viewProperties().get(isMovable) == 1){
                 movableList.add(square);
             }
         }
+        Cell moveTo;
         if(!edibleList.isEmpty()){
             myCurrentLife = myLifePeriod;
-            return edibleList.get(squareGenerator.nextInt(edibleList.size()));
+            System.out.println("nomnomnomnom");
+            moveTo = edibleList.get(squareGenerator.nextInt(edibleList.size()));
+        } else if(!movableList.isEmpty()){
+            moveTo = movableList.get(squareGenerator.nextInt(movableList.size()));
+            System.out.println("I am moving to a blank space?");
+        } else{
+            return this;
         }
-        if(!movableList.isEmpty()){
-            return movableList.get(squareGenerator.nextInt(movableList.size()));
+        if(myPropertyMap.get(myCurrentBreeding)!=0){
+            this.setCoords(moveTo.getX(), moveTo.getY());
+            return this;
+        } else{
+            Cell newShark = new PredatorCellShark(myPropertyMap.get(myBreedingPeriod).intValue(), myLifePeriod);
+            newShark.setCoords(myX, myY);
+            this.setCoords(moveTo.getX(), moveTo.getY());
+            return newShark;
         }
-        return this;
     }
 
-    @Override
-    public PredatorCell getChildSquare (int breedingPeriod) {
-        return new PredatorCellShark(breedingPeriod, myLifePeriod);
-    }
-
-    @Override
-    public boolean isEdible () {
-        return false;
-    }
-
-    @Override
-    public boolean isMovable () {
-        return false;
-    }
 
     @Override
     public Color getColor () {

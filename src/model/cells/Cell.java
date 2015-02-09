@@ -9,6 +9,8 @@ import javafx.scene.paint.Color;
 public abstract class Cell {
     protected List<Cell> myNeighbors;
     protected Map<String,Double> myPropertyMap;
+    protected int myX;
+    protected int myY;
     
     public abstract Color getColor();
     public void setNeighbors(List<Cell> neighbors){
@@ -27,6 +29,19 @@ public abstract class Cell {
             clonedMap.put(property, myPropertyMap.get(property));
         }
         return clonedMap;
+    }
+    
+    public void setCoords(int x, int y){
+        myX = x;
+        myY = y;
+    }
+    
+    public int getX(){
+        return myX;
+    }
+    
+    public int getY(){
+        return myY;
     }
     /*
      * Returns new cell 
