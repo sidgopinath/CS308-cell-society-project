@@ -83,32 +83,39 @@ public class CellSocietyController {
 	}
 
 	/**
+	 * Method to be called from the view
+	 * Generates random grid from parameters passed in
+	 * Default values will be used for parameters
+	 * @param gridHeight
+	 * @param gridWidth
+	 * @param simName
+	 * @param fullyRandom
+	 */
+	public void generateRandomGrid(int gridHeight, int gridWidth, String simName, boolean fullyRandom){
+		RandomSimGenerator rsg = new RandomSimGenerator(gridHeight, gridWidth, simName, fullyRandom);
+		myGrid = rsg.getGrid();
+		transitionToSimulation();
+	}
+	
+	/**
 	 * Reads an XML file and stores the Int grid and Parameters
 	 */
 	private void readXML(File XMLFile) {
 		XMLParser newParser = new XMLParser(XMLFile);
 		if(newParser.getGrid() != null){
 			myGrid = newParser.getGrid();
+//			RandomSimGenerator rsg = new RandomSimGenerator(10, 10, "life", true); //to test random sim generator
+//			myGrid = rsg.getGrid(); //to test random sim generator
 			myParameters = newParser.getParameters();
 			transitionToSimulation();
 		}
 		else{
 			myStyles = newParser.getParameters();
 		}
-		//XMLWriter writer = new XMLWriter(myParameters, myGrid); //proof that writer works
+		//XMLWriter writer = new XMLWriter(myParameters, myGrid); //to test xml writer
 		
 	}
 	
-	/**
-	 * GETTER! BAD!
-	 * Returns style map. Might be changed later
-	 * Style map could be passed into classes that need it
-	 * @return
-	 */
-	public Map<String, String> getStyles(){
-		return myStyles;
-	}
-
 	/**
 	 * Method called when the load button has been pressed Opens up the file
 	 * loader screen by calling the view class There may be an easier way to
@@ -191,18 +198,18 @@ public class CellSocietyController {
 	 */
 	private void initializeSimulation(String simName) {
 		if (simName.equals(myProperties.getObject("fire_simulation_name"))) {
-			myCurrentSimulation = new SimulationFire(myParameters, myStyle, myGrid, myCurrentSimulationScreen);	
+			myCurrentSimulation = new SimulationFire(myParameters, myStyles, myGrid, myCurrentSimulationScreen);	
 		}
 		else if(simName.equals(myProperties.getObject("segregation_simulation_name"))){
-			myCurrentSimulation = new SimulationSegregation(myParameters, myStyle, myGrid,myCurrentSimulationScreen);
+			myCurrentSimulation = new SimulationSegregation(myParameters, myStyles, myGrid,myCurrentSimulationScreen);
 			
 		}
 		else if(simName.equals(myProperties.getObject("life_simulation_name"))){
-			myCurrentSimulation = new SimulationLife(myParameters, myStyle, myGrid, myCurrentSimulationScreen);
+			myCurrentSimulation = new SimulationLife(myParameters, myStyles, myGrid, myCurrentSimulationScreen);
 			
 		}
 		else if(simName.equals(myProperties.getObject("predator_simulation_name"))){
-			myCurrentSimulation = new SimulationPredator(myParameters, myStyle, myGrid, myCurrentSimulationScreen);
+			myCurrentSimulation = new SimulationPredator(myParameters, myStyles, myGrid, myCurrentSimulationScreen);
 		}
 	}
 

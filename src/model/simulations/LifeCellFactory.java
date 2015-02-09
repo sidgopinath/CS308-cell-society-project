@@ -8,6 +8,7 @@ public class LifeCellFactory extends AbstractCellFactory {
 
     @Override
     public Cell getCell (int type) {
+    	System.out.println(type);
         if(type == 0){
             return new LifeCellDead();
         }else if(type == 1){

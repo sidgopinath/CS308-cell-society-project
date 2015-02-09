@@ -3,12 +3,9 @@ package model.simulations;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import model.cells.Cell;
-import model.cells.LifeCell;
-import model.cells.LifeCellAlive;
-import model.cells.LifeCellDead;
 import view.SimulationScreen;
-import javafx.scene.paint.Color;
 
 /**
  * 
