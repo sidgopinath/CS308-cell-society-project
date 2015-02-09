@@ -1,5 +1,6 @@
 package model.simulations;
 
+import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 import model.cells.Cell;
 import model.cells.LifeCellDead;
 import model.cells.LifeCellAlive;
@@ -13,7 +14,7 @@ public class LifeCellFactory extends AbstractCellFactory {
         }else if(type == 1){
             return new LifeCellAlive();
         }else{
-        	return gridInputError();
+        	throw new ValueException("Error with grid input values");
         }
     }
 

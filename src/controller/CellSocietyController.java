@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.File;
+import java.security.InvalidParameterException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 import model.simulations.Simulation;
 import model.simulations.SimulationFire;
 import model.simulations.SimulationLife;
@@ -83,32 +85,50 @@ public class CellSocietyController {
 	}
 
 	/**
-	 * Reads an XML file and stores the Int grid and Parameters
+	 * Method to be called from the view
+	 * Generates random grid from parameters passed in
+	 * Default values will be used for parameters
+	 * @param gridHeight
+	 * @param gridWidth
+	 * @param simName
+	 * @param fullyRandom
 	 */
-	private void readXML(File XMLFile) {
-		XMLParser newParser = new XMLParser(XMLFile);
-		if(newParser.getGrid() != null){
-			myGrid = newParser.getGrid();
-			myParameters = newParser.getParameters();
-			transitionToSimulation();
-		}
-		else{
-			myStyles = newParser.getParameters();
-		}
-		//XMLWriter writer = new XMLWriter(myParameters, myGrid); //proof that writer works
-		
+	public void generateRandomGrid(int gridHeight, int gridWidth, String simName){
+		RandomSimGenerator rsg = new RandomSimGenerator(gridHeight, gridWidth, simName, true);
+		myGrid = rsg.getGrid();
+		transitionToSimulation();
 	}
 	
 	/**
-	 * GETTER! BAD!
-	 * Returns style map. Might be changed later
-	 * Style map could be passed into classes that need it
-	 * @return
+	 * Reads an XML file and stores the Int grid and Parameters
 	 */
-	public Map<String, String> getStyles(){
-		return myStyles;
+	private void readXML(File XMLFile) throws InvalidParameterException {
+		try{
+			XMLParser newParser = new XMLParser(XMLFile);
+			if(newParser.getGrid() != null){
+				myGrid = newParser.getGrid();
+//				RandomSimGenerator rsg = new RandomSimGenerator(10, 10, "life", true); //to test random sim generator
+//				myGrid = rsg.getGrid(); //to test random sim generator
+				myParameters = newParser.getParameters();
+				transitionToSimulation();
+			}
+			else{
+				myStyles = newParser.getParameters();
+			}
+		}
+		catch(ValueException e){
+			System.out.println("Invalid grid values. Try again.");
+			transitionToFileLoaderScreen();
+		}
+		catch(InvalidParameterException e){
+			System.out.println("Invalid file. Try again.");
+			transitionToFileLoaderScreen();
+		}
+		
+		//XMLWriter writer = new XMLWriter(myParameters, myGrid); //to test xml writer
+		
 	}
-
+	
 	/**
 	 * Method called when the load button has been pressed Opens up the file
 	 * loader screen by calling the view class There may be an easier way to
@@ -168,8 +188,7 @@ public class CellSocietyController {
 	/**
 	 * Called after the XML file has been made. Transitions to new simulation
 	 */
-	private void transitionToSimulation() {
-		System.out.println(myStyles);
+	private void transitionToSimulation() throws ValueException {
 		initializeSimulationScreen();
 		initializeSimulation(myParameters.get("simName"));
 		stopOrStart(true);
@@ -189,7 +208,7 @@ public class CellSocietyController {
 	 * Initializes the model
 	 * @param simName
 	 */
-	private void initializeSimulation(String simName) {
+	private void initializeSimulation(String simName) throws ValueException {
 		if (simName.equals(myProperties.getObject("fire_simulation_name"))) {
 			myCurrentSimulation = new SimulationFire(myParameters, myStyles, myGrid, myCurrentSimulationScreen);	
 		}
@@ -202,7 +221,7 @@ public class CellSocietyController {
 			
 		}
 		else if(simName.equals(myProperties.getObject("predator_simulation_name"))){
-			myCurrentSimulation = new SimulationPredator(myParameters, myStyles  , myGrid, myCurrentSimulationScreen);
+			myCurrentSimulation = new SimulationPredator(myParameters, myStyles, myGrid, myCurrentSimulationScreen);
 		}
 	}
 

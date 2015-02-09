@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javafx.scene.paint.Color;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 import model.cells.Cell;
 import model.gridrules.FiniteGridRules;
 import model.gridrules.GridRules;
@@ -34,9 +35,9 @@ public abstract class Simulation {
     protected String directions;
 
     public Simulation(Map<String,String> paramMap, Map<String,String>
-    styleMap,Integer[][] cellGrid,
-    SimulationScreen simScreen){
-        parseMap(paramMap);
+    styleMap,Integer[][] cellGrid, SimulationScreen simScreen) throws ValueException{
+        
+    	parseMap(paramMap);
         parseStyleMap(styleMap);
         myView = simScreen;
         gridLength = cellGrid[0].length;
@@ -45,6 +46,20 @@ public abstract class Simulation {
         myView.initSimView(gridWidth, gridLength);
         fillPatchGrid();
         setupGrid(cellGrid);
+
+        try{
+        	myView = simScreen;
+        	gridLength = cellGrid[0].length;
+        	gridWidth = cellGrid.length;
+        	parseMap(paramMap);
+        	parseStyleMap(styleMap);
+        	myCellFactory = getCellFactory();
+        	myView.initSimView(gridWidth, gridLength);
+        	setupGrid(cellGrid);
+        }
+        catch(ValueException e){
+        	throw new ValueException("Invalid cell state values given.");
+        }
     }
 
     void parseStyleMap(Map<String,String> styleMap){
@@ -63,7 +78,8 @@ public abstract class Simulation {
             myGridRules = new ToroidalGridRules();
         }
     }
-    abstract AbstractCellFactory getCellFactory();
+
+    abstract AbstractCellFactory getCellFactory() throws ValueException;
 
     void fillPatchGrid(){
         myPatchGrid = new Patch[gridWidth][gridLength];
@@ -87,6 +103,17 @@ public abstract class Simulation {
             }
         }
     }
+
+    
+//    void fillPatchGrid(){
+//        myGrid = new Patch[gridWidth][gridLength];
+//        for(int i=0; i<gridWidth; i++){
+//            for(int j=0; j<gridLength; j++){
+//                myGrid[i][j] = new Patch();
+//            }
+//        }
+//    }
+
     /**
      * Reads parameter map from XML file and sets instance variables accordingly
      */

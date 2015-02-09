@@ -1,5 +1,6 @@
 package model.simulations;
 
+import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 import model.cells.Cell;
 import model.cells.FireCellBurning;
 import model.cells.FireCellEmpty;
@@ -21,7 +22,7 @@ public class FireCellFactory extends AbstractCellFactory {
         } else if(type == 2){
             return new FireCellBurning(myProbCatch);
         } else{
-        	return gridInputError();
+        	throw new ValueException("Error with grid input values");
         }
     }
 

@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.InvalidParameterException;
 import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -26,7 +27,7 @@ public class XMLParser {
 	private HashMap<String, String> myParameters = new HashMap<String, String>();
 	private Integer myGrid[][];
 
-	public XMLParser(File XMLFile) {
+	public XMLParser(File XMLFile) throws InvalidParameterException {
 		try {
 			checkFileExtension(XMLFile);
 			Document doc = initializeDoc(XMLFile);
@@ -37,6 +38,8 @@ public class XMLParser {
 				readStyleFile(doc);
 			}
 
+		} catch (InvalidParameterException e) {
+			throw new InvalidParameterException();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -54,51 +57,12 @@ public class XMLParser {
 		readParameters(styleChildren);
 	}
 
-	private void readSimFile(Document doc) {
+	private void readSimFile(Document doc) throws InvalidParameterException {
 		NodeList parameterChildren = initializeNodeList(doc, "parameter");
 		readParameters(parameterChildren);
-		checkParameters(myParameters);
 		NodeList gridChildren = initializeNodeList(doc, "grid");
 		createGrid(gridChildren);
 		readGrid(gridChildren);
-		checkGrid(myGrid);
-	}
-
-	/**
-	 * Checks grid width and height against input grid Prints out error message
-	 * and exits Perhaps IMPLEMENT try/catch stuff here?
-	 * 
-	 * @param grid
-	 */
-	private void checkGrid(Integer[][] grid) {
-		if (grid.length != Integer.parseInt(myParameters.get("gridHeight"))) {
-			System.out.println("Grid height doesn't match input grid.");
-			System.exit(0);
-		}
-		for (int i = 0; i < grid.length; i++) {
-			if (grid[i].length != Integer.parseInt(myParameters
-					.get("gridWidth"))) {
-				System.out.println("Grid width doesn't match input grid.");
-				System.exit(0);
-			}
-		}
-	}
-
-	/**
-	 * IMPLEMENT TRY/CATCH STUFF HERE? Checks if sim type is there Could add on
-	 * more to check if appropriate parameters exist for each sim type Might
-	 * make a separate class to dot hat?
-	 * 
-	 * @param paramMap
-	 */
-	private void checkParameters(HashMap<String, String> paramMap) {
-		if (!paramMap.containsKey("simName")) {
-			System.out.println("No sim type found");
-			System.exit(0);
-		} else if (paramMap.get("simName") == null) {
-			System.out.println("Sim type is null");
-			System.exit(0);
-		}
 	}
 
 	/**
@@ -121,21 +85,25 @@ public class XMLParser {
 	 * @param gridChildren
 	 */
 	private void createGrid(NodeList gridChildren) {
-		Node currentRow = gridChildren.item(0);
-		String rowString = currentRow.getTextContent();
-		String[] splitRow = rowString.split(" ");
-		myGrid = new Integer[gridChildren.getLength()][splitRow.length];
+		Integer gridHeight = Integer.parseInt(myParameters.get("gridHeight"));
+		Integer gridWidth = Integer.parseInt(myParameters.get("gridWidth"));
+		myGrid = new Integer[gridHeight][gridWidth];
 	}
 
 	/**
 	 * Read in the parameters Put them in the HashMap Also used to read in the
 	 * parameters in the style sheet
 	 */
-	private void readParameters(NodeList parameterChildren) {
+	private void readParameters(NodeList parameterChildren)
+			throws InvalidParameterException {
 		for (int i = 0; i < parameterChildren.getLength(); i++) {
 			Node currentParam = parameterChildren.item(i);
 			myParameters.put(currentParam.getNodeName(),
 					currentParam.getTextContent());
+		}
+		if (!myParameters.containsKey("simName")
+				|| myParameters.get("simName") == null) {
+			throw new InvalidParameterException();
 		}
 	}
 
@@ -168,18 +136,22 @@ public class XMLParser {
 	}
 
 	/**
-	 * Read in the Grid row by row Create the new "squares" by placing ints in
-	 * the grid array
+	 * Read in the Grid row by row Create the new cells by placing ints in the
+	 * grid array
 	 */
-	private void readGrid(NodeList gridChildren) {
-		for (int i = 0; i < gridChildren.getLength(); i++) {
-			Node currentRow = gridChildren.item(i);
-			String rowString = currentRow.getTextContent();
-			String[] splitRow = rowString.split(" ");
-			for (int j = 0; j < splitRow.length; j++) {
-				Integer newSquare = Integer.parseInt(splitRow[j]);
-				myGrid[i][j] = newSquare;
+	private void readGrid(NodeList gridChildren) throws ArrayIndexOutOfBoundsException {
+		try{
+			for (int i = 0; i < gridChildren.getLength(); i++) {
+				Node currentRow = gridChildren.item(i);
+				String rowString = currentRow.getTextContent();
+				String[] splitRow = rowString.split(" ");
+				for (int j = 0; j < splitRow.length; j++) {
+					myGrid[i][j] = Integer.parseInt(splitRow[j]);
+				}
 			}
+		}
+		catch (ArrayIndexOutOfBoundsException e){
+			throw new InvalidParameterException();
 		}
 	}
 

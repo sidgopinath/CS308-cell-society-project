@@ -29,14 +29,17 @@ public class SimulationPredator extends Simulation {
     }
 
     public void parseMap(Map<String,String> paramMap){
-    	if(!paramMap.containsKey("breedingPeriod") || paramMap.get("breedingPeriod") == null){
-        	//throw exception
-        }
-    	if(!paramMap.containsKey("sharkLife") || paramMap.get("sharkLife") == null){
-        	//throw exception
-        }
-    	breedingPeriod = Integer.parseInt(paramMap.get("breedingPeriod"));
-        sharkLife = Integer.parseInt(paramMap.get("sharkLife"));
+    	try{
+    		breedingPeriod = Integer.parseInt(paramMap.get("breedingPeriod"));
+    		sharkLife = Integer.parseInt(paramMap.get("sharkLife"));
+    	}
+    	catch(Exception e){
+    		paramMap.put("breedingPeriod", "5");
+    		paramMap.put("sharkLife", "3");
+    		System.out.println("No value given for breedingPeriod or sharkLife.");
+    		System.out.println("Default values used for both variables.");
+    		parseMap(paramMap);
+    	}
     }
 
     /*

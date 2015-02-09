@@ -14,11 +14,14 @@ public class SimulationFire extends Simulation {
 
     @Override
     void parseMap (Map<String, String> paramMap) {
-        if(!paramMap.containsKey("probCatch") || paramMap.get("probCatch") == null){
-        	//throw exception
-        	
-        }
-    	myProbCatch = Integer.parseInt(paramMap.get("probCatch"));
+    	try{
+    		myProbCatch = Integer.parseInt(paramMap.get("probCatch"));
+    	}
+    	catch(Exception e){
+    		paramMap.put("probCatch", "50");
+    		System.out.println("No prob catch value. Using default.");
+    		parseMap(paramMap);	
+    	}
     }
     @Override
     public void updateGrid() {

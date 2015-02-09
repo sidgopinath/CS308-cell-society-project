@@ -1,5 +1,6 @@
 package model.simulations;
 
+import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 import model.cells.Cell;
 import model.cells.PredatorCellEmpty;
 import model.cells.PredatorCellFish;
@@ -23,7 +24,7 @@ public class PredatorCellFactory extends AbstractCellFactory {
         } else if(type == 2){
             return new PredatorCellShark(myBreedingPeriod, mySharkLife);
         } else{
-        	return gridInputError();
+        	throw new ValueException("Error with grid input values");
         }
     }
 
