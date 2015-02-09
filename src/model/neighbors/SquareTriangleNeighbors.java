@@ -2,14 +2,14 @@ package model.neighbors;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.cells.Cell;
+import model.patches.Patch;
 import model.gridrules.GridRules;
 
 public class SquareTriangleNeighbors extends Neighbors{
 
     @Override
-    public List<Cell> getCardinalNeighbors (Cell[][] grid, int x, int y, GridRules rules) {
-        List<Cell> neighbors = new ArrayList<Cell>();
+    public List<Patch> getCardinalNeighbors (Patch[][] grid, int x, int y, GridRules rules) {
+        List<Patch> neighbors = new ArrayList<Patch>();
         Up(grid, x, y, rules, neighbors);
         Down(grid,x,y,rules,neighbors);
         Left(grid,x,y,rules,neighbors);
@@ -18,8 +18,8 @@ public class SquareTriangleNeighbors extends Neighbors{
     }
 
     @Override
-    public List<Cell> getDiagonalNeighbors (Cell[][] grid, int x, int y, GridRules rules) {
-        List<Cell> neighbors = new ArrayList<Cell>();
+    public List<Patch> getDiagonalNeighbors (Patch[][] grid, int x, int y, GridRules rules) {
+        List<Patch> neighbors = new ArrayList<Patch>();
         topLeft(grid,x,y,rules,neighbors);
         topRight(grid,x,y,rules,neighbors);
         bottomLeft(grid,x,y,rules,neighbors);
@@ -28,9 +28,9 @@ public class SquareTriangleNeighbors extends Neighbors{
     }
 
     @Override
-    public List<Cell> getAllNeighbors (Cell[][] grid, int x, int y, GridRules rules) {
+    public List<Patch> getAllNeighbors (Patch[][] grid, int x, int y, GridRules rules) {
         // TODO Auto-generated method stub
-        List<Cell> neighbors = getCardinalNeighbors(grid,x,y,rules);
+        List<Patch> neighbors = getCardinalNeighbors(grid,x,y,rules);
         neighbors.addAll(getDiagonalNeighbors(grid,x,y,rules));
         return neighbors;
     }

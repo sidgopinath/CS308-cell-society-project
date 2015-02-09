@@ -2,11 +2,12 @@ package model.gridrules;
 
 import java.util.List;
 import model.cells.Cell;
+import model.patches.Patch;
 
 public class ToroidalGridRules extends GridRules{
 
     @Override
-    public void handleEdges (Cell[][] grid, int x, int y, List<Cell> list) {
+    public void handleEdges (Patch[][] grid, int x, int y, List<Patch> list) {
         // TODO Auto-generated method stub
         if(x<0){
             x = grid[0].length-1;

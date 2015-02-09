@@ -1,9 +1,15 @@
 package model.simulations;
 
 import java.util.Map;
-
 import javafx.scene.paint.Color;
 import model.cells.Cell;
+import model.gridrules.FiniteGridRules;
+import model.gridrules.GridRules;
+import model.gridrules.ToroidalGridRules;
+import model.neighbors.HexagonalNeighbors;
+import model.neighbors.Neighbors;
+import model.neighbors.SquareTriangleNeighbors;
+import model.patches.Patch;
 import view.SimulationScreen;
 
 public abstract class Simulation {
@@ -15,59 +21,88 @@ public abstract class Simulation {
      * 
      * @author Janan
      */
-//    protected Patch[][] myGrid;
+    //    protected Patch[][] myGrid;
     protected SimulationScreen myView;
     protected int gridLength;
     protected int gridWidth;
-    protected Cell[][] myGrid;
+    protected Patch[][] myPatchGrid;
     protected AbstractCellFactory myCellFactory;
+    protected Neighbors myNeighbors;
+    protected GridRules myGridRules;
+    protected String directions;
 
     public Simulation(Map<String,String> paramMap, Map<String,String>
     styleMap,Integer[][] cellGrid,
-                      SimulationScreen simScreen){
+    SimulationScreen simScreen){
+        parseMap(paramMap);
+        parseStyleMap(styleMap);
         myView = simScreen;
         gridLength = cellGrid[0].length;
         gridWidth = cellGrid.length;
-        parseMap(paramMap);
-        parseStyleMap(styleMap);
         myCellFactory = getCellFactory();
         myView.initSimView(gridWidth, gridLength);
         setupGrid(cellGrid);
     }
-    
+
     void parseStyleMap(Map<String,String> styleMap){
         // set styles here
+        String neighbors = styleMap.get("cellShape");
+        String gridRules = styleMap.get("edgeType");
+        directions = styleMap.get("neighbors");
+        if(neighbors.equals("square") || neighbors.equals("triangle")){
+            myNeighbors = new SquareTriangleNeighbors();
+        } else{
+            myNeighbors = new HexagonalNeighbors();
+        }
+        if(gridRules.equals("finite")){
+            myGridRules = new FiniteGridRules();
+        } else{
+            myGridRules = new ToroidalGridRules();
+        }
     }
     abstract AbstractCellFactory getCellFactory();
-    
-//    void fillPatchGrid(){
-//        myGrid = new Patch[gridWidth][gridLength];
-//        for(int i=0; i<gridWidth; i++){
-//            for(int j=0; j<gridLength; j++){
-//                myGrid[i][j] = new Patch();
-//            }
-//        }
-//    }
+
+    void fillPatchGrid(){
+        myPatchGrid = new Patch[gridWidth][gridLength];
+        for(int i=0; i<gridWidth; i++){
+            for(int j=0; j<gridLength; j++){
+                myPatchGrid[i][j] = new Patch(j, i);
+            }
+        }
+        for(int i=0; i<gridWidth; i++){
+            for(int j=0; j<gridLength; j++){
+                if(directions.equals("all")){
+                    myPatchGrid[i][j].setNeighbors(myNeighbors.getAllNeighbors
+                                                   (myPatchGrid, j, i, myGridRules));
+                } else if(directions.equals("cardinal")){
+                    myPatchGrid[i][j].setNeighbors(myNeighbors.getCardinalNeighbors
+                                                   (myPatchGrid, j, i, myGridRules));
+                } else{
+                    myPatchGrid[i][j].setNeighbors(myNeighbors.getDiagonalNeighbors
+                                                   (myPatchGrid, j, i, myGridRules));
+                }
+            }
+        }
+    }
     /**
      * Reads parameter map from XML file and sets instance variables accordingly
      */
     abstract void parseMap(Map<String,String> paramMap);
-    
+
     /**
      * fill grid with squares that have the right values given the parameters and the type of each space
      * initialize grid, and fill
      * @param paramMap 
      */
-     void setupGrid(Integer[][] grid){
-         myGrid = new Cell[gridWidth][gridLength];
-         for (int j = 0; j < gridWidth; j++) {
-             for (int i = 0; i < gridLength; i++) {
-              myGrid[j][i] = myCellFactory.getCell(grid[j][i]);
-             }
-         }
-         updateColorGrid();
-     }
-    
+    void setupGrid(Integer[][] grid){
+        for (int j = 0; j < gridWidth; j++) {
+            for (int i = 0; i < gridLength; i++) {
+                myPatchGrid[j][i].setCell(myCellFactory.getCell(grid[j][i]));
+            }
+        }
+        updateColorGrid();
+    }
+
 
     /**
      * Updates the grid by one frame
@@ -82,7 +117,7 @@ public abstract class Simulation {
         Color[][] colorGrid = new Color[gridWidth][gridLength];
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
-                colorGrid[j][i] = myGrid[j][i].getColor();
+                colorGrid[j][i] = myPatchGrid[j][i].getCell().getColor();
             }
         }
         myView.updateScreen(colorGrid);

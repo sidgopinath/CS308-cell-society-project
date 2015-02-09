@@ -29,7 +29,7 @@ public class SimulationFire extends Simulation {
         updateNeighbors();
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
-                myGrid[j][i] = myGrid[j][i].update();
+                myPatchGrid[j][i].setCell(myPatchGrid[j][i].getCell().update());
             }
         }
         updateColorGrid();

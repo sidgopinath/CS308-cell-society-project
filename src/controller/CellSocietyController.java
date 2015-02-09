@@ -191,18 +191,18 @@ public class CellSocietyController {
 	 */
 	private void initializeSimulation(String simName) {
 		if (simName.equals(myProperties.getObject("fire_simulation_name"))) {
-			myCurrentSimulation = new SimulationFire(myParameters, myStyle, myGrid, myCurrentSimulationScreen);	
+			myCurrentSimulation = new SimulationFire(myParameters, myStyles, myGrid, myCurrentSimulationScreen);	
 		}
 		else if(simName.equals(myProperties.getObject("segregation_simulation_name"))){
-			myCurrentSimulation = new SimulationSegregation(myParameters, myStyle, myGrid,myCurrentSimulationScreen);
+			myCurrentSimulation = new SimulationSegregation(myParameters, myStyles, myGrid,myCurrentSimulationScreen);
 			
 		}
 		else if(simName.equals(myProperties.getObject("life_simulation_name"))){
-			myCurrentSimulation = new SimulationLife(myParameters, myStyle, myGrid, myCurrentSimulationScreen);
+			myCurrentSimulation = new SimulationLife(myParameters, myStyles, myGrid, myCurrentSimulationScreen);
 			
 		}
 		else if(simName.equals(myProperties.getObject("predator_simulation_name"))){
-			myCurrentSimulation = new SimulationPredator(myParameters, myStyle, myGrid, myCurrentSimulationScreen);
+			myCurrentSimulation = new SimulationPredator(myParameters, myStyles, myGrid, myCurrentSimulationScreen);
 		}
 	}
 
