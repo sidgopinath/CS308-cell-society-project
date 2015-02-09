@@ -15,5 +15,10 @@ public abstract class AbstractCellFactory {
     	System.exit(0);
     	return null;
 	}
+	
+	protected void paramInputError(){
+		System.out.println("Error with parameter input values.");
+		System.exit(0);
+	}
 		
 }

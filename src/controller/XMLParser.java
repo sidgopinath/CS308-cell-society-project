@@ -30,7 +30,7 @@ public class XMLParser {
 			checkFileExtension(XMLFile);
 			Document doc = initializeDoc(XMLFile);
 			clean(doc.getDocumentElement().getParentNode());
-			if(doc.getDocumentElement().getParentNode().toString().equals("simulation")){
+			if(doc.getDocumentElement().getNodeName().equals("simulation")){
 				readSimFile(doc);
 			}
 			else{
@@ -92,11 +92,11 @@ public class XMLParser {
 	 * @param paramMap
 	 */
 	private void checkParameters(HashMap<String, String> paramMap) {
-		if(!paramMap.containsKey("simtype")){
+		if(!paramMap.containsKey("simName")){
 			System.out.println("No sim type found");
 			System.exit(0);
 		}
-		else if(paramMap.get("simtype") == null){
+		else if(paramMap.get("simName") == null){
 			System.out.println("Sim type is null");
 			System.exit(0);
 		}	

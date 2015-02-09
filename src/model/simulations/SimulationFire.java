@@ -20,7 +20,10 @@ public class SimulationFire extends Simulation {
 
     @Override
     void parseMap (Map<String, String> paramMap) {
-        myProbCatch = Integer.parseInt(paramMap.get("probCatch"));
+        if(!paramMap.containsKey("probCatch") || paramMap.get("probCatch") == null){
+        	//throw exception
+        }
+    	myProbCatch = Integer.parseInt(paramMap.get("probCatch"));
         
     }
     @Override
@@ -57,6 +60,6 @@ public class SimulationFire extends Simulation {
 
     @Override
     AbstractCellFactory getCellFactory () {
-        return new FireCellFactory(myProbCatch);
+    	return new FireCellFactory(myProbCatch);
     }
 }

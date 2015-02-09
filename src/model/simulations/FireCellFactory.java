@@ -9,7 +9,8 @@ public class FireCellFactory extends AbstractCellFactory {
     private int myProbCatch;
     
     public FireCellFactory(int probCatch){
-        myProbCatch = probCatch;
+        
+    	myProbCatch = probCatch;
     }
     @Override
     public Cell getCell (int type) {

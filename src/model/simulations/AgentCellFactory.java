@@ -8,7 +8,7 @@ import model.cells.AgentCellX;
 public class AgentCellFactory extends AbstractCellFactory{
     private double mySatisfaction;
     
-    public AgentCellFactory(double satisfaction){
+	public AgentCellFactory(double satisfaction){
         mySatisfaction = satisfaction;
     }
     @Override
