@@ -5,10 +5,10 @@
 	<parameter>
 		<cellShape>square</cellShape>
 		<cellSize>10</cellSize>
-		<edgeType>toroidal</edgeType>
-		<emptyCellColor>blue</emptyCellColor>
+		<edgeType>finite</edgeType>
+		<emptyCellColor>white</emptyCellColor>
 		<gridOutline>yes</gridOutline>
-		<neighbors>cardinal</neighbors>
+		<neighbors>all</neighbors>
 	</parameter>
 	
 </style>
