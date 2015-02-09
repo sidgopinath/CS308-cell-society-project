@@ -37,48 +37,14 @@ public class SimulationSegregation extends Simulation {
         
     }
 
-    void updateNeighbors() {
-        for (int j = 0; j < gridWidth; j++) {
-            for (int i = 0; i < gridLength; i++) {
-                List<Cell> neighbors = new ArrayList<Cell>();
-                if(i + 1 < gridLength){
-                    neighbors.add(myGrid[j][i + 1]);
-                }
-                if(i - 1 >= 0){
-                    neighbors.add(myGrid[j][i - 1]);
-                }
-                if(j + 1 < gridWidth){
-                    neighbors.add(myGrid[j + 1][i]);
-                }
-                if(j - 1 >= 0){
-                    neighbors.add(myGrid[j - 1][i]);
-                }
-                if(i+1 < gridLength && j+1 < gridWidth){
-                    neighbors.add(myGrid[j+1][i+1]);
-                }
-                if(i+1 < gridLength && j-1 >= 0){
-                    neighbors.add(myGrid[j-1][i+1]);
-                }
-                if(i-1 >= 0  && j+1 < gridWidth){
-                    neighbors.add(myGrid[j+1][i-1]);
-                }
-                if(i-1 >= 0 && j-1 >= 0){
-                    neighbors.add(myGrid[j-1][i-1]);
-                }
-                myGrid[j][i].setNeighbors(neighbors);
-            }
-        }
-    }
-
     @Override
     public void updateGrid() {
         updateNeighbors();
-        Cell[][] clone = myGrid;
-        for (int j = 0; j < clone.length; j++) {
-            for (int i = 0; i < clone[0].length; i++) {
-            	clone[j][i].update();
-                if ((clone[j][i].viewProperties().get("satisfied").intValue()) != 1) {
-                    moveAgent(j, i, clone[j][i]);
+        for (int j = 0; j < myPatchGrid.length; j++) {
+            for (int i = 0; i < myPatchGrid[0].length; i++) {
+            	myPatchGrid[j][i].getCell().update();
+                if ((myPatchGrid[j][i].getCell().viewProperties().get("satisfied").intValue()) != 1) {
+                    moveAgent(j, i, myPatchGrid[j][i].getCell());
                 }
             }
         }
@@ -90,9 +56,10 @@ public class SimulationSegregation extends Simulation {
         while (true) {
             int rColumn = myRandom.nextInt(gridWidth);
             int rRow = myRandom.nextInt(gridLength);
-            if (myGrid[rColumn][rRow].viewProperties().get("empty").intValue() == 1) {
-                myGrid[rColumn][rRow] = clone;
-                myGrid[j][i] = new AgentCellEmpty(myGrid[rColumn][rRow].viewProperties().get("satisfactionRate").intValue());
+            if (myPatchGrid[rColumn][rRow].getCell().viewProperties().get("empty").intValue() == 1) {
+                myPatchGrid[rColumn][rRow].setCell(clone);
+                myPatchGrid[j][i].setCell(new AgentCellEmpty(myPatchGrid[rColumn][rRow].getCell().
+                                                             viewProperties().get("satisfactionRate").intValue()));
                 break;
             }
             if (count > SAFE_GUARD) {

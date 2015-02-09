@@ -35,26 +35,6 @@ public class SimulationFire extends Simulation {
         updateColorGrid();
     }
 
-    void updateNeighbors() {
-        for(int j = 0; j < gridWidth; j++){
-            for(int i = 0 ; i < gridLength; i++){
-                List<Cell> neighbors = new ArrayList<>();
-                if(i + 1 < gridLength){
-                    neighbors.add(myPatchGrid[j][i + 1]);
-                }
-                if(i - 1 >= 0){
-                    neighbors.add(myPatchGrid[j][i - 1]);
-                }
-                if(j + 1 < gridWidth){
-                    neighbors.add(myPatchGrid[j + 1][i]);
-                }
-                if(j - 1 >= 0){
-                    neighbors.add(myPatchGrid[j - 1][i]);
-                }
-                myGrid[j][i].setNeighbors(neighbors);
-            }
-        }
-    }
 
     @Override
     AbstractCellFactory getCellFactory () {
