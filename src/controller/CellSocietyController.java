@@ -90,12 +90,13 @@ public class CellSocietyController {
 		if(newParser.getGrid() != null){
 			myGrid = newParser.getGrid();
 			myParameters = newParser.getParameters();
+			transitionToSimulation();
 		}
 		else{
 			myStyles = newParser.getParameters();
 		}
 		//XMLWriter writer = new XMLWriter(myParameters, myGrid); //proof that writer works
-		transitionToSimulation();
+		
 	}
 	
 	/**
@@ -121,8 +122,6 @@ public class CellSocietyController {
 		readXML(inputFile);
 	}
 	
-
-
 	/**
 	 * Steps through simulation one frame at a time.
 	 * Lags a bit before performing the step...
@@ -170,6 +169,7 @@ public class CellSocietyController {
 	 * Called after the XML file has been made. Transitions to new simulation
 	 */
 	private void transitionToSimulation() {
+		System.out.println(myStyles);
 		initializeSimulationScreen();
 		initializeSimulation(myParameters.get("simName"));
 		stopOrStart(true);
@@ -187,23 +187,22 @@ public class CellSocietyController {
 
 	/**
 	 * Initializes the model
-	 * Potential spot to refactor
 	 * @param simName
 	 */
 	private void initializeSimulation(String simName) {
 		if (simName.equals(myProperties.getObject("fire_simulation_name"))) {
-			myCurrentSimulation = new SimulationFire(myParameters, myGrid, myCurrentSimulationScreen);	
+			myCurrentSimulation = new SimulationFire(myParameters, myStyle, myGrid, myCurrentSimulationScreen);	
 		}
 		else if(simName.equals(myProperties.getObject("segregation_simulation_name"))){
-			myCurrentSimulation = new SimulationSegregation(myParameters, myGrid,myCurrentSimulationScreen);
+			myCurrentSimulation = new SimulationSegregation(myParameters, myStyle, myGrid,myCurrentSimulationScreen);
 			
 		}
 		else if(simName.equals(myProperties.getObject("life_simulation_name"))){
-			myCurrentSimulation = new SimulationLife(myParameters, myGrid, myCurrentSimulationScreen);
+			myCurrentSimulation = new SimulationLife(myParameters, myStyle, myGrid, myCurrentSimulationScreen);
 			
 		}
 		else if(simName.equals(myProperties.getObject("predator_simulation_name"))){
-			myCurrentSimulation = new SimulationPredator(myParameters, myGrid, myCurrentSimulationScreen);
+			myCurrentSimulation = new SimulationPredator(myParameters, myStyle, myGrid, myCurrentSimulationScreen);
 		}
 	}
 
