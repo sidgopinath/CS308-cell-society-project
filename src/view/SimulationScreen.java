@@ -10,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import controller.CellSocietyController;
@@ -26,7 +27,6 @@ public class SimulationScreen {
 	private CellSocietyController myController;
 	private int myWidth;
 	private int myHeight;
-	private GridPane myGridPane;
 	private BorderPane root;
 	private ArrayList<Button> myButtons;
 	private HBox myTop;
@@ -81,7 +81,7 @@ public class SimulationScreen {
 		for (int j = 0; j < colorGrid.length; j++) {
 			for (int i = 0; i < colorGrid[0].length; i++) {
 				// get color and update square with that color
-				myColorGrid[j][i].setFill(colorGrid[j][i]);
+				//myColorGrid[j][i].setFill(colorGrid[j][i]);
 			}
 		}
 	}
@@ -116,7 +116,19 @@ public class SimulationScreen {
 					simulation.getChildren().add(rect);
 					myColorGrid[j][i] = rect;
 				}
-				
+				if(myStyles.get("cellShape").equals("triangle")){
+					Polygon tri = new Polygon(0.0, 0.0, 
+											  myWidth/gridWidth - 1, 0.0, 
+											  (myWidth/gridWidth - 1)/2, (myHeight - myTop.getPrefHeight())/ gridHeight - 1);
+					tri.setFill(Color.WHITE);
+					if(myStyles.get("gridOutline").equals("yes")){
+						tri.setStroke(Color.BLACK);
+						tri.setTranslateX(i * myWidth/gridWidth - tri.getStrokeWidth());
+						tri.setTranslateY(j * (myHeight - myTop.getPrefHeight())/ gridHeight - 1);
+					}
+					simulation.getChildren().add(tri);
+					myColorGrid[j][i] = tri;
+				}
 			}
 		}
 		root.setCenter(simulation);
