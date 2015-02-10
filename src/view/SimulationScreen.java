@@ -1,11 +1,9 @@
 package view;
 
 import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.Map;
 
-import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -13,7 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import javafx.stage.Stage;
 import controller.CellSocietyController;
 
 /**
@@ -28,26 +25,26 @@ public class SimulationScreen {
 	private CellSocietyController myController;
 	private int myWidth;
 	private int myHeight;
-	private HBox myTop;
 	private GridPane myGridPane;
-	private boolean myStart;
 	private BorderPane root;
 	private ArrayList<Button> myButtons;
-	private ResourceBundle myProperties;
+	private HBox myTop;
 
-	public void initSimScreen(int width, int height, CellSocietyController controller){
+	public void initSimScreen(int width, int height, CellSocietyController controller, Map<String, String> styleMap){
 		myController = controller;
 		root = new BorderPane();
 		myWidth = width;
 		myHeight = height;
 		myGridPane = new GridPane();
-		myStart = true;
+		
 		TopMenu topMenu = new TopMenu(myWidth, myHeight, myController);
 		myButtons = new ArrayList<>(topMenu.createTopButtons());
+		
 		root.setTop(addButtons());
 		root.setCenter(myGridPane);
 	}
-	
+
+
 	public BorderPane getNode(){
 		return root;
 	}
@@ -64,6 +61,10 @@ public class SimulationScreen {
 		return myTop;
 	}
 
+	public void createOptionsPanel(String[] names, double[] value, double[] min, double[] max){
+		SideMenu sideMenu = new SideMenu(myWidth, myHeight, names, value, min, max);
+		sideMenu.createOptionWindow();
+	}
 	
 
 	/**
@@ -92,9 +93,9 @@ public class SimulationScreen {
 		for (int j = 0; j < gridHeight; j++) {
 			for (int i = 0; i < gridWidth; i++) {
 				Rectangle rect = new Rectangle();
-				rect.setFill(Color.BLACK);
+				rect.setFill(Color.WHITE);
 				rect.setStroke(Color.BLACK);
-				rect.setWidth(myWidth / gridWidth - rect.getStrokeWidth());
+				rect.setWidth(myWidth/ gridWidth - rect.getStrokeWidth());
 				rect.setHeight((myHeight - myTop.getPrefHeight()) / gridHeight - rect.getStrokeWidth());
 				myGridPane.add(rect, i, j);
 			}

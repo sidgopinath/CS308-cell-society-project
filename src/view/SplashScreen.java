@@ -41,9 +41,25 @@ public class SplashScreen {
 		myHeight = height;
 		addTitle();
 		addLoadButton();
+		addRandomButton();
+		addProbablityButton();
 		return myRoot;
 	}
 	
+	/**
+	 * collects integers for probability distribution
+	 */
+	private void addProbablityButton() {
+		// TODO Auto-generated method stub
+		
+	}
+	/**
+	 * remove other buttons, and have user select grid height, width, and type of simulation
+	 */
+	private void addRandomButton() {
+		// TODO Auto-generated method stub
+		
+	}
 	/**
 	 * This function will add the title in. This is example code of what it might do. It will have to get the name of the
 	 * program from the .properties file which will then dictate where it goes.
@@ -67,6 +83,8 @@ public class SplashScreen {
 		formatNode(loadButton,(myWidth - loadButton.getWidth())/2, myHeight * 3/4, LOAD_BUTTON_SIZE );
 		loadButton.setOnAction(e -> myController.transitionToFileLoaderScreen());
 	}
+	
+	
 	
 	private void formatNode(Node node, double width, double height, int scale) {
 		node.setTranslateX(width);

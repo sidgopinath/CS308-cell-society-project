@@ -210,7 +210,7 @@ public class CellSocietyController {
 	 */
 	private void initializeSimulationScreen() {
 		myCurrentSimulationScreen = new SimulationScreen();
-		myCurrentSimulationScreen.initSimScreen(Main.WIDTH, Main.HEIGHT,this);
+		myCurrentSimulationScreen.initSimScreen(Main.WIDTH, Main.HEIGHT,this, myStyles);
 		myGroup.getChildren().clear();
 		myGroup.getChildren().add(myCurrentSimulationScreen.getNode());
 	}
