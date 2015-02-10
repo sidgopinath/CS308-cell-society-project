@@ -21,8 +21,8 @@ public class SideMenu {
 	private double[] myMaxs;
 
 	public SideMenu(int width, int height, String[] names, double[] values, double[] min, double[] max){
-		myWidth = width;
-		myHeight = height;
+		myWidth = width/4;
+		myHeight = height/2;
 		myNames = names;
 		myValues = values;
 		myMins = min;
@@ -34,7 +34,7 @@ public class SideMenu {
 		//open new window with graph
 		Stage stage = new Stage();
 		stage.setTitle("Options");
-		stage.setScene(new Scene(options, myWidth/4, myHeight/2));
+		stage.setScene(new Scene(options, myWidth, myHeight));
 		stage.show();
 		options.getChildren().add(addOptionsPanel());
 	}
@@ -46,7 +46,9 @@ public class SideMenu {
 			slider.setValue(myValues[i]);
 			slider.setMin(myMins[i]);
 			slider.setMax(myMaxs[i]);
+			slider.setBlockIncrement((myMaxs[i] - myMins[i]) / 10);
 			sliders.getChildren().add(slider);
+			//TODO: implement event listener for each slider
 		}
 		return sliders;
 	}

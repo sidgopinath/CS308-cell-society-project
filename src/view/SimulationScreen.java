@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -29,19 +30,21 @@ public class SimulationScreen {
 	private BorderPane root;
 	private ArrayList<Button> myButtons;
 	private HBox myTop;
+	private Map<String, String> myStyles;
+	private Shape[][] myColorGrid;
 
 	public void initSimScreen(int width, int height, CellSocietyController controller, Map<String, String> styleMap){
 		myController = controller;
 		root = new BorderPane();
 		myWidth = width;
 		myHeight = height;
-		myGridPane = new GridPane();
+		
+		myStyles = styleMap;
 		
 		TopMenu topMenu = new TopMenu(myWidth, myHeight, myController);
 		myButtons = new ArrayList<>(topMenu.createTopButtons());
 		
 		root.setTop(addButtons());
-		root.setCenter(myGridPane);
 	}
 
 
@@ -78,39 +81,45 @@ public class SimulationScreen {
 		for (int j = 0; j < colorGrid.length; j++) {
 			for (int i = 0; i < colorGrid[0].length; i++) {
 				// get color and update square with that color
-				getChild(j, i).setFill(colorGrid[j][i]);
+				myColorGrid[j][i].setFill(colorGrid[j][i]);
 			}
 		}
 	}
 
 	/**
-	 * goes through myGridPane and creates a new rectangle object at each spot
-	 * in the grid
+	 * Called from the simulation. If it is a triangle type, it forms triangles, if it is rectangular it forms
+	 * rectangles
 	 * @param gridHeight
 	 * @param gridWidth
 	 */
 	public void initSimView(int gridHeight, int gridWidth) {
+		Group simulation = new Group();
+		myColorGrid = new Shape[gridHeight][gridWidth];
 		for (int j = 0; j < gridHeight; j++) {
 			for (int i = 0; i < gridWidth; i++) {
-				Rectangle rect = new Rectangle();
-				rect.setFill(Color.WHITE);
-				rect.setStroke(Color.BLACK);
-				rect.setWidth(myWidth/ gridWidth - rect.getStrokeWidth());
-				rect.setHeight((myHeight - myTop.getPrefHeight()) / gridHeight - rect.getStrokeWidth());
-				myGridPane.add(rect, i, j);
+				if(myStyles.get("cellShape").equals("square")){
+					Rectangle rect = new Rectangle();
+					rect.setFill(Color.WHITE);
+					if(myStyles.get("gridOutline").equals("yes")){
+						rect.setStroke(Color.BLACK);
+						rect.setWidth(myWidth/ gridWidth - rect.getStrokeWidth());
+						rect.setHeight((myHeight - myTop.getPrefHeight()) / gridHeight - rect.getStrokeWidth());
+						rect.setTranslateX(i * (rect.getWidth() + rect.getStrokeWidth()));
+						rect.setTranslateY(j * (rect.getHeight() + rect.getStrokeWidth()));
+					}
+					else{
+						rect.setWidth(myWidth/ gridWidth);
+						rect.setHeight((myHeight - myTop.getPrefHeight()) / gridHeight);
+						rect.setTranslateX(i * rect.getWidth());
+						rect.setTranslateY(j * rect.getHeight());
+					}
+					simulation.getChildren().add(rect);
+					myColorGrid[j][i] = rect;
+				}
+				
 			}
 		}
+		root.setCenter(simulation);
 	}
 
-	// http://stackoverflow.com/questions/20825935/javafx-get-node-by-row-and-column
-	private Shape getChild(int row, int column) {
-		for (Node child : myGridPane.getChildren()) {
-			if (GridPane.getRowIndex(child) == row
-					&& GridPane.getColumnIndex(child) == column) {
-				return (Shape) child;
-			}
-		}
-		return null;
-
-	}
 }
