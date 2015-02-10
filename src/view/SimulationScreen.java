@@ -81,7 +81,7 @@ public class SimulationScreen {
 		for (int j = 0; j < colorGrid.length; j++) {
 			for (int i = 0; i < colorGrid[0].length; i++) {
 				// get color and update square with that color
-				//myColorGrid[j][i].setFill(colorGrid[j][i]);
+				myColorGrid[j][i].setFill(colorGrid[j][i]);
 			}
 		}
 	}
@@ -95,42 +95,34 @@ public class SimulationScreen {
 	public void initSimView(int gridHeight, int gridWidth) {
 		Group simulation = new Group();
 		myColorGrid = new Shape[gridHeight][gridWidth];
-		for (int j = 0; j < gridHeight; j++) {
-			for (int i = 0; i < gridWidth; i++) {
-				if(myStyles.get("cellShape").equals("square")){
-					Rectangle rect = new Rectangle();
-					rect.setFill(Color.WHITE);
-					if(myStyles.get("gridOutline").equals("yes")){
-						rect.setStroke(Color.BLACK);
-						rect.setWidth(myWidth/ gridWidth - rect.getStrokeWidth());
-						rect.setHeight((myHeight - myTop.getPrefHeight()) / gridHeight - rect.getStrokeWidth());
-						rect.setTranslateX(i * (rect.getWidth() + rect.getStrokeWidth()));
-						rect.setTranslateY(j * (rect.getHeight() + rect.getStrokeWidth()));
-					}
-					else{
-						rect.setWidth(myWidth/ gridWidth);
-						rect.setHeight((myHeight - myTop.getPrefHeight()) / gridHeight);
-						rect.setTranslateX(i * rect.getWidth());
-						rect.setTranslateY(j * rect.getHeight());
-					}
-					simulation.getChildren().add(rect);
-					myColorGrid[j][i] = rect;
-				}
-				if(myStyles.get("cellShape").equals("triangle")){
-					Polygon tri = new Polygon(0.0, 0.0, 
-											  myWidth/gridWidth - 1, 0.0, 
-											  (myWidth/gridWidth - 1)/2, (myHeight - myTop.getPrefHeight())/ gridHeight - 1);
-					tri.setFill(Color.WHITE);
-					if(myStyles.get("gridOutline").equals("yes")){
-						tri.setStroke(Color.BLACK);
-						tri.setTranslateX(i * myWidth/gridWidth - tri.getStrokeWidth());
-						tri.setTranslateY(j * (myHeight - myTop.getPrefHeight())/ gridHeight - 1);
-					}
-					simulation.getChildren().add(tri);
-					myColorGrid[j][i] = tri;
-				}
-			}
+		ShapeGrid grid; 
+		if(myStyles.get("cellShape").equals("square")){
+			grid = new SquareGrid(gridWidth, gridHeight, myColorGrid);
+			double heightOfSquare = (myHeight - myTop.getPrefHeight()) / gridHeight;
+			double widthOfSquare = myWidth/ gridWidth;
+			simulation = grid.createGrid(myStyles.get("gridOutline").equals("yes"), heightOfSquare, widthOfSquare);
 		}
+			
+			
+			
+			
+//		if(myStyles.get("cellShape").equals("triangle")){
+//			Polygon tri = new Polygon(0.0, 0.0, 
+//									  myWidth/gridWidth - 1, 0.0, 
+//									  (myWidth/gridWidth - 1)/2, (myHeight - myTop.getPrefHeight())/ gridHeight - 1);
+//			tri.setRotate(rotate);
+//			tri.setFill(Color.GREEN);
+//			if(myStyles.get("gridOutline").equals("yes")){
+//				tri.setStroke(Color.BLACK);
+//				tri.setTranslateX((i * (myWidth/gridWidth-1) - tri.getStrokeWidth())/2);
+//				tri.setTranslateY(j * (myHeight - myTop.getPrefHeight())/ gridHeight - 1);
+//			}
+//			simulation.getChildren().add(tri);
+//			myColorGrid[j][i] = tri;
+//			rotate += 180;
+//		}
+//			}
+//		}
 		root.setCenter(simulation);
 	}
 
