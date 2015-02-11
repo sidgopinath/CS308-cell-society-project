@@ -63,20 +63,20 @@ public class SplashScreen {
 	 * collects integers for probability distribution
 	 */
 	private void addProbablityButton() {
-		Button probButton = new Button("Probability");
+		Button probButton = new Button((String) myProperties.getObject("probability"));
 		myButtons.add(probButton);
 		final Scene snapScene = new Scene(probButton);  
 		snapScene.snapshot(null);  
 		formatNode(probButton,myWidth /2, myHeight * 1/2, LOAD_BUTTON_SIZE );
-		probButton.setOnAction(e -> displayProbabilityInformation());
+		probButton.setOnAction(e -> displayAskInformatio(true));
 	}
 	
-	private void displayProbabilityInformation() {
+	private void displayAskInformatio(boolean probability) {
 		removeButtons();
 		TextField[] dimensions = addDimensionsText();
 		TextField simulationName = addSimulationNameText();
 		
-		Button submit = new Button("submit");
+		Button submit = new Button(myProperties.getString("submit"));
 		myAskScreenNodes.add(submit);
 		submit.setTranslateX(myWidth/2);
 		submit.setTranslateY(myHeight * 5/6);
@@ -98,10 +98,16 @@ public class SplashScreen {
 					numTextFields = 3;
 				}
 				else{
-					System.out.println("Invalid Simulation Name");
+					System.out.println(myProperties.getString("invalid_simulation_name"));
 					throw new IllegalArgumentException();
 				}
-				addProbabilityText(numTextFields, dimensions, simulationName.getText());
+				if(probability){
+					addProbabilityText(numTextFields, dimensions, simulationName.getText());
+				}
+				else{
+					myController.generateRandomGrid(Integer.parseInt(dimensions[0].getText()), 
+							Integer.parseInt(dimensions[1].getText()), simulationName.getText());
+				}
 			}
 		});
 	}
@@ -115,18 +121,19 @@ public class SplashScreen {
 			cellProbability.setTranslateX(myWidth / 4);
 			cellProbability.setTranslateY(myHeight / 2);
 			
-			Text probabilityName = new Text("Cell " + i + " Probability:");
+			Text probabilityName = new Text(myProperties.getString("cell") + " " + i + " " + 
+			myProperties.getString("probability"));
 			cellProbability.getChildren().add(probabilityName);
 			
 			TextField probabilityText = new TextField();
-			probabilityText.setPromptText("Enter Value of Cell");
+			probabilityText.setPromptText(myProperties.getString("enter_value_of_cell"));
 			cellProbability.getChildren().add(probabilityText);
 			
 			probabilities.getChildren().add(cellProbability);
 		}
 		myRoot.getChildren().add(probabilities);
 		
-		Button runSimulation = new Button("Run Simulation");
+		Button runSimulation = new Button(myProperties.getString("run_simulation"));
 		runSimulation.setTranslateX(myWidth/2);
 		runSimulation.setTranslateY(myHeight * 5/6);
 		
@@ -141,7 +148,7 @@ public class SplashScreen {
 					probabilityMap.put(i, Integer.parseInt(probability.getText()));
 				}
 				catch(NumberFormatException e1){
-					System.out.println("Invalid Value");
+					System.out.println(myProperties.getString("invalid_value"));
 				}
 			}
 			myController.generateProbabilityRandomGrid(Integer.parseInt(dimensions[0].getText()), 
@@ -159,11 +166,11 @@ public class SplashScreen {
 	private TextField addSimulationNameText() {
 		HBox simulation = new HBox(myWidth/20);
 		
-		Text simulationName = new Text("Simulation Name:");
+		Text simulationName = new Text(myProperties.getString("simulation_name"));
 		simulation.getChildren().add(simulationName);
 		
 		TextField simulationNameText = new TextField();
-		simulationNameText.setPromptText("Enter Name");
+		simulationNameText.setPromptText(myProperties.getString("enter_name"));
 		simulation.getChildren().add(simulationNameText);
 		
 		simulation.setTranslateX(myWidth / 4);
@@ -178,18 +185,18 @@ public class SplashScreen {
 	private TextField[] addDimensionsText() {
 		HBox dimensions = new HBox(myWidth / 20);
 		
-		Text gridHeight = new Text("Grid Height:");
+		Text gridHeight = new Text(myProperties.getString("grid_height"));
 		dimensions.getChildren().add(gridHeight);
 		
 		TextField gridHeightText = new TextField();
-		gridHeightText.setPromptText("Enter Height of Grid");
+		gridHeightText.setPromptText(myProperties.getString("enter_height"));
 		dimensions.getChildren().add(gridHeightText);
 		
-		Text gridWidth = new Text("Grid Width:");
+		Text gridWidth = new Text(myProperties.getString("grid_width"));
 		dimensions.getChildren().add(gridWidth);
 		
 		TextField gridWidthText = new TextField();
-		gridWidthText.setPromptText("Enter Width of Grid");
+		gridWidthText.setPromptText(myProperties.getString("enter_width"));
 		dimensions.getChildren().add(gridWidthText);
 
 		dimensions.setTranslateX(myWidth / 20);
@@ -214,12 +221,12 @@ public class SplashScreen {
 	 * remove other buttons, and have user select grid height, width, and type of simulation
 	 */
 	private void addRandomButton() {
-		Button probButton = new Button("Random");
+		Button probButton = new Button(myProperties.getString("random"));
 		myButtons.add(probButton);
 		final Scene snapScene = new Scene(probButton);  
 		snapScene.snapshot(null);  
 		formatNode(probButton,myWidth/2, myHeight * 3/4, LOAD_BUTTON_SIZE );
-		probButton.setOnAction(e -> myController.transitionToFileLoaderScreen());
+		probButton.setOnAction(e -> displayAskInformatio(false));
 	}
 	
 	/**
@@ -246,7 +253,6 @@ public class SplashScreen {
 		formatNode(loadButton,myWidth / 2, myHeight * 5/8, LOAD_BUTTON_SIZE );
 		loadButton.setOnAction(e -> myController.transitionToFileLoaderScreen());
 	}
-	
 	
 	
 	private void formatNode(Node node, double width, double height, int scale) {

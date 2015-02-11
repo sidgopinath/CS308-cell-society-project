@@ -3,7 +3,7 @@
 <style>
 
 	<parameter>
-		<cellShape>triangle</cellShape>
+		<cellShape>square</cellShape>
 		<cellSize>10</cellSize>
 		<edgeType>toroidal</edgeType>
 		<emptyCellColor>blue</emptyCellColor>

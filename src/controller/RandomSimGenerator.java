@@ -47,7 +47,7 @@ public class RandomSimGenerator {
 
 	/**
 	 * Create grid based on purely random values
-	 * Grid created dependingon type of simulation
+	 * Grid created depending on type of simulation
 	 * @param grid
 	 */
 	private void createGrid(Integer[][] grid) {

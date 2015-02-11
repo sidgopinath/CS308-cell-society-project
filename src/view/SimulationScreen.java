@@ -1,6 +1,7 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import javafx.scene.Group;
@@ -28,6 +29,7 @@ public class SimulationScreen {
 	private HBox myTop;
 	private Map<String, String> myStyles;
 	private Shape[][] myColorGrid;
+	private Map<Color, ArrayList<Integer>> myData;
 
 	public void initSimScreen(int width, int height, CellSocietyController controller, Map<String, String> styleMap){
 		myController = controller;
@@ -35,7 +37,8 @@ public class SimulationScreen {
 		myWidth = width;
 		myHeight = height;
 		myStyles = styleMap;
-		TopMenu topMenu = new TopMenu(myWidth, myHeight, myController);
+		myData = new HashMap<>();
+		TopMenu topMenu = new TopMenu(myWidth, myHeight, myController, myData);
 		myButtons = new ArrayList<>(topMenu.createTopButtons());
 		root.setTop(addButtons());
 	}
@@ -77,7 +80,39 @@ public class SimulationScreen {
 				myColorGrid[j][i].setFill(colorGrid[j][i]);
 			}
 		}
+		updateData(colorGrid);
 	}
+
+	private void updateData(Color[][] colorGrid) {
+		HashMap<Color, Integer> countMap = new HashMap<>();
+		for(int j = 0; j < colorGrid.length; j++){
+			for(int i = 0; i < colorGrid[0].length; i++){
+				if(countMap.containsKey(colorGrid[j][i])){
+					countMap.put(colorGrid[j][i], countMap.get(colorGrid[j][i]) + 1);
+				}
+				else{
+					countMap.put(colorGrid[j][i], 1);
+				}
+			}
+		}
+		for(Color key: countMap.keySet()){
+			if(myData.containsKey(key)){
+				updateMapArrayList(countMap, key);
+			}
+			else{
+				myData.put(key, new ArrayList<Integer>());
+				updateMapArrayList(countMap, key);
+			}
+		}
+	}
+
+
+	private void updateMapArrayList(HashMap<Color, Integer> countMap, Color key) {
+		ArrayList<Integer> temp = myData.get(key);
+		temp.add(countMap.get(key));
+		myData.put(key, temp);
+	}
+
 
 	/**
 	 * Called from the simulation. If it is a triangle type, it forms triangles, if it is rectangular it forms
