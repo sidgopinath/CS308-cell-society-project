@@ -96,33 +96,21 @@ public class SimulationScreen {
 		Group simulation = new Group();
 		myColorGrid = new Shape[gridHeight][gridWidth];
 		ShapeGrid grid; 
+		double heightOfShape;
+		double widthOfShape;
+		
 		if(myStyles.get("cellShape").equals("square")){
+			heightOfShape = (myHeight - myTop.getPrefHeight()) / gridHeight;
+			widthOfShape = myWidth/ gridWidth;
 			grid = new SquareGrid(gridWidth, gridHeight, myColorGrid);
-			double heightOfSquare = (myHeight - myTop.getPrefHeight()) / gridHeight;
-			double widthOfSquare = myWidth/ gridWidth;
-			simulation = grid.createGrid(myStyles.get("gridOutline").equals("yes"), heightOfSquare, widthOfSquare);
+			simulation = grid.createGrid(myStyles.get("gridOutline").equals("yes"), heightOfShape, widthOfShape);
 		}
-			
-			
-			
-			
-//		if(myStyles.get("cellShape").equals("triangle")){
-//			Polygon tri = new Polygon(0.0, 0.0, 
-//									  myWidth/gridWidth - 1, 0.0, 
-//									  (myWidth/gridWidth - 1)/2, (myHeight - myTop.getPrefHeight())/ gridHeight - 1);
-//			tri.setRotate(rotate);
-//			tri.setFill(Color.GREEN);
-//			if(myStyles.get("gridOutline").equals("yes")){
-//				tri.setStroke(Color.BLACK);
-//				tri.setTranslateX((i * (myWidth/gridWidth-1) - tri.getStrokeWidth())/2);
-//				tri.setTranslateY(j * (myHeight - myTop.getPrefHeight())/ gridHeight - 1);
-//			}
-//			simulation.getChildren().add(tri);
-//			myColorGrid[j][i] = tri;
-//			rotate += 180;
-//		}
-//			}
-//		}
+		else if(myStyles.get("cellShape").equals("triangle")){
+			heightOfShape = (myHeight - myTop.getPrefHeight()) / gridHeight;
+			widthOfShape = myWidth / ((gridWidth / 2) + 0.5);
+			grid = new TriangleGrid(gridWidth, gridHeight, myColorGrid);
+			simulation = grid.createGrid(myStyles.get("gridOutline").equals("yes"), heightOfShape, widthOfShape);
+		}
 		root.setCenter(simulation);
 	}
 

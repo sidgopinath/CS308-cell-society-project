@@ -19,11 +19,11 @@ public abstract class ShapeGrid {
 		return myColorGrid;
 	}
 	
-	public Group createGrid(boolean stroke, double heightOfSquare, double widthOfSquare){
+	public Group createGrid(boolean stroke, double heightOfShape, double widthOfShape){
 		Group simulation = new Group();
 		for (int j = 0; j < myGridHeight; j++) {
 			for (int i = 0; i < myGridWidth; i++) {
-				Shape s = addShape(stroke, heightOfSquare, widthOfSquare, i, j);
+				Shape s = addShape(stroke, heightOfShape, widthOfShape, i, j);
 				myColorGrid[j][i] = s;
 				simulation.getChildren().add(s);
 			}

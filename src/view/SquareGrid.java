@@ -16,9 +16,9 @@ public class SquareGrid extends ShapeGrid{
 		Rectangle rect = new Rectangle();
 		rect.setFill(Color.WHITE);
 		if(stroke){
+			rect.setWidth(widthOfShape - rect.getStrokeWidth());
+			rect.setHeight(heightOfShape - rect.getStrokeWidth());
 			rect.setStroke(Color.BLACK);
-			rect.setWidth(widthOfShape - 1);
-			rect.setHeight(heightOfShape - 1);
 			rect.setTranslateX(i * (rect.getWidth() + rect.getStrokeWidth()));
 			rect.setTranslateY(j * (rect.getHeight() + rect.getStrokeWidth()));
 		}
