@@ -22,6 +22,15 @@ public class SimulationFire extends Simulation {
      * Looks through parameters and puts them into instance variables
      */
     @Override
+    void setupParameterControl () {
+        String[] paramNames = {"probCatch"};
+        double[] currentValues = {myProbCatch};
+        double [] minValues = {0};
+        double [] maxValues = {100};
+        myView.createOptionsPanel(paramNames,currentValues, minValues, maxValues);
+    }
+    
+    @Override
     void parseMap (Map<String, String> paramMap) {
     	try{
     		myProbCatch = Integer.parseInt(paramMap.get("probCatch"));

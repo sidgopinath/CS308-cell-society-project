@@ -16,6 +16,7 @@ public class SimulationLife extends Simulation {
         super(paramMap, styleMap, grid, simScreen);
     }
 
+    
     @Override
     void parseMap (Map<String, String> paramMap) {
     }
