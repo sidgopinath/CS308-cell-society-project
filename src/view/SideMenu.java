@@ -1,5 +1,9 @@
 package view;
 
+import java.util.List;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -41,15 +45,24 @@ public class SideMenu {
 
 	private Node addOptionsPanel() {
 		VBox sliders = new VBox();
+		double[] newValues = new double[myNames.length];
 		for(int i = 0; i < myNames.length; i++){
+			final int index = i;
 			Slider slider = new Slider();
 			slider.setValue(myValues[i]);
 			slider.setMin(myMins[i]);
 			slider.setMax(myMaxs[i]);
 			slider.setBlockIncrement((myMaxs[i] - myMins[i]) / 10);
 			sliders.getChildren().add(slider);
-			//TODO: implement event listener for each slider
+			
+			slider.valueProperty().addListener(new ChangeListener<Number>() {
+	            public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
+	                    newValues[index] = (double) new_val;
+	            }
+	        });
 		}
+		
+		
 		return sliders;
 	}
 }
