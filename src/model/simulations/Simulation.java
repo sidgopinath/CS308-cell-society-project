@@ -63,6 +63,10 @@ public abstract class Simulation {
         }
     }
 
+    /**
+     * Parses through a map for styling options that can be applied to all
+     * simulations
+     */
     void parseStyleMap(Map<String,String> styleMap){
         // set styles here
         String neighbors = styleMap.get("cellShape");
@@ -109,14 +113,6 @@ public abstract class Simulation {
     public String patchType(){
         return "";
     }
-//    void fillPatchGrid(){
-//        myGrid = new Patch[gridWidth][gridLength];
-//        for(int i=0; i<gridWidth; i++){
-//            for(int j=0; j<gridLength; j++){
-//                myGrid[i][j] = new Patch();
-//            }
-//        }
-//    }
 
     /**
      * Reads parameter map from XML file and sets instance variables accordingly
@@ -137,7 +133,14 @@ public abstract class Simulation {
         updateColorGrid();
     }
 
-
+    /**
+     * Passes parameter names and values to view to allow the user to interactively
+     * change them
+     */
+     void setupParameterControl(){
+    }
+    
+    
     /**
      * Updates the grid by one frame
      */
@@ -157,6 +160,9 @@ public abstract class Simulation {
         myView.updateScreen(colorGrid);
     }
 
+    /*
+     * Update each cell's record of it's neighbors
+     */
     void updateNeighbors(){
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
@@ -171,6 +177,10 @@ public abstract class Simulation {
             neighbors.add(neighbor.getCell());
         }
         myPatchGrid[row][column].getCell().setNeighbors(neighbors);
+    }
+    
+    public void updatePatches(){
+        
     }
 }
 

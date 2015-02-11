@@ -3,7 +3,7 @@ package model.cells;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import model.patches.Patch;
 import javafx.scene.paint.Color;
 
 public abstract class Cell {
@@ -11,6 +11,7 @@ public abstract class Cell {
     protected Map<String,Double> myPropertyMap;
     protected int myX;
     protected int myY;
+    protected Patch myPatch;
     
     public abstract Color getColor();
     public void setNeighbors(List<Cell> neighbors){

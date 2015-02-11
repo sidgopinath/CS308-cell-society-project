@@ -28,6 +28,15 @@ public class SimulationPredator extends Simulation {
         movedGrid = new boolean[gridWidth][gridLength];
     }
 
+    @Override
+    void setupParameterControl () {
+        String[] paramNames = {"breedingPeriod","sharkLife"};
+        double[] currentValues = {breedingPeriod,sharkLife};
+        double [] minValues = {1,1};
+        double [] maxValues = {50,50};
+        myView.createOptionsPanel(paramNames,currentValues, minValues, maxValues);
+    }
+    
     public void parseMap(Map<String,String> paramMap){
     	try{
     		breedingPeriod = Integer.parseInt(paramMap.get("breedingPeriod"));
@@ -91,6 +100,9 @@ public class SimulationPredator extends Simulation {
     AbstractCellFactory getCellFactory () {
         return new PredatorCellFactory(breedingPeriod, sharkLife);
     }
+
+
+
 
 }
 
