@@ -32,7 +32,8 @@ public class ProbabilitySimGenerator {
 		myParameters.put("gridWidth", gridWidth + "");
 		myParameters.put("gridHeight", gridHeight + "");
 		myGrid = new Integer[gridHeight][gridWidth];
-
+		myProbabilities = probabilities;
+		
 		// for testing
 		// myProbabilities = new HashMap<Integer, Integer>();
 		// myProbabilities.put(0, 10);
