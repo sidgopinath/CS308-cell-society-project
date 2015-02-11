@@ -134,6 +134,7 @@ public class CellSocietyController {
 			}
 			else{
 				myStyles = newParser.getParameters();
+				System.out.println("Style file loaded.");
 			}
 		}
 		catch(ValueException e){

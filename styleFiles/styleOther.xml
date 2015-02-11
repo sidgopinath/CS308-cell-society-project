@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='us-ascii'?>
+
+<style>
+
+	<parameter>
+		<cellShape>triangle</cellShape>
+		<cellSize>30</cellSize>
+		<edgeType>finite</edgeType>
+		<emptyCellColor>orange</emptyCellColor>
+		<gridOutline>no</gridOutline>
+		<neighbors>diagonal</neighbors>
+	</parameter>
+	
+</style>
