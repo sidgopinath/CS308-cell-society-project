@@ -19,14 +19,18 @@ public class TriangleGrid extends ShapeGrid{
 			translateTri(heightOfShape, widthOfShape, i, j, tri);
 		}
 		else{
-			tri = new Polygon(0.0, 0.0, 
-	   					widthOfShape, 0.0, 
-	   					(widthOfShape)/2, heightOfShape);
-			tri.setFill(Color.GREEN);
-			tri.setStroke(Color.BLACK);
-			tri.setTranslateX((i * (widthOfShape)));
-			tri.setTranslateY(j * (heightOfShape));
+			tri = makeNewTriangle(heightOfShape, widthOfShape);
+			tri.setFill(Color.WHITE);
+			translateTri(heightOfShape, widthOfShape, i , j, tri);  
 		}
+		return tri;
+	}
+
+	private Polygon makeNewTriangle(double heightOfShape, double widthOfShape) {
+		Polygon tri;
+		tri = new Polygon(0.0, 0.0, 
+					widthOfShape, 0.0, 
+					(widthOfShape)/2, heightOfShape);
 		return tri;
 	}
 
