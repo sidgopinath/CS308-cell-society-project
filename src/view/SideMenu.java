@@ -1,7 +1,5 @@
 package view;
 
-import java.util.List;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Group;
@@ -61,7 +59,6 @@ public class SideMenu {
 	            }
 	        });
 		}
-		
 		
 		return sliders;
 	}
