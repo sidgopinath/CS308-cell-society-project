@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import controller.CellSocietyController;
 
@@ -38,12 +34,9 @@ public class SimulationScreen {
 		root = new BorderPane();
 		myWidth = width;
 		myHeight = height;
-		
 		myStyles = styleMap;
-		
 		TopMenu topMenu = new TopMenu(myWidth, myHeight, myController);
 		myButtons = new ArrayList<>(topMenu.createTopButtons());
-		
 		root.setTop(addButtons());
 	}
 
