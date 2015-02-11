@@ -68,10 +68,10 @@ public class SplashScreen {
 		final Scene snapScene = new Scene(probButton);  
 		snapScene.snapshot(null);  
 		formatNode(probButton,myWidth /2, myHeight * 1/2, LOAD_BUTTON_SIZE );
-		probButton.setOnAction(e -> displayProbabilityInformation());
+		probButton.setOnAction(e -> displayAskInformatio(true));
 	}
 	
-	private void displayProbabilityInformation() {
+	private void displayAskInformatio(boolean probability) {
 		removeButtons();
 		TextField[] dimensions = addDimensionsText();
 		TextField simulationName = addSimulationNameText();
@@ -101,7 +101,13 @@ public class SplashScreen {
 					System.out.println("Invalid Simulation Name");
 					throw new IllegalArgumentException();
 				}
-				addProbabilityText(numTextFields, dimensions, simulationName.getText());
+				if(probability){
+					addProbabilityText(numTextFields, dimensions, simulationName.getText());
+				}
+				else{
+					myController.generateRandomGrid(Integer.parseInt(dimensions[0].getText()), 
+							Integer.parseInt(dimensions[1].getText()), simulationName.getText());
+				}
 			}
 		});
 	}
@@ -219,7 +225,7 @@ public class SplashScreen {
 		final Scene snapScene = new Scene(probButton);  
 		snapScene.snapshot(null);  
 		formatNode(probButton,myWidth/2, myHeight * 3/4, LOAD_BUTTON_SIZE );
-		probButton.setOnAction(e -> myController.transitionToFileLoaderScreen());
+		probButton.setOnAction(e -> displayAskInformatio(false));
 	}
 	
 	/**
@@ -246,7 +252,6 @@ public class SplashScreen {
 		formatNode(loadButton,myWidth / 2, myHeight * 5/8, LOAD_BUTTON_SIZE );
 		loadButton.setOnAction(e -> myController.transitionToFileLoaderScreen());
 	}
-	
 	
 	
 	private void formatNode(Node node, double width, double height, int scale) {
