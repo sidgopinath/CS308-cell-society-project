@@ -4,6 +4,7 @@ import model.cells.Cell;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import javafx.scene.paint.Color;
 
 public class Patch {
     protected Cell myCell;
@@ -42,5 +43,9 @@ public class Patch {
     }
     
     public void update(){
+    }
+    
+    public Color getColor(){
+        return Color.TRANSPARENT;
     }
 }

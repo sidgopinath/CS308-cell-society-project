@@ -1,5 +1,8 @@
 package model.patches;
 
+import javafx.scene.paint.Color;
+
+
 public class SugarPatch extends Patch {
 
     private int sugarGrowBackRate;
@@ -23,6 +26,14 @@ public class SugarPatch extends Patch {
             if(myPatchPropertyMap.get("sugar") > myPatchPropertyMap.get("maxSugar")){
                 myPatchPropertyMap.put("sugar", myPatchPropertyMap.get("maxSugar"));
             }
+        }
+    }
+    @Override
+    public Color getColor(){
+        if(myPatchPropertyMap.get("sugar") == 0){
+            return Color.LIGHTYELLOW;
+        } else{
+            return Color.ORANGE;
         }
     }
 }

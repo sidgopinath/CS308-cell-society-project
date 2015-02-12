@@ -7,5 +7,10 @@ public class SugarCellEmpty extends SugarCell {
     public Color getColor(){
         return Color.TRANSPARENT;
     }
+    
+    @Override
+    public Cell update(){
+        return this;
+    }
 
 }

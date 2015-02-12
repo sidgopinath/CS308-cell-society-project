@@ -45,6 +45,7 @@ public abstract class Simulation {
         	myView.initSimView(gridWidth, gridLength);
         	fillPatchGrid();
         	setupGrid(cellGrid);
+        	setupParameterControl();
         }
         catch(ValueException e){
         	throw new ValueException("Invalid cell state values given.");
@@ -114,7 +115,9 @@ public abstract class Simulation {
     void setupGrid(Integer[][] grid){
         for (int j = 0; j < gridWidth; j++) {
             for (int i = 0; i < gridLength; i++) {
-                myPatchGrid[j][i].setCell(myCellFactory.getCell(grid[j][i]));
+                Cell newCell = myCellFactory.getCell(grid[j][i]);
+                myPatchGrid[j][i].setCell(newCell);
+                newCell.setPatch(myPatchGrid[j][i]);
             }
         }
         updateColorGrid();
@@ -139,12 +142,16 @@ public abstract class Simulation {
      */
     void updateColorGrid() {
         Color[][] colorGrid = new Color[gridWidth][gridLength];
+        Color[][] patchColorGrid = new Color[gridWidth][gridLength];
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
                 colorGrid[j][i] = myPatchGrid[j][i].getCell().getColor();
+                patchColorGrid[j][i] = myPatchGrid[j][i].getColor();
             }
         }
         myView.updateScreen(colorGrid);
+        //myView.updateScreen(patchColorGrid);
+        //Function to pass patch grid to view here
     }
 
     /*

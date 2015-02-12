@@ -59,5 +59,7 @@ public abstract class Cell {
      */
     public abstract Cell update();
     
-    
+    public void setPatch(Patch patch){
+        myPatch = patch;
+    }
 }
