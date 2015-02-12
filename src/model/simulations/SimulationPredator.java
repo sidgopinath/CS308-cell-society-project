@@ -101,6 +101,21 @@ public class SimulationPredator extends Simulation {
         return new PredatorCellFactory(breedingPeriod, sharkLife);
     }
 
+    @Override
+    void setParameter (String parameter, double value){
+        String cellProperty;
+        if(parameter.equals("sharkLife")){
+            cellProperty = "myLifePeriod";
+        } else{
+            cellProperty = "myBreedingPeriod";
+        }
+        for(int i=0;i<gridWidth;i++){
+            for(int j=0;j<gridLength;j++){
+                myPatchGrid[i][j].getCell().setProperty(cellProperty, value);
+            }
+        }
+    };
+
 
 
 

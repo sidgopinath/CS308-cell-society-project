@@ -54,6 +54,10 @@ public abstract class Cell {
         return myY;
     }
 
+    public void setProperty(String property, Double value){
+        myPropertyMap.put(property, value);
+    }
+    
     /*
      * Returns new Cell representing state of cell at current position
      */

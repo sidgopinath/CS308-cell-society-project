@@ -73,6 +73,9 @@ public abstract class Simulation {
     }
 
     abstract AbstractCellFactory getCellFactory() throws ValueException;
+    
+    void setParameter(String parameter, double value){
+    };
 
     void fillPatchGrid(){
         PatchFactory factory = new PatchFactory();

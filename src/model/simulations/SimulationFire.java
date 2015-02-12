@@ -31,6 +31,17 @@ public class SimulationFire extends Simulation {
     }
     
     @Override
+    void setParameter (String parameter, double value){
+        String cellProperty = "probCatch";
+        for(int i=0;i<gridWidth;i++){
+            for(int j=0;j<gridLength;j++){
+                myPatchGrid[i][j].getCell().setProperty(cellProperty, value);
+            }
+        }
+    };
+
+    
+    @Override
     void parseMap (Map<String, String> paramMap) {
     	try{
     		myProbCatch = Integer.parseInt(paramMap.get("probCatch"));

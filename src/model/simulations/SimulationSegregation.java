@@ -2,7 +2,6 @@ package model.simulations;
 
 import java.util.Map;
 import java.util.Random;
-
 import model.cells.AgentCellEmpty;
 import model.cells.Cell;
 import view.SimulationScreen;
@@ -41,7 +40,25 @@ public class SimulationSegregation extends Simulation {
     		parseMap(paramMap);	
     	}      
     }
-
+    
+    @Override
+    void setupParameterControl () {
+        String[] paramNames = {"mySatisfaction"};
+        double[] currentValues = {mySatisfaction};
+        double [] minValues = {0};
+        double [] maxValues = {1};
+        myView.createOptionsPanel(paramNames,currentValues, minValues, maxValues);
+    }
+    @Override
+    void setParameter (String parameter, double value){
+        String cellProperty = "mySatisfaction";
+        for(int i=0;i<gridWidth;i++){
+            for(int j=0;j<gridLength;j++){
+                myPatchGrid[i][j].getCell().setProperty(cellProperty, value);
+            }
+        }
+    };
+    
     /**
      * Updates the grid by looking at each cell and whether it should move
      */
