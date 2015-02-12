@@ -75,9 +75,6 @@ public class TopMenu {
 			stage.setTitle("Graph");
 			stage.setScene(new Scene(lineChart, myWidth/2, myHeight/2));
 			stage.show();
-			
-			
-			
 		});
 	}
 

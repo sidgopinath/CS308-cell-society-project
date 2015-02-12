@@ -44,6 +44,7 @@ public abstract class Simulation {
         	myCellFactory = getCellFactory();
         	myView.initSimView(gridWidth, gridLength);
         	fillPatchGrid();
+        	setupParameterControl();
         	setupGrid(cellGrid);
         	setupParameterControl();
         }

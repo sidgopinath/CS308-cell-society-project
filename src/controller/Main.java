@@ -21,6 +21,7 @@ public class Main extends Application {
 		stage.setTitle("Cell Society");
 		myCellSocietyController = new CellSocietyController(WIDTH, HEIGHT, stage);
 		stage.setScene(myCellSocietyController.getScene());
+		stage.setResizable(false);
 		stage.show();
 		Timeline animationTimeline = new Timeline();
 		int frameRate = 1;
