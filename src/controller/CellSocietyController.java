@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Sidharth Gopinath (sdg23)
+
 package controller;
 
 import java.io.File;
@@ -84,7 +87,6 @@ public class CellSocietyController {
 	}
 	
 	/**
-	 * REFACTOR?
 	 * Method to be called from the view
 	 * Generates fully random grid from parameters passed in
 	 * Default values will be used for parameters
