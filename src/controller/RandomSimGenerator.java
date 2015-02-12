@@ -1,9 +1,5 @@
 package controller;
 
-import java.util.HashMap;
-import java.util.Random;
-import java.util.ResourceBundle;
-
 /**
  * This generator creates a fully random grid
  * Each cell's state is random
@@ -11,13 +7,7 @@ import java.util.ResourceBundle;
  *
  */
 
-public class RandomSimGenerator {
-
-	private Integer[][] myGrid;
-	private HashMap<String, String> myParameters = new HashMap<String, String>();
-	private String mySimName;
-	private ResourceBundle myProperties;
-	private Random myRandom = new Random();
+public class RandomSimGenerator extends SimGenerator {
 
 	/**
 	 * Constructor for the random generator
@@ -28,21 +18,8 @@ public class RandomSimGenerator {
 	 * @param simName
 	 */
 	public RandomSimGenerator(int gridWidth, int gridHeight, String simName) {
-		myProperties = ResourceBundle.getBundle("resources/resources");
-		myParameters.put("simName", simName);
-		myParameters.put("gridWidth", gridWidth + "");
-		myParameters.put("gridHeight", gridHeight + "");
-		mySimName = simName;
-		myGrid = new Integer[gridHeight][gridWidth];
+		super(gridHeight, gridHeight, simName, null, "random");
 		createGrid(myGrid);
-	}
-
-	public Integer[][] getGrid() {
-		return myGrid;
-	}
-	
-	public HashMap<String, String> getParameters(){
-		return myParameters;
 	}
 
 	/**
@@ -50,7 +27,7 @@ public class RandomSimGenerator {
 	 * Grid created depending on type of simulation
 	 * @param grid
 	 */
-	private void createGrid(Integer[][] grid) {
+	protected void createGrid(Integer[][] grid) {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[0].length; j++) {
 				if (mySimName.equals(myProperties
