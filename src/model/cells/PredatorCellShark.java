@@ -52,11 +52,11 @@ public class PredatorCellShark extends PredatorCell{
         Cell moveTo;
         if(!edibleList.isEmpty()){
             myCurrentLife = myLifePeriod;
-            System.out.println("nomnomnomnom");
+//            System.out.println("nomnomnomnom");
             moveTo = edibleList.get(squareGenerator.nextInt(edibleList.size()));
         } else if(!movableList.isEmpty()){
             moveTo = movableList.get(squareGenerator.nextInt(movableList.size()));
-            System.out.println("I am moving to a blank space?");
+//            System.out.println("I am moving to a blank space?");
         } else{
             return this;
         }
