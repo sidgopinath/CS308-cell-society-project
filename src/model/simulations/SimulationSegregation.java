@@ -50,7 +50,7 @@ public class SimulationSegregation extends Simulation {
         myView.createOptionsPanel(paramNames,currentValues, minValues, maxValues);
     }
     @Override
-    void setParameter (String parameter, double value){
+    public void setParameter (String parameter, double value){
         String cellProperty = "mySatisfaction";
         for(int i=0;i<gridWidth;i++){
             for(int j=0;j<gridLength;j++){

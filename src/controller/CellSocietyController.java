@@ -262,4 +262,9 @@ public class CellSocietyController {
 		myTimeline.getKeyFrames().add(frame);
 		myTimeline.play();	
 	}
+
+	public void changeSimulationParameters(String string, double new_val) {
+		myCurrentSimulation.setParameter(string, new_val);
+		
+	}
 }

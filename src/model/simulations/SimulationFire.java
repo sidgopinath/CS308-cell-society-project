@@ -31,7 +31,7 @@ public class SimulationFire extends Simulation {
     }
     
     @Override
-    void setParameter (String parameter, double value){
+	public void setParameter (String parameter, double value){
         String cellProperty = "probCatch";
         for(int i=0;i<gridWidth;i++){
             for(int j=0;j<gridLength;j++){

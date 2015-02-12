@@ -102,7 +102,7 @@ public class SimulationPredator extends Simulation {
     }
 
     @Override
-    void setParameter (String parameter, double value){
+	public void setParameter (String parameter, double value){
         String cellProperty;
         if(parameter.equals("sharkLife")){
             cellProperty = "myLifePeriod";

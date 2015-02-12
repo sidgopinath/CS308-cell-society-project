@@ -44,7 +44,6 @@ public abstract class Simulation {
         	myCellFactory = getCellFactory();
         	myView.initSimView(gridWidth, gridLength);
         	fillPatchGrid();
-        	setupParameterControl();
         	setupGrid(cellGrid);
         	setupParameterControl();
         }
@@ -75,7 +74,7 @@ public abstract class Simulation {
 
     abstract AbstractCellFactory getCellFactory() throws ValueException;
     
-    void setParameter(String parameter, double value){
+    public void setParameter(String parameter, double value){
     };
 
     void fillPatchGrid(){

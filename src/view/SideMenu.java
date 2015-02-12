@@ -1,5 +1,6 @@
 package view;
 
+import controller.CellSocietyController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Group;
@@ -23,14 +24,17 @@ public class SideMenu {
 	private double[] myValues;
 	private double[] myMins;
 	private double[] myMaxs;
+	private CellSocietyController myController;
 
-	public SideMenu(int width, int height, String[] names, double[] values, double[] min, double[] max){
+	public SideMenu(int width, int height, String[] names, double[] values, double[] min, double[] max, 
+			CellSocietyController controller){
 		myWidth = width/4;
 		myHeight = height/2;
 		myNames = names;
 		myValues = values;
 		myMins = min;
 		myMaxs = max;
+		myController = controller;
 	}
 	
 	public void createOptionWindow() {
@@ -41,13 +45,13 @@ public class SideMenu {
 		options.getChildren().add(addOptionsPanel());
 		stage.setScene(new Scene(options, myWidth, myHeight, Color.LIGHTGRAY));
 		stage.setResizable(false);
+		stage.setX(myWidth * 7); 
 		stage.show();
 		
 	}
 
 	private Node addOptionsPanel() {
 		VBox sliders = new VBox(myHeight / 20);
-		double[] newValues = new double[myNames.length];
 		for(int i = 0; i < myNames.length; i++){
 			Text label = new Text(myNames[i] + ":");
 			label.setTranslateX(myWidth/20);
@@ -64,8 +68,7 @@ public class SideMenu {
 			
 			slider.valueProperty().addListener(new ChangeListener<Number>() {
 	            public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
-	                    newValues[index] = (double) new_val;
-	                    System.out.println("here");
+	                    myController.changeSimulationParameters(myNames[index], (double) new_val);
 	            }
 	        });
 		}

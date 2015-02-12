@@ -61,7 +61,7 @@ public class SimulationScreen {
 	}
 
 	public void createOptionsPanel(String[] names, double[] value, double[] min, double[] max){
-		SideMenu sideMenu = new SideMenu(myWidth, myHeight, names, value, min, max);
+		SideMenu sideMenu = new SideMenu(myWidth, myHeight, names, value, min, max, myController);
 		sideMenu.createOptionWindow();
 		
 	}
