@@ -15,14 +15,14 @@ import model.neighbors.SquareTriangleNeighbors;
 import model.patches.Patch;
 import view.SimulationScreen;
 
+/**
+ * Simulation superclass encompassing methods and data shared by
+ * all simulations and that will be used in updating the state
+ * of the simulation 
+ * @author Janan
+ */
 public abstract class Simulation {
 
-    /**
-     * Simulation superclass encompassing methods and data shared by
-     * all simulations and that will be used in updating the state
-     * of the simulation 
-     * @author Janan
-     */
     protected SimulationScreen myView;
     protected int gridLength;
     protected int gridWidth;
@@ -32,108 +32,135 @@ public abstract class Simulation {
     protected GridRules myGridRules;
     protected String directions;
 
+    /**
+     * Initializes new simulation
+     * @param paramMap
+     * @param styleMap
+     * @param cellGrid
+     * @param simScreen
+     * @throws ValueException
+     */
     public Simulation(Map<String,String> paramMap, Map<String,String>
     styleMap,Integer[][] cellGrid, SimulationScreen simScreen) throws ValueException{
-        
+
         try{
-        	myView = simScreen;
-        	gridLength = cellGrid[0].length;
-        	gridWidth = cellGrid.length;
-        	parseMap(paramMap);
-        	parseStyleMap(styleMap);
-        	myCellFactory = getCellFactory();
-        	myView.initSimView(gridWidth, gridLength);
-        	fillPatchGrid();
-        	setupGrid(cellGrid);
-        	setupParameterControl();
+            this.myView = simScreen;
+            this.gridLength = cellGrid[0].length;
+            this.gridWidth = cellGrid.length;
+            parseMap(paramMap);
+            parseStyleMap(styleMap);
+            this.myCellFactory = getCellFactory();
+            this.myView.initSimView(this.gridWidth, this.gridLength);
+            fillPatchGrid();
+            setupGrid(cellGrid);
+            setupParameterControl();
         }
         catch(ValueException e){
-        	throw new ValueException("Invalid cell state values given.");
+            throw new ValueException("Invalid cell state values given.");
         }
     }
 
     /**
      * Parses through a map for styling options that can be applied to all
      * simulations
+     * @param styleMap
      */
     void parseStyleMap(Map<String,String> styleMap){
         String neighbors = styleMap.get("cellShape");
         String gridRules = styleMap.get("edgeType");
-        directions = styleMap.get("neighbors");
+        this.directions = styleMap.get("neighbors");
         if(neighbors.equals("square") || neighbors.equals("triangle")){
-            myNeighbors = new SquareTriangleNeighbors();
+            this.myNeighbors = new SquareTriangleNeighbors();
         } else{
-            myNeighbors = new HexagonalNeighbors();
+            this.myNeighbors = new HexagonalNeighbors();
         }
         if(gridRules.equals("finite")){
-            myGridRules = new FiniteGridRules();
+            this.myGridRules = new FiniteGridRules();
         } else{
-            myGridRules = new ToroidalGridRules();
+            this.myGridRules = new ToroidalGridRules();
         }
     }
-
+    /**
+     * Returns appropriate AbstractCellFactory for simulation
+     * @return AbstractCellFactory
+     * @throws ValueException
+     */
     abstract AbstractCellFactory getCellFactory() throws ValueException;
-    
+    /**
+     * Sets the value of a simulation wide parameter to value
+     * @param parameter
+     * @param value
+     */
     public void setParameter(String parameter, double value){
     };
 
+    /**
+     * Fills myGrid with patches and sets their neighbors
+     * 
+     */
     void fillPatchGrid(){
         PatchFactory factory = new PatchFactory();
-        myPatchGrid = new Patch[gridWidth][gridLength];
-        for(int i=0; i<gridWidth; i++){
-            for(int j=0; j<gridLength; j++){
-                myPatchGrid[i][j] = factory.getPatch(patchType(), j, i);
+        this.myPatchGrid = new Patch[gridWidth][gridLength];
+        for(int i=0; i < gridWidth; i++){
+            for(int j=0; j < gridLength; j++){
+                this.myPatchGrid[i][j] = factory.getPatch(patchType(), j, i);
             }
         }
-        for(int i=0; i<gridWidth; i++){
-            for(int j=0; j<gridLength; j++){
+        for(int i=0; i < gridWidth; i++){
+            for(int j=0; j < gridLength; j++){
                 if(directions.equals("all")){
-                    myPatchGrid[i][j].setNeighbors(myNeighbors.getAllNeighbors
-                                                   (myPatchGrid, j, i, myGridRules));
+                    this.myPatchGrid[i][j].setNeighbors(myNeighbors.getAllNeighbors
+                                                        (this.myPatchGrid, j, i, this.myGridRules));
                 } else if(directions.equals("cardinal")){
-                    myPatchGrid[i][j].setNeighbors(myNeighbors.getCardinalNeighbors
-                                                   (myPatchGrid, j, i, myGridRules));
+                    this.myPatchGrid[i][j].setNeighbors(myNeighbors.getCardinalNeighbors
+                                                        (this.myPatchGrid, j, i, this.myGridRules));
                 } else{
-                    myPatchGrid[i][j].setNeighbors(myNeighbors.getDiagonalNeighbors
-                                                   (myPatchGrid, j, i, myGridRules));
+                    this.myPatchGrid[i][j].setNeighbors(myNeighbors.getDiagonalNeighbors
+                                                        (this.myPatchGrid, j, i, this.myGridRules));
                 }
             }
         }
     }
 
-    public String patchType(){
-        return "";
-    }
 
     /**
      * Reads parameter map from XML file and sets instance variables accordingly
+     * @param paramMap
      */
     abstract void parseMap(Map<String,String> paramMap);
 
     /**
      * fill grid with squares that have the right values given the parameters and the type of each space
      * initialize grid, and fill
-     * @param paramMap 
+     * @param grid 
      */
     void setupGrid(Integer[][] grid){
         for (int j = 0; j < gridWidth; j++) {
             for (int i = 0; i < gridLength; i++) {
                 Cell newCell = myCellFactory.getCell(grid[j][i]);
-                myPatchGrid[j][i].setCell(newCell);
-                newCell.setPatch(myPatchGrid[j][i]);
+                this.myPatchGrid[j][i].setCell(newCell);
+                newCell.setPatch(this.myPatchGrid[j][i]);
             }
         }
         updateColorGrid();
+    }
+
+
+    /**
+     * Returns the type of Patch for this simulation
+     */
+    public String patchType(){
+        return "";
     }
 
     /**
      * Passes parameter names and values to view to allow the user to interactively
      * change them
      */
-     void setupParameterControl(){
+    void setupParameterControl(){
     }
-    
-    
+
+
     /**
      * Updates the grid by one frame
      */
@@ -148,8 +175,8 @@ public abstract class Simulation {
         Color[][] patchColorGrid = new Color[gridWidth][gridLength];
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
-                colorGrid[j][i] = myPatchGrid[j][i].getCell().getColor();
-                patchColorGrid[j][i] = myPatchGrid[j][i].getColor();
+                colorGrid[j][i] = this.myPatchGrid[j][i].getCell().getColor();
+                patchColorGrid[j][i] = this.myPatchGrid[j][i].getColor();
             }
         }
         myView.updateScreen(colorGrid);
@@ -157,8 +184,8 @@ public abstract class Simulation {
         //Function to pass patch grid to view here
     }
 
-    /*
-     * Update each cell's record of it's neighbors
+    /**
+     * Updates each cells record of it's neighbors for all cells in the grid
      */
     void updateNeighbors(){
         for(int j = 0; j < gridWidth; j++){
@@ -167,15 +194,20 @@ public abstract class Simulation {
             }
         }
     }
-    
+
+    /**
+     * Updates the neighbors for the cell at row, column
+     * @param row
+     * @param column
+     */
     public void updateNeighborSquare(int row, int column){
         List<Cell> neighbors = new ArrayList<>();
-        for(Patch neighbor: myPatchGrid[row][column].getNeighbors()){
+        for(Patch neighbor: this.myPatchGrid[row][column].getNeighbors()){
             neighbors.add(neighbor.getCell());
         }
-        myPatchGrid[row][column].getCell().setNeighbors(neighbors);
+        this.myPatchGrid[row][column].getCell().setNeighbors(neighbors);
     }
-    
+
 }
 
 
