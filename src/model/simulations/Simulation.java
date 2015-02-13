@@ -80,19 +80,6 @@ public abstract class Simulation {
             this.myGridRules = new ToroidalGridRules();
         }
     }
-    /**
-     * Returns appropriate AbstractCellFactory for simulation
-     * @return AbstractCellFactory
-     * @throws ValueException
-     */
-    abstract AbstractCellFactory getCellFactory() throws ValueException;
-    /**
-     * Sets the value of a simulation wide parameter to value
-     * @param parameter
-     * @param value
-     */
-    public void setParameter(String parameter, double value){
-    };
 
     /**
      * Fills myGrid with patches and sets their neighbors
@@ -108,26 +95,21 @@ public abstract class Simulation {
         }
         for(int i=0; i < gridWidth; i++){
             for(int j=0; j < gridLength; j++){
+                List<Patch> neighborList;
                 if(directions.equals("all")){
-                    this.myPatchGrid[i][j].setNeighbors(myNeighbors.getAllNeighbors
-                                                        (this.myPatchGrid, j, i, this.myGridRules));
+                    neighborList =myNeighbors.getAllNeighbors(this.myPatchGrid,
+                                                              j, i, this.myGridRules);
                 } else if(directions.equals("cardinal")){
-                    this.myPatchGrid[i][j].setNeighbors(myNeighbors.getCardinalNeighbors
-                                                        (this.myPatchGrid, j, i, this.myGridRules));
+                    neighborList =myNeighbors.getCardinalNeighbors(this.myPatchGrid, 
+                                                                   j, i, this.myGridRules);
                 } else{
-                    this.myPatchGrid[i][j].setNeighbors(myNeighbors.getDiagonalNeighbors
-                                                        (this.myPatchGrid, j, i, this.myGridRules));
+                    neighborList =myNeighbors.getDiagonalNeighbors(this.myPatchGrid,
+                                                                   j, i, this.myGridRules);
                 }
+                this.myPatchGrid[i][j].setNeighbors(neighborList);
             }
         }
     }
-
-
-    /**
-     * Reads parameter map from XML file and sets instance variables accordingly
-     * @param paramMap
-     */
-    abstract void parseMap(Map<String,String> paramMap);
 
     /**
      * fill grid with squares that have the right values given the parameters and the type of each space
@@ -143,45 +125,6 @@ public abstract class Simulation {
             }
         }
         updateColorGrid();
-    }
-
-
-    /**
-     * Returns the type of Patch for this simulation
-     */
-    public String patchType(){
-        return "";
-    }
-
-    /**
-     * Passes parameter names and values to view to allow the user to interactively
-     * change them
-     */
-    void setupParameterControl(){
-    }
-
-
-    /**
-     * Updates the grid by one frame
-     */
-    public abstract void updateGrid();
-
-
-    /**
-     * this method takes myGrid and turns it into a grid that is readable for the view
-     */
-    void updateColorGrid() {
-        Color[][] colorGrid = new Color[gridWidth][gridLength];
-        Color[][] patchColorGrid = new Color[gridWidth][gridLength];
-        for(int j = 0; j < gridWidth; j++){
-            for(int i = 0 ; i < gridLength; i++){
-                colorGrid[j][i] = this.myPatchGrid[j][i].getCell().getColor();
-                patchColorGrid[j][i] = this.myPatchGrid[j][i].getColor();
-            }
-        }
-        myView.updateScreen(colorGrid);
-        //myView.updateScreen(patchColorGrid);
-        //Function to pass patch grid to view here
     }
 
     /**
@@ -207,6 +150,65 @@ public abstract class Simulation {
         }
         this.myPatchGrid[row][column].getCell().setNeighbors(neighbors);
     }
+
+    /**
+     * this method takes myGrid and turns it into a grid that is readable for the view
+     */
+    void updateColorGrid() {
+        Color[][] colorGrid = new Color[gridWidth][gridLength];
+        Color[][] patchColorGrid = new Color[gridWidth][gridLength];
+        for(int j = 0; j < gridWidth; j++){
+            for(int i = 0 ; i < gridLength; i++){
+                colorGrid[j][i] = this.myPatchGrid[j][i].getCell().getColor();
+                patchColorGrid[j][i] = this.myPatchGrid[j][i].getColor();
+            }
+        }
+        myView.updateScreen(colorGrid);
+        //myView.updateScreen(patchColorGrid);
+        //Function to pass patch grid to view here
+    }
+    
+    /**
+     * Returns appropriate AbstractCellFactory for simulation
+     * @return AbstractCellFactory
+     * @throws ValueException
+     */
+    abstract AbstractCellFactory getCellFactory() throws ValueException;
+    /**
+     * Sets the value of a simulation wide parameter to value
+     * @param parameter
+     * @param value
+     */
+    public void setParameter(String parameter, double value){
+    };
+
+
+    /**
+     * Reads parameter map from XML file and sets instance variables accordingly
+     * @param paramMap
+     */
+    abstract void parseMap(Map<String,String> paramMap);
+
+
+    /**
+     * Returns the type of Patch for this simulation
+     */
+    public String patchType(){
+        return "";
+    }
+
+    /**
+     * Passes parameter names and values to view to allow the user to interactively
+     * change them
+     */
+    void setupParameterControl(){
+    }
+
+
+    /**
+     * Updates the grid by one frame
+     */
+    public abstract void updateGrid();
 
 }
 
