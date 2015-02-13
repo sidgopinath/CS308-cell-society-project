@@ -1,8 +1,11 @@
+// This entire file is part of my masterpiece.
+// JANAN ZHU
 package model.simulations;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import javafx.scene.paint.Color;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 import model.cells.Cell;
@@ -14,6 +17,7 @@ import model.neighbors.Neighbors;
 import model.neighbors.SquareTriangleNeighbors;
 import model.patches.Patch;
 import view.SimulationScreen;
+
 
 /**
  * Simulation superclass encompassing methods and data shared by
@@ -31,6 +35,7 @@ public abstract class Simulation {
     protected Neighbors myNeighbors;
     protected GridRules myGridRules;
     protected String directions;
+    private static ResourceBundle myProperties;
 
     /**
      * Initializes new simulation
@@ -44,6 +49,7 @@ public abstract class Simulation {
     styleMap,Integer[][] cellGrid, SimulationScreen simScreen) throws ValueException{
 
         try{
+            myProperties = ResourceBundle.getBundle("resources/resources");
             this.myView = simScreen;
             this.gridLength = cellGrid[0].length;
             this.gridWidth = cellGrid.length;
@@ -66,15 +72,19 @@ public abstract class Simulation {
      * @param styleMap
      */
     void parseStyleMap(Map<String,String> styleMap){
-        String neighbors = styleMap.get("cellShape");
-        String gridRules = styleMap.get("edgeType");
-        this.directions = styleMap.get("neighbors");
-        if(neighbors.equals("square") || neighbors.equals("triangle")){
+        String neighbors = styleMap.get(myProperties.getString
+                                        ("style_parameter_cellshape"));
+        String gridRules = styleMap.get(myProperties.getString
+                                        ("style_parameter_edgetype"));
+        this.directions = styleMap.get(myProperties.getString
+                                       ("style_parameter_neighbors"));
+        if(neighbors.equals(myProperties.getString("grid_shape_square")) 
+                || neighbors.equals(myProperties.getString("grid_shape_triangle"))){
             this.myNeighbors = new SquareTriangleNeighbors();
         } else{
             this.myNeighbors = new HexagonalNeighbors();
         }
-        if(gridRules.equals("finite")){
+        if(gridRules.equals(myProperties.getString("grid_edge_finite"))){
             this.myGridRules = new FiniteGridRules();
         } else{
             this.myGridRules = new ToroidalGridRules();
@@ -96,10 +106,10 @@ public abstract class Simulation {
         for(int i=0; i < gridWidth; i++){
             for(int j=0; j < gridLength; j++){
                 List<Patch> neighborList;
-                if(directions.equals("all")){
+                if(directions.equals(myProperties.getString("direction_all_flag"))){
                     neighborList =myNeighbors.getAllNeighbors(this.myPatchGrid,
                                                               j, i, this.myGridRules);
-                } else if(directions.equals("cardinal")){
+                } else if(directions.equals(myProperties.getString("direction_cardinal_flag"))){
                     neighborList =myNeighbors.getCardinalNeighbors(this.myPatchGrid, 
                                                                    j, i, this.myGridRules);
                 } else{
@@ -112,8 +122,8 @@ public abstract class Simulation {
     }
 
     /**
-     * fill grid with squares that have the right values given the parameters and the type of each space
-     * initialize grid, and fill
+     * fill grid patches with cells that have the right values given the parameters
+     * initialize grid, and fill colorGrid
      * @param grid 
      */
     void setupGrid(Integer[][] grid){
@@ -133,7 +143,7 @@ public abstract class Simulation {
     void updateNeighbors(){
         for(int j = 0; j < gridWidth; j++){
             for(int i = 0 ; i < gridLength; i++){
-                updateNeighborSquare(j,i);
+                updateNeighborCell(j,i);
             }
         }
     }
@@ -143,7 +153,7 @@ public abstract class Simulation {
      * @param row
      * @param column
      */
-    public void updateNeighborSquare(int row, int column){
+    public void updateNeighborCell(int row, int column){
         List<Cell> neighbors = new ArrayList<>();
         for(Patch neighbor: this.myPatchGrid[row][column].getNeighbors()){
             neighbors.add(neighbor.getCell());
@@ -152,7 +162,7 @@ public abstract class Simulation {
     }
 
     /**
-     * this method takes myGrid and turns it into a grid that is readable for the view
+     * this method takes myGrid and turns it into a Colorgrid that is readable for the view
      */
     void updateColorGrid() {
         Color[][] colorGrid = new Color[gridWidth][gridLength];

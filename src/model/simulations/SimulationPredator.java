@@ -65,7 +65,7 @@ public class SimulationPredator extends Simulation {
             for(int column=0; column<gridLength;column++){
                 if(!movedGrid[row][column]){
                     Cell currentSquare = myPatchGrid[row][column].getCell();
-                    updateNeighborSquare(row, column);
+                    updateNeighborCell(row, column);
                     Cell updateSquare = currentSquare.update();
                     //Check if currentSquare moved as result of update
                     if(!(currentSquare.getX() == column && currentSquare.getY() ==row)){
