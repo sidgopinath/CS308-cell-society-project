@@ -3,6 +3,7 @@ package model.simulations;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javafx.scene.paint.Color;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 import model.cells.Cell;
@@ -170,9 +171,7 @@ public abstract class Simulation {
     
     public void updateNeighborSquare(int row, int column){
         List<Cell> neighbors = new ArrayList<>();
-        for(Patch neighbor: myPatchGrid[row][column].getNeighbors()){
-            neighbors.add(neighbor.getCell());
-        }
+        neighbors = myPatchGrid[row][column].getNeighbors().stream().map(n -> n.getCell()).collect(Collectors.toList());
         myPatchGrid[row][column].getCell().setNeighbors(neighbors);
     }
     
