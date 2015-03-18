@@ -1,0 +1,5 @@
+<map id="controller.CellSocietyController.changeSimulationSpeed" name="controller.CellSocietyController.changeSimulationSpeed">
+<area shape="rect" id="node2" href="$d3/d48/classview_1_1_top_menu.html#a78433064a3b87ac12b25e253a8461563" title="view.TopMenu.addSlowDown\lButton" alt="" coords="340,5,540,46"/>
+<area shape="rect" id="node4" href="$d3/d48/classview_1_1_top_menu.html#ae076a17bf4d52296bcc188a9bf23d57d" title="view.TopMenu.addSpeedUpButton" alt="" coords="321,71,559,97"/>
+<area shape="rect" id="node3" href="$d3/d48/classview_1_1_top_menu.html#a4442589b1733d6ad662c92700f27018e" title="view.TopMenu.createTopButtons" alt="" coords="608,41,832,68"/>
+</map>

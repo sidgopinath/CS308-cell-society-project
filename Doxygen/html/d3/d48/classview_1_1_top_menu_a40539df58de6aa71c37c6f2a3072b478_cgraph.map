@@ -1,0 +1,5 @@
+<map id="view.TopMenu.addStopStartButton" name="view.TopMenu.addStopStartButton">
+<area shape="rect" id="node2" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a7609d9a174ff7d2d00fc27e3574cdb21" title="controller.CellSocietyController.stop\lOrStart" alt="" coords="253,38,501,79"/>
+<area shape="rect" id="node3" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a33e7a77467ceeb880526a1b405b3ee79" title="controller.CellSocietyController.pause\lSimulation" alt="" coords="552,5,811,46"/>
+<area shape="rect" id="node4" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#aec38c45810ee2665fe01832114fbc68d" title="controller.CellSocietyController.restart\lSimulation" alt="" coords="550,70,813,111"/>
+</map>
