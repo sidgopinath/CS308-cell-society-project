@@ -1,20 +1,18 @@
 package view;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import controller.CellSocietyController;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import controller.CellSocietyController;
 
 public class TopMenu {
 	
