@@ -1,6 +1,3 @@
-// This entire file is part of my masterpiece.
-// Sidharth Gopinath (sdg23)
-
 package controller;
 
 /**
