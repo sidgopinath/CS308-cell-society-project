@@ -59,6 +59,7 @@ public class CellSocietyController {
 		SplashScreen splash = new SplashScreen(this);
 		myGroup = new Group();
 		myGroup.getChildren().add(splash.getNode(width, height));
+
 	}
 
 	public Scene getScene() {
@@ -82,9 +83,8 @@ public class CellSocietyController {
 			myCurrentSimulation.updateGrid();
 		}
 	}
-	
+
 	/**
-	 * REFACTOR?
 	 * Method to be called from the view
 	 * Generates fully random grid from parameters passed in
 	 * Default values will be used for parameters
@@ -94,7 +94,10 @@ public class CellSocietyController {
 	 * @param fullyRandom
 	 */
 	public void generateRandomGrid(int gridHeight, int gridWidth, String simName){
-		generateGrid(new RandomSimGenerator(gridHeight, gridWidth, simName));
+		RandomSimGenerator rsg = new RandomSimGenerator(gridHeight, gridWidth, simName);
+		myGrid = rsg.getGrid();
+		myParameters = rsg.getParameters();
+		transitionToSimulation();
 	}
 	
 	/**
@@ -107,12 +110,9 @@ public class CellSocietyController {
 	 * @param probabilities
 	 */
 	public void generateProbabilityRandomGrid(int gridHeight, int gridWidth, String simName, HashMap<Integer, Integer> probabilities){
-		generateGrid(new ProbabilitySimGenerator(gridHeight, gridWidth, simName, probabilities));
-	}
-	
-	public void generateGrid(SimGenerator generator){
-		myGrid = generator.getGrid();
-		myParameters = generator.getParameters();
+		ProbabilitySimGenerator psg = new ProbabilitySimGenerator(gridHeight, gridWidth, simName, probabilities);
+		myGrid = psg.getGrid();
+		myParameters = psg.getParameters();
 		transitionToSimulation();
 	}
 	
@@ -120,11 +120,15 @@ public class CellSocietyController {
 	 * Reads an XML file and stores the Int grid and Parameters
 	 * Catches file error exceptions and takes user back to load screen
 	 */
-	private void readXML(File XMLFile) throws IllegalArgumentException {
+	private void readXML(File XMLFile) throws InvalidParameterException {
 		try{
 			XMLParser newParser = new XMLParser(XMLFile);
-			myGrid = newParser.getGrid();
-			if(myGrid != null){
+			if(newParser.getGrid() != null){
+				myGrid = newParser.getGrid();
+//				RandomSimGenerator rsg = new RandomSimGenerator(10, 10, "life", true); //to test random sim generator
+//				myGrid = rsg.getGrid(); //to test random sim generator
+//				ProbabilitySimGenerator psg = new ProbabilitySimGenerator(10, 10, "fire", null); //to test probability sim generator
+//				myGrid = psg.getGrid(); //to test prob sim generator
 				myParameters = newParser.getParameters();
 				transitionToSimulation();
 			}
@@ -175,8 +179,11 @@ public class CellSocietyController {
 		if(speedUp){
 			myFrameRate = 2*myFrameRate;
 		}
-		else if (myFrameRate != 1){
+		else{
 			myFrameRate = myFrameRate/2;
+			if(myFrameRate == 0){
+				myFrameRate = 1;
+			}
 		}
 		myTimeline.getKeyFrames().add(getKeyFrame(myFrameRate));
 		myTimeline.play();
@@ -218,10 +225,12 @@ public class CellSocietyController {
 			myCurrentSimulation = new SimulationFire(myParameters, myStyles, myGrid, myCurrentSimulationScreen);	
 		}
 		else if(simName.equals(myProperties.getObject("segregation_simulation_name"))){
-			myCurrentSimulation = new SimulationSegregation(myParameters, myStyles, myGrid,myCurrentSimulationScreen);		
+			myCurrentSimulation = new SimulationSegregation(myParameters, myStyles, myGrid,myCurrentSimulationScreen);
+			
 		}
 		else if(simName.equals(myProperties.getObject("life_simulation_name"))){
 			myCurrentSimulation = new SimulationLife(myParameters, myStyles, myGrid, myCurrentSimulationScreen);
+			
 		}
 		else if(simName.equals(myProperties.getObject("predator_simulation_name"))){
 			myCurrentSimulation = new SimulationPredator(myParameters, myStyles, myGrid, myCurrentSimulationScreen);
@@ -256,5 +265,6 @@ public class CellSocietyController {
 
 	public void changeSimulationParameters(String string, double new_val) {
 		myCurrentSimulation.setParameter(string, new_val);
+		
 	}
 }

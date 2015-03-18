@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * This generator creates a random grid
@@ -10,8 +11,11 @@ import java.util.HashMap;
  *
  */
 
-public class ProbabilitySimGenerator extends SimGenerator {
+public class ProbabilitySimGenerator {
 
+	private Integer[][] myGrid;
+	private HashMap<String, String> myParameters = new HashMap<String, String>();
+	private Random myRandom = new Random();
 	private HashMap<Integer, Integer> myProbabilities;
 
 	/**
@@ -24,10 +28,28 @@ public class ProbabilitySimGenerator extends SimGenerator {
 	 */
 	public ProbabilitySimGenerator(int gridHeight, int gridWidth,
 			String simName, HashMap<Integer, Integer> probabilities) {
-		super(gridWidth, gridWidth, simName, probabilities, "probability");
+		myParameters.put("simName", simName);
+		myParameters.put("gridWidth", gridWidth + "");
+		myParameters.put("gridHeight", gridHeight + "");
+		myGrid = new Integer[gridHeight][gridWidth];
 		myProbabilities = probabilities;
+		
+		// for testing
+		// myProbabilities = new HashMap<Integer, Integer>();
+		// myProbabilities.put(0, 10);
+		// myProbabilities.put(1, 50);
+		// myProbabilities.put(2, 40);
+
 		createGrid(myGrid);
 
+	}
+
+	public Integer[][] getGrid() {
+		return myGrid;
+	}
+
+	public HashMap<String, String> getParameters() {
+		return myParameters;
 	}
 
 	/**
@@ -35,7 +57,7 @@ public class ProbabilitySimGenerator extends SimGenerator {
 	 * Calls generate cell value on each cell
 	 * @param grid
 	 */
-	protected void createGrid(Integer[][] grid) {
+	private void createGrid(Integer[][] grid) {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[i].length; j++) {
 				generateCellValue(i, j);
