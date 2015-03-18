@@ -1,6 +1,0 @@
-<map id="model.cells.PredatorCell" name="model.cells.PredatorCell">
-<area shape="rect" id="node3" href="$db/deb/classmodel_1_1cells_1_1_predator_cell_empty.html" title="model.cells.PredatorCell\lEmpty" alt="" coords="412,5,588,46"/>
-<area shape="rect" id="node4" href="$df/dc2/classmodel_1_1cells_1_1_predator_cell_fish.html" title="model.cells.PredatorCellFish" alt="" coords="400,71,600,97"/>
-<area shape="rect" id="node5" href="$d0/dfb/classmodel_1_1cells_1_1_predator_cell_shark.html" title="model.cells.PredatorCell\lShark" alt="" coords="412,122,588,163"/>
-<area shape="rect" id="node2" href="$dc/d41/classmodel_1_1cells_1_1_cell.html" title="model.cells.Cell" alt="" coords="6,71,127,97"/>
-</map>

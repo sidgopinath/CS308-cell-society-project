@@ -1,6 +1,0 @@
-<map id="view.SimulationScreen.createOptionsPanel" name="view.SimulationScreen.createOptionsPanel">
-<area shape="rect" id="node2" href="$dd/d46/classmodel_1_1simulations_1_1_simulation_fire.html#a0f96ca474d40a8bed78969f4e8ca23da" title="model.simulations.Simulation\lFire.setupParameterControl" alt="" coords="285,5,496,46"/>
-<area shape="rect" id="node3" href="$d9/d70/classmodel_1_1simulations_1_1_simulation_predator.html#a4d05983035767a892e5288ac90de6f55" title="model.simulations.Simulation\lPredator.setupParameterControl" alt="" coords="276,70,505,111"/>
-<area shape="rect" id="node4" href="$d7/dc8/classmodel_1_1simulations_1_1_simulation_sugarscape.html#aae9b3060c4fba2ae8ed7f35354031c91" title="model.simulations.Simulation\lSugarscape.setupParameterControl" alt="" coords="265,135,516,177"/>
-<area shape="rect" id="node5" href="$da/d76/classmodel_1_1simulations_1_1_simulation_segregation.html#a7278b4d0b458eec0ed47188abd23f773" title="model.simulations.Simulation\lSegregation.setupParameterControl" alt="" coords="264,201,517,242"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="controller.Main.start" name="controller.Main.start">
-<area shape="rect" id="node2" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a29d2ab73cf9bdf13a6a5aab34897f240" title="controller.CellSocietyController.get\lScene" alt="" coords="219,5,461,46"/>
-<area shape="rect" id="node3" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#ad1a5392e3462b9b781ef440951024055" title="controller.CellSocietyController.manage\lTimeline" alt="" coords="203,70,477,111"/>
-<area shape="rect" id="node7" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#ab77f664fdad00fe59e9dfd63e0c806e7" title="controller.CellSocietyController.set\lFrameRate" alt="" coords="220,135,460,177"/>
-<area shape="rect" id="node4" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a2c91c70640d8de017cd11a225f1e4764" title="controller.CellSocietyController.get\lKeyFrame" alt="" coords="526,70,767,111"/>
-<area shape="rect" id="node5" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a7ce2131c45f721057c3275b01d6cb119" title="controller.CellSocietyController.update" alt="" coords="817,77,1082,104"/>
-<area shape="rect" id="node6" href="$d0/d56/classmodel_1_1simulations_1_1_simulation.html#ab09457a4abc640d4b7ad57c3236d5778" title="model.simulations.Simulation.updateGrid" alt="" coords="1131,77,1418,104"/>
-</map>

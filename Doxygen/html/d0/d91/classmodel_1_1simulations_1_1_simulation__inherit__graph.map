@@ -1,9 +1,0 @@
-<map id="model.simulations.Simulation" name="model.simulations.Simulation">
-<area shape="rect" id="node2" href="$dd/d46/classmodel_1_1simulations_1_1_simulation_fire.html" title="model.simulations.SimulationFire" alt="" coords="265,5,498,32"/>
-<area shape="rect" id="node3" href="$dc/d59/classmodel_1_1simulations_1_1_simulation_foraging_ants.html" title="model.simulations.Simulation\lForagingAnts" alt="" coords="276,57,487,98"/>
-<area shape="rect" id="node4" href="$d7/d85/classmodel_1_1simulations_1_1_simulation_life.html" title="model.simulations.SimulationLife" alt="" coords="265,123,498,149"/>
-<area shape="rect" id="node5" href="$d9/d70/classmodel_1_1simulations_1_1_simulation_predator.html" title="model.simulations.Simulation\lPredator" alt="" coords="276,174,487,215"/>
-<area shape="rect" id="node6" href="$da/d76/classmodel_1_1simulations_1_1_simulation_segregation.html" title="model.simulations.Simulation\lSegregation" alt="" coords="276,239,487,281"/>
-<area shape="rect" id="node7" href="$dd/d70/classmodel_1_1simulations_1_1_simulation_slime_mold.html" title="model.simulations.Simulation\lSlimeMold" alt="" coords="276,305,487,346"/>
-<area shape="rect" id="node8" href="$d7/dc8/classmodel_1_1simulations_1_1_simulation_sugarscape.html" title="model.simulations.Simulation\lSugarscape" alt="" coords="276,370,487,411"/>
-</map>

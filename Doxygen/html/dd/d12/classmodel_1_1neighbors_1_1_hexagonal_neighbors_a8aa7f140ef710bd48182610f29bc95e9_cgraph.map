@@ -1,9 +1,0 @@
-<map id="model.neighbors.HexagonalNeighbors.getAllNeighbors" name="model.neighbors.HexagonalNeighbors.getAllNeighbors">
-<area shape="rect" id="node2" href="$dc/de1/classmodel_1_1neighbors_1_1_neighbors.html#ad0ebeba79aaf13dce7951d4c23ad990f" title="model.neighbors.Neighbors.bottomLeft" alt="" coords="257,5,530,32"/>
-<area shape="rect" id="node4" href="$dc/de1/classmodel_1_1neighbors_1_1_neighbors.html#a7943b721335bdaa80fd9ea617993392c" title="model.neighbors.Neighbors.bottom\lRight" alt="" coords="269,57,518,98"/>
-<area shape="rect" id="node5" href="$dc/de1/classmodel_1_1neighbors_1_1_neighbors.html#a1d91d30ce6289d9bb71da5d34c505582" title="model.neighbors.Neighbors.Left" alt="" coords="280,123,507,149"/>
-<area shape="rect" id="node6" href="$dc/de1/classmodel_1_1neighbors_1_1_neighbors.html#a6f65a87269275d8978c35c6765f531c1" title="model.neighbors.Neighbors.\lRight" alt="" coords="292,174,495,215"/>
-<area shape="rect" id="node7" href="$dc/de1/classmodel_1_1neighbors_1_1_neighbors.html#af8de37f6b70ac9ab8008b6629f22886a" title="model.neighbors.Neighbors.topLeft" alt="" coords="270,240,517,267"/>
-<area shape="rect" id="node8" href="$dc/de1/classmodel_1_1neighbors_1_1_neighbors.html#ae82e69e25fdf465f6dee196c82b1f6af" title="model.neighbors.Neighbors.top\lRight" alt="" coords="282,291,505,333"/>
-<area shape="rect" id="node3" href="$da/d6d/classmodel_1_1gridrules_1_1_grid_rules.html#a667e0098e66a7b398962d78c830f6c4a" title="model.gridrules.GridRules.handle\lEdges" alt="" coords="579,145,810,186"/>
-</map>

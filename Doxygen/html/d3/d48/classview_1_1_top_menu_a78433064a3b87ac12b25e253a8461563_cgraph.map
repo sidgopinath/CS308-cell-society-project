@@ -1,6 +1,0 @@
-<map id="view.TopMenu.addSlowDownButton" name="view.TopMenu.addSlowDownButton">
-<area shape="rect" id="node2" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a6eb10259241f3932f29dcc2947477ac9" title="controller.CellSocietyController.change\lSimulationSpeed" alt="" coords="253,5,520,46"/>
-<area shape="rect" id="node3" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a2c91c70640d8de017cd11a225f1e4764" title="controller.CellSocietyController.get\lKeyFrame" alt="" coords="569,5,810,46"/>
-<area shape="rect" id="node4" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a7ce2131c45f721057c3275b01d6cb119" title="controller.CellSocietyController.update" alt="" coords="859,12,1125,39"/>
-<area shape="rect" id="node5" href="$d0/d56/classmodel_1_1simulations_1_1_simulation.html#ab09457a4abc640d4b7ad57c3236d5778" title="model.simulations.Simulation.updateGrid" alt="" coords="1174,12,1461,39"/>
-</map>

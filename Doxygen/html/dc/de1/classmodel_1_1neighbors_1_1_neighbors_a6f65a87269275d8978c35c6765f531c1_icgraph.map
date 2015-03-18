@@ -1,7 +1,0 @@
-<map id="model.neighbors.Neighbors.Right" name="model.neighbors.Neighbors.Right">
-<area shape="rect" id="node2" href="$dd/d12/classmodel_1_1neighbors_1_1_hexagonal_neighbors.html#a8aa7f140ef710bd48182610f29bc95e9" title="model.neighbors.Hexagonal\lNeighbors.getAllNeighbors" alt="" coords="270,70,471,111"/>
-<area shape="rect" id="node5" href="$d6/d9c/classmodel_1_1neighbors_1_1_square_triangle_neighbors.html#ad8ae7bc5b8567fd85d65a8f766d7025b" title="model.neighbors.SquareTriangle\lNeighbors.getCardinalNeighbors" alt="" coords="256,135,485,177"/>
-<area shape="rect" id="node3" href="$dd/d12/classmodel_1_1neighbors_1_1_hexagonal_neighbors.html#aa5b2987e61b3abb40f9ad64e99ac8f3b" title="model.neighbors.Hexagonal\lNeighbors.getCardinalNeighbors" alt="" coords="536,5,765,46"/>
-<area shape="rect" id="node4" href="$dd/d12/classmodel_1_1neighbors_1_1_hexagonal_neighbors.html#a278e173ecc8cc08ae079e7f29f5c7cb4" title="model.neighbors.Hexagonal\lNeighbors.getDiagonalNeighbors" alt="" coords="534,70,767,111"/>
-<area shape="rect" id="node6" href="$d6/d9c/classmodel_1_1neighbors_1_1_square_triangle_neighbors.html#a4705a116c2c95cb5aeb2e7c6b9cf7b88" title="model.neighbors.SquareTriangle\lNeighbors.getAllNeighbors" alt="" coords="537,135,764,177"/>
-</map>
