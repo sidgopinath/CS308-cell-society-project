@@ -1,6 +1,3 @@
-// This entire file is part of my masterpiece.
-// Sunjeev Devulapalli
-
 package view;
 
 import java.util.ArrayList;
