@@ -1,0 +1,10 @@
+<map id="model.patches.Patch.getColor" name="model.patches.Patch.getColor">
+<area shape="rect" id="node2" href="$d0/d56/classmodel_1_1simulations_1_1_simulation.html#a6efb6657ce3c803a99ccd41d8b8a2057" title="model.simulations.Simulation.update\lColorGrid" alt="" coords="270,162,530,203"/>
+<area shape="rect" id="node3" href="$d0/d56/classmodel_1_1simulations_1_1_simulation.html#ad6b0af21d9f0a4d2bd0fc2ce13d40ab5" title="model.simulations.Simulation.setupGrid" alt="" coords="579,12,856,39"/>
+<area shape="rect" id="node5" href="$dd/d46/classmodel_1_1simulations_1_1_simulation_fire.html#afb98c9dd0a67eb041f8c635b0c18c709" title="model.simulations.Simulation\lFire.updateGrid" alt="" coords="612,63,823,105"/>
+<area shape="rect" id="node6" href="$d7/d85/classmodel_1_1simulations_1_1_simulation_life.html#a835e84a7f9fc272a5cb373abb36bf628" title="model.simulations.Simulation\lLife.updateGrid" alt="" coords="612,129,823,170"/>
+<area shape="rect" id="node7" href="$d9/d70/classmodel_1_1simulations_1_1_simulation_predator.html#a1d05d28746dd1f641960ef401b28472e" title="model.simulations.Simulation\lPredator.updateGrid" alt="" coords="612,194,823,235"/>
+<area shape="rect" id="node8" href="$da/d76/classmodel_1_1simulations_1_1_simulation_segregation.html#a3aeb5a7dfb3094553814a23e70cd5676" title="model.simulations.Simulation\lSegregation.updateGrid" alt="" coords="612,259,823,301"/>
+<area shape="rect" id="node9" href="$d7/dc8/classmodel_1_1simulations_1_1_simulation_sugarscape.html#a6f5b4a3d8842dbe0fd7c4ac94e349fe3" title="model.simulations.Simulation\lSugarscape.updateGrid" alt="" coords="612,325,823,366"/>
+<area shape="rect" id="node4" href="$d0/d56/classmodel_1_1simulations_1_1_simulation.html#a49dab3d977f4447d538534885be2b64f" title="model.simulations.Simulation.\lSimulation" alt="" coords="905,5,1119,46"/>
+</map>

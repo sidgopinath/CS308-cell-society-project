@@ -1,0 +1,37 @@
+<map id="controller.CellSocietyController.CellSocietyController" name="controller.CellSocietyController.CellSocietyController">
+<area shape="rect" id="node2" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a3f78125e5b809d88d3cf7ed20b3756c2" title="controller.CellSocietyController.display\lSplashScreen" alt="" coords="275,226,539,267"/>
+<area shape="rect" id="node3" href="$dd/d02/classview_1_1_splash_screen.html#a6ff42b7dad4e546981a3266f9d694f5a" title="view.SplashScreen.getNode" alt="" coords="587,233,786,260"/>
+<area shape="rect" id="node4" href="$dd/d02/classview_1_1_splash_screen.html#a0a9ccd223a5668611f7fbbae36ea0796" title="view.SplashScreen.addTitle" alt="" coords="853,204,1048,231"/>
+<area shape="rect" id="node6" href="$dd/d02/classview_1_1_splash_screen.html#a652092fc5c5862cee4ff84bf231646ab" title="view.SplashScreen.addLoad\lButton" alt="" coords="851,138,1050,179"/>
+<area shape="rect" id="node23" href="$dd/d02/classview_1_1_splash_screen.html#a17ba24f5ed477a37ea527710e54d65c8" title="view.SplashScreen.addRandom\lButton" alt="" coords="840,321,1061,362"/>
+<area shape="rect" id="node36" href="$dd/d02/classview_1_1_splash_screen.html#ad94d9edd23f270a5f480fd54a06d72f3" title="view.SplashScreen.addProbablity\lButton" alt="" coords="835,255,1066,297"/>
+<area shape="rect" id="node5" href="$dd/d02/classview_1_1_splash_screen.html#a329982556dc38c022b2b8c10347e34bd" title="view.SplashScreen.formatNode" alt="" coords="1144,233,1365,260"/>
+<area shape="rect" id="node7" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#afbdf9a63e15a2bfa878dcfe5ed3ef6dc" title="controller.CellSocietyController.transition\lToFileLoaderScreen" alt="" coords="1115,130,1395,171"/>
+<area shape="rect" id="node8" href="$d3/d0a/classview_1_1_file_loader_screen.html#a32abcb410ad28199e0bfcdce0255715b" title="view.FileLoaderScreen.getNode" alt="" coords="1473,36,1693,63"/>
+<area shape="rect" id="node9" href="$d3/d0a/classview_1_1_file_loader_screen.html#a196dd45848fbdf09ac100c343b6515cd" title="view.FileLoaderScreen.getFile" alt="" coords="1479,87,1686,113"/>
+<area shape="rect" id="node11" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a643c7ac22f2822fa7e492dbf4267ed21" title="controller.CellSocietyController.readXML" alt="" coords="1445,137,1720,164"/>
+<area shape="rect" id="node10" href="$d3/d0a/classview_1_1_file_loader_screen.html#a97d7c0b9dc021069c17e7f778398f41e" title="view.FileLoaderScreen.configure\lFileChooser" alt="" coords="1799,6,2023,47"/>
+<area shape="rect" id="node12" href="$dc/d47/classcontroller_1_1_x_m_l_parser.html#a841cf5fa54e30325a444ba24fa26c50e" title="controller.XMLParser.getGrid" alt="" coords="1810,137,2011,164"/>
+<area shape="rect" id="node13" href="$dc/d47/classcontroller_1_1_x_m_l_parser.html#a0ebd2f6df311d0e2f9f0cd7969ecbe73" title="controller.XMLParser.get\lParameters" alt="" coords="1823,71,1998,113"/>
+<area shape="rect" id="node14" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a3d913ad3344ac48e887110e2fabb5746" title="controller.CellSocietyController.transition\lToSimulation" alt="" coords="2099,231,2379,273"/>
+<area shape="rect" id="node15" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#af6b4eb647c4e76fef6f27cc61ced4d9a" title="controller.CellSocietyController.initialize\lSimulationScreen" alt="" coords="2427,166,2698,207"/>
+<area shape="rect" id="node19" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a8af25de87ececa5ca913e7b5af486b3f" title="controller.CellSocietyController.initialize\lSimulation" alt="" coords="2427,231,2698,273"/>
+<area shape="rect" id="node20" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a7609d9a174ff7d2d00fc27e3574cdb21" title="controller.CellSocietyController.stop\lOrStart" alt="" coords="2439,297,2687,338"/>
+<area shape="rect" id="node16" href="$d1/d3e/classview_1_1_simulation_screen.html#a6c9f5c7e36be620d06e55709bc256d18" title="view.SimulationScreen.init\lSimScreen" alt="" coords="2785,123,2973,165"/>
+<area shape="rect" id="node18" href="$d1/d3e/classview_1_1_simulation_screen.html#a482a021910f4b997fb7b798bdc363df4" title="view.SimulationScreen.getNode" alt="" coords="2767,189,2991,216"/>
+<area shape="rect" id="node17" href="$d1/d3e/classview_1_1_simulation_screen.html#a7144a80861195f360ade7612b479ff3e" title="view.SimulationScreen.add\lButtons" alt="" coords="3059,123,3253,165"/>
+<area shape="rect" id="node21" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#aec38c45810ee2665fe01832114fbc68d" title="controller.CellSocietyController.restart\lSimulation" alt="" coords="2747,257,3010,298"/>
+<area shape="rect" id="node22" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a33e7a77467ceeb880526a1b405b3ee79" title="controller.CellSocietyController.pause\lSimulation" alt="" coords="2749,322,3008,363"/>
+<area shape="rect" id="node24" href="$dd/d02/classview_1_1_splash_screen.html#a2f8c52e9a2a790459e51d5d42f16f7da" title="view.SplashScreen.display\lAskInformatio" alt="" coords="1161,321,1349,362"/>
+<area shape="rect" id="node25" href="$dd/d02/classview_1_1_splash_screen.html#ab75deddb521d5727122eec02161acc9d" title="view.SplashScreen.remove\lButtons" alt="" coords="1486,455,1679,497"/>
+<area shape="rect" id="node26" href="$dd/d02/classview_1_1_splash_screen.html#ae484c2f05f910335ffacddd236eb4908" title="view.SplashScreen.addDimensionsText" alt="" coords="1449,211,1717,237"/>
+<area shape="rect" id="node27" href="$dd/d02/classview_1_1_splash_screen.html#ae4427d4a548843b069b35328182187fa" title="view.SplashScreen.addSimulation\lNameText" alt="" coords="1465,262,1701,303"/>
+<area shape="rect" id="node28" href="$dd/d02/classview_1_1_splash_screen.html#a05478a56856d70fd9508d79ca484fbca" title="view.SplashScreen.addProbabilityText" alt="" coords="1453,404,1712,431"/>
+<area shape="rect" id="node33" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#ab65a8810efbc2b92e17ca77cdc591df9" title="controller.CellSocietyController.generate\lRandomGrid" alt="" coords="1443,327,1722,369"/>
+<area shape="rect" id="node29" href="$dd/d02/classview_1_1_splash_screen.html#a1e747e968477f14fbd6d6cd4a508e008" title="view.SplashScreen.remove\lAskScreenNodes" alt="" coords="1814,406,2007,447"/>
+<area shape="rect" id="node30" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#ada30fdc135cdf08b93065edf15ed3fcc" title="controller.CellSocietyController.generate\lProbabilityRandomGrid" alt="" coords="1771,471,2050,513"/>
+<area shape="rect" id="node31" href="$d3/dc8/classcontroller_1_1_probability_sim_generator.html#a66a18a40b330a1650ff804385ed3abc2" title="controller.ProbabilitySim\lGenerator.getGrid" alt="" coords="2151,503,2327,545"/>
+<area shape="rect" id="node32" href="$d3/dc8/classcontroller_1_1_probability_sim_generator.html#aa5aa2ef09d94ff11c6912b34fafa1d4a" title="controller.ProbabilitySim\lGenerator.getParameters" alt="" coords="2146,438,2331,479"/>
+<area shape="rect" id="node34" href="$d4/d2d/classcontroller_1_1_random_sim_generator.html#a807ccd4617ee16b3f28aadfa544c42cb" title="controller.RandomSimGenerator.getGrid" alt="" coords="1771,289,2050,316"/>
+<area shape="rect" id="node35" href="$d4/d2d/classcontroller_1_1_random_sim_generator.html#a93fd8f4276dc3a0271fe51b37664f77a" title="controller.RandomSimGenerator.get\lParameters" alt="" coords="1785,341,2037,382"/>
+</map>

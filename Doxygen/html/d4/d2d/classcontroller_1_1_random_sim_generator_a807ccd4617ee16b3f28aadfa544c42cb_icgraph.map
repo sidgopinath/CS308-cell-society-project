@@ -1,0 +1,9 @@
+<map id="controller.RandomSimGenerator.getGrid" name="controller.RandomSimGenerator.getGrid">
+<area shape="rect" id="node2" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#ab65a8810efbc2b92e17ca77cdc591df9" title="controller.CellSocietyController.generate\lRandomGrid" alt="" coords="334,38,613,79"/>
+<area shape="rect" id="node3" href="$dd/d02/classview_1_1_splash_screen.html#a2f8c52e9a2a790459e51d5d42f16f7da" title="view.SplashScreen.display\lAskInformatio" alt="" coords="662,38,850,79"/>
+<area shape="rect" id="node4" href="$dd/d02/classview_1_1_splash_screen.html#ad94d9edd23f270a5f480fd54a06d72f3" title="view.SplashScreen.addProbablity\lButton" alt="" coords="899,5,1130,46"/>
+<area shape="rect" id="node8" href="$dd/d02/classview_1_1_splash_screen.html#a17ba24f5ed477a37ea527710e54d65c8" title="view.SplashScreen.addRandom\lButton" alt="" coords="904,70,1125,111"/>
+<area shape="rect" id="node5" href="$dd/d02/classview_1_1_splash_screen.html#a6ff42b7dad4e546981a3266f9d694f5a" title="view.SplashScreen.getNode" alt="" coords="1179,45,1378,72"/>
+<area shape="rect" id="node6" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a3f78125e5b809d88d3cf7ed20b3756c2" title="controller.CellSocietyController.display\lSplashScreen" alt="" coords="1427,38,1691,79"/>
+<area shape="rect" id="node7" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a6a2310de67e415512149c94c9f36e356" title="controller.CellSocietyController.\lCellSocietyController" alt="" coords="1739,38,1959,79"/>
+</map>

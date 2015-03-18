@@ -1,0 +1,10 @@
+<map id="controller.XMLParser.getParameters" name="controller.XMLParser.getParameters">
+<area shape="rect" id="node2" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a643c7ac22f2822fa7e492dbf4267ed21" title="controller.CellSocietyController.readXML" alt="" coords="229,35,504,61"/>
+<area shape="rect" id="node3" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#afbdf9a63e15a2bfa878dcfe5ed3ef6dc" title="controller.CellSocietyController.transition\lToFileLoaderScreen" alt="" coords="552,27,832,69"/>
+<area shape="rect" id="node4" href="$d3/d48/classview_1_1_top_menu.html#af56bae78812baf114a9ed49ad52694df" title="view.TopMenu.addLoadButton" alt="" coords="880,5,1091,32"/>
+<area shape="rect" id="node6" href="$dd/d02/classview_1_1_splash_screen.html#a652092fc5c5862cee4ff84bf231646ab" title="view.SplashScreen.addLoad\lButton" alt="" coords="886,57,1085,98"/>
+<area shape="rect" id="node5" href="$d3/d48/classview_1_1_top_menu.html#a4442589b1733d6ad662c92700f27018e" title="view.TopMenu.createTopButtons" alt="" coords="1139,5,1363,32"/>
+<area shape="rect" id="node7" href="$dd/d02/classview_1_1_splash_screen.html#a6ff42b7dad4e546981a3266f9d694f5a" title="view.SplashScreen.getNode" alt="" coords="1151,64,1350,91"/>
+<area shape="rect" id="node8" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a3f78125e5b809d88d3cf7ed20b3756c2" title="controller.CellSocietyController.display\lSplashScreen" alt="" coords="1411,57,1675,98"/>
+<area shape="rect" id="node9" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a6a2310de67e415512149c94c9f36e356" title="controller.CellSocietyController.\lCellSocietyController" alt="" coords="1723,57,1943,98"/>
+</map>

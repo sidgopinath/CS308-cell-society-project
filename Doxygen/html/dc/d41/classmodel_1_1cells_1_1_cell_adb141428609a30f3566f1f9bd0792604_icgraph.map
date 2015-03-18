@@ -1,0 +1,5 @@
+<map id="model.cells.Cell.setProperty" name="model.cells.Cell.setProperty">
+<area shape="rect" id="node2" href="$dd/d46/classmodel_1_1simulations_1_1_simulation_fire.html#ae5a99a4e85747e0f41ad6a8dbbd0dad0" title="model.simulations.Simulation\lFire.setParameter" alt="" coords="253,5,464,46"/>
+<area shape="rect" id="node3" href="$da/d76/classmodel_1_1simulations_1_1_simulation_segregation.html#a1b773126f6338ac30821282df0439541" title="model.simulations.Simulation\lSegregation.setParameter" alt="" coords="253,70,464,111"/>
+<area shape="rect" id="node4" href="$d9/d70/classmodel_1_1simulations_1_1_simulation_predator.html#ac136add930b9740137df234c190a3b55" title="model.simulations.Simulation\lPredator.setParameter" alt="" coords="253,135,464,177"/>
+</map>
