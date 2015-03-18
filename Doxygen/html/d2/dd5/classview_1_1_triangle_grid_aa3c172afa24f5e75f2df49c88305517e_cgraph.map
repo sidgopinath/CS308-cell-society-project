@@ -1,7 +1,0 @@
-<map id="view.TriangleGrid.addShape" name="view.TriangleGrid.addShape">
-<area shape="rect" id="node2" href="$d2/dd5/classview_1_1_triangle_grid.html#ad3b4bd26ce3e3b81e261fa9b593b7da2" title="view.TriangleGrid.format" alt="" coords="261,5,435,32"/>
-<area shape="rect" id="node3" href="$d2/dd5/classview_1_1_triangle_grid.html#ac0c37376e040804166ced95f312c168e" title="view.TriangleGrid.makeNew\lStrokeTriangle" alt="" coords="251,57,445,98"/>
-<area shape="rect" id="node4" href="$d2/dd5/classview_1_1_triangle_grid.html#a253880c6d998322dd7eaa9b8915c5c51" title="view.TriangleGrid.makeNew\lTriangle" alt="" coords="251,122,445,163"/>
-<area shape="rect" id="node5" href="$d2/dd5/classview_1_1_triangle_grid.html#acd6510d37fff74ea3ac196ead9721492" title="view.TriangleGrid.translateTri" alt="" coords="248,188,448,215"/>
-<area shape="rect" id="node6" href="$d2/dd5/classview_1_1_triangle_grid.html#a91470f41afce4c73803ef15cdfeec159" title="view.TriangleGrid.isOdd" alt="" coords="497,188,663,215"/>
-</map>

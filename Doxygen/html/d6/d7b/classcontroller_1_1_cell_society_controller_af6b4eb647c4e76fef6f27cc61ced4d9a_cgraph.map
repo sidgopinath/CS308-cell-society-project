@@ -1,5 +1,0 @@
-<map id="controller.CellSocietyController.initializeSimulationScreen" name="controller.CellSocietyController.initializeSimulationScreen">
-<area shape="rect" id="node2" href="$d1/d3e/classview_1_1_simulation_screen.html#a482a021910f4b997fb7b798bdc363df4" title="view.SimulationScreen.getNode" alt="" coords="325,5,549,32"/>
-<area shape="rect" id="node3" href="$d1/d3e/classview_1_1_simulation_screen.html#a6c9f5c7e36be620d06e55709bc256d18" title="view.SimulationScreen.init\lSimScreen" alt="" coords="343,57,531,98"/>
-<area shape="rect" id="node4" href="$d1/d3e/classview_1_1_simulation_screen.html#a7144a80861195f360ade7612b479ff3e" title="view.SimulationScreen.add\lButtons" alt="" coords="598,57,791,98"/>
-</map>

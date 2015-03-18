@@ -1,5 +1,0 @@
-<map id="view.SideMenu.createOptionWindow" name="view.SideMenu.createOptionWindow">
-<area shape="rect" id="node2" href="$d4/d94/classview_1_1_side_menu.html#a21930f61c96e9858b9fabb0bdb6910bc" title="view.SideMenu.addOptions\lPanel" alt="" coords="256,5,448,46"/>
-<area shape="rect" id="node3" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a34f35d20fd1fcdf6ec1b959f71692068" title="controller.CellSocietyController.change\lSimulationParameters" alt="" coords="496,5,763,46"/>
-<area shape="rect" id="node4" href="$d0/d56/classmodel_1_1simulations_1_1_simulation.html#a843485b5e61f708ef5c8f722faee5232" title="model.simulations.Simulation.set\lParameter" alt="" coords="811,5,1045,46"/>
-</map>
