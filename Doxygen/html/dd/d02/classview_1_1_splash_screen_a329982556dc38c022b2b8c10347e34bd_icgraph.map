@@ -1,0 +1,9 @@
+<map id="view.SplashScreen.formatNode" name="view.SplashScreen.formatNode">
+<area shape="rect" id="node2" href="$dd/d02/classview_1_1_splash_screen.html#a652092fc5c5862cee4ff84bf231646ab" title="view.SplashScreen.addLoad\lButton" alt="" coords="291,5,490,46"/>
+<area shape="rect" id="node6" href="$dd/d02/classview_1_1_splash_screen.html#ad94d9edd23f270a5f480fd54a06d72f3" title="view.SplashScreen.addProbablity\lButton" alt="" coords="275,70,506,111"/>
+<area shape="rect" id="node7" href="$dd/d02/classview_1_1_splash_screen.html#a17ba24f5ed477a37ea527710e54d65c8" title="view.SplashScreen.addRandom\lButton" alt="" coords="280,135,501,177"/>
+<area shape="rect" id="node8" href="$dd/d02/classview_1_1_splash_screen.html#a0a9ccd223a5668611f7fbbae36ea0796" title="view.SplashScreen.addTitle" alt="" coords="293,201,488,228"/>
+<area shape="rect" id="node3" href="$dd/d02/classview_1_1_splash_screen.html#a6ff42b7dad4e546981a3266f9d694f5a" title="view.SplashScreen.getNode" alt="" coords="555,111,754,137"/>
+<area shape="rect" id="node4" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a3f78125e5b809d88d3cf7ed20b3756c2" title="controller.CellSocietyController.display\lSplashScreen" alt="" coords="803,103,1067,145"/>
+<area shape="rect" id="node5" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a6a2310de67e415512149c94c9f36e356" title="controller.CellSocietyController.\lCellSocietyController" alt="" coords="1115,103,1335,145"/>
+</map>

@@ -1,0 +1,20 @@
+<map id="controller.CellSocietyController.pauseSimulation" name="controller.CellSocietyController.pauseSimulation">
+<area shape="rect" id="node2" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a7609d9a174ff7d2d00fc27e3574cdb21" title="controller.CellSocietyController.stop\lOrStart" alt="" coords="312,175,560,217"/>
+<area shape="rect" id="node3" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a3d913ad3344ac48e887110e2fabb5746" title="controller.CellSocietyController.transition\lToSimulation" alt="" coords="608,138,888,179"/>
+<area shape="rect" id="node19" href="$d3/d48/classview_1_1_top_menu.html#a40539df58de6aa71c37c6f2a3072b478" title="view.TopMenu.addStopStart\lButton" alt="" coords="649,213,847,254"/>
+<area shape="rect" id="node4" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a41b6379d34f94114f5ada21e3bb8b52e" title="controller.CellSocietyController.generateGrid" alt="" coords="936,77,1240,104"/>
+<area shape="rect" id="node14" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a643c7ac22f2822fa7e492dbf4267ed21" title="controller.CellSocietyController.readXML" alt="" coords="951,145,1225,172"/>
+<area shape="rect" id="node5" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#ada30fdc135cdf08b93065edf15ed3fcc" title="controller.CellSocietyController.generate\lProbabilityRandomGrid" alt="" coords="1289,11,1567,53"/>
+<area shape="rect" id="node13" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#ab65a8810efbc2b92e17ca77cdc591df9" title="controller.CellSocietyController.generate\lRandomGrid" alt="" coords="1617,70,1895,111"/>
+<area shape="rect" id="node6" href="$dd/d02/classview_1_1_splash_screen.html#a05478a56856d70fd9508d79ca484fbca" title="view.SplashScreen.addProbabilityText" alt="" coords="1627,19,1885,45"/>
+<area shape="rect" id="node7" href="$dd/d02/classview_1_1_splash_screen.html#a2f8c52e9a2a790459e51d5d42f16f7da" title="view.SplashScreen.display\lAskInformatio" alt="" coords="1962,38,2150,79"/>
+<area shape="rect" id="node8" href="$dd/d02/classview_1_1_splash_screen.html#ad94d9edd23f270a5f480fd54a06d72f3" title="view.SplashScreen.addProbablity\lButton" alt="" coords="2217,5,2447,46"/>
+<area shape="rect" id="node12" href="$dd/d02/classview_1_1_splash_screen.html#a17ba24f5ed477a37ea527710e54d65c8" title="view.SplashScreen.addRandom\lButton" alt="" coords="2221,70,2443,111"/>
+<area shape="rect" id="node9" href="$dd/d02/classview_1_1_splash_screen.html#a6ff42b7dad4e546981a3266f9d694f5a" title="view.SplashScreen.getNode" alt="" coords="2497,77,2695,104"/>
+<area shape="rect" id="node10" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a3f78125e5b809d88d3cf7ed20b3756c2" title="controller.CellSocietyController.display\lSplashScreen" alt="" coords="2744,70,3008,111"/>
+<area shape="rect" id="node11" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a6a2310de67e415512149c94c9f36e356" title="controller.CellSocietyController.\lCellSocietyController" alt="" coords="3057,70,3277,111"/>
+<area shape="rect" id="node15" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#afbdf9a63e15a2bfa878dcfe5ed3ef6dc" title="controller.CellSocietyController.transition\lToFileLoaderScreen" alt="" coords="1288,138,1568,179"/>
+<area shape="rect" id="node16" href="$dd/d02/classview_1_1_splash_screen.html#a652092fc5c5862cee4ff84bf231646ab" title="view.SplashScreen.addLoad\lButton" alt="" coords="1957,129,2155,170"/>
+<area shape="rect" id="node17" href="$d3/d48/classview_1_1_top_menu.html#af56bae78812baf114a9ed49ad52694df" title="view.TopMenu.addLoadButton" alt="" coords="1651,187,1861,213"/>
+<area shape="rect" id="node18" href="$d3/d48/classview_1_1_top_menu.html#a4442589b1733d6ad662c92700f27018e" title="view.TopMenu.createTopButtons" alt="" coords="1944,216,2168,243"/>
+</map>

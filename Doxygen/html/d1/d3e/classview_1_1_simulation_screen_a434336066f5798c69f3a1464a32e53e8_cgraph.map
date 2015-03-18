@@ -1,0 +1,4 @@
+<map id="view.SimulationScreen.initSimView" name="view.SimulationScreen.initSimView">
+<area shape="rect" id="node2" href="$d7/d7e/classview_1_1_shape_grid.html#ab80b31ff193c7351c2643fbf026e32b6" title="view.ShapeGrid.createGrid" alt="" coords="243,12,434,39"/>
+<area shape="rect" id="node3" href="$d7/d7e/classview_1_1_shape_grid.html#a805fec014a380bf36e49c545dea327ba" title="view.ShapeGrid.addShape" alt="" coords="483,12,671,39"/>
+</map>

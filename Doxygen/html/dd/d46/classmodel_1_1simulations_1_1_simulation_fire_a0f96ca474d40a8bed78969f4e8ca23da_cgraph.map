@@ -1,0 +1,7 @@
+<map id="model.simulations.SimulationFire.setupParameterControl" name="model.simulations.SimulationFire.setupParameterControl">
+<area shape="rect" id="node2" href="$d1/d3e/classview_1_1_simulation_screen.html#a0b0bca3e7baf1004020e0c6bdce57e16" title="view.SimulationScreen.create\lOptionsPanel" alt="" coords="264,5,475,46"/>
+<area shape="rect" id="node3" href="$d4/d94/classview_1_1_side_menu.html#aa7edbecc8f707cf46ba943208bdfb6c6" title="view.SideMenu.createOption\lWindow" alt="" coords="523,5,725,46"/>
+<area shape="rect" id="node4" href="$d4/d94/classview_1_1_side_menu.html#a21930f61c96e9858b9fabb0bdb6910bc" title="view.SideMenu.addOptions\lPanel" alt="" coords="773,5,965,46"/>
+<area shape="rect" id="node5" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a34f35d20fd1fcdf6ec1b959f71692068" title="controller.CellSocietyController.change\lSimulationParameters" alt="" coords="1013,5,1280,46"/>
+<area shape="rect" id="node6" href="$d0/d56/classmodel_1_1simulations_1_1_simulation.html#a843485b5e61f708ef5c8f722faee5232" title="model.simulations.Simulation.set\lParameter" alt="" coords="1328,5,1563,46"/>
+</map>

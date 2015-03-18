@@ -1,0 +1,14 @@
+<map id="controller.CellSocietyController.generateRandomGrid" name="controller.CellSocietyController.generateRandomGrid">
+<area shape="rect" id="node2" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a41b6379d34f94114f5ada21e3bb8b52e" title="controller.CellSocietyController.generateGrid" alt="" coords="333,64,637,91"/>
+<area shape="rect" id="node3" href="$d8/dd8/classcontroller_1_1_sim_generator.html#a56410ccebd07c1b6d1a3afb41d7997fc" title="controller.SimGenerator.getGrid" alt="" coords="713,5,938,32"/>
+<area shape="rect" id="node4" href="$d8/dd8/classcontroller_1_1_sim_generator.html#a9fd6cebed37c16aad5e70dc966ac9fb5" title="controller.SimGenerator.get\lParameters" alt="" coords="726,57,925,98"/>
+<area shape="rect" id="node5" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a3d913ad3344ac48e887110e2fabb5746" title="controller.CellSocietyController.transition\lToSimulation" alt="" coords="685,122,965,163"/>
+<area shape="rect" id="node6" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#af6b4eb647c4e76fef6f27cc61ced4d9a" title="controller.CellSocietyController.initialize\lSimulationScreen" alt="" coords="1014,57,1285,98"/>
+<area shape="rect" id="node10" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a8af25de87ececa5ca913e7b5af486b3f" title="controller.CellSocietyController.initialize\lSimulation" alt="" coords="1014,122,1285,163"/>
+<area shape="rect" id="node11" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a7609d9a174ff7d2d00fc27e3574cdb21" title="controller.CellSocietyController.stop\lOrStart" alt="" coords="1025,187,1273,229"/>
+<area shape="rect" id="node7" href="$d1/d3e/classview_1_1_simulation_screen.html#a6c9f5c7e36be620d06e55709bc256d18" title="view.SimulationScreen.init\lSimScreen" alt="" coords="1371,14,1559,55"/>
+<area shape="rect" id="node9" href="$d1/d3e/classview_1_1_simulation_screen.html#a482a021910f4b997fb7b798bdc363df4" title="view.SimulationScreen.getNode" alt="" coords="1353,80,1577,107"/>
+<area shape="rect" id="node8" href="$d1/d3e/classview_1_1_simulation_screen.html#a7144a80861195f360ade7612b479ff3e" title="view.SimulationScreen.add\lButtons" alt="" coords="1646,14,1839,55"/>
+<area shape="rect" id="node12" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#aec38c45810ee2665fe01832114fbc68d" title="controller.CellSocietyController.restart\lSimulation" alt="" coords="1334,147,1597,189"/>
+<area shape="rect" id="node13" href="$d6/d7b/classcontroller_1_1_cell_society_controller.html#a33e7a77467ceeb880526a1b405b3ee79" title="controller.CellSocietyController.pause\lSimulation" alt="" coords="1336,213,1595,254"/>
+</map>
